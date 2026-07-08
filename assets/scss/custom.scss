@@ -1,8 +1,10 @@
 /* =============================================
-   渐变 + 马赛克交界特效
-   背景保持平滑渐变流动
-   在颜色交界处呈现像素块阶梯过渡
-   纯色区域保持干净
+   平滑渐变 + 交界处像素阶梯
+   
+   原理：
+   mix-blend-mode: soft-light 可以让一个低对比度的
+   棋盘格在纯色区域几乎不可见，而在颜色变化区域
+   （渐变过渡段）被"放大"呈现出像素马赛克效果。
    ============================================= */
 
 @keyframes gradient-shift {
@@ -11,16 +13,7 @@
     100% { background-position: 0% 50%; }
 }
 
-/*
-   像素阶梯层动画（方向相同，速度略慢）
-   与底层平滑渐变不同步，产生交界处像素游走
-*/
-@keyframes pixel-shift {
-    0%   { background-position: 0% 0%; }
-    100% { background-position: 120px 120px; }
-}
-
-/* Layer 1: 平滑渐变基底层 */
+/* 平滑渐变基底 */
 body {
     background:
         linear-gradient(135deg,
@@ -35,53 +28,26 @@ body {
     min-height: 100vh;
 }
 
-/* Layer 2: 像素交界覆盖层 */
+/* 像素棋盘格交界面 */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
     pointer-events: none;
-    opacity: 0.35;
-    mix-blend-mode: overlay;
 
     /*
-       核心思路：
-       用两组成90°夹角的 repeating-linear-gradient 交叉，
-       在交界处产生 6px × 6px 的独立像素块。
-
-       色条的颜色取值近似底层渐变的颜色变化路径，
-       但用硬色阶代替平滑，形成阶梯式过渡。
-       纯色区域相邻色块相同 → 不可见；
-       交界处相邻色块不同 → 可见像素马赛克。
+       极低对比度的黑白棋盘格（8px 像素块）
+       soft-light 模式会与下层渐变交互：
+       - 纯色区：格间亮度差极小 → 肉眼不可见
+       - 渐变色过渡区：底层颜色在格间变化 → 棋盘格被放大 → 像素块浮现
     */
-    background-image:
-        /* Layer A: 斜向色条（跟随渐变方向）*/
-        repeating-linear-gradient(135deg,
-            #dbeafe 0px, #dbeafe 6px,
-            #e4e0fe 6px, #e4e0fe 12px,
-            #ede9fe 12px, #ede9fe 18px,
-            #f5e4f2 18px, #f5e4f2 24px,
-            #fce7f3 24px, #fce7f3 30px,
-            #f2e4f8 30px, #f2e4f8 36px,
-            #e0f2fe 36px, #e0f2fe 42px,
-            #dbeafe 42px, #dbeafe 48px
-        ),
-        /* Layer B: 垂直方向亮度交错（将色条切分成独立色块）*/
-        repeating-linear-gradient(45deg,
-            rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 6px,
-            rgba(0,0,0,0.06) 6px, rgba(0,0,0,0.06) 12px,
-            rgba(255,255,255,0.08) 12px, rgba(255,255,255,0.08) 18px,
-            rgba(0,0,0,0.04) 18px, rgba(0,0,0,0.04) 24px,
-            rgba(255,255,255,0.10) 24px, rgba(255,255,255,0.10) 30px,
-            rgba(0,0,0,0.08) 30px, rgba(0,0,0,0.08) 36px,
-            rgba(255,255,255,0.06) 36px, rgba(255,255,255,0.06) 42px,
-            rgba(0,0,0,0.05) 42px, rgba(0,0,0,0.05) 48px
-        );
-
-    background-size: 48px 48px, 48px 48px;
-    animation: pixel-shift 20s linear infinite;
-    background-blend-mode: normal;
+    background-image: repeating-conic-gradient(
+        rgba(255,255,255,0.02) 0% 25%,
+        rgba(0,0,0,0.02) 0% 50%
+    );
+    background-size: 16px 16px;
+    mix-blend-mode: soft-light;
 }
 
 /* ===== 深色模式 ===== */
@@ -98,25 +64,8 @@ body::before {
 }
 
 [data-scheme="dark"] body::before {
-    background-image:
-        repeating-linear-gradient(135deg,
-            #0f172a 0px, #0f172a 6px,
-            #1a1a3e 6px, #1a1a3e 12px,
-            #1e1b4b 12px, #1e1b4b 18px,
-            #2a1e3e 18px, #2a1e3e 24px,
-            #2d1b3d 24px, #2d1b3d 30px,
-            #261e3a 30px, #261e3a 36px,
-            #1e293b 36px, #1e293b 42px,
-            #0f172a 42px, #0f172a 48px
-        ),
-        repeating-linear-gradient(45deg,
-            rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 6px,
-            rgba(0,0,0,0.10) 6px, rgba(0,0,0,0.10) 12px,
-            rgba(255,255,255,0.05) 12px, rgba(255,255,255,0.05) 18px,
-            rgba(0,0,0,0.08) 18px, rgba(0,0,0,0.08) 24px,
-            rgba(255,255,255,0.07) 24px, rgba(255,255,255,0.07) 30px,
-            rgba(0,0,0,0.12) 30px, rgba(0,0,0,0.12) 36px,
-            rgba(255,255,255,0.04) 36px, rgba(255,255,255,0.04) 42px,
-            rgba(0,0,0,0.06) 42px, rgba(0,0,0,0.06) 48px
-        );
+    background-image: repeating-conic-gradient(
+        rgba(255,255,255,0.03) 0% 25%,
+        rgba(0,0,0,0.02) 0% 50%
+    );
 }
