@@ -33,7 +33,7 @@ SortBy         = "default"
         { type = "archives", params = { limit = 5 } },
         { type = "tag-cloud", params = { limit = 10 } },
     ]
-    page     = [{ type = "recent-articles" }]
+    page     = [{ type = "toc" }]
 
 [opengraph.twitter]
     site = ""

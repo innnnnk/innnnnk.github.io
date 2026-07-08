@@ -24,7 +24,6 @@ if [ ! -d ".git" ]; then
     echo "📦 初始化 Git 仓库..."
     git init
     git checkout -b "$BRANCH"
-    git remote add origin "$REMOTE"
 fi
 
 # 确保 remote 指向正确的仓库
@@ -32,6 +31,10 @@ CURRENT_REMOTE=$(git remote get-url origin 2>/dev/null || echo "")
 if [ "$CURRENT_REMOTE" != "$REMOTE" ]; then
     git remote set-url origin "$REMOTE" 2>/dev/null || git remote add origin "$REMOTE"
 fi
+
+# 设置仓库级 Git 身份
+git config user.name "innnnnk"
+git config user.email "innnnnk@users.noreply.github.com"
 
 echo "📤 推送至远程仓库 ($REMOTE $BRANCH)..."
 git add -A
