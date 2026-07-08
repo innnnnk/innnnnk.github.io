@@ -16,6 +16,12 @@
     url        = "/search/"
     weight     = 3
 
+[[main]]
+    identifier = "random-thoughts"
+    name       = "💭 碎碎念"
+    url        = "/random-thoughts/"
+    weight     = 4
+
 [[social]]
     identifier = "github"
     name       = "GitHub"
