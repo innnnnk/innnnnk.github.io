@@ -1,0 +1,37 @@
+/* 自定义动态渐变背景 */
+@keyframes gradient-shift {
+    0%   { background-position: 0% 50%; }
+    25%  { background-position: 50% 0%; }
+    50%  { background-position: 100% 50%; }
+    75%  { background-position: 50% 100%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    /* 覆盖纯色背景为渐变 */
+    background: linear-gradient(
+        135deg,
+        #e0e7ff 0%,
+        #f0e6ff 25%,
+        #ffe6f0 50%,
+        #e6f0ff 75%,
+        #e0e7ff 100%
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradient-shift 20s ease infinite !important;
+    /* 确保 body 占满视口 */
+    min-height: 100vh;
+}
+
+/* 深色模式背景 */
+[data-scheme="dark"] body {
+    background: linear-gradient(
+        135deg,
+        #1a1a2e 0%,
+        #16213e 25%,
+        #1e1e3f 50%,
+        #2d1b3d 75%,
+        #1a1a2e 100%
+    ) !important;
+    background-size: 400% 400% !important;
+}
