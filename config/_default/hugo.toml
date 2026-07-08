@@ -1,6 +1,6 @@
 baseURL                = "https://innnnnk.github.io/"
 locale                 = "zh-cn"
-title                  = "城主的博客"
+title                  = "遇玄的方外之地"
 defaultContentLanguage = "zh-cn"
 hasCJKLanguage         = true
 theme                  = "stack"
