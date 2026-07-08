@@ -1,40 +1,105 @@
-/* 自定义动态渐变背景 - 伪元素方案（不与主题冲突） */
-@keyframes gradient-shift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* =============================================
+   自定义动态 8-bit 马赛克像素背景
+   使用多层 repeating-linear-gradient
+   模拟像素色块 + 网格线 + 平滑动画
+   ============================================= */
+
+/* 马赛克色块游走动画 */
+@keyframes mosaic-scroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 360px 360px; }
 }
 
+/* 色块层（可动）*/
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: -1;
-    background: linear-gradient(
-        135deg,
-        #dbeafe 0%,
-        #ede9fe 25%,
-        #fce7f3 50%,
-        #e0f2fe 75%,
-        #dbeafe 100%
-    );
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
     pointer-events: none;
+
+    /* 思路：
+       Layer 1: 水平方向排列色条（六色渐变条）
+       Layer 2: 垂直方向亮度覆盖层（让色条变成独立色块）
+       两层叠加 → 每个 60×60 格子就是一个独立的像素色块
+    */
+    background-image:
+        /* Layer 1 ── 水平色条：每 60px 换色 */
+        repeating-linear-gradient(90deg,
+            #ff6b6b 0px, #ff6b6b 60px,
+            #feca57 60px, #feca57 120px,
+            #48dbfb 120px, #48dbfb 180px,
+            #ff9ff3 180px, #ff9ff3 240px,
+            #54a0ff 240px, #54a0ff 300px,
+            #10ac84 300px, #10ac84 360px
+        ),
+        /* Layer 2 ── 垂直亮度覆盖：让每行色块明暗交替 */
+        repeating-linear-gradient(0deg,
+            rgba(255,255,255,0.25) 0px, rgba(255,255,255,0.25) 60px,
+            rgba(0,0,0,0.08) 60px, rgba(0,0,0,0.08) 120px,
+            rgba(255,255,255,0.15) 120px, rgba(255,255,255,0.15) 180px,
+            rgba(0,0,0,0.04) 180px, rgba(0,0,0,0.04) 240px,
+            rgba(255,255,255,0.20) 240px, rgba(255,255,255,0.20) 300px,
+            rgba(0,0,0,0.12) 300px, rgba(0,0,0,0.12) 360px
+        );
+
+    background-size: 360px 360px, 360px 360px;
+    background-blend-mode: normal;
+    animation: mosaic-scroll 35s linear infinite;
 }
 
-/* 深色模式 */
+/* 网格线层（静态）*/
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        /* 水平网格线 */
+        repeating-linear-gradient(0deg,
+            transparent 0px, transparent 59px,
+            rgba(0,0,0,0.07) 59px, rgba(0,0,0,0.07) 60px
+        ),
+        /* 垂直网格线 */
+        repeating-linear-gradient(90deg,
+            transparent 0px, transparent 59px,
+            rgba(0,0,0,0.07) 59px, rgba(0,0,0,0.07) 60px
+        );
+
+    background-size: 60px 60px, 60px 60px;
+}
+
+/* ===== 深色模式 ===== */
 [data-scheme="dark"] body::before {
-    background: linear-gradient(
-        135deg,
-        #0f172a 0%,
-        #1e1b4b 25%,
-        #1e1e3f 50%,
-        #2d1b3d 75%,
-        #0f172a 100%
-    );
-    background-size: 400% 400%;
+    background-image:
+        repeating-linear-gradient(90deg,
+            #c0392b 0px, #c0392b 60px,
+            #e67e22 60px, #e67e22 120px,
+            #2980b9 120px, #2980b9 180px,
+            #8e44ad 180px, #8e44ad 240px,
+            #16a085 240px, #16a085 300px,
+            #2c3e50 300px, #2c3e50 360px
+        ),
+        repeating-linear-gradient(0deg,
+            rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 60px,
+            rgba(0,0,0,0.15) 60px, rgba(0,0,0,0.15) 120px,
+            rgba(255,255,255,0.08) 120px, rgba(255,255,255,0.08) 180px,
+            rgba(0,0,0,0.10) 180px, rgba(0,0,0,0.10) 240px,
+            rgba(255,255,255,0.15) 240px, rgba(255,255,255,0.15) 300px,
+            rgba(0,0,0,0.20) 300px, rgba(0,0,0,0.20) 360px
+        );
+}
+
+[data-scheme="dark"] body::after {
+    background-image:
+        repeating-linear-gradient(0deg,
+            transparent 0px, transparent 59px,
+            rgba(255,255,255,0.08) 59px, rgba(255,255,255,0.08) 60px
+        ),
+        repeating-linear-gradient(90deg,
+            transparent 0px, transparent 59px,
+            rgba(255,255,255,0.08) 59px, rgba(255,255,255,0.08) 60px
+        );
 }
