@@ -1,0 +1,15 @@
+baseURL                = "https://innnnnk.github.io/"
+locale                 = "zh-cn"
+title                  = "城主的博客"
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage         = true
+theme                  = "stack"
+
+[pagination]
+    pagerSize = 5
+
+[permalinks]
+    post = "/p/:slug/"
+    page = "/:slug/"
+
+
