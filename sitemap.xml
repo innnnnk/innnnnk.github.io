@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://innnnnk.github.io/random-thoughts/</loc>
+    <lastmod>2026-07-08T18:40:00+08:00</lastmod>
+  </url><url>
+    <loc>https://innnnnk.github.io/random-thoughts/first-thought/</loc>
+    <lastmod>2026-07-08T18:40:00+08:00</lastmod>
+  </url><url>
+    <loc>https://innnnnk.github.io/</loc>
+    <lastmod>2026-07-08T18:40:00+08:00</lastmod>
+  </url><url>
     <loc>https://innnnnk.github.io/tags/hello/</loc>
     <lastmod>2026-07-08T18:00:00+08:00</lastmod>
   </url><url>
@@ -12,9 +21,6 @@
     <lastmod>2026-07-08T18:00:00+08:00</lastmod>
   </url><url>
     <loc>https://innnnnk.github.io/tags/</loc>
-    <lastmod>2026-07-08T18:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://innnnnk.github.io/</loc>
     <lastmod>2026-07-08T18:00:00+08:00</lastmod>
   </url><url>
     <loc>https://innnnnk.github.io/page/</loc>
