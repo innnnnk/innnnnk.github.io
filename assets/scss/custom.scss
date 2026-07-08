@@ -1,71 +1,40 @@
-/* =============================================
-   平滑渐变 + 交界处像素阶梯
-   
-   原理：
-   mix-blend-mode: soft-light 可以让一个低对比度的
-   棋盘格在纯色区域几乎不可见，而在颜色变化区域
-   （渐变过渡段）被"放大"呈现出像素马赛克效果。
-   ============================================= */
-
+/* 自定义动态渐变背景 - 伪元素方案（不与主题冲突） */
 @keyframes gradient-shift {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* 平滑渐变基底 */
-body {
-    background:
-        linear-gradient(135deg,
-            #dbeafe 0%,
-            #ede9fe 25%,
-            #fce7f3 50%,
-            #e0f2fe 75%,
-            #dbeafe 100%
-        ) !important;
-    background-size: 400% 400% !important;
-    animation: gradient-shift 15s ease infinite !important;
-    min-height: 100vh;
-}
-
-/* 像素棋盘格交界面 */
 body::before {
     content: "";
     position: fixed;
-    inset: 0;
-    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(
+        135deg,
+        #dbeafe 0%,
+        #ede9fe 25%,
+        #fce7f3 50%,
+        #e0f2fe 75%,
+        #dbeafe 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
     pointer-events: none;
-
-    /*
-       极低对比度的黑白棋盘格（8px 像素块）
-       soft-light 模式会与下层渐变交互：
-       - 纯色区：格间亮度差极小 → 肉眼不可见
-       - 渐变色过渡区：底层颜色在格间变化 → 棋盘格被放大 → 像素块浮现
-    */
-    background-image: repeating-conic-gradient(
-        rgba(255,255,255,0.02) 0% 25%,
-        rgba(0,0,0,0.02) 0% 50%
-    );
-    background-size: 16px 16px;
-    mix-blend-mode: soft-light;
 }
 
-/* ===== 深色模式 ===== */
-[data-scheme="dark"] body {
-    background:
-        linear-gradient(135deg,
-            #0f172a 0%,
-            #1e1b4b 25%,
-            #2d1b3d 50%,
-            #1e293b 75%,
-            #0f172a 100%
-        ) !important;
-    background-size: 400% 400% !important;
-}
-
+/* 深色模式 */
 [data-scheme="dark"] body::before {
-    background-image: repeating-conic-gradient(
-        rgba(255,255,255,0.03) 0% 25%,
-        rgba(0,0,0,0.02) 0% 50%
+    background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #1e1b4b 25%,
+        #1e1e3f 50%,
+        #2d1b3d 75%,
+        #0f172a 100%
     );
+    background-size: 400% 400%;
 }
