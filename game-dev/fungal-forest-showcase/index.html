@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤">
+<title>真菌森林展示场景 · 布局设计</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="真菌森林展示场景 · 布局设计">
+<meta property='og:description' content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/fungal-forest-showcase/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='场景设计' /><meta property='article:tag' content='关卡设计' /><meta property='article:tag' content='真菌森林' /><meta property='article:tag' content='Demo' /><meta property='article:published_time' content='2026-07-09T18:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-09T18:00:00&#43;08:00'/>
+<meta name="twitter:title" content="真菌森林展示场景 · 布局设计">
+<meta name="twitter:description" content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#空间结构珠串式布局">空间结构：珠串式布局</a>
+      <ol>
+        <li><a href="#为什么不是开放区域">为什么不是开放区域？</a></li>
+      </ol>
+    </li>
+    <li><a href="#俯视布局图">俯视布局图</a></li>
+    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#设计要点">设计要点</a>
+      <ol>
+        <li><a href="#空间节奏同一条路六种感受">空间节奏：同一条路，六种感受</a></li>
+        <li><a href="#光照梯度">光照梯度</a></li>
+        <li><a href="#encounter-设计">Encounter 设计</a></li>
+      </ol>
+    </li>
+    <li><a href="#资产状态">资产状态</a></li>
+    <li><a href="#下一步">下一步</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/fungal-forest-showcase/">真菌森林展示场景 · 布局设计</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-07-09T18:00:00&#43;08:00'>2026-07-09</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#空间结构珠串式布局">空间结构：珠串式布局</a>
+      <ol>
+        <li><a href="#为什么不是开放区域">为什么不是开放区域？</a></li>
+      </ol>
+    </li>
+    <li><a href="#俯视布局图">俯视布局图</a></li>
+    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#设计要点">设计要点</a>
+      <ol>
+        <li><a href="#空间节奏同一条路六种感受">空间节奏：同一条路，六种感受</a></li>
+        <li><a href="#光照梯度">光照梯度</a></li>
+        <li><a href="#encounter-设计">Encounter 设计</a></li>
+      </ol>
+    </li>
+    <li><a href="#资产状态">资产状态</a></li>
+    <li><a href="#下一步">下一步</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="背景">背景
+</h2><p>Project_DND 目前卡在场景搭建阶段。Demo 需要一个能展示核心玩法（自由探索 + 回合制战斗 + 2.5D 美术风格）的展示场景。</p>
+<p>场景主题：<strong>真菌森林（Fungal Forest）</strong>。</p>
+<hr>
+<h2 id="空间结构珠串式布局">空间结构：珠串式布局
+</h2><p>Demo 场景采用<strong>线性珠串结构</strong>——6 个精心编排的区域沿一条主路径串联，而非开放世界：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">🌿入口 → 🍄走廊 → ⚔小战 → 🌑峡谷 → 👑BOSS → ✨结尾
+</span></span><span class="line"><span class="cl"> 好奇     沉浸     紧张     压抑     高潮     释放
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="为什么不是开放区域">为什么不是开放区域？
+</h3><ol>
+<li><strong>引导可控</strong> — 确保 Demo 玩家在 5-8 分钟内看到所有精彩内容</li>
+<li><strong>资产需求低</strong> — 不需要填充 360° 视野，只需打磨可见路径</li>
+<li><strong>节奏可控</strong> — &ldquo;下一个转角有什么&quot;比&quot;随便逛逛&quot;更有驱动力</li>
+</ol>
+<hr>
+<h2 id="俯视布局图">俯视布局图
+</h2><div style="position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;border-radius:12px;margin:24px 0;">
+  <iframe src="/game-dev/fungal-forest-layout.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" loading="lazy"></iframe>
+</div>
+<p><a class="link" href="/game-dev/fungal-forest-layout.html" >全屏查看布局图</a></p>
+<hr>
+<h2 id="六大区域">六大区域
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>代号</th>
+					<th>功能</th>
+					<th>空间尺寸</th>
+					<th>时长</th>
+					<th>情绪</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A</td>
+					<td>森林入口</td>
+					<td>出生点，自由移动教学</td>
+					<td>15×15m 椭圆</td>
+					<td>~60s</td>
+					<td>好奇</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>幽光走廊</td>
+					<td>氛围展示，S 形蜿蜒路径</td>
+					<td>~50m 走廊</td>
+					<td>~90s</td>
+					<td>沉浸</td>
+			</tr>
+			<tr>
+					<td>C</td>
+					<td>腐木空地</td>
+					<td>小型遭遇（2 只真菌幼体）</td>
+					<td>20×18m 椭圆</td>
+					<td>~120s</td>
+					<td>紧张</td>
+			</tr>
+			<tr>
+					<td>D</td>
+					<td>深菇峡谷</td>
+					<td>战斗后喘息，氛围升级</td>
+					<td>~30m 直廊</td>
+					<td>~60s</td>
+					<td>压抑</td>
+			</tr>
+			<tr>
+					<td>E</td>
+					<td>巨菇王座</td>
+					<td>BOSS 战（真菌之主 + 2 小怪）</td>
+					<td>30×25m 圆形</td>
+					<td>~180s</td>
+					<td>高潮</td>
+			</tr>
+			<tr>
+					<td>F</td>
+					<td>孢子之径</td>
+					<td>胜利感收束</td>
+					<td>10m 小径</td>
+					<td>~30s</td>
+					<td>释放</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="设计要点">设计要点
+</h2><h3 id="空间节奏同一条路六种感受">空间节奏：同一条路，六种感受
+</h3><p>核心技巧是<strong>改变宽度、曲率和围合感</strong>：</p>
+<ul>
+<li><strong>A 入口</strong> — 开阔椭圆，给人安全感</li>
+<li><strong>B 走廊</strong> — S 形弯道，激发好奇心（&ldquo;拐角后面是什么？&quot;）</li>
+<li><strong>C 空地</strong> — 突然开阔 + 障碍物 → 警觉 → 战斗触发</li>
+<li><strong>D 峡谷</strong> — 笔直收窄，两侧高墙，压抑→前方有光→必须前进</li>
+<li><strong>E 竞技场</strong> — 圆形闭合空间，无处可逃</li>
+<li><strong>F 出口</strong> — 重新开阔，暖光，胜利释放</li>
+</ul>
+<h3 id="光照梯度">光照梯度
+</h3><p>从暖到冷再到暖的完整弧线：</p>
+<ul>
+<li>A: 暖色夕阳 God Rays → B: 冷色荧光渐显 → C: 均匀中性战斗光</li>
+<li>D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光</li>
+</ul>
+<h3 id="encounter-设计">Encounter 设计
+</h3><p><strong>小型遭遇（C 区）：</strong> 2 只远程真菌幼体 + 中央倒木掩体 → 教学性质的暖身战</p>
+<p><strong>BOSS 战（E 区）：</strong> 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）</p>
+<hr>
+<h2 id="资产状态">资产状态
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>类别</th>
+					<th>已有</th>
+					<th>需新增（高优）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>蘑菇</td>
+					<td>5 种中小变体 ✅</td>
+					<td>巨型蘑菇茎（3 变体）、伞盖平台</td>
+			</tr>
+			<tr>
+					<td>地面</td>
+					<td>草地 + 苔藓 ✅</td>
+					<td>地面孢子 Decal</td>
+			</tr>
+			<tr>
+					<td>障碍</td>
+					<td>—</td>
+					<td>倒木（2 变体）、岩石（3 变体）</td>
+			</tr>
+			<tr>
+					<td>装饰</td>
+					<td>—</td>
+					<td>菌丝藤蔓、自发光孢子粒子 ×2</td>
+			</tr>
+			<tr>
+					<td>材质</td>
+					<td>蘑菇 / 草地 / 苔藓 ✅</td>
+					<td>自发光孢子材质</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="下一步">下一步
+</h2><ol>
+<li>在 UE 中创建 <code>FungalForest_Showcase</code> 关卡</li>
+<li>用 BSP Box 按分区尺寸搭建白盒</li>
+<li>Walk through 验证空间感</li>
+<li>逐步用实际资产替换白盒</li>
+</ol>
+<hr>
+<p><em>设计文档完整版：<a class="link" href="https://github.com/innnnnk/innnnnk.github.io"  target="_blank" rel="noopener"
+    >Project_DND/Design/FungalForest_Showcase_Design.md</a></em></p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%9C%BA%E6%99%AF%E8%AE%BE%E8%AE%A1/">场景设计</a>
+        
+            <a href="/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/">关卡设计</a>
+        
+            <a href="/tags/%E7%9C%9F%E8%8F%8C%E6%A3%AE%E6%9E%97/">真菌森林</a>
+        
+            <a href="/tags/demo/">Demo</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>
