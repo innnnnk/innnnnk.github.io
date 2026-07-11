@@ -1,99 +1,963 @@
-<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤"><title>真菌森林展示场景 · 布局设计</title><link rel=canonical href=https://innnnnk.github.io/game-dev/fungal-forest-showcase/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css><meta property='og:title' content="真菌森林展示场景 · 布局设计"><meta property='og:description' content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤"><meta property='og:url' content='https://innnnnk.github.io/game-dev/fungal-forest-showcase/'><meta property='og:site_name' content='遇玄的方外之地'><meta property='og:type' content='article'><meta property='article:section' content='Game-Dev'><meta property='article:tag' content='场景设计'><meta property='article:tag' content='关卡设计'><meta property='article:tag' content='真菌森林'><meta property='article:tag' content='Demo'><meta property='article:published_time' content='2026-07-09T18:00:00+08:00'><meta property='article:modified_time' content='2026-07-09T18:00:00+08:00'><meta name=twitter:title content="真菌森林展示场景 · 布局设计"><meta name=twitter:description content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label>
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>遇玄的方外之地</a></h1><h2 class=site-description></h2></div></header><ol class=menu-social><li><a href=https://github.com/innnnnk title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-<span>归档</span></a></li><li><a href=/><span>首页</span></a></li><li><a href=/archives/><span>归档</span></a></li><li><a href=/search/><span>搜索</span></a></li><li><a href=/game-dev/><span>🎮 游戏开发</span></a></li><li><a href=/random-thoughts/><span>💭 碎碎念</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span></span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title"></h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#背景>背景</a></li><li><a href=#空间结构珠串式布局>空间结构：珠串式布局</a><ol><li><a href=#为什么不是开放区域>为什么不是开放区域？</a></li></ol></li><li><a href=#俯视布局图>俯视布局图</a></li><li><a href=#六大区域>六大区域</a></li><li><a href=#设计要点>设计要点</a><ol><li><a href=#空间节奏同一条路六种感受>空间节奏：同一条路，六种感受</a></li><li><a href=#光照梯度>光照梯度</a></li><li><a href=#encounter-设计>Encounter 设计</a></li></ol></li><li><a href=#资产状态>资产状态</a></li><li><a href=#叙事引导七条通道>叙事引导：七条通道</a><ol><li><a href=#通道一声音引导>通道一：声音引导</a></li><li><a href=#通道二视觉异常引导>通道二：视觉异常引导</a></li><li><a href=#通道三文本引导日记--物品描述>通道三：文本引导（日记 / 物品描述）</a></li><li><a href=#通道四npc-对话引导>通道四：NPC 对话引导</a></li><li><a href=#通道五空间节奏引导>通道五：空间节奏引导</a></li><li><a href=#通道六光渐变引导>通道六：光渐变引导</a></li><li><a href=#通道七玩法反馈引导玩法--叙事连接点>通道七：玩法反馈引导（「玩法 = 叙事」连接点）</a></li><li><a href=#七条通道的协同效果>七条通道的协同效果</a></li></ol></li><li><a href=#demo-叙事架构最小配置>Demo 叙事架构（最小配置）</a></li><li><a href=#下一步>下一步</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/game-dev/fungal-forest-showcase/>真菌森林展示场景 · 布局设计</a></h2><h3 class=article-subtitle>Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤</h3></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published datetime=2026-07-09T18:00:00+08:00>2026-07-09</time>
-<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading></time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
-<span></span></div></summary><nav class=toc-nav><ol><li><a href=#背景>背景</a></li><li><a href=#空间结构珠串式布局>空间结构：珠串式布局</a><ol><li><a href=#为什么不是开放区域>为什么不是开放区域？</a></li></ol></li><li><a href=#俯视布局图>俯视布局图</a></li><li><a href=#六大区域>六大区域</a></li><li><a href=#设计要点>设计要点</a><ol><li><a href=#空间节奏同一条路六种感受>空间节奏：同一条路，六种感受</a></li><li><a href=#光照梯度>光照梯度</a></li><li><a href=#encounter-设计>Encounter 设计</a></li></ol></li><li><a href=#资产状态>资产状态</a></li><li><a href=#叙事引导七条通道>叙事引导：七条通道</a><ol><li><a href=#通道一声音引导>通道一：声音引导</a></li><li><a href=#通道二视觉异常引导>通道二：视觉异常引导</a></li><li><a href=#通道三文本引导日记--物品描述>通道三：文本引导（日记 / 物品描述）</a></li><li><a href=#通道四npc-对话引导>通道四：NPC 对话引导</a></li><li><a href=#通道五空间节奏引导>通道五：空间节奏引导</a></li><li><a href=#通道六光渐变引导>通道六：光渐变引导</a></li><li><a href=#通道七玩法反馈引导玩法--叙事连接点>通道七：玩法反馈引导（「玩法 = 叙事」连接点）</a></li><li><a href=#七条通道的协同效果>七条通道的协同效果</a></li></ol></li><li><a href=#demo-叙事架构最小配置>Demo 叙事架构（最小配置）</a></li><li><a href=#下一步>下一步</a></li></ol></nav></details></aside><section class=article-content><h2 id=背景>背景</h2><p>Project_DND 目前卡在场景搭建阶段。Demo 需要一个能展示核心玩法（自由探索 + 回合制战斗 + 2.5D 美术风格）的展示场景。</p><p>场景主题：<strong>真菌森林（Fungal Forest）</strong>。</p><hr><h2 id=空间结构珠串式布局>空间结构：珠串式布局</h2><p>Demo 场景采用<strong>线性珠串结构</strong>——6 个精心编排的区域沿一条主路径串联，而非开放世界：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>🌿入口 → 🍄走廊 → ⚔小战 → 🌑峡谷 → 👑BOSS → ✨结尾
-</span></span><span class=line><span class=cl> 好奇     沉浸     紧张     压抑     高潮     释放
-</span></span></code></pre></td></tr></table></div></div><h3 id=为什么不是开放区域>为什么不是开放区域？</h3><ol><li><strong>引导可控</strong> — 确保 Demo 玩家在 5-8 分钟内看到所有精彩内容</li><li><strong>资产需求低</strong> — 不需要填充 360° 视野，只需打磨可见路径</li><li><strong>节奏可控</strong> — &ldquo;下一个转角有什么"比"随便逛逛"更有驱动力</li></ol><hr><h2 id=俯视布局图>俯视布局图</h2><div style="position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;border-radius:12px;margin:24px 0"><iframe src=/game-dev/fungal-forest-layout.html style=position:absolute;top:0;left:0;width:100%;height:100%;border:none loading=lazy></iframe></div><p><a class=link href=/game-dev/fungal-forest-layout.html>全屏查看布局图</a></p><hr><h2 id=六大区域>六大区域</h2><div class=table-wrapper><table><thead><tr><th>区域</th><th>代号</th><th>功能</th><th>空间尺寸</th><th>时长</th><th>情绪</th></tr></thead><tbody><tr><td>A</td><td>森林入口</td><td>出生点，自由移动教学</td><td>15×15m 椭圆</td><td>~60s</td><td>好奇</td></tr><tr><td>B</td><td>幽光走廊</td><td>氛围展示，S 形蜿蜒路径</td><td>~50m 走廊</td><td>~90s</td><td>沉浸</td></tr><tr><td>C</td><td>腐木空地</td><td>小型遭遇（2 只真菌幼体）</td><td>20×18m 椭圆</td><td>~120s</td><td>紧张</td></tr><tr><td>D</td><td>深菇峡谷</td><td>战斗后喘息，氛围升级</td><td>~30m 直廊</td><td>~60s</td><td>压抑</td></tr><tr><td>E</td><td>巨菇王座</td><td>BOSS 战（真菌之主 + 2 小怪）</td><td>30×25m 圆形</td><td>~180s</td><td>高潮</td></tr><tr><td>F</td><td>孢子之径</td><td>胜利感收束</td><td>10m 小径</td><td>~30s</td><td>释放</td></tr></tbody></table></div><hr><h2 id=设计要点>设计要点</h2><h3 id=空间节奏同一条路六种感受>空间节奏：同一条路，六种感受</h3><p>核心技巧是<strong>改变宽度、曲率和围合感</strong>：</p><ul><li><strong>A 入口</strong> — 开阔椭圆，给人安全感</li><li><strong>B 走廊</strong> — S 形弯道，激发好奇心（&ldquo;拐角后面是什么？"）</li><li><strong>C 空地</strong> — 突然开阔 + 障碍物 → 警觉 → 战斗触发</li><li><strong>D 峡谷</strong> — 笔直收窄，两侧高墙，压抑→前方有光→必须前进</li><li><strong>E 竞技场</strong> — 圆形闭合空间，无处可逃</li><li><strong>F 出口</strong> — 重新开阔，暖光，胜利释放</li></ul><h3 id=光照梯度>光照梯度</h3><p>从暖到冷再到暖的完整弧线：</p><ul><li>A: 暖色夕阳 God Rays → B: 冷色荧光渐显 → C: 均匀中性战斗光</li><li>D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光</li></ul><h3 id=encounter-设计>Encounter 设计</h3><p><strong>小型遭遇（C 区）：</strong> 2 只远程真菌幼体 + 中央倒木掩体 → 教学性质的暖身战</p><p><strong>BOSS 战（E 区）：</strong> 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）</p><hr><h2 id=资产状态>资产状态</h2><div class=table-wrapper><table><thead><tr><th>类别</th><th>已有</th><th>需新增（高优）</th></tr></thead><tbody><tr><td>蘑菇</td><td>5 种中小变体 ✅</td><td>巨型蘑菇茎（3 变体）、伞盖平台</td></tr><tr><td>地面</td><td>草地 + 苔藓 ✅</td><td>地面孢子 Decal</td></tr><tr><td>障碍</td><td>—</td><td>倒木（2 变体）、岩石（3 变体）</td></tr><tr><td>装饰</td><td>—</td><td>菌丝藤蔓、自发光孢子粒子 ×2</td></tr><tr><td>材质</td><td>蘑菇 / 草地 / 苔藓 ✅</td><td>自发光孢子材质</td></tr></tbody></table></div><hr><h2 id=叙事引导七条通道>叙事引导：七条通道</h2><p>Demo 的目标不是在一小时内揭示世界观，而是让玩家在体验结束时感觉「这个游戏有东西，不是普通奇幻」。以下是七条引导通道——它们共同传递「不对劲」的感觉，但各自做各自的事，互不依赖。</p><p>七条通道共享两个核心母题：</p><ul><li><strong>「记得」</strong> — 贯穿声音、文本、NPC、玩法</li><li><strong>「这里是活的」</strong> — 贯穿声音、视觉、玩法</li></ul><h3 id=通道一声音引导>通道一：声音引导</h3><div class=table-wrapper><table><thead><tr><th>位置</th><th>声音内容</th><th>引导什么</th></tr></thead><tbody><tr><td>全局</td><td>环境底噪——低沉、持续的嗡鸣（不是音乐，是地底本身的「呼吸声」）</td><td>全程暗示：这个森林不是普通的森林</td></tr><tr><td>B 区营地</td><td>走到残骸旁 → 嗡鸣短暂消失几秒，然后恢复</td><td>「这里曾经有人，他们遇到了什么」</td></tr><tr><td>D 区峡谷</td><td>螺旋纹路附近 → 嗡鸣的频率改变——稍微变高、或加一层泛音</td><td>「这里有比矿工更古老的东西」</td></tr><tr><td>C 区战斗</td><td>菌丝宿主被击败 → 一声非人的叹息（不是惨叫）</td><td>「它不是在死亡，它是在被释放」</td></tr><tr><td>E 区 BOSS</td><td>第二阶段 → 嗡鸣变成多重和声（像很多声音在同时低语）</td><td>「它不止是一个，它是很多个」</td></tr><tr><td>F 区出口</td><td>走出森林 → 嗡鸣消失。完全安静 2-3 秒。然后风声</td><td>「你出来了。但那个声音还在你脑子里」</td></tr></tbody></table></div><p><strong>设计原则：</strong> 声音不说任何话，但让你的身体先于大脑感到不安。嗡鸣的频率和人紧张时体内的共振接近。</p><h3 id=通道二视觉异常引导>通道二：视觉异常引导</h3><div class=table-wrapper><table><thead><tr><th>位置</th><th>视觉设计</th><th>引导什么</th></tr></thead><tbody><tr><td>B 区营地</td><td>帐篷里有半杯水——没有涟漪，但杯壁上有细小的菌丝在生长</td><td>「他们离开得很突然。或者根本没离开」</td></tr><tr><td>C 区战斗</td><td>菌丝宿主死亡 → 不倒地 → 孢子从体内释放 → 躯体萎缩成干壳 → 2 秒后干壳上长出小蘑菇</td><td>「死亡规则在这里不一样」</td></tr><tr><td>D 区峡谷</td><td>螺旋纹路附近 → 玩家自己的影子短暂消失 0.3 秒 → 恢复</td><td>「你的存在在这里不稳定」</td></tr><tr><td>D 区峡谷</td><td>螺旋纹路上有微弱的脉搏般亮度变化——大约每 6 秒亮一下</td><td>「它是活的」</td></tr><tr><td>E 区 BOSS</td><td>场地地面偶尔出现网格线的短暂错位——战斗网格本身在闪烁</td><td>「物理法则在这里不稳定」</td></tr><tr><td>F 区出口</td><td>走出后，入口处的蘑菇朝向微微转动——转向玩家离开的方向</td><td>「它们在看着你」</td></tr></tbody></table></div><p><strong>设计原则：</strong> 视觉异常都在玩家注意力边缘。不是过场动画——是眼角余光捕捉到的。</p><h3 id=通道三文本引导日记--物品描述>通道三：文本引导（日记 / 物品描述）</h3><div class=table-wrapper><table><thead><tr><th>位置</th><th>文本内容</th><th>引导什么</th></tr></thead><tbody><tr><td>B 区日记</td><td>「第三天。蘑菇在跟我说话。不，不是在说话。它在……<strong>记得我</strong>。」——字迹中断</td><td>引入「记忆」概念。不是普通的寄生——是有意识的</td></tr><tr><td>E 区掉落物</td><td>「此物在你手中脉动，仿佛记得什么。」</td><td>Callback「记得」，把矿工日记和 BOSS 连起来</td></tr><tr><td>可选：矿工帐篷里的记录</td><td>「工头说挖到了新矿脉。晶体品质很高。他笑了。但他昨晚梦到了自己不会做梦。」</td><td>「矿石会影响梦」——不解释，只是记录</td></tr></tbody></table></div><p><strong>设计原则：</strong> 文本不解释，只呈现现象。让玩家自己连起来。</p><h3 id=通道四npc-对话引导>通道四：NPC 对话引导</h3><div class=table-wrapper><table><thead><tr><th>位置</th><th>谁</th><th>说了什么</th><th>引导什么</th></tr></thead><tbody><tr><td>A 区入口</td><td>委托人</td><td>「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」</td><td>建立任务</td></tr><tr><td>F 区出口</td><td>委托人</td><td>「你是第三个回来的。前两个……记不太清了。这是你的报酬。」</td><td>制造核心疑问——「他不知道？还是在装？那块矿石是什么？」</td></tr><tr><td>F 区出口</td><td>委托人</td><td>看你手中的晶核两秒。然后：「留着吧。你应该留着。」转身离开。</td><td>他不解释。但他知道这是什么。他选择不说</td></tr></tbody></table></div><p><strong>设计原则：</strong> 说最少的话，露出最多的疑点。委托人全程只说三句话，但每句话都在增加不安。</p><h3 id=通道五空间节奏引导>通道五：空间节奏引导</h3><p>这是关卡布局的核心设计——6 个区域的宽度、曲率、围合感不同，情绪也随之变化：</p><div class=table-wrapper><table><thead><tr><th>区域</th><th>空间特征</th><th>引导的情绪</th></tr></thead><tbody><tr><td>A 入口</td><td>开阔椭圆、暖光</td><td>安全感：「这是一个正常的地方」</td></tr><tr><td>B 走廊</td><td>S 形弯道、逐渐变冷的光</td><td>好奇 + 轻微不安：「拐角后面是什么」</td></tr><tr><td>C 空地</td><td>突然开阔、但被障碍物分割、中性战斗光</td><td>警觉：「这里可能有东西」→ 战斗</td></tr><tr><td>D 峡谷</td><td>收窄、高墙、极暗、纯荧光</td><td>压抑：「我必须往前走，但我不确定我想」</td></tr><tr><td>E 竞技场</td><td>圆形封闭、戏剧化强对比光</td><td>被困感：「无路可退」→ BOSS 战</td></tr><tr><td>F 出口</td><td>重新开阔、暖光</td><td>释放：「我出来了」——但不安还在</td></tr></tbody></table></div><p><strong>设计原则：</strong> 空间本身就是叙事。玩家不需要任何文本，光是走一遍，身体就会感受到情绪的起伏。</p><h3 id=通道六光渐变引导>通道六：光渐变引导</h3><div class=table-wrapper><table><thead><tr><th>区域</th><th>光色</th><th>引导什么</th></tr></thead><tbody><tr><td>A → B</td><td>暖色夕阳 → 冷色荧光渐显</td><td>从「安全的人类世界」过渡到「真菌的地下世界」</td></tr><tr><td>B → C</td><td>均匀中性战斗光</td><td>让玩家专注于战斗，暂时忘记环境的异常</td></tr><tr><td>C → D</td><td>光照降到全局最暗</td><td>视觉上的威胁感达到峰值</td></tr><tr><td>D → E</td><td>戏剧化强对比（亮处极亮，暗处极暗）</td><td>史诗感——这是最终对决</td></tr><tr><td>E → F</td><td>暖金色胜利光</td><td>让玩家在物理和心理上同时回归「安全」</td></tr></tbody></table></div><p><strong>设计原则：</strong> 光的变化速度要慢到玩家不会主动注意到——他们只会感觉「怎么越来越不舒服」但说不出为什么。</p><h3 id=通道七玩法反馈引导玩法--叙事连接点>通道七：玩法反馈引导（「玩法 = 叙事」连接点）</h3><p>用游戏机制本身来叙事——不需要额外的文本或过场。</p><div class=table-wrapper><table><thead><tr><th>位置</th><th>玩法机制</th><th>叙事引导</th></tr></thead><tbody><tr><td>B 区</td><td>矿石碎片可交互，靠近时战斗网格短暂闪烁</td><td>「矿石和空间稳定性有关」——但玩家不知道这意味着什么</td></tr><tr><td>C 区</td><td>菌丝宿主的 AI 行为：它们不躲避、不逃跑——朝你走来，像在拥抱</td><td>「它们不是在攻击你。它们想传染你。」</td></tr><tr><td>E 区 BOSS</td><td>孢子云掩体——但站在孢子云里超过一轮 → 行动条变慢 → 画面边缘出现菌丝纹路</td><td>「掩体不是安全的。它在改变你。」</td></tr><tr><td>全局</td><td>击杀一只菌丝宿主后，下一只在战斗开始时看向你角色的眼睛——比普通敌人多停留半秒</td><td>「它认识你。或者它认识你身上的某个东西。」</td></tr></tbody></table></div><p><strong>设计原则：</strong> 玩法是唯一一种玩家「必须参与」的叙事。看日记可以跳过，听声音可以忽略——但战斗中发生的事情，每个玩家都会经历。</p><hr><h3 id=七条通道的协同效果>七条通道的协同效果</h3><p>这些通道不是独立运作的。它们像交响乐的不同乐器——同时演奏，但玩家只能感受到整体效果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>声音说：          「不舒服。」            —— 嗡鸣、叹息、消失
-</span></span><span class=line><span class=cl>视觉说：          「不对劲。」            —— 影子消失、蘑菇转向、脉动
-</span></span><span class=line><span class=cl>文本说：          「记得。」              —— 日记、掉落物描述
-</span></span><span class=line><span class=cl>NPC 说：          「前两个不记得。」      —— 矛盾
-</span></span><span class=line><span class=cl>空间说：          「你越来越深入了。」    —— 收窄、变暗
-</span></span><span class=line><span class=cl>光说：            「你离开安全区域了。」  —— 暖→冷→暖
-</span></span><span class=line><span class=cl>玩法说：          「战斗不是普通的战斗。」 —— 死亡≠死亡
-</span></span></code></pre></td></tr></table></div></div><p>玩家不会分解出「这是声音引导、这是文本引导」。他们只会有一种感觉：</p><blockquote><p>「这个地方不对劲。我要继续探索。」</p></blockquote><p>而这正是 Demo 的目标。</p><hr><h2 id=demo-叙事架构最小配置>Demo 叙事架构（最小配置）</h2><p>基于七条通道，为 Demo 6 区叠加叙事层——不改动关卡空间布局：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>A 入口 ── 委托人给任务。
-</span></span><span class=line><span class=cl>          「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」
-</span></span><span class=line><span class=cl>          三选一快速职业选择（战士 / 法师 / 游荡者）。
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>B 走廊 ── 营地残骸 + 矿工日记。
-</span></span><span class=line><span class=cl>          「第三天。蘑菇在跟我说话……它在……记得我。」（字迹中断）
-</span></span><span class=line><span class=cl>          帐篷里半杯水 + 菌丝在杯壁生长。
-</span></span><span class=line><span class=cl>          可选：矿石碎片（交互 → 网格闪烁）。
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>C 空地 ── 两个菌丝宿主（被寄生的矿工）。
-</span></span><span class=line><span class=cl>          战斗 —— AI 不躲避，朝玩家走来。
-</span></span><span class=line><span class=cl>          击败后：不倒地，孢子从体内释放，躯体萎缩成干壳。
-</span></span><span class=line><span class=cl>          干壳上 2 秒后长出小蘑菇。
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>D 峡谷 ── 墙上螺旋纹路。
-</span></span><span class=line><span class=cl>          靠近时：影子消失 0.3 秒，嗡鸣频率改变。
-</span></span><span class=line><span class=cl>          纹路每 6 秒微弱发光一次（脉搏感）。
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>E BOSS ── 真菌之主。
-</span></span><span class=line><span class=cl>          第二阶段：嗡鸣变多重和声，网格线偶尔错位。
-</span></span><span class=line><span class=cl>          孢子云掩体 —— 站太久会被缓慢感染。
-</span></span><span class=line><span class=cl>          击败后掉落「脉动的晶核」：
-</span></span><span class=line><span class=cl>          「此物在你手中脉动，仿佛记得什么。」
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>F 出口 ── 委托人等在那里。
-</span></span><span class=line><span class=cl>          「你是第三个回来的。前两个……记不太清了。」
-</span></span><span class=line><span class=cl>          给报酬。袋子里有金币 + 一块微热的矿石。
-</span></span><span class=line><span class=cl>          看晶核两秒：「留着吧。你应该留着。」转身离开。
-</span></span><span class=line><span class=cl>          身后蘑菇朝向微微转向玩家。
-</span></span><span class=line><span class=cl>          嗡鸣消失。完全安静。然后风声。
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>全剧终。60 分钟。
-</span></span></code></pre></td></tr></table></div></div><hr><h2 id=下一步>下一步</h2><ol><li>在 UE 中创建 <code>FungalForest_Showcase</code> 关卡</li><li>用 BSP Box 按分区尺寸搭建白盒</li><li>Walk through 验证空间感</li><li>逐步用实际资产替换白盒</li><li>实施七条引导通道（从低成本通道开始：文本 → 空间 → 光 → 视觉 → 玩法 → 声音 → NPC）</li></ol><hr><p><em>设计文档完整版：<a class=link href=https://github.com/innnnnk/innnnnk.github.io target=_blank rel=noopener>Project_DND/Design/FungalForest_Showcase_Design.md</a></em></p></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/%E5%9C%BA%E6%99%AF%E8%AE%BE%E8%AE%A1/>场景设计</a>
-<a href=/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/>关卡设计</a>
-<a href=/tags/%E7%9C%9F%E8%8F%8C%E6%A3%AE%E6%9E%97/>真菌森林</a>
-<a href=/tags/demo/>Demo</a></section><section class="article-copyright inline-meta"><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><footer class=site-footer><section class=copyright>&copy;
-2026 遇玄的方外之地</section><section class=powerby><br></section></footer><script type=module>
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤">
+<title>真菌森林展示场景 · 布局设计</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="真菌森林展示场景 · 布局设计">
+<meta property='og:description' content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/fungal-forest-showcase/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='场景设计' /><meta property='article:tag' content='关卡设计' /><meta property='article:tag' content='真菌森林' /><meta property='article:tag' content='Demo' /><meta property='article:published_time' content='2026-07-09T18:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-09T18:00:00&#43;08:00'/>
+<meta name="twitter:title" content="真菌森林展示场景 · 布局设计">
+<meta name="twitter:description" content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#空间结构珠串式布局">空间结构：珠串式布局</a>
+      <ol>
+        <li><a href="#为什么不是开放区域">为什么不是开放区域？</a></li>
+      </ol>
+    </li>
+    <li><a href="#俯视布局图">俯视布局图</a></li>
+    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#设计要点">设计要点</a>
+      <ol>
+        <li><a href="#空间节奏同一条路六种感受">空间节奏：同一条路，六种感受</a></li>
+        <li><a href="#光照梯度">光照梯度</a></li>
+        <li><a href="#encounter-设计">Encounter 设计</a></li>
+      </ol>
+    </li>
+    <li><a href="#资产状态">资产状态</a></li>
+    <li><a href="#叙事引导七条通道">叙事引导：七条通道</a>
+      <ol>
+        <li><a href="#通道一声音引导">通道一：声音引导</a></li>
+        <li><a href="#通道二视觉异常引导">通道二：视觉异常引导</a></li>
+        <li><a href="#通道三文本引导日记--物品描述">通道三：文本引导（日记 / 物品描述）</a></li>
+        <li><a href="#通道四npc-对话引导">通道四：NPC 对话引导</a></li>
+        <li><a href="#通道五空间节奏引导">通道五：空间节奏引导</a></li>
+        <li><a href="#通道六光渐变引导">通道六：光渐变引导</a></li>
+        <li><a href="#通道七玩法反馈引导玩法--叙事连接点">通道七：玩法反馈引导（「玩法 = 叙事」连接点）</a></li>
+        <li><a href="#七条通道的协同效果">七条通道的协同效果</a></li>
+      </ol>
+    </li>
+    <li><a href="#demo-叙事架构最小配置">Demo 叙事架构（最小配置）</a></li>
+    <li><a href="#下一步">下一步</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/fungal-forest-showcase/">真菌森林展示场景 · 布局设计</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、白盒搭建步骤
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-07-09T18:00:00&#43;08:00'>2026-07-09</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#空间结构珠串式布局">空间结构：珠串式布局</a>
+      <ol>
+        <li><a href="#为什么不是开放区域">为什么不是开放区域？</a></li>
+      </ol>
+    </li>
+    <li><a href="#俯视布局图">俯视布局图</a></li>
+    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#设计要点">设计要点</a>
+      <ol>
+        <li><a href="#空间节奏同一条路六种感受">空间节奏：同一条路，六种感受</a></li>
+        <li><a href="#光照梯度">光照梯度</a></li>
+        <li><a href="#encounter-设计">Encounter 设计</a></li>
+      </ol>
+    </li>
+    <li><a href="#资产状态">资产状态</a></li>
+    <li><a href="#叙事引导七条通道">叙事引导：七条通道</a>
+      <ol>
+        <li><a href="#通道一声音引导">通道一：声音引导</a></li>
+        <li><a href="#通道二视觉异常引导">通道二：视觉异常引导</a></li>
+        <li><a href="#通道三文本引导日记--物品描述">通道三：文本引导（日记 / 物品描述）</a></li>
+        <li><a href="#通道四npc-对话引导">通道四：NPC 对话引导</a></li>
+        <li><a href="#通道五空间节奏引导">通道五：空间节奏引导</a></li>
+        <li><a href="#通道六光渐变引导">通道六：光渐变引导</a></li>
+        <li><a href="#通道七玩法反馈引导玩法--叙事连接点">通道七：玩法反馈引导（「玩法 = 叙事」连接点）</a></li>
+        <li><a href="#七条通道的协同效果">七条通道的协同效果</a></li>
+      </ol>
+    </li>
+    <li><a href="#demo-叙事架构最小配置">Demo 叙事架构（最小配置）</a></li>
+    <li><a href="#下一步">下一步</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="背景">背景
+</h2><p>Project_DND 目前卡在场景搭建阶段。Demo 需要一个能展示核心玩法（自由探索 + 回合制战斗 + 2.5D 美术风格）的展示场景。</p>
+<p>场景主题：<strong>真菌森林（Fungal Forest）</strong>。</p>
+<hr>
+<h2 id="空间结构珠串式布局">空间结构：珠串式布局
+</h2><p>Demo 场景采用<strong>线性珠串结构</strong>——6 个精心编排的区域沿一条主路径串联，而非开放世界：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">🌿入口 → 🍄走廊 → ⚔小战 → 🌑峡谷 → 👑BOSS → ✨结尾
+</span></span><span class="line"><span class="cl"> 好奇     沉浸     紧张     压抑     高潮     释放
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="为什么不是开放区域">为什么不是开放区域？
+</h3><ol>
+<li><strong>引导可控</strong> — 确保 Demo 玩家在 5-8 分钟内看到所有精彩内容</li>
+<li><strong>资产需求低</strong> — 不需要填充 360° 视野，只需打磨可见路径</li>
+<li><strong>节奏可控</strong> — &ldquo;下一个转角有什么&quot;比&quot;随便逛逛&quot;更有驱动力</li>
+</ol>
+<hr>
+<h2 id="俯视布局图">俯视布局图
+</h2><div style="position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;border-radius:12px;margin:24px 0;">
+  <iframe src="/game-dev/fungal-forest-layout.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" loading="lazy"></iframe>
+</div>
+<p><a class="link" href="/game-dev/fungal-forest-layout.html" >全屏查看布局图</a></p>
+<hr>
+<h2 id="六大区域">六大区域
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>代号</th>
+					<th>功能</th>
+					<th>空间尺寸</th>
+					<th>时长</th>
+					<th>情绪</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A</td>
+					<td>森林入口</td>
+					<td>出生点，自由移动教学</td>
+					<td>15×15m 椭圆</td>
+					<td>~60s</td>
+					<td>好奇</td>
+			</tr>
+			<tr>
+					<td>B</td>
+					<td>幽光走廊</td>
+					<td>氛围展示，S 形蜿蜒路径</td>
+					<td>~50m 走廊</td>
+					<td>~90s</td>
+					<td>沉浸</td>
+			</tr>
+			<tr>
+					<td>C</td>
+					<td>腐木空地</td>
+					<td>小型遭遇（2 只真菌幼体）</td>
+					<td>20×18m 椭圆</td>
+					<td>~120s</td>
+					<td>紧张</td>
+			</tr>
+			<tr>
+					<td>D</td>
+					<td>深菇峡谷</td>
+					<td>战斗后喘息，氛围升级</td>
+					<td>~30m 直廊</td>
+					<td>~60s</td>
+					<td>压抑</td>
+			</tr>
+			<tr>
+					<td>E</td>
+					<td>巨菇王座</td>
+					<td>BOSS 战（真菌之主 + 2 小怪）</td>
+					<td>30×25m 圆形</td>
+					<td>~180s</td>
+					<td>高潮</td>
+			</tr>
+			<tr>
+					<td>F</td>
+					<td>孢子之径</td>
+					<td>胜利感收束</td>
+					<td>10m 小径</td>
+					<td>~30s</td>
+					<td>释放</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="设计要点">设计要点
+</h2><h3 id="空间节奏同一条路六种感受">空间节奏：同一条路，六种感受
+</h3><p>核心技巧是<strong>改变宽度、曲率和围合感</strong>：</p>
+<ul>
+<li><strong>A 入口</strong> — 开阔椭圆，给人安全感</li>
+<li><strong>B 走廊</strong> — S 形弯道，激发好奇心（&ldquo;拐角后面是什么？&quot;）</li>
+<li><strong>C 空地</strong> — 突然开阔 + 障碍物 → 警觉 → 战斗触发</li>
+<li><strong>D 峡谷</strong> — 笔直收窄，两侧高墙，压抑→前方有光→必须前进</li>
+<li><strong>E 竞技场</strong> — 圆形闭合空间，无处可逃</li>
+<li><strong>F 出口</strong> — 重新开阔，暖光，胜利释放</li>
+</ul>
+<h3 id="光照梯度">光照梯度
+</h3><p>从暖到冷再到暖的完整弧线：</p>
+<ul>
+<li>A: 暖色夕阳 God Rays → B: 冷色荧光渐显 → C: 均匀中性战斗光</li>
+<li>D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光</li>
+</ul>
+<h3 id="encounter-设计">Encounter 设计
+</h3><p><strong>小型遭遇（C 区）：</strong> 2 只远程真菌幼体 + 中央倒木掩体 → 教学性质的暖身战</p>
+<p><strong>BOSS 战（E 区）：</strong> 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）</p>
+<hr>
+<h2 id="资产状态">资产状态
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>类别</th>
+					<th>已有</th>
+					<th>需新增（高优）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>蘑菇</td>
+					<td>5 种中小变体 ✅</td>
+					<td>巨型蘑菇茎（3 变体）、伞盖平台</td>
+			</tr>
+			<tr>
+					<td>地面</td>
+					<td>草地 + 苔藓 ✅</td>
+					<td>地面孢子 Decal</td>
+			</tr>
+			<tr>
+					<td>障碍</td>
+					<td>—</td>
+					<td>倒木（2 变体）、岩石（3 变体）</td>
+			</tr>
+			<tr>
+					<td>装饰</td>
+					<td>—</td>
+					<td>菌丝藤蔓、自发光孢子粒子 ×2</td>
+			</tr>
+			<tr>
+					<td>材质</td>
+					<td>蘑菇 / 草地 / 苔藓 ✅</td>
+					<td>自发光孢子材质</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="叙事引导七条通道">叙事引导：七条通道
+</h2><p>Demo 的目标不是在一小时内揭示世界观，而是让玩家在体验结束时感觉「这个游戏有东西，不是普通奇幻」。以下是七条引导通道——它们共同传递「不对劲」的感觉，但各自做各自的事，互不依赖。</p>
+<p>七条通道共享两个核心母题：</p>
+<ul>
+<li><strong>「记得」</strong> — 贯穿声音、文本、NPC、玩法</li>
+<li><strong>「这里是活的」</strong> — 贯穿声音、视觉、玩法</li>
+</ul>
+<h3 id="通道一声音引导">通道一：声音引导
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置</th>
+					<th>声音内容</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>全局</td>
+					<td>环境底噪——低沉、持续的嗡鸣（不是音乐，是地底本身的「呼吸声」）</td>
+					<td>全程暗示：这个森林不是普通的森林</td>
+			</tr>
+			<tr>
+					<td>B 区营地</td>
+					<td>走到残骸旁 → 嗡鸣短暂消失几秒，然后恢复</td>
+					<td>「这里曾经有人，他们遇到了什么」</td>
+			</tr>
+			<tr>
+					<td>D 区峡谷</td>
+					<td>螺旋纹路附近 → 嗡鸣的频率改变——稍微变高、或加一层泛音</td>
+					<td>「这里有比矿工更古老的东西」</td>
+			</tr>
+			<tr>
+					<td>C 区战斗</td>
+					<td>菌丝宿主被击败 → 一声非人的叹息（不是惨叫）</td>
+					<td>「它不是在死亡，它是在被释放」</td>
+			</tr>
+			<tr>
+					<td>E 区 BOSS</td>
+					<td>第二阶段 → 嗡鸣变成多重和声（像很多声音在同时低语）</td>
+					<td>「它不止是一个，它是很多个」</td>
+			</tr>
+			<tr>
+					<td>F 区出口</td>
+					<td>走出森林 → 嗡鸣消失。完全安静 2-3 秒。然后风声</td>
+					<td>「你出来了。但那个声音还在你脑子里」</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计原则：</strong> 声音不说任何话，但让你的身体先于大脑感到不安。嗡鸣的频率和人紧张时体内的共振接近。</p>
+<h3 id="通道二视觉异常引导">通道二：视觉异常引导
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置</th>
+					<th>视觉设计</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>B 区营地</td>
+					<td>帐篷里有半杯水——没有涟漪，但杯壁上有细小的菌丝在生长</td>
+					<td>「他们离开得很突然。或者根本没离开」</td>
+			</tr>
+			<tr>
+					<td>C 区战斗</td>
+					<td>菌丝宿主死亡 → 不倒地 → 孢子从体内释放 → 躯体萎缩成干壳 → 2 秒后干壳上长出小蘑菇</td>
+					<td>「死亡规则在这里不一样」</td>
+			</tr>
+			<tr>
+					<td>D 区峡谷</td>
+					<td>螺旋纹路附近 → 玩家自己的影子短暂消失 0.3 秒 → 恢复</td>
+					<td>「你的存在在这里不稳定」</td>
+			</tr>
+			<tr>
+					<td>D 区峡谷</td>
+					<td>螺旋纹路上有微弱的脉搏般亮度变化——大约每 6 秒亮一下</td>
+					<td>「它是活的」</td>
+			</tr>
+			<tr>
+					<td>E 区 BOSS</td>
+					<td>场地地面偶尔出现网格线的短暂错位——战斗网格本身在闪烁</td>
+					<td>「物理法则在这里不稳定」</td>
+			</tr>
+			<tr>
+					<td>F 区出口</td>
+					<td>走出后，入口处的蘑菇朝向微微转动——转向玩家离开的方向</td>
+					<td>「它们在看着你」</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计原则：</strong> 视觉异常都在玩家注意力边缘。不是过场动画——是眼角余光捕捉到的。</p>
+<h3 id="通道三文本引导日记--物品描述">通道三：文本引导（日记 / 物品描述）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置</th>
+					<th>文本内容</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>B 区日记</td>
+					<td>「第三天。蘑菇在跟我说话。不，不是在说话。它在……<strong>记得我</strong>。」——字迹中断</td>
+					<td>引入「记忆」概念。不是普通的寄生——是有意识的</td>
+			</tr>
+			<tr>
+					<td>E 区掉落物</td>
+					<td>「此物在你手中脉动，仿佛记得什么。」</td>
+					<td>Callback「记得」，把矿工日记和 BOSS 连起来</td>
+			</tr>
+			<tr>
+					<td>可选：矿工帐篷里的记录</td>
+					<td>「工头说挖到了新矿脉。晶体品质很高。他笑了。但他昨晚梦到了自己不会做梦。」</td>
+					<td>「矿石会影响梦」——不解释，只是记录</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计原则：</strong> 文本不解释，只呈现现象。让玩家自己连起来。</p>
+<h3 id="通道四npc-对话引导">通道四：NPC 对话引导
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置</th>
+					<th>谁</th>
+					<th>说了什么</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A 区入口</td>
+					<td>委托人</td>
+					<td>「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」</td>
+					<td>建立任务</td>
+			</tr>
+			<tr>
+					<td>F 区出口</td>
+					<td>委托人</td>
+					<td>「你是第三个回来的。前两个……记不太清了。这是你的报酬。」</td>
+					<td>制造核心疑问——「他不知道？还是在装？那块矿石是什么？」</td>
+			</tr>
+			<tr>
+					<td>F 区出口</td>
+					<td>委托人</td>
+					<td>看你手中的晶核两秒。然后：「留着吧。你应该留着。」转身离开。</td>
+					<td>他不解释。但他知道这是什么。他选择不说</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计原则：</strong> 说最少的话，露出最多的疑点。委托人全程只说三句话，但每句话都在增加不安。</p>
+<h3 id="通道五空间节奏引导">通道五：空间节奏引导
+</h3><p>这是关卡布局的核心设计——6 个区域的宽度、曲率、围合感不同，情绪也随之变化：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>空间特征</th>
+					<th>引导的情绪</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A 入口</td>
+					<td>开阔椭圆、暖光</td>
+					<td>安全感：「这是一个正常的地方」</td>
+			</tr>
+			<tr>
+					<td>B 走廊</td>
+					<td>S 形弯道、逐渐变冷的光</td>
+					<td>好奇 + 轻微不安：「拐角后面是什么」</td>
+			</tr>
+			<tr>
+					<td>C 空地</td>
+					<td>突然开阔、但被障碍物分割、中性战斗光</td>
+					<td>警觉：「这里可能有东西」→ 战斗</td>
+			</tr>
+			<tr>
+					<td>D 峡谷</td>
+					<td>收窄、高墙、极暗、纯荧光</td>
+					<td>压抑：「我必须往前走，但我不确定我想」</td>
+			</tr>
+			<tr>
+					<td>E 竞技场</td>
+					<td>圆形封闭、戏剧化强对比光</td>
+					<td>被困感：「无路可退」→ BOSS 战</td>
+			</tr>
+			<tr>
+					<td>F 出口</td>
+					<td>重新开阔、暖光</td>
+					<td>释放：「我出来了」——但不安还在</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计原则：</strong> 空间本身就是叙事。玩家不需要任何文本，光是走一遍，身体就会感受到情绪的起伏。</p>
+<h3 id="通道六光渐变引导">通道六：光渐变引导
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>光色</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A → B</td>
+					<td>暖色夕阳 → 冷色荧光渐显</td>
+					<td>从「安全的人类世界」过渡到「真菌的地下世界」</td>
+			</tr>
+			<tr>
+					<td>B → C</td>
+					<td>均匀中性战斗光</td>
+					<td>让玩家专注于战斗，暂时忘记环境的异常</td>
+			</tr>
+			<tr>
+					<td>C → D</td>
+					<td>光照降到全局最暗</td>
+					<td>视觉上的威胁感达到峰值</td>
+			</tr>
+			<tr>
+					<td>D → E</td>
+					<td>戏剧化强对比（亮处极亮，暗处极暗）</td>
+					<td>史诗感——这是最终对决</td>
+			</tr>
+			<tr>
+					<td>E → F</td>
+					<td>暖金色胜利光</td>
+					<td>让玩家在物理和心理上同时回归「安全」</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计原则：</strong> 光的变化速度要慢到玩家不会主动注意到——他们只会感觉「怎么越来越不舒服」但说不出为什么。</p>
+<h3 id="通道七玩法反馈引导玩法--叙事连接点">通道七：玩法反馈引导（「玩法 = 叙事」连接点）
+</h3><p>用游戏机制本身来叙事——不需要额外的文本或过场。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置</th>
+					<th>玩法机制</th>
+					<th>叙事引导</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>B 区</td>
+					<td>矿石碎片可交互，靠近时战斗网格短暂闪烁</td>
+					<td>「矿石和空间稳定性有关」——但玩家不知道这意味着什么</td>
+			</tr>
+			<tr>
+					<td>C 区</td>
+					<td>菌丝宿主的 AI 行为：它们不躲避、不逃跑——朝你走来，像在拥抱</td>
+					<td>「它们不是在攻击你。它们想传染你。」</td>
+			</tr>
+			<tr>
+					<td>E 区 BOSS</td>
+					<td>孢子云掩体——但站在孢子云里超过一轮 → 行动条变慢 → 画面边缘出现菌丝纹路</td>
+					<td>「掩体不是安全的。它在改变你。」</td>
+			</tr>
+			<tr>
+					<td>全局</td>
+					<td>击杀一只菌丝宿主后，下一只在战斗开始时看向你角色的眼睛——比普通敌人多停留半秒</td>
+					<td>「它认识你。或者它认识你身上的某个东西。」</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计原则：</strong> 玩法是唯一一种玩家「必须参与」的叙事。看日记可以跳过，听声音可以忽略——但战斗中发生的事情，每个玩家都会经历。</p>
+<hr>
+<h3 id="七条通道的协同效果">七条通道的协同效果
+</h3><p>这些通道不是独立运作的。它们像交响乐的不同乐器——同时演奏，但玩家只能感受到整体效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">声音说：          「不舒服。」            —— 嗡鸣、叹息、消失
+</span></span><span class="line"><span class="cl">视觉说：          「不对劲。」            —— 影子消失、蘑菇转向、脉动
+</span></span><span class="line"><span class="cl">文本说：          「记得。」              —— 日记、掉落物描述
+</span></span><span class="line"><span class="cl">NPC 说：          「前两个不记得。」      —— 矛盾
+</span></span><span class="line"><span class="cl">空间说：          「你越来越深入了。」    —— 收窄、变暗
+</span></span><span class="line"><span class="cl">光说：            「你离开安全区域了。」  —— 暖→冷→暖
+</span></span><span class="line"><span class="cl">玩法说：          「战斗不是普通的战斗。」 —— 死亡≠死亡
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>玩家不会分解出「这是声音引导、这是文本引导」。他们只会有一种感觉：</p>
+
+    <blockquote>
+        <p>「这个地方不对劲。我要继续探索。」</p>
+
+    </blockquote>
+<p>而这正是 Demo 的目标。</p>
+<hr>
+<h2 id="demo-叙事架构最小配置">Demo 叙事架构（最小配置）
+</h2><p>基于七条通道，为 Demo 6 区叠加叙事层——不改动关卡空间布局：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A 入口 ── 委托人给任务。
+</span></span><span class="line"><span class="cl">          「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」
+</span></span><span class="line"><span class="cl">          三选一快速职业选择（战士 / 法师 / 游荡者）。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">B 走廊 ── 营地残骸 + 矿工日记。
+</span></span><span class="line"><span class="cl">          「第三天。蘑菇在跟我说话……它在……记得我。」（字迹中断）
+</span></span><span class="line"><span class="cl">          帐篷里半杯水 + 菌丝在杯壁生长。
+</span></span><span class="line"><span class="cl">          可选：矿石碎片（交互 → 网格闪烁）。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">C 空地 ── 两个菌丝宿主（被寄生的矿工）。
+</span></span><span class="line"><span class="cl">          战斗 —— AI 不躲避，朝玩家走来。
+</span></span><span class="line"><span class="cl">          击败后：不倒地，孢子从体内释放，躯体萎缩成干壳。
+</span></span><span class="line"><span class="cl">          干壳上 2 秒后长出小蘑菇。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">D 峡谷 ── 墙上螺旋纹路。
+</span></span><span class="line"><span class="cl">          靠近时：影子消失 0.3 秒，嗡鸣频率改变。
+</span></span><span class="line"><span class="cl">          纹路每 6 秒微弱发光一次（脉搏感）。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">E BOSS ── 真菌之主。
+</span></span><span class="line"><span class="cl">          第二阶段：嗡鸣变多重和声，网格线偶尔错位。
+</span></span><span class="line"><span class="cl">          孢子云掩体 —— 站太久会被缓慢感染。
+</span></span><span class="line"><span class="cl">          击败后掉落「脉动的晶核」：
+</span></span><span class="line"><span class="cl">          「此物在你手中脉动，仿佛记得什么。」
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">F 出口 ── 委托人等在那里。
+</span></span><span class="line"><span class="cl">          「你是第三个回来的。前两个……记不太清了。」
+</span></span><span class="line"><span class="cl">          给报酬。袋子里有金币 + 一块微热的矿石。
+</span></span><span class="line"><span class="cl">          看晶核两秒：「留着吧。你应该留着。」转身离开。
+</span></span><span class="line"><span class="cl">          身后蘑菇朝向微微转向玩家。
+</span></span><span class="line"><span class="cl">          嗡鸣消失。完全安静。然后风声。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">全剧终。60 分钟。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="下一步">下一步
+</h2><ol>
+<li>在 UE 中创建 <code>FungalForest_Showcase</code> 关卡</li>
+<li>用 BSP Box 按分区尺寸搭建白盒</li>
+<li>Walk through 验证空间感</li>
+<li>逐步用实际资产替换白盒</li>
+<li>实施七条引导通道（从低成本通道开始：文本 → 空间 → 光 → 视觉 → 玩法 → 声音 → NPC）</li>
+</ol>
+<hr>
+<p><em>设计文档完整版：<a class="link" href="https://github.com/innnnnk/innnnnk.github.io"  target="_blank" rel="noopener"
+    >Project_DND/Design/FungalForest_Showcase_Design.md</a></em></p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%9C%BA%E6%99%AF%E8%AE%BE%E8%AE%A1/">场景设计</a>
+        
+            <a href="/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/">关卡设计</a>
+        
+            <a href="/tags/%E7%9C%9F%E8%8F%8C%E6%A3%AE%E6%9E%97/">真菌森林</a>
+        
+            <a href="/tags/demo/">Demo</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
     import gallery from '\/ts\/gallery.js';
 
     const articleContent = document.querySelector('.article-content');
@@ -117,4 +981,15 @@
         });
         lightbox.init();
     }
-</script></main></div><script type=text/javascript src=/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js defer></script></body></html>
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>

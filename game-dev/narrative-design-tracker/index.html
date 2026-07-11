@@ -1,27 +1,706 @@
-<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态"><title>剧情设计追踪表</title><link rel=canonical href=https://innnnnk.github.io/game-dev/narrative-design-tracker/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css><meta property='og:title' content="剧情设计追踪表"><meta property='og:description' content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态"><meta property='og:url' content='https://innnnnk.github.io/game-dev/narrative-design-tracker/'><meta property='og:site_name' content='遇玄的方外之地'><meta property='og:type' content='article'><meta property='article:section' content='Game-Dev'><meta property='article:tag' content='剧情设计'><meta property='article:tag' content='叙事'><meta property='article:tag' content='设计文档'><meta property='article:tag' content='Demo'><meta property='article:published_time' content='2026-07-11T23:30:00+08:00'><meta property='article:modified_time' content='2026-07-11T23:30:00+08:00'><meta name=twitter:title content="剧情设计追踪表"><meta name=twitter:description content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label>
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>遇玄的方外之地</a></h1><h2 class=site-description></h2></div></header><ol class=menu-social><li><a href=https://github.com/innnnnk title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-<span>归档</span></a></li><li><a href=/><span>首页</span></a></li><li><a href=/archives/><span>归档</span></a></li><li><a href=/search/><span>搜索</span></a></li><li><a href=/game-dev/><span>🎮 游戏开发</span></a></li><li><a href=/random-thoughts/><span>💭 碎碎念</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span></span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title"></h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#crpg-剧情设计模块全景表>CRPG 剧情设计模块全景表</a><ol><li><a href=#第一层地基世界观设定之前就要想清的>第一层：地基（世界观设定之前就要想清的）</a></li><li><a href=#第二层结构故事怎么讲>第二层：结构（故事怎么讲）</a></li><li><a href=#第三层人物故事靠谁来承载>第三层：人物（故事靠谁来承载）</a></li><li><a href=#第四层具体内容落地的文本和事件>第四层：具体内容（落地的文本和事件）</a></li><li><a href=#第五层体验设计玩家感受到什么>第五层：体验设计（玩家感受到什么）</a></li><li><a href=#状态总览>状态总览</a></li><li><a href=#与正式版的关系>与正式版的关系</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/game-dev/narrative-design-tracker/>剧情设计追踪表</a></h2><h3 class=article-subtitle>CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态</h3></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published datetime=2026-07-11T23:30:00+08:00>2026-07-11</time>
-<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading></time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
-<span></span></div></summary><nav class=toc-nav><ol><li><a href=#crpg-剧情设计模块全景表>CRPG 剧情设计模块全景表</a><ol><li><a href=#第一层地基世界观设定之前就要想清的>第一层：地基（世界观设定之前就要想清的）</a></li><li><a href=#第二层结构故事怎么讲>第二层：结构（故事怎么讲）</a></li><li><a href=#第三层人物故事靠谁来承载>第三层：人物（故事靠谁来承载）</a></li><li><a href=#第四层具体内容落地的文本和事件>第四层：具体内容（落地的文本和事件）</a></li><li><a href=#第五层体验设计玩家感受到什么>第五层：体验设计（玩家感受到什么）</a></li><li><a href=#状态总览>状态总览</a></li><li><a href=#与正式版的关系>与正式版的关系</a></li></ol></li></ol></nav></details></aside><section class=article-content><h2 id=crpg-剧情设计模块全景表>CRPG 剧情设计模块全景表</h2><p>这是一份<strong>活文档</strong>——记录 Project_DND 剧情设计五个模块的当前状态。每当我们确定一个模块的子项，就更新这张表。Demo 阶段只需要从每个模块中取最小单元。</p><blockquote><p>📐 五个模块的依赖关系：地基 → 结构 → 人物 → 具体内容 → 体验设计<br>地基没定，上层全部悬空。人物没定，文本没法写。体验设计贯穿全部层级。</p></blockquote><hr><h3 id=第一层地基世界观设定之前就要想清的>第一层：地基（世界观设定之前就要想清的）</h3><div class=table-wrapper><table><thead><tr><th>子模块</th><th>核心问题</th><th>当前状态</th><th>结论</th></tr></thead><tbody><tr><td><strong>核心冲突</strong></td><td>这个世界最根本的矛盾是什么？谁和谁因为什么不可调和？</td><td>✅ 已确定</td><td>三层嵌套：<strong>表层</strong>（Demo用）— 认知分歧：矿工说矿石在说话，公会说这是精神病；<strong>中层</strong>（正式版 Act 2）— 生存伦理：文明需要矿石能源 vs 矿石接触会让人异化；<strong>深层</strong>（正式版 Act 3）— 自我瓦解：异化的本质是"想起了自己不是独立个体"</td></tr><tr><td><strong>主题</strong></td><td>这个故事到底在讲什么？不是情节，是"关于什么"</td><td>✅ 已确定</td><td><strong>&ldquo;认知的代价&rdquo;</strong> — 每深一层都要付出情感/身体代价。在这个世界里，理解 = 异化。知道得越多，你的身体越不像你自己</td></tr><tr><td><strong>情感基调</strong></td><td>悲壮？荒诞？忧伤？希望？</td><td>✅ 已确定</td><td><strong>微妙的不对劲</strong> — 越深入越稀薄/抽象（Backroom式衰减）。不是恐怖，不是血腥，是"少了什么"。浅层：有缺失的正常。深层：有信号的空白</td></tr><tr><td><strong>玩家角色锚</strong></td><td>玩家是"谁"？</td><td>✅ 已确定</td><td><strong>佣兵公会调查员</strong> — Demo 三选一快速职业选择（战士/法师/游荡者）。表层身份具体，底层埋着"被认出"的种子（回声藓用你的声音说话、影子短暂消失）</td></tr><tr><td><strong>怪诞法则</strong></td><td>怪诞的规则是什么？</td><td>✅ 已确定</td><td><strong>单源怪诞</strong> — 全部源于源脉矿石接触 + 时间 = 异化。分三级：L1 认知偏移（Demo大量用）、L2 生物形态（Demo有限用）、L3 逻辑崩塌（正式版第三幕用）。怪诞随剧情深入而加剧——越接近巨兽核心，梦越不稳定</td></tr></tbody></table></div><hr><h3 id=第二层结构故事怎么讲>第二层：结构（故事怎么讲）</h3><div class=table-wrapper><table><thead><tr><th>子模块</th><th>核心问题</th><th>当前状态</th><th>结论</th></tr></thead><tbody><tr><td><strong>三幕/章节大纲</strong></td><td>故事分几段？每段玩家目标是什么？</td><td>⚠️ 世界观文档有三幕认知阶梯，但情节大纲未设计</td><td>世界观揭示阶梯 ≠ 情节推进阶梯。两者需要叠加。正式版章节大纲待推进</td></tr><tr><td><strong>关卡叙事映射（Demo）</strong></td><td>真菌森林 6 区各自承载什么叙事功能？</td><td>✅ 已确定</td><td>A 入口 — 安全感建立 + 任务接收；B 走廊 — 好奇 + 第一个异常（日记）；C 空地 — 警觉→战斗 + 死亡规则展示；D 峡谷 — 压抑 + 古老存在暗示；E 竞技场 — 被困感 + BOSS 战 + 怪诞升级；F 出口 — 释放 + 核心疑问（委托人记忆矛盾）</td></tr><tr><td><strong>关键路径（Demo）</strong></td><td>Demo 玩家必须经历的事件序列</td><td>✅ 已确定</td><td>线性珠串：A→B→C→D→E→F。无分支</td></tr><tr><td><strong>分支点</strong></td><td>玩家的选择在哪里改变故事走向？</td><td>❌ Demo 不需要</td><td>正式版待设计</td></tr><tr><td><strong>节奏控制（Demo）</strong></td><td>紧张/舒缓交替</td><td>✅ 已确定</td><td>通过空间节奏（宽度/曲率/围合感）+ 光渐变（暖→冷→暖）+ 怪诞梯度（0→7/10）三重控制。详见 <a class=link href=https://innnnnk.github.io/game-dev/fungal-forest-showcase/ target=_blank rel=noopener>真菌森林展示场景</a></td></tr></tbody></table></div><hr><h3 id=第三层人物故事靠谁来承载>第三层：人物（故事靠谁来承载）</h3><div class=table-wrapper><table><thead><tr><th>子模块</th><th>核心问题</th><th>当前状态</th><th>结论</th></tr></thead><tbody><tr><td><strong>主角定义</strong></td><td>空白画布还是固定角色？与世界的初始关系？</td><td>⚠️ 部分确定</td><td>Demo：佣兵公会调查员，三选一职业。正式版主角是否需要更深的身份背景——待讨论</td></tr><tr><td><strong>核心NPC/同伴</strong></td><td>有完整弧光的角色。每人代表对核心冲突的一种立场</td><td>❌ 未设计</td><td>Demo 不需要同伴。正式版待设计</td></tr><tr><td><strong>派系/势力（Demo）</strong></td><td>Demo 出现的势力</td><td>✅ 已确定</td><td>三方：<strong>佣兵公会</strong>（委托人）— 维持秩序但可能知道更多；<strong>晶石矿工行会</strong>（受害者）— 挖掘中触碰了不该碰的东西；<strong>螺旋文明/真菌教派</strong>（不在场）— 可能是异化源头或试图控制异化者</td></tr><tr><td><strong>反派（Demo）</strong></td><td>BOSS 的叙事身份</td><td>⚠️ 部分确定</td><td>真菌之主 — 玩法设计已定（多阶段 + 孢子云 + 召唤）。但作为"人物"的背景：它有意识吗？它和矿工的异化是什么关系？它和螺旋文明是什么关系？——待讨论</td></tr><tr><td><strong>功能性NPC（Demo）</strong></td><td>任务发布者、背景板</td><td>✅ 已确定</td><td>委托人 — A/F 区出现。只说明必须说的话，不展开背景</td></tr><tr><td><strong>派系/势力（正式版）</strong></td><td>完整派系体系</td><td>❌ 未设计</td><td>待推进</td></tr></tbody></table></div><hr><h3 id=第四层具体内容落地的文本和事件>第四层：具体内容（落地的文本和事件）</h3><div class=table-wrapper><table><thead><tr><th>子模块</th><th>核心问题</th><th>当前状态</th><th>结论</th></tr></thead><tbody><tr><td><strong>对话系统</strong></td><td>对话树结构、条件分支、检定</td><td>❌ 未实现</td><td>Demo 只需最简文本展示（交互→弹出）。对话树系统正式版再做</td></tr><tr><td><strong>任务/委托（Demo）</strong></td><td>接任务 → 做任务 → 交任务 闭环</td><td>⚠️ 框架已有</td><td>委托→调查→回报。需确定 UI 实现方式（HUD 目标提示 / 任务日志？）</td></tr><tr><td><strong>场景叙事（Demo）</strong></td><td>不用对话讲的故事</td><td>✅ 已确定（七条通道）</td><td>声音引导、视觉异常引导、文本引导、NPC对话引导、空间节奏引导、光渐变引导、玩法反馈引导。详见 <a class=link href=https://innnnnk.github.io/game-dev/fungal-forest-showcase/ target=_blank rel=noopener>真菌森林展示场景</a></td></tr><tr><td><strong>文本资产（Demo）</strong></td><td>物品描述、日记、UI文本</td><td>⚠️ 框架已有，未最终定稿</td><td>矿工日记、BOSS 掉落物描述、可选矿工记录 → 需在Game.csv/本地化流水线中确定最终措辞</td></tr><tr><td><strong>过场/演出</strong></td><td>关键剧情时刻的镜头/动画</td><td>❌ Demo 不做过场</td><td>正式版待设计</td></tr></tbody></table></div><hr><h3 id=第五层体验设计玩家感受到什么>第五层：体验设计（玩家感受到什么）</h3><div class=table-wrapper><table><thead><tr><th>子模块</th><th>核心问题</th><th>当前状态</th><th>结论</th></tr></thead><tbody><tr><td><strong>入门钩子（Demo）</strong></td><td>前 3-5 分钟抓住玩家</td><td>✅ 已确定</td><td>不是意象化开场 — 是<strong>具体的目标</strong>。玩家看到森林入口、接到委托、选职业、走进去。第一个 5 分钟：熟悉操作 + 感受空间 + 发现第一本日记</td></tr><tr><td><strong>Demo 结束钩子</strong></td><td>Demo 结束后玩家脑子里留着什么</td><td>✅ 已确定</td><td>&ldquo;你是第三个回来的。前两个……记不太清了。&rdquo; + 包裹里那块微热的矿石 + BOSS 的脉动晶核。玩家带走的不是答案，是<strong>一个问题</strong>：&ldquo;这是什么地方？&rdquo;</td></tr><tr><td><strong>Demo 结束画面</strong></td><td>Steam 新品节 Demo 结束后的呈现</td><td>⚠️ 待定</td><td>考虑结束画面文字：「你走出森林。包裹里的晶石还是热的。」+ 愿望单链接</td></tr><tr><td><strong>多周目/NG+ 设计</strong></td><td>庞加莱回归、文本微调</td><td>⚠️ 世界观文档有方向</td><td>Demo 不涉及。正式版数据驱动实现方案已讨论</td></tr><tr><td><strong>Demo 硬约束（不做什么）</strong></td><td>防止 scope creep</td><td>✅ 已确定</td><td>不解释源脉矿石起源、不展示真菌教派真人、不揭示巨兽之梦、不让 NPC 说出任何世界观关键词、不做超过 10 秒的过场动画、不做存读档</td></tr></tbody></table></div><hr><h3 id=状态总览>状态总览</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>🟢 地基      ████████████████████ 100% — 五块全部确定
-</span></span><span class=line><span class=cl>🟢 结构      ████████████████░░░░  80% — Demo结构已定，正式版待推进
-</span></span><span class=line><span class=cl>🟡 人物      ██████████░░░░░░░░░░  50% — Demo最小NPC已定，反派背景+正式版待推进
-</span></span><span class=line><span class=cl>🟡 具体内容  ██████░░░░░░░░░░░░░░  30% — 框架已有，文本措辞+系统实现待推进
-</span></span><span class=line><span class=cl>🟡 体验设计  ████████████░░░░░░░░  60% — Demo钩子已定，结束画面+正式版待推进
-</span></span></code></pre></td></tr></table></div></div><hr><h3 id=与正式版的关系>与正式版的关系</h3><div class=table-wrapper><table><thead><tr><th>层面</th><th>Demo 决定</th><th>正式版可改？</th></tr></thead><tbody><tr><td><strong>世界观法则</strong></td><td>矿石→异化、菌丝记忆、巨兽之梦</td><td>❌ 铁律</td></tr><tr><td><strong>符号语言</strong></td><td>脉动矿石、螺旋纹路、菌丝化、孢子云</td><td>❌ 品牌标识</td></tr><tr><td><strong>派系存在</strong></td><td>佣兵公会、矿工行会、螺旋文明</td><td>❌ 保留名称和基本立场，可补充细节</td></tr><tr><td><strong>剧情实例</strong></td><td>矿工失踪这个故事</td><td>✅ 可废弃/重写</td></tr><tr><td><strong>关卡资产</strong></td><td>真菌森林场景</td><td>✅ 可废弃/重做</td></tr><tr><td><strong>敌人实例</strong></td><td>菌丝宿主的具体外观</td><td>✅ 可重做（保留设计模板）</td></tr></tbody></table></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/%E5%89%A7%E6%83%85%E8%AE%BE%E8%AE%A1/>剧情设计</a>
-<a href=/tags/%E5%8F%99%E4%BA%8B/>叙事</a>
-<a href=/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/>设计文档</a>
-<a href=/tags/demo/>Demo</a></section><section class="article-copyright inline-meta"><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside><h2 class=section-title></h2><div class=subsection-list><div class=article-list--tile><article><a href=/game-dev/fungal-forest-showcase/><div class=article-details><h2 class=article-title>真菌森林展示场景 · 布局设计</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
-2026 遇玄的方外之地</section><section class=powerby><br></section></footer><script type=module>
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态">
+<title>剧情设计追踪表</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/narrative-design-tracker/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="剧情设计追踪表">
+<meta property='og:description' content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/narrative-design-tracker/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='剧情设计' /><meta property='article:tag' content='叙事' /><meta property='article:tag' content='设计文档' /><meta property='article:tag' content='Demo' /><meta property='article:published_time' content='2026-07-11T23:30:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-11T23:30:00&#43;08:00'/>
+<meta name="twitter:title" content="剧情设计追踪表">
+<meta name="twitter:description" content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#crpg-剧情设计模块全景表">CRPG 剧情设计模块全景表</a>
+      <ol>
+        <li><a href="#第一层地基世界观设定之前就要想清的">第一层：地基（世界观设定之前就要想清的）</a></li>
+        <li><a href="#第二层结构故事怎么讲">第二层：结构（故事怎么讲）</a></li>
+        <li><a href="#第三层人物故事靠谁来承载">第三层：人物（故事靠谁来承载）</a></li>
+        <li><a href="#第四层具体内容落地的文本和事件">第四层：具体内容（落地的文本和事件）</a></li>
+        <li><a href="#第五层体验设计玩家感受到什么">第五层：体验设计（玩家感受到什么）</a></li>
+        <li><a href="#状态总览">状态总览</a></li>
+        <li><a href="#与正式版的关系">与正式版的关系</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/narrative-design-tracker/">剧情设计追踪表</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-07-11T23:30:00&#43;08:00'>2026-07-11</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#crpg-剧情设计模块全景表">CRPG 剧情设计模块全景表</a>
+      <ol>
+        <li><a href="#第一层地基世界观设定之前就要想清的">第一层：地基（世界观设定之前就要想清的）</a></li>
+        <li><a href="#第二层结构故事怎么讲">第二层：结构（故事怎么讲）</a></li>
+        <li><a href="#第三层人物故事靠谁来承载">第三层：人物（故事靠谁来承载）</a></li>
+        <li><a href="#第四层具体内容落地的文本和事件">第四层：具体内容（落地的文本和事件）</a></li>
+        <li><a href="#第五层体验设计玩家感受到什么">第五层：体验设计（玩家感受到什么）</a></li>
+        <li><a href="#状态总览">状态总览</a></li>
+        <li><a href="#与正式版的关系">与正式版的关系</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="crpg-剧情设计模块全景表">CRPG 剧情设计模块全景表
+</h2><p>这是一份<strong>活文档</strong>——记录 Project_DND 剧情设计五个模块的当前状态。每当我们确定一个模块的子项，就更新这张表。Demo 阶段只需要从每个模块中取最小单元。</p>
+
+    <blockquote>
+        <p>📐 五个模块的依赖关系：地基 → 结构 → 人物 → 具体内容 → 体验设计<br>
+地基没定，上层全部悬空。人物没定，文本没法写。体验设计贯穿全部层级。</p>
+
+    </blockquote>
+<hr>
+<h3 id="第一层地基世界观设定之前就要想清的">第一层：地基（世界观设定之前就要想清的）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>子模块</th>
+					<th>核心问题</th>
+					<th>当前状态</th>
+					<th>结论</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>核心冲突</strong></td>
+					<td>这个世界最根本的矛盾是什么？谁和谁因为什么不可调和？</td>
+					<td>✅ 已确定</td>
+					<td>三层嵌套：<strong>表层</strong>（Demo用）— 认知分歧：矿工说矿石在说话，公会说这是精神病；<strong>中层</strong>（正式版 Act 2）— 生存伦理：文明需要矿石能源 vs 矿石接触会让人异化；<strong>深层</strong>（正式版 Act 3）— 自我瓦解：异化的本质是&quot;想起了自己不是独立个体&quot;</td>
+			</tr>
+			<tr>
+					<td><strong>主题</strong></td>
+					<td>这个故事到底在讲什么？不是情节，是&quot;关于什么&quot;</td>
+					<td>✅ 已确定</td>
+					<td><strong>&ldquo;认知的代价&rdquo;</strong> — 每深一层都要付出情感/身体代价。在这个世界里，理解 = 异化。知道得越多，你的身体越不像你自己</td>
+			</tr>
+			<tr>
+					<td><strong>情感基调</strong></td>
+					<td>悲壮？荒诞？忧伤？希望？</td>
+					<td>✅ 已确定</td>
+					<td><strong>微妙的不对劲</strong> — 越深入越稀薄/抽象（Backroom式衰减）。不是恐怖，不是血腥，是&quot;少了什么&quot;。浅层：有缺失的正常。深层：有信号的空白</td>
+			</tr>
+			<tr>
+					<td><strong>玩家角色锚</strong></td>
+					<td>玩家是&quot;谁&quot;？</td>
+					<td>✅ 已确定</td>
+					<td><strong>佣兵公会调查员</strong> — Demo 三选一快速职业选择（战士/法师/游荡者）。表层身份具体，底层埋着&quot;被认出&quot;的种子（回声藓用你的声音说话、影子短暂消失）</td>
+			</tr>
+			<tr>
+					<td><strong>怪诞法则</strong></td>
+					<td>怪诞的规则是什么？</td>
+					<td>✅ 已确定</td>
+					<td><strong>单源怪诞</strong> — 全部源于源脉矿石接触 + 时间 = 异化。分三级：L1 认知偏移（Demo大量用）、L2 生物形态（Demo有限用）、L3 逻辑崩塌（正式版第三幕用）。怪诞随剧情深入而加剧——越接近巨兽核心，梦越不稳定</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="第二层结构故事怎么讲">第二层：结构（故事怎么讲）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>子模块</th>
+					<th>核心问题</th>
+					<th>当前状态</th>
+					<th>结论</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>三幕/章节大纲</strong></td>
+					<td>故事分几段？每段玩家目标是什么？</td>
+					<td>⚠️ 世界观文档有三幕认知阶梯，但情节大纲未设计</td>
+					<td>世界观揭示阶梯 ≠ 情节推进阶梯。两者需要叠加。正式版章节大纲待推进</td>
+			</tr>
+			<tr>
+					<td><strong>关卡叙事映射（Demo）</strong></td>
+					<td>真菌森林 6 区各自承载什么叙事功能？</td>
+					<td>✅ 已确定</td>
+					<td>A 入口 — 安全感建立 + 任务接收；B 走廊 — 好奇 + 第一个异常（日记）；C 空地 — 警觉→战斗 + 死亡规则展示；D 峡谷 — 压抑 + 古老存在暗示；E 竞技场 — 被困感 + BOSS 战 + 怪诞升级；F 出口 — 释放 + 核心疑问（委托人记忆矛盾）</td>
+			</tr>
+			<tr>
+					<td><strong>关键路径（Demo）</strong></td>
+					<td>Demo 玩家必须经历的事件序列</td>
+					<td>✅ 已确定</td>
+					<td>线性珠串：A→B→C→D→E→F。无分支</td>
+			</tr>
+			<tr>
+					<td><strong>分支点</strong></td>
+					<td>玩家的选择在哪里改变故事走向？</td>
+					<td>❌ Demo 不需要</td>
+					<td>正式版待设计</td>
+			</tr>
+			<tr>
+					<td><strong>节奏控制（Demo）</strong></td>
+					<td>紧张/舒缓交替</td>
+					<td>✅ 已确定</td>
+					<td>通过空间节奏（宽度/曲率/围合感）+ 光渐变（暖→冷→暖）+ 怪诞梯度（0→7/10）三重控制。详见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
+    >真菌森林展示场景</a></td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="第三层人物故事靠谁来承载">第三层：人物（故事靠谁来承载）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>子模块</th>
+					<th>核心问题</th>
+					<th>当前状态</th>
+					<th>结论</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>主角定义</strong></td>
+					<td>空白画布还是固定角色？与世界的初始关系？</td>
+					<td>⚠️ 部分确定</td>
+					<td>Demo：佣兵公会调查员，三选一职业。正式版主角是否需要更深的身份背景——待讨论</td>
+			</tr>
+			<tr>
+					<td><strong>核心NPC/同伴</strong></td>
+					<td>有完整弧光的角色。每人代表对核心冲突的一种立场</td>
+					<td>❌ 未设计</td>
+					<td>Demo 不需要同伴。正式版待设计</td>
+			</tr>
+			<tr>
+					<td><strong>派系/势力（Demo）</strong></td>
+					<td>Demo 出现的势力</td>
+					<td>✅ 已确定</td>
+					<td>三方：<strong>佣兵公会</strong>（委托人）— 维持秩序但可能知道更多；<strong>晶石矿工行会</strong>（受害者）— 挖掘中触碰了不该碰的东西；<strong>螺旋文明/真菌教派</strong>（不在场）— 可能是异化源头或试图控制异化者</td>
+			</tr>
+			<tr>
+					<td><strong>反派（Demo）</strong></td>
+					<td>BOSS 的叙事身份</td>
+					<td>⚠️ 部分确定</td>
+					<td>真菌之主 — 玩法设计已定（多阶段 + 孢子云 + 召唤）。但作为&quot;人物&quot;的背景：它有意识吗？它和矿工的异化是什么关系？它和螺旋文明是什么关系？——待讨论</td>
+			</tr>
+			<tr>
+					<td><strong>功能性NPC（Demo）</strong></td>
+					<td>任务发布者、背景板</td>
+					<td>✅ 已确定</td>
+					<td>委托人 — A/F 区出现。只说明必须说的话，不展开背景</td>
+			</tr>
+			<tr>
+					<td><strong>派系/势力（正式版）</strong></td>
+					<td>完整派系体系</td>
+					<td>❌ 未设计</td>
+					<td>待推进</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="第四层具体内容落地的文本和事件">第四层：具体内容（落地的文本和事件）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>子模块</th>
+					<th>核心问题</th>
+					<th>当前状态</th>
+					<th>结论</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>对话系统</strong></td>
+					<td>对话树结构、条件分支、检定</td>
+					<td>❌ 未实现</td>
+					<td>Demo 只需最简文本展示（交互→弹出）。对话树系统正式版再做</td>
+			</tr>
+			<tr>
+					<td><strong>任务/委托（Demo）</strong></td>
+					<td>接任务 → 做任务 → 交任务 闭环</td>
+					<td>⚠️ 框架已有</td>
+					<td>委托→调查→回报。需确定 UI 实现方式（HUD 目标提示 / 任务日志？）</td>
+			</tr>
+			<tr>
+					<td><strong>场景叙事（Demo）</strong></td>
+					<td>不用对话讲的故事</td>
+					<td>✅ 已确定（七条通道）</td>
+					<td>声音引导、视觉异常引导、文本引导、NPC对话引导、空间节奏引导、光渐变引导、玩法反馈引导。详见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
+    >真菌森林展示场景</a></td>
+			</tr>
+			<tr>
+					<td><strong>文本资产（Demo）</strong></td>
+					<td>物品描述、日记、UI文本</td>
+					<td>⚠️ 框架已有，未最终定稿</td>
+					<td>矿工日记、BOSS 掉落物描述、可选矿工记录 → 需在Game.csv/本地化流水线中确定最终措辞</td>
+			</tr>
+			<tr>
+					<td><strong>过场/演出</strong></td>
+					<td>关键剧情时刻的镜头/动画</td>
+					<td>❌ Demo 不做过场</td>
+					<td>正式版待设计</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="第五层体验设计玩家感受到什么">第五层：体验设计（玩家感受到什么）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>子模块</th>
+					<th>核心问题</th>
+					<th>当前状态</th>
+					<th>结论</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>入门钩子（Demo）</strong></td>
+					<td>前 3-5 分钟抓住玩家</td>
+					<td>✅ 已确定</td>
+					<td>不是意象化开场 — 是<strong>具体的目标</strong>。玩家看到森林入口、接到委托、选职业、走进去。第一个 5 分钟：熟悉操作 + 感受空间 + 发现第一本日记</td>
+			</tr>
+			<tr>
+					<td><strong>Demo 结束钩子</strong></td>
+					<td>Demo 结束后玩家脑子里留着什么</td>
+					<td>✅ 已确定</td>
+					<td>&ldquo;你是第三个回来的。前两个……记不太清了。&rdquo; + 包裹里那块微热的矿石 + BOSS 的脉动晶核。玩家带走的不是答案，是<strong>一个问题</strong>：&ldquo;这是什么地方？&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>Demo 结束画面</strong></td>
+					<td>Steam 新品节 Demo 结束后的呈现</td>
+					<td>⚠️ 待定</td>
+					<td>考虑结束画面文字：「你走出森林。包裹里的晶石还是热的。」+ 愿望单链接</td>
+			</tr>
+			<tr>
+					<td><strong>多周目/NG+ 设计</strong></td>
+					<td>庞加莱回归、文本微调</td>
+					<td>⚠️ 世界观文档有方向</td>
+					<td>Demo 不涉及。正式版数据驱动实现方案已讨论</td>
+			</tr>
+			<tr>
+					<td><strong>Demo 硬约束（不做什么）</strong></td>
+					<td>防止 scope creep</td>
+					<td>✅ 已确定</td>
+					<td>不解释源脉矿石起源、不展示真菌教派真人、不揭示巨兽之梦、不让 NPC 说出任何世界观关键词、不做超过 10 秒的过场动画、不做存读档</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="状态总览">状态总览
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">🟢 地基      ████████████████████ 100% — 五块全部确定
+</span></span><span class="line"><span class="cl">🟢 结构      ████████████████░░░░  80% — Demo结构已定，正式版待推进
+</span></span><span class="line"><span class="cl">🟡 人物      ██████████░░░░░░░░░░  50% — Demo最小NPC已定，反派背景+正式版待推进
+</span></span><span class="line"><span class="cl">🟡 具体内容  ██████░░░░░░░░░░░░░░  30% — 框架已有，文本措辞+系统实现待推进
+</span></span><span class="line"><span class="cl">🟡 体验设计  ████████████░░░░░░░░  60% — Demo钩子已定，结束画面+正式版待推进
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="与正式版的关系">与正式版的关系
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>层面</th>
+					<th>Demo 决定</th>
+					<th>正式版可改？</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>世界观法则</strong></td>
+					<td>矿石→异化、菌丝记忆、巨兽之梦</td>
+					<td>❌ 铁律</td>
+			</tr>
+			<tr>
+					<td><strong>符号语言</strong></td>
+					<td>脉动矿石、螺旋纹路、菌丝化、孢子云</td>
+					<td>❌ 品牌标识</td>
+			</tr>
+			<tr>
+					<td><strong>派系存在</strong></td>
+					<td>佣兵公会、矿工行会、螺旋文明</td>
+					<td>❌ 保留名称和基本立场，可补充细节</td>
+			</tr>
+			<tr>
+					<td><strong>剧情实例</strong></td>
+					<td>矿工失踪这个故事</td>
+					<td>✅ 可废弃/重写</td>
+			</tr>
+			<tr>
+					<td><strong>关卡资产</strong></td>
+					<td>真菌森林场景</td>
+					<td>✅ 可废弃/重做</td>
+			</tr>
+			<tr>
+					<td><strong>敌人实例</strong></td>
+					<td>菌丝宿主的具体外观</td>
+					<td>✅ 可重做（保留设计模板）</td>
+			</tr>
+	</tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%89%A7%E6%83%85%E8%AE%BE%E8%AE%A1/">剧情设计</a>
+        
+            <a href="/tags/%E5%8F%99%E4%BA%8B/">叙事</a>
+        
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">设计文档</a>
+        
+            <a href="/tags/demo/">Demo</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside>
+    <h2 class="section-title"></h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            
+                
+<article class="">
+    <a href="/game-dev/fungal-forest-showcase/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">真菌森林展示场景 · 布局设计</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
     import gallery from '\/ts\/gallery.js';
 
     const articleContent = document.querySelector('.article-content');
@@ -45,4 +724,15 @@
         });
         lightbox.init();
     }
-</script></main></div><script type=text/javascript src=/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js defer></script></body></html>
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>
