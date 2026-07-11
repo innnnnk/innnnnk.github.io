@@ -1,15 +1,741 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>置顶 on 遇玄的方外之地</title>
-        <link>https://innnnnk.github.io/tags/%E7%BD%AE%E9%A1%B6/</link>
-        <description>Recent content in 置顶 on 遇玄的方外之地</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <lastBuildDate>Thu, 09 Jul 2026 16:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/%E7%BD%AE%E9%A1%B6/index.xml" rel="self" type="application/rss+xml" /><item>
-            <title>Project_DND 项目总览</title>
-            <link>https://innnnnk.github.io/game-dev/project-overview/</link>
-            <pubDate>Thu, 09 Jul 2026 16:00:00 +0800</pubDate>
-            <guid>https://innnnnk.github.io/game-dev/project-overview/</guid>
-            <description>&lt;h2 id=&#34;项目定位&#34;&gt;项目定位&#xA;&lt;/h2&gt;&lt;p&gt;基于 DND5e 规则的 3D 写实风格单人回合制战术游戏。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;目标：&lt;/strong&gt; Steam 新品节前推出可试玩 demo，展示核心玩法（战斗、角色、美术风格）。&lt;/p&gt;&#xA;&lt;h2 id=&#34;技术栈&#34;&gt;技术栈&#xA;&lt;/h2&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;项目&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;选型&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;引擎&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Unreal Engine 5.6&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;编程&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C++&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;战斗框架&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;GAS (Gameplay Ability System)&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;AI&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Behavior Tree + AIController&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;美术风格&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2.5D 纸片人（Sprite-based）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;数据驱动&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;DataTable + DataAsset&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;已实现的系统&#34;&gt;已实现的系统&#xA;&lt;/h2&gt;&lt;h3 id=&#34;-网格战斗系统&#34;&gt;⚔ 网格战斗系统&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;20×20 格地图，支持自定义尺寸（TileSize/GirdWidth/GridHeight）&lt;/li&gt;&#xA;&lt;li&gt;A* 寻路 + 移动消耗（普通 1 格 / 困难 2 格）&lt;/li&gt;&#xA;&lt;li&gt;Chebyshev 对角线距离计算（DND 规则）&lt;/li&gt;&#xA;&lt;li&gt;单位格子缓存（O(1) 查询）&lt;/li&gt;&#xA;&lt;li&gt;Debug 网格可视化&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-回合制流程&#34;&gt;🔄 回合制流程&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;三态状态机：自由探索 → 遭遇定格 → 回合制战斗&lt;/li&gt;&#xA;&lt;li&gt;D&amp;amp;D 先攻投掷（1d20 + 敏捷调整值）与排序&lt;/li&gt;&#xA;&lt;li&gt;轮次计数器 + 死亡检测 + 自动结束战斗&lt;/li&gt;&#xA;&lt;li&gt;回合切换事件广播（镜头跟随/UI更新）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-gas-属性与技能&#34;&gt;🧬 GAS 属性与技能&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;完整六属性：&lt;/strong&gt; 力量/敏捷/体质/智力/感知/魅力（1–30 Clamp）&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;战斗属性：&lt;/strong&gt; HP、MaxHP、AC、AttackBonus、AttackRange&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;资源属性：&lt;/strong&gt; MaxMovement、CurrentMovement、MaxActionPoints、CurrentActionPoints&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;调整值计算：&lt;/strong&gt; Modifier = floor((值-10)/2)&lt;/li&gt;&#xA;&lt;li&gt;近战攻击 Ability（GAS GameplayAbility）&lt;/li&gt;&#xA;&lt;li&gt;伤害/初始化/行动点消耗 GameplayEffect&lt;/li&gt;&#xA;&lt;li&gt;自定义 GameplayTags&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-ai-行为树&#34;&gt;🧠 AI 行为树&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;BTTask_AttackTarget&lt;/code&gt; — 寻敌攻击&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;BTTask_MoveToTarget_Grid&lt;/code&gt; — 格子寻路移动&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;BTTask_EndTurn&lt;/code&gt; — 结束回合&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;BTTask_GetRandomLocation&lt;/code&gt; — 随机目标点&lt;/li&gt;&#xA;&lt;li&gt;Blackboard 驱动 + 蓝图 BehaviorTree/Blackboard 资产&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-角色系统&#34;&gt;👤 角色系统&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;DND_CharacterBase&lt;/code&gt; — GAS 集成 + 存档初始化 + 视觉组件&lt;/li&gt;&#xA;&lt;li&gt;物理底座（BaseMesh）+ 血条 Widget（HealthWidgetComp）&lt;/li&gt;&#xA;&lt;li&gt;纸片人渲染（VisualPivot + VisualMesh 驱动 4 方向 Sprite）&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;DND_UnitVisualComponent&lt;/code&gt; — 视觉逻辑控制器&lt;/li&gt;&#xA;&lt;li&gt;草地交互 MPC（Interaction + Wind）&lt;/li&gt;&#xA;&lt;li&gt;布娃娃死亡（&lt;code&gt;EnableRagdoll&lt;/code&gt;）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-dd-数据层&#34;&gt;📊 D&amp;amp;D 数据层&#xA;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;14 张 DataTable：&lt;/strong&gt;&#xA;&lt;code&gt;DT_RaceSheet&lt;/code&gt; | &lt;code&gt;DT_ClassesSheet&lt;/code&gt; | &lt;code&gt;DT_SubclassSheet&lt;/code&gt; | &lt;code&gt;DT_SpellSheet&lt;/code&gt; | &lt;code&gt;DT_SpellSlotSheet&lt;/code&gt; | &lt;code&gt;DT_WeaponSheet&lt;/code&gt; | &lt;code&gt;DT_ArmorSheet&lt;/code&gt; | &lt;code&gt;DT_EquipmentSheet&lt;/code&gt; | &lt;code&gt;DT_SkillSheet&lt;/code&gt; | &lt;code&gt;DT_BackgroundSheet&lt;/code&gt; | &lt;code&gt;DT_AlignmentSheet&lt;/code&gt; | &lt;code&gt;DT_LevelProgSheet&lt;/code&gt; | &lt;code&gt;DT_RaceTraitSheet&lt;/code&gt; | &lt;code&gt;DT_ClassFeatureSheet&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;7 个 DataAsset 缓存：&lt;/strong&gt;&#xA;&lt;code&gt;DA_RaceData&lt;/code&gt; | &lt;code&gt;DA_ClassesData&lt;/code&gt; | &lt;code&gt;DA_ClassFeatureData&lt;/code&gt; | &lt;code&gt;DA_BackgroundData&lt;/code&gt; | &lt;code&gt;DA_AlignmentData&lt;/code&gt; | &lt;code&gt;DA_SkillData&lt;/code&gt; | &lt;code&gt;DA_PlayerCharacter_Default&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;3 个预制模板：&lt;/strong&gt;&#xA;&lt;code&gt;DA_Template_Elf_Rouge&lt;/code&gt; | &lt;code&gt;DA_Template_Halforc_Barbarian&lt;/code&gt; | &lt;code&gt;DA_Template_Human_Fighter&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;-角色创建系统&#34;&gt;👥 角色创建系统&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;MVVM 架构 ViewModel（&lt;code&gt;DND_CharacterCreationViewModel&lt;/code&gt;）&lt;/li&gt;&#xA;&lt;li&gt;7 步流程：新角色 → 种族 → 背景 → 职业 → 阵营 → 属性（27 点购）→ 命名与技能选择&lt;/li&gt;&#xA;&lt;li&gt;预制模板模式（锁定所有步骤，只读预览）&lt;/li&gt;&#xA;&lt;li&gt;技能选择弹窗系统（&lt;code&gt;SkillSelector_Popup&lt;/code&gt;）&lt;/li&gt;&#xA;&lt;li&gt;实时预览（HP/AC/熟练加值/速度）&lt;/li&gt;&#xA;&lt;li&gt;存档写入（FinalizeCharacterCreation）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-美术资产&#34;&gt;🎨 美术资产&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;野蛮人/战士/游荡者&lt;/strong&gt; 各 4 状态网格体：Idle / Attack / Hit / Dead&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;场景装饰：&lt;/strong&gt; 草地 3 种、蘑菇 5 种&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;材质系统：&lt;/strong&gt; 角色材质 M_Chara + 12 个实例、草地/蘑菇材质、UI 材质（血条/阵营/便签）、后处理描边&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;纹理：&lt;/strong&gt; 角色 Sprite 贴图、法线贴图、噪声贴图&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;草地交互 Shader：&lt;/strong&gt; MPC_Interaction + MF_GrassInteraction&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-操作交互&#34;&gt;🎮 操作交互&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;框选 / 点击选择（支持多选友军）&lt;/li&gt;&#xA;&lt;li&gt;自由探索模式 NavMesh 移动&lt;/li&gt;&#xA;&lt;li&gt;战斗模式路径显示&lt;/li&gt;&#xA;&lt;li&gt;专用 CameraPawn（缩放 + 中键旋转）&lt;/li&gt;&#xA;&lt;li&gt;回合切换镜头跟随&lt;/li&gt;&#xA;&lt;li&gt;伤害数字/血条/死亡卡片场景 Widget&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-本地化&#34;&gt;🌐 本地化&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;中英双语（zh-CN / en）&lt;/li&gt;&#xA;&lt;li&gt;完整的 Localization 配置（Gather/Export/Import/Compile）&lt;/li&gt;&#xA;&lt;li&gt;设置资源表（&lt;code&gt;ST_Character&lt;/code&gt;、&lt;code&gt;ST_UIText&lt;/code&gt;）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;-调试工具&#34;&gt;🔧 调试工具&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;DND_ClearCacheEditor&lt;/code&gt; — 缓存清理&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;DND_DebugSaveFile&lt;/code&gt; — 存档调试&lt;/li&gt;&#xA;&lt;li&gt;DebugStartCombat — 快速战斗测试&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;完整工程目录结构&#34;&gt;完整工程目录结构&#xA;&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  8&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  9&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 10&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 11&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 12&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 13&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 14&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 15&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 16&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 17&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 18&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 19&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 20&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 21&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 22&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 23&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 24&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 25&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 26&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 27&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 28&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 29&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 30&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 31&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 32&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 33&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 34&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 35&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 36&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 37&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 38&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 39&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 40&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 41&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 42&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 43&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 44&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 45&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 46&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 47&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 48&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 49&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 50&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 51&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 52&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 53&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 54&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 55&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 56&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 57&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 58&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 59&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 60&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 61&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 62&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 63&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 64&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 65&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 66&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 67&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 68&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 69&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 70&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 71&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 72&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 73&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 74&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 75&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 76&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 77&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 78&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 79&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 80&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 81&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 82&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 83&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 84&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 85&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 86&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 87&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 88&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 89&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 90&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 91&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 92&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 93&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 94&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 95&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 96&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 97&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 98&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 99&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;100&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;101&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;102&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;103&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;104&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;105&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;106&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;107&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;108&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;109&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;110&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;111&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;112&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;113&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;114&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;115&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;116&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;117&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;118&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;119&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;120&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;121&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;122&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;123&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;124&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;125&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;126&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;127&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;128&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;129&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;130&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;131&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;132&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;133&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;134&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;135&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;136&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;137&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;138&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;139&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;140&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;141&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;142&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;143&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;144&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;145&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;146&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;147&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;148&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;149&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;150&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;151&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;152&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;153&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;154&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;155&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;156&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;157&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;158&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;159&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;160&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;161&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;162&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;163&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;164&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;165&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;166&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;167&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;168&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;169&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;170&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;171&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;172&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;173&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;174&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;175&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;176&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;177&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;178&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;179&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;180&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;181&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;182&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;183&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;184&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;185&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;186&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;187&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;188&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;189&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;190&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;191&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;192&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;193&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;194&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;195&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;196&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;197&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;198&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;199&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;200&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;201&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;202&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;203&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;204&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;205&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;206&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;207&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;208&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;209&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;210&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;211&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;212&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;213&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;214&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;215&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;216&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;217&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;218&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;219&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;220&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;221&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;222&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;223&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;224&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;225&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;226&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;227&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;228&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;229&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;230&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;231&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;232&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;233&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;234&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;235&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;236&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;237&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;238&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;239&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;240&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;241&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;242&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;243&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;244&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;245&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;246&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;247&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;248&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;249&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;250&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;251&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;252&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;253&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;254&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;255&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;256&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;257&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;258&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;259&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;260&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;261&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;262&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;263&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;264&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;265&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;266&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;267&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;268&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;269&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;270&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;271&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;272&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;273&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;274&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;275&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;276&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;277&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;278&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;279&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;280&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;281&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;282&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;283&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;284&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;285&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;286&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;287&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;288&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;289&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;290&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;291&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;292&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;293&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;294&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Project_DND/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── Config/                          # 引擎配置&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── DefaultEditor.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── DefaultEngine.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── DefaultGame.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── DefaultInput.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Localization/               # 本地化编译配置&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game_Compile.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game_Export.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game_ExportDialogueScript.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game_Gather.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game_GenerateReports.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game_Import.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game_ImportDialogue.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── Game_ImportDialogueScript.ini&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── Tags/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       └── DND_GASData.ini         # GAS 标签定义&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── Content/                         # 游戏资产&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── AI/                          # AI 行为资产&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── BB_EnemyBase.uasset      #   Blackboard&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── BT_EnemyBase.uasset      #   BehaviorTree&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Blueprints/                  # 蓝图&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── BP_DNDCameraPawn.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── BP_DNDGameModeBase.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── BP_DNDHUD.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── BP_DNDPlayerController.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── AI/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── BP_DND_AIController.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Character/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── BP_DND_CharacterBase.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── BP_DND_EnemyBase.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Combat/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── BP_CombatManager.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── BP_EnconterTrigger.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── BP_GridManager.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Environment/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── BP_GrassInteraction.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── GAS/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── BP_GA_MeleeAttack.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── BP_GE_ActionCost.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── BP_GE_Damage.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── UI/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── Camera/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   └── BP_Shake_HeavyHit.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── CharacterCreation/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCAbilityStep.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCAlignmentStep.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCBackgroundStep.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCClassStep.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCMaster.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCNameStep.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCNewCharacterStep.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_CCRaceStep.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   └── Components/           # 通用组件&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │       ├── UMG_BackButton.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │       ├── UMG_ChoiceButton.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │       ├── UMG_ClassButton.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │       └── UMG_RaceButton.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── CommonComps/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_AbilityScoreRow.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_ClassFeature.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_SkillSelectItem.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── UMG_SkillSelector_Popup.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   └── UMG_Tooltip_ClassFeature.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── SceneWidgets/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │       ├── BP_DamageNote.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │       ├── BP_DeathCard.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │       ├── WBP_DamageText.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │       └── WBP_HealthDial.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── Utility/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       └── BP_TexToModelBaker.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Characters/Mannequins/       # UE 默认人模（待替换）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Data/                        # 数据驱动资产&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Curve/Camera/            # 摄像机曲线&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── Curve_Aperture_MainCam.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── Curve_Pitch_MainCam.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── DataAsset/               # 运行时缓存&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DA_AlignmentData.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DA_BackgroundData.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DA_ClassFeatureData.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DA_ClassesData.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DA_PlayerCharacter_Default.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DA_RaceData.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── DA_SkillData.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── DataTable/               # 数据表&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_AlignmentSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_ArmorSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_BackgroundSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_ClassFeatureSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_ClassesSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_EquipmentSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_LevelProgSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_RaceSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_RaceTraitSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_SkillSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_SpellSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_SpellSlotSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── DT_SubclassSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── DT_WeaponSheet.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── Template/                # 预制角色模板&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── DA_Template_Elf_Rouge.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── DA_Template_Halforc_Barbarian.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       └── DA_Template_Human_Fighter.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── FX/                          # 特效（待完善）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── LandScape/SMF/               # 地表材质函数&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── SMF_GrassBase_01.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── SMF_GrassBase_02.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── SMF_GrassBase_03.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Localization/Game/           # 本地化资源&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game.csv                 #   源文本&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game.locmeta&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Game.manifest&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── en/                      #   英文&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── Game.archive&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── Game.locres&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── zh-CN/                   #   中文&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── Game.archive&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       └── Game.locres&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Maps/                        # 关卡地图&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Forest_Map.umap&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── MainMap.umap&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── TestUI.umap&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Material/                    # 材质系统&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Characters/              #   角色材质&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── M_Chara.uasset       #     基础角色材质&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── M_Thick.uasset       #     厚涂风格材质&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── Instance/            #     材质实例&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │       ├── MI_Chara_Barb_{idle,attack,hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │       ├── MI_Chara_Fighter_{idle,attack,hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │       └── MI_Chara_Rouge_{idle,attack,hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Decal/M_SelectionDecal.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Foliage/                 #   植被材质&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── M_Grass.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── M_Mushroom.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── Instance/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Landscape/               #   地形材质&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── M_Ground.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── Inst/M_Ground_Inst.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── MPC/                     #   材质参数集&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── MPC_GlobalWind.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── MPC_Interaction.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── MaterialFunction/        #   材质函数&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── MF_GetAlignmentSectorID.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── MF_GrassInteraction.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── MF_Kajiyakay.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── MF_ShiftTangent.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── MF_StrandSpecular.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── PostProcess/             #   后处理&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── M_Outline_PP.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── UI/                      #   UI 材质&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── M_Alignment_Frame.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── M_HealthBase.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── M_RaceAvatar.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── M_UI_Carved.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       ├── M_UI_StickyNote.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │       └── Instance/M_UI_StickyNote_Inst.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Mesh/                        # 网格体&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Characters/              #   角色纸片人&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── SM_Barb_{Idle,Attack,Hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── SM_Fighter_{Idle,Attack,Hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── SM_Rouge_{Idle,Attack,Hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Combat/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── SM_Damage.uasset     #     伤害标记&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── SM_DeathCard.uasset  #     死亡卡&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Components/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── SM_BasePlane.uasset  #     物理底座&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── Foliage/                 #   植被网格体&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── SM_Grass_Base_{01,02,03}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── SM_Mushroom_{01,03,04,05,07}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── ForTest/Box_test.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Settings/Localization/       # 本地化设置表&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── ST_Character.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── ST_UIText.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── Texture/                     # 贴图&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Foliage/                 #   植被贴图&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── T_Mushroom_*_D.uasset (漫反射)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── T_Mushroom_*_N.uasset (法线)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── T_Moss_{D,N,RSB}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── T_Noise.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       └── ForTest/                 #   角色 Sprite 测试贴图&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│           ├── barb_{idle,attack,hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│           ├── thief_{idle,attack,hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│           └── warrior_{Idle,battle,hit,dead}.uasset&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── Source/                          # C++ 源码&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Project_DND.Target.cs        # 目标文件（游戏）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── Project_DNDEditor.Target.cs  # 目标文件（编辑器）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── Project_DND/                 # 主模块&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Project_DND.{h,cpp}      # 模块入口&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Project_DND.Build.cs     # 构建依赖&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── AI/                      # 人工智能&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_AIController.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── Tasks/               #   BehaviorTree Task&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       ├── BTTask_AttackTarget.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       ├── BTTask_EndTurn.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       ├── BTTask_GetRandomLocation.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       └── BTTask_MoveToTarget_Grid.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Character/               # 角色系统&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_CharacterBase.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── Components/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       └── DND_UnitVisualComponent.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Combat/                  # 战斗系统&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_CombatManager.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_CombatRules.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_GridManager.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_GridTypes.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_UnitInitializer.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── Actor/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   │   └── DND_EncounterTrigger.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── Components/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       └── DND_GridMovementComponent.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Common/                  # 蓝图通用函数库&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── DND_CommonFunctionForBP.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Data/                    # 数据定义（C++ 侧）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_DataEnum.h&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_DataStructsTable.h&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_AlignmentData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_ArmorData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_BackgroundData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_CharacterData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_ClassesData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_ClassesFeatureData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_LevelProgressionData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_RaceData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_SkillData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_SpellData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_SpellSlotData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_SubclassData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── DND_WeaponData.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Debug/                   # 调试工具&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_ClearCacheEditor.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── DND_DebugSaveFile.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── GAS/                     # Gameplay Ability System&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_AttributeSet.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_GameplayTags.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── Ability/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   │   └── DND_GA_Attack.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── Effects/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       ├── DND_GE_ActionCost.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       ├── DND_GE_Damage.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       └── DND_GE_InitStats.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Interface/               # 接口&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_CharacterStatsInterface.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── DND_TurnBasedUnit.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── SaveSystem/              # 存档系统&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── DND_SaveGame.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Settings/                # 游戏设置&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── DND_LocalizationSettings.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── UI/                      # 用户界面&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── DND_TooltipWidgetBase.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── Actors/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   │   ├── DND_DamageVisualActor.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   │   └── DND_DeathVisualActor.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   ├── CharacterCreation/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   │   └── DND_CharacterCreationViewModel.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── Widgets/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │       └── DND_WorldInfoWidget.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── Utility/                 # 工具&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │   └── DND_DiceSystem.{h,cpp}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── DND_CameraPawn.{h,cpp}   # 摄像机&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── DND_GameModeBase.{h,cpp} # 游戏模式&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── DND_HUD.{h,cpp}          # HUD&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       └── DND_PlayerController.{h,cpp} # 玩家控制器&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── Project_DND.sln                  # Visual Studio 解决方案&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── Project_DND.uproject             # UE 项目文件&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── .vsconfig                        # VS 组件配置&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── Binaries/ &amp;amp; Intermediate/ &amp;amp; Saved/ &amp;amp; DerivedDataCache/   # 编译/运行时生成（忽略）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;hr&gt;&#xA;&lt;h2 id=&#34;当前阶段&#34;&gt;当前阶段&#xA;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;底层框架和数据层基本完成。&lt;/strong&gt; 当前核心任务：&lt;/p&gt;&#xA;&#xA;    &lt;blockquote&gt;&#xA;        &lt;p&gt;&lt;strong&gt;搭建展示场景&lt;/strong&gt; — 把现有系统串成一条完整的可体验流程：&#xA;&lt;code&gt;角色创建 → 进入关卡 → 自由探索 → 遇敌触发 → 回合制战斗 → 胜利/失败&lt;/code&gt;&lt;/p&gt;&#xA;&#xA;    &lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;近期待办清单&#34;&gt;近期待办清单&#xA;&lt;/h3&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 展示场景集成（遭遇触发器 → Forest_Map 打通流程）&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 角色模型替换（从 Mannequins 到最终角色）&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 主菜单与关卡加载流程&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; VFX / SFX 打磨&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; UI 美化与动画过渡&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 战斗结算与奖励展示&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</description>
-        </item></channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>置顶 on 遇玄的方外之地</title><link>https://innnnnk.github.io/tags/%E7%BD%AE%E9%A1%B6/</link><description>Recent content in 置顶 on 遇玄的方外之地</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 09 Jul 2026 16:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/%E7%BD%AE%E9%A1%B6/index.xml" rel="self" type="application/rss+xml"/><item><title>Project_DND 项目总览</title><link>https://innnnnk.github.io/game-dev/project-overview/</link><pubDate>Thu, 09 Jul 2026 16:00:00 +0800</pubDate><guid>https://innnnnk.github.io/game-dev/project-overview/</guid><description>&lt;h2 id="项目定位"&gt;项目定位
+&lt;/h2&gt;&lt;p&gt;基于 DND5e 规则的 3D 写实风格单人回合制战术游戏。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;目标：&lt;/strong&gt; Steam 新品节前推出可试玩 demo，展示核心玩法（战斗、角色、美术风格）。&lt;/p&gt;
+&lt;h2 id="技术栈"&gt;技术栈
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;项目&lt;/th&gt;
+					&lt;th&gt;选型&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;引擎&lt;/td&gt;
+					&lt;td&gt;Unreal Engine 5.6&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;编程&lt;/td&gt;
+					&lt;td&gt;C++&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;战斗框架&lt;/td&gt;
+					&lt;td&gt;GAS (Gameplay Ability System)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;AI&lt;/td&gt;
+					&lt;td&gt;Behavior Tree + AIController&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;美术风格&lt;/td&gt;
+					&lt;td&gt;2.5D 纸片人（Sprite-based）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;数据驱动&lt;/td&gt;
+					&lt;td&gt;DataTable + DataAsset&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="已实现的系统"&gt;已实现的系统
+&lt;/h2&gt;&lt;h3 id="-网格战斗系统"&gt;⚔ 网格战斗系统
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;20×20 格地图，支持自定义尺寸（TileSize/GirdWidth/GridHeight）&lt;/li&gt;
+&lt;li&gt;A* 寻路 + 移动消耗（普通 1 格 / 困难 2 格）&lt;/li&gt;
+&lt;li&gt;Chebyshev 对角线距离计算（DND 规则）&lt;/li&gt;
+&lt;li&gt;单位格子缓存（O(1) 查询）&lt;/li&gt;
+&lt;li&gt;Debug 网格可视化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-回合制流程"&gt;🔄 回合制流程
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;三态状态机：自由探索 → 遭遇定格 → 回合制战斗&lt;/li&gt;
+&lt;li&gt;D&amp;amp;D 先攻投掷（1d20 + 敏捷调整值）与排序&lt;/li&gt;
+&lt;li&gt;轮次计数器 + 死亡检测 + 自动结束战斗&lt;/li&gt;
+&lt;li&gt;回合切换事件广播（镜头跟随/UI更新）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-gas-属性与技能"&gt;🧬 GAS 属性与技能
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;完整六属性：&lt;/strong&gt; 力量/敏捷/体质/智力/感知/魅力（1–30 Clamp）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;战斗属性：&lt;/strong&gt; HP、MaxHP、AC、AttackBonus、AttackRange&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;资源属性：&lt;/strong&gt; MaxMovement、CurrentMovement、MaxActionPoints、CurrentActionPoints&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;调整值计算：&lt;/strong&gt; Modifier = floor((值-10)/2)&lt;/li&gt;
+&lt;li&gt;近战攻击 Ability（GAS GameplayAbility）&lt;/li&gt;
+&lt;li&gt;伤害/初始化/行动点消耗 GameplayEffect&lt;/li&gt;
+&lt;li&gt;自定义 GameplayTags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-ai-行为树"&gt;🧠 AI 行为树
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BTTask_AttackTarget&lt;/code&gt; — 寻敌攻击&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BTTask_MoveToTarget_Grid&lt;/code&gt; — 格子寻路移动&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BTTask_EndTurn&lt;/code&gt; — 结束回合&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BTTask_GetRandomLocation&lt;/code&gt; — 随机目标点&lt;/li&gt;
+&lt;li&gt;Blackboard 驱动 + 蓝图 BehaviorTree/Blackboard 资产&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-角色系统"&gt;👤 角色系统
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DND_CharacterBase&lt;/code&gt; — GAS 集成 + 存档初始化 + 视觉组件&lt;/li&gt;
+&lt;li&gt;物理底座（BaseMesh）+ 血条 Widget（HealthWidgetComp）&lt;/li&gt;
+&lt;li&gt;纸片人渲染（VisualPivot + VisualMesh 驱动 4 方向 Sprite）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DND_UnitVisualComponent&lt;/code&gt; — 视觉逻辑控制器&lt;/li&gt;
+&lt;li&gt;草地交互 MPC（Interaction + Wind）&lt;/li&gt;
+&lt;li&gt;布娃娃死亡（&lt;code&gt;EnableRagdoll&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-dd-数据层"&gt;📊 D&amp;amp;D 数据层
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;14 张 DataTable：&lt;/strong&gt;
+&lt;code&gt;DT_RaceSheet&lt;/code&gt; | &lt;code&gt;DT_ClassesSheet&lt;/code&gt; | &lt;code&gt;DT_SubclassSheet&lt;/code&gt; | &lt;code&gt;DT_SpellSheet&lt;/code&gt; | &lt;code&gt;DT_SpellSlotSheet&lt;/code&gt; | &lt;code&gt;DT_WeaponSheet&lt;/code&gt; | &lt;code&gt;DT_ArmorSheet&lt;/code&gt; | &lt;code&gt;DT_EquipmentSheet&lt;/code&gt; | &lt;code&gt;DT_SkillSheet&lt;/code&gt; | &lt;code&gt;DT_BackgroundSheet&lt;/code&gt; | &lt;code&gt;DT_AlignmentSheet&lt;/code&gt; | &lt;code&gt;DT_LevelProgSheet&lt;/code&gt; | &lt;code&gt;DT_RaceTraitSheet&lt;/code&gt; | &lt;code&gt;DT_ClassFeatureSheet&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;7 个 DataAsset 缓存：&lt;/strong&gt;
+&lt;code&gt;DA_RaceData&lt;/code&gt; | &lt;code&gt;DA_ClassesData&lt;/code&gt; | &lt;code&gt;DA_ClassFeatureData&lt;/code&gt; | &lt;code&gt;DA_BackgroundData&lt;/code&gt; | &lt;code&gt;DA_AlignmentData&lt;/code&gt; | &lt;code&gt;DA_SkillData&lt;/code&gt; | &lt;code&gt;DA_PlayerCharacter_Default&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3 个预制模板：&lt;/strong&gt;
+&lt;code&gt;DA_Template_Elf_Rouge&lt;/code&gt; | &lt;code&gt;DA_Template_Halforc_Barbarian&lt;/code&gt; | &lt;code&gt;DA_Template_Human_Fighter&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="-角色创建系统"&gt;👥 角色创建系统
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;MVVM 架构 ViewModel（&lt;code&gt;DND_CharacterCreationViewModel&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;7 步流程：新角色 → 种族 → 背景 → 职业 → 阵营 → 属性（27 点购）→ 命名与技能选择&lt;/li&gt;
+&lt;li&gt;预制模板模式（锁定所有步骤，只读预览）&lt;/li&gt;
+&lt;li&gt;技能选择弹窗系统（&lt;code&gt;SkillSelector_Popup&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;实时预览（HP/AC/熟练加值/速度）&lt;/li&gt;
+&lt;li&gt;存档写入（FinalizeCharacterCreation）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-美术资产"&gt;🎨 美术资产
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;野蛮人/战士/游荡者&lt;/strong&gt; 各 4 状态网格体：Idle / Attack / Hit / Dead&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;场景装饰：&lt;/strong&gt; 草地 3 种、蘑菇 5 种&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;材质系统：&lt;/strong&gt; 角色材质 M_Chara + 12 个实例、草地/蘑菇材质、UI 材质（血条/阵营/便签）、后处理描边&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;纹理：&lt;/strong&gt; 角色 Sprite 贴图、法线贴图、噪声贴图&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;草地交互 Shader：&lt;/strong&gt; MPC_Interaction + MF_GrassInteraction&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-操作交互"&gt;🎮 操作交互
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;框选 / 点击选择（支持多选友军）&lt;/li&gt;
+&lt;li&gt;自由探索模式 NavMesh 移动&lt;/li&gt;
+&lt;li&gt;战斗模式路径显示&lt;/li&gt;
+&lt;li&gt;专用 CameraPawn（缩放 + 中键旋转）&lt;/li&gt;
+&lt;li&gt;回合切换镜头跟随&lt;/li&gt;
+&lt;li&gt;伤害数字/血条/死亡卡片场景 Widget&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-本地化"&gt;🌐 本地化
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;中英双语（zh-CN / en）&lt;/li&gt;
+&lt;li&gt;完整的 Localization 配置（Gather/Export/Import/Compile）&lt;/li&gt;
+&lt;li&gt;设置资源表（&lt;code&gt;ST_Character&lt;/code&gt;、&lt;code&gt;ST_UIText&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="-调试工具"&gt;🔧 调试工具
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DND_ClearCacheEditor&lt;/code&gt; — 缓存清理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DND_DebugSaveFile&lt;/code&gt; — 存档调试&lt;/li&gt;
+&lt;li&gt;DebugStartCombat — 快速战斗测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="完整工程目录结构"&gt;完整工程目录结构
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt; 10
+&lt;/span&gt;&lt;span class="lnt"&gt; 11
+&lt;/span&gt;&lt;span class="lnt"&gt; 12
+&lt;/span&gt;&lt;span class="lnt"&gt; 13
+&lt;/span&gt;&lt;span class="lnt"&gt; 14
+&lt;/span&gt;&lt;span class="lnt"&gt; 15
+&lt;/span&gt;&lt;span class="lnt"&gt; 16
+&lt;/span&gt;&lt;span class="lnt"&gt; 17
+&lt;/span&gt;&lt;span class="lnt"&gt; 18
+&lt;/span&gt;&lt;span class="lnt"&gt; 19
+&lt;/span&gt;&lt;span class="lnt"&gt; 20
+&lt;/span&gt;&lt;span class="lnt"&gt; 21
+&lt;/span&gt;&lt;span class="lnt"&gt; 22
+&lt;/span&gt;&lt;span class="lnt"&gt; 23
+&lt;/span&gt;&lt;span class="lnt"&gt; 24
+&lt;/span&gt;&lt;span class="lnt"&gt; 25
+&lt;/span&gt;&lt;span class="lnt"&gt; 26
+&lt;/span&gt;&lt;span class="lnt"&gt; 27
+&lt;/span&gt;&lt;span class="lnt"&gt; 28
+&lt;/span&gt;&lt;span class="lnt"&gt; 29
+&lt;/span&gt;&lt;span class="lnt"&gt; 30
+&lt;/span&gt;&lt;span class="lnt"&gt; 31
+&lt;/span&gt;&lt;span class="lnt"&gt; 32
+&lt;/span&gt;&lt;span class="lnt"&gt; 33
+&lt;/span&gt;&lt;span class="lnt"&gt; 34
+&lt;/span&gt;&lt;span class="lnt"&gt; 35
+&lt;/span&gt;&lt;span class="lnt"&gt; 36
+&lt;/span&gt;&lt;span class="lnt"&gt; 37
+&lt;/span&gt;&lt;span class="lnt"&gt; 38
+&lt;/span&gt;&lt;span class="lnt"&gt; 39
+&lt;/span&gt;&lt;span class="lnt"&gt; 40
+&lt;/span&gt;&lt;span class="lnt"&gt; 41
+&lt;/span&gt;&lt;span class="lnt"&gt; 42
+&lt;/span&gt;&lt;span class="lnt"&gt; 43
+&lt;/span&gt;&lt;span class="lnt"&gt; 44
+&lt;/span&gt;&lt;span class="lnt"&gt; 45
+&lt;/span&gt;&lt;span class="lnt"&gt; 46
+&lt;/span&gt;&lt;span class="lnt"&gt; 47
+&lt;/span&gt;&lt;span class="lnt"&gt; 48
+&lt;/span&gt;&lt;span class="lnt"&gt; 49
+&lt;/span&gt;&lt;span class="lnt"&gt; 50
+&lt;/span&gt;&lt;span class="lnt"&gt; 51
+&lt;/span&gt;&lt;span class="lnt"&gt; 52
+&lt;/span&gt;&lt;span class="lnt"&gt; 53
+&lt;/span&gt;&lt;span class="lnt"&gt; 54
+&lt;/span&gt;&lt;span class="lnt"&gt; 55
+&lt;/span&gt;&lt;span class="lnt"&gt; 56
+&lt;/span&gt;&lt;span class="lnt"&gt; 57
+&lt;/span&gt;&lt;span class="lnt"&gt; 58
+&lt;/span&gt;&lt;span class="lnt"&gt; 59
+&lt;/span&gt;&lt;span class="lnt"&gt; 60
+&lt;/span&gt;&lt;span class="lnt"&gt; 61
+&lt;/span&gt;&lt;span class="lnt"&gt; 62
+&lt;/span&gt;&lt;span class="lnt"&gt; 63
+&lt;/span&gt;&lt;span class="lnt"&gt; 64
+&lt;/span&gt;&lt;span class="lnt"&gt; 65
+&lt;/span&gt;&lt;span class="lnt"&gt; 66
+&lt;/span&gt;&lt;span class="lnt"&gt; 67
+&lt;/span&gt;&lt;span class="lnt"&gt; 68
+&lt;/span&gt;&lt;span class="lnt"&gt; 69
+&lt;/span&gt;&lt;span class="lnt"&gt; 70
+&lt;/span&gt;&lt;span class="lnt"&gt; 71
+&lt;/span&gt;&lt;span class="lnt"&gt; 72
+&lt;/span&gt;&lt;span class="lnt"&gt; 73
+&lt;/span&gt;&lt;span class="lnt"&gt; 74
+&lt;/span&gt;&lt;span class="lnt"&gt; 75
+&lt;/span&gt;&lt;span class="lnt"&gt; 76
+&lt;/span&gt;&lt;span class="lnt"&gt; 77
+&lt;/span&gt;&lt;span class="lnt"&gt; 78
+&lt;/span&gt;&lt;span class="lnt"&gt; 79
+&lt;/span&gt;&lt;span class="lnt"&gt; 80
+&lt;/span&gt;&lt;span class="lnt"&gt; 81
+&lt;/span&gt;&lt;span class="lnt"&gt; 82
+&lt;/span&gt;&lt;span class="lnt"&gt; 83
+&lt;/span&gt;&lt;span class="lnt"&gt; 84
+&lt;/span&gt;&lt;span class="lnt"&gt; 85
+&lt;/span&gt;&lt;span class="lnt"&gt; 86
+&lt;/span&gt;&lt;span class="lnt"&gt; 87
+&lt;/span&gt;&lt;span class="lnt"&gt; 88
+&lt;/span&gt;&lt;span class="lnt"&gt; 89
+&lt;/span&gt;&lt;span class="lnt"&gt; 90
+&lt;/span&gt;&lt;span class="lnt"&gt; 91
+&lt;/span&gt;&lt;span class="lnt"&gt; 92
+&lt;/span&gt;&lt;span class="lnt"&gt; 93
+&lt;/span&gt;&lt;span class="lnt"&gt; 94
+&lt;/span&gt;&lt;span class="lnt"&gt; 95
+&lt;/span&gt;&lt;span class="lnt"&gt; 96
+&lt;/span&gt;&lt;span class="lnt"&gt; 97
+&lt;/span&gt;&lt;span class="lnt"&gt; 98
+&lt;/span&gt;&lt;span class="lnt"&gt; 99
+&lt;/span&gt;&lt;span class="lnt"&gt;100
+&lt;/span&gt;&lt;span class="lnt"&gt;101
+&lt;/span&gt;&lt;span class="lnt"&gt;102
+&lt;/span&gt;&lt;span class="lnt"&gt;103
+&lt;/span&gt;&lt;span class="lnt"&gt;104
+&lt;/span&gt;&lt;span class="lnt"&gt;105
+&lt;/span&gt;&lt;span class="lnt"&gt;106
+&lt;/span&gt;&lt;span class="lnt"&gt;107
+&lt;/span&gt;&lt;span class="lnt"&gt;108
+&lt;/span&gt;&lt;span class="lnt"&gt;109
+&lt;/span&gt;&lt;span class="lnt"&gt;110
+&lt;/span&gt;&lt;span class="lnt"&gt;111
+&lt;/span&gt;&lt;span class="lnt"&gt;112
+&lt;/span&gt;&lt;span class="lnt"&gt;113
+&lt;/span&gt;&lt;span class="lnt"&gt;114
+&lt;/span&gt;&lt;span class="lnt"&gt;115
+&lt;/span&gt;&lt;span class="lnt"&gt;116
+&lt;/span&gt;&lt;span class="lnt"&gt;117
+&lt;/span&gt;&lt;span class="lnt"&gt;118
+&lt;/span&gt;&lt;span class="lnt"&gt;119
+&lt;/span&gt;&lt;span class="lnt"&gt;120
+&lt;/span&gt;&lt;span class="lnt"&gt;121
+&lt;/span&gt;&lt;span class="lnt"&gt;122
+&lt;/span&gt;&lt;span class="lnt"&gt;123
+&lt;/span&gt;&lt;span class="lnt"&gt;124
+&lt;/span&gt;&lt;span class="lnt"&gt;125
+&lt;/span&gt;&lt;span class="lnt"&gt;126
+&lt;/span&gt;&lt;span class="lnt"&gt;127
+&lt;/span&gt;&lt;span class="lnt"&gt;128
+&lt;/span&gt;&lt;span class="lnt"&gt;129
+&lt;/span&gt;&lt;span class="lnt"&gt;130
+&lt;/span&gt;&lt;span class="lnt"&gt;131
+&lt;/span&gt;&lt;span class="lnt"&gt;132
+&lt;/span&gt;&lt;span class="lnt"&gt;133
+&lt;/span&gt;&lt;span class="lnt"&gt;134
+&lt;/span&gt;&lt;span class="lnt"&gt;135
+&lt;/span&gt;&lt;span class="lnt"&gt;136
+&lt;/span&gt;&lt;span class="lnt"&gt;137
+&lt;/span&gt;&lt;span class="lnt"&gt;138
+&lt;/span&gt;&lt;span class="lnt"&gt;139
+&lt;/span&gt;&lt;span class="lnt"&gt;140
+&lt;/span&gt;&lt;span class="lnt"&gt;141
+&lt;/span&gt;&lt;span class="lnt"&gt;142
+&lt;/span&gt;&lt;span class="lnt"&gt;143
+&lt;/span&gt;&lt;span class="lnt"&gt;144
+&lt;/span&gt;&lt;span class="lnt"&gt;145
+&lt;/span&gt;&lt;span class="lnt"&gt;146
+&lt;/span&gt;&lt;span class="lnt"&gt;147
+&lt;/span&gt;&lt;span class="lnt"&gt;148
+&lt;/span&gt;&lt;span class="lnt"&gt;149
+&lt;/span&gt;&lt;span class="lnt"&gt;150
+&lt;/span&gt;&lt;span class="lnt"&gt;151
+&lt;/span&gt;&lt;span class="lnt"&gt;152
+&lt;/span&gt;&lt;span class="lnt"&gt;153
+&lt;/span&gt;&lt;span class="lnt"&gt;154
+&lt;/span&gt;&lt;span class="lnt"&gt;155
+&lt;/span&gt;&lt;span class="lnt"&gt;156
+&lt;/span&gt;&lt;span class="lnt"&gt;157
+&lt;/span&gt;&lt;span class="lnt"&gt;158
+&lt;/span&gt;&lt;span class="lnt"&gt;159
+&lt;/span&gt;&lt;span class="lnt"&gt;160
+&lt;/span&gt;&lt;span class="lnt"&gt;161
+&lt;/span&gt;&lt;span class="lnt"&gt;162
+&lt;/span&gt;&lt;span class="lnt"&gt;163
+&lt;/span&gt;&lt;span class="lnt"&gt;164
+&lt;/span&gt;&lt;span class="lnt"&gt;165
+&lt;/span&gt;&lt;span class="lnt"&gt;166
+&lt;/span&gt;&lt;span class="lnt"&gt;167
+&lt;/span&gt;&lt;span class="lnt"&gt;168
+&lt;/span&gt;&lt;span class="lnt"&gt;169
+&lt;/span&gt;&lt;span class="lnt"&gt;170
+&lt;/span&gt;&lt;span class="lnt"&gt;171
+&lt;/span&gt;&lt;span class="lnt"&gt;172
+&lt;/span&gt;&lt;span class="lnt"&gt;173
+&lt;/span&gt;&lt;span class="lnt"&gt;174
+&lt;/span&gt;&lt;span class="lnt"&gt;175
+&lt;/span&gt;&lt;span class="lnt"&gt;176
+&lt;/span&gt;&lt;span class="lnt"&gt;177
+&lt;/span&gt;&lt;span class="lnt"&gt;178
+&lt;/span&gt;&lt;span class="lnt"&gt;179
+&lt;/span&gt;&lt;span class="lnt"&gt;180
+&lt;/span&gt;&lt;span class="lnt"&gt;181
+&lt;/span&gt;&lt;span class="lnt"&gt;182
+&lt;/span&gt;&lt;span class="lnt"&gt;183
+&lt;/span&gt;&lt;span class="lnt"&gt;184
+&lt;/span&gt;&lt;span class="lnt"&gt;185
+&lt;/span&gt;&lt;span class="lnt"&gt;186
+&lt;/span&gt;&lt;span class="lnt"&gt;187
+&lt;/span&gt;&lt;span class="lnt"&gt;188
+&lt;/span&gt;&lt;span class="lnt"&gt;189
+&lt;/span&gt;&lt;span class="lnt"&gt;190
+&lt;/span&gt;&lt;span class="lnt"&gt;191
+&lt;/span&gt;&lt;span class="lnt"&gt;192
+&lt;/span&gt;&lt;span class="lnt"&gt;193
+&lt;/span&gt;&lt;span class="lnt"&gt;194
+&lt;/span&gt;&lt;span class="lnt"&gt;195
+&lt;/span&gt;&lt;span class="lnt"&gt;196
+&lt;/span&gt;&lt;span class="lnt"&gt;197
+&lt;/span&gt;&lt;span class="lnt"&gt;198
+&lt;/span&gt;&lt;span class="lnt"&gt;199
+&lt;/span&gt;&lt;span class="lnt"&gt;200
+&lt;/span&gt;&lt;span class="lnt"&gt;201
+&lt;/span&gt;&lt;span class="lnt"&gt;202
+&lt;/span&gt;&lt;span class="lnt"&gt;203
+&lt;/span&gt;&lt;span class="lnt"&gt;204
+&lt;/span&gt;&lt;span class="lnt"&gt;205
+&lt;/span&gt;&lt;span class="lnt"&gt;206
+&lt;/span&gt;&lt;span class="lnt"&gt;207
+&lt;/span&gt;&lt;span class="lnt"&gt;208
+&lt;/span&gt;&lt;span class="lnt"&gt;209
+&lt;/span&gt;&lt;span class="lnt"&gt;210
+&lt;/span&gt;&lt;span class="lnt"&gt;211
+&lt;/span&gt;&lt;span class="lnt"&gt;212
+&lt;/span&gt;&lt;span class="lnt"&gt;213
+&lt;/span&gt;&lt;span class="lnt"&gt;214
+&lt;/span&gt;&lt;span class="lnt"&gt;215
+&lt;/span&gt;&lt;span class="lnt"&gt;216
+&lt;/span&gt;&lt;span class="lnt"&gt;217
+&lt;/span&gt;&lt;span class="lnt"&gt;218
+&lt;/span&gt;&lt;span class="lnt"&gt;219
+&lt;/span&gt;&lt;span class="lnt"&gt;220
+&lt;/span&gt;&lt;span class="lnt"&gt;221
+&lt;/span&gt;&lt;span class="lnt"&gt;222
+&lt;/span&gt;&lt;span class="lnt"&gt;223
+&lt;/span&gt;&lt;span class="lnt"&gt;224
+&lt;/span&gt;&lt;span class="lnt"&gt;225
+&lt;/span&gt;&lt;span class="lnt"&gt;226
+&lt;/span&gt;&lt;span class="lnt"&gt;227
+&lt;/span&gt;&lt;span class="lnt"&gt;228
+&lt;/span&gt;&lt;span class="lnt"&gt;229
+&lt;/span&gt;&lt;span class="lnt"&gt;230
+&lt;/span&gt;&lt;span class="lnt"&gt;231
+&lt;/span&gt;&lt;span class="lnt"&gt;232
+&lt;/span&gt;&lt;span class="lnt"&gt;233
+&lt;/span&gt;&lt;span class="lnt"&gt;234
+&lt;/span&gt;&lt;span class="lnt"&gt;235
+&lt;/span&gt;&lt;span class="lnt"&gt;236
+&lt;/span&gt;&lt;span class="lnt"&gt;237
+&lt;/span&gt;&lt;span class="lnt"&gt;238
+&lt;/span&gt;&lt;span class="lnt"&gt;239
+&lt;/span&gt;&lt;span class="lnt"&gt;240
+&lt;/span&gt;&lt;span class="lnt"&gt;241
+&lt;/span&gt;&lt;span class="lnt"&gt;242
+&lt;/span&gt;&lt;span class="lnt"&gt;243
+&lt;/span&gt;&lt;span class="lnt"&gt;244
+&lt;/span&gt;&lt;span class="lnt"&gt;245
+&lt;/span&gt;&lt;span class="lnt"&gt;246
+&lt;/span&gt;&lt;span class="lnt"&gt;247
+&lt;/span&gt;&lt;span class="lnt"&gt;248
+&lt;/span&gt;&lt;span class="lnt"&gt;249
+&lt;/span&gt;&lt;span class="lnt"&gt;250
+&lt;/span&gt;&lt;span class="lnt"&gt;251
+&lt;/span&gt;&lt;span class="lnt"&gt;252
+&lt;/span&gt;&lt;span class="lnt"&gt;253
+&lt;/span&gt;&lt;span class="lnt"&gt;254
+&lt;/span&gt;&lt;span class="lnt"&gt;255
+&lt;/span&gt;&lt;span class="lnt"&gt;256
+&lt;/span&gt;&lt;span class="lnt"&gt;257
+&lt;/span&gt;&lt;span class="lnt"&gt;258
+&lt;/span&gt;&lt;span class="lnt"&gt;259
+&lt;/span&gt;&lt;span class="lnt"&gt;260
+&lt;/span&gt;&lt;span class="lnt"&gt;261
+&lt;/span&gt;&lt;span class="lnt"&gt;262
+&lt;/span&gt;&lt;span class="lnt"&gt;263
+&lt;/span&gt;&lt;span class="lnt"&gt;264
+&lt;/span&gt;&lt;span class="lnt"&gt;265
+&lt;/span&gt;&lt;span class="lnt"&gt;266
+&lt;/span&gt;&lt;span class="lnt"&gt;267
+&lt;/span&gt;&lt;span class="lnt"&gt;268
+&lt;/span&gt;&lt;span class="lnt"&gt;269
+&lt;/span&gt;&lt;span class="lnt"&gt;270
+&lt;/span&gt;&lt;span class="lnt"&gt;271
+&lt;/span&gt;&lt;span class="lnt"&gt;272
+&lt;/span&gt;&lt;span class="lnt"&gt;273
+&lt;/span&gt;&lt;span class="lnt"&gt;274
+&lt;/span&gt;&lt;span class="lnt"&gt;275
+&lt;/span&gt;&lt;span class="lnt"&gt;276
+&lt;/span&gt;&lt;span class="lnt"&gt;277
+&lt;/span&gt;&lt;span class="lnt"&gt;278
+&lt;/span&gt;&lt;span class="lnt"&gt;279
+&lt;/span&gt;&lt;span class="lnt"&gt;280
+&lt;/span&gt;&lt;span class="lnt"&gt;281
+&lt;/span&gt;&lt;span class="lnt"&gt;282
+&lt;/span&gt;&lt;span class="lnt"&gt;283
+&lt;/span&gt;&lt;span class="lnt"&gt;284
+&lt;/span&gt;&lt;span class="lnt"&gt;285
+&lt;/span&gt;&lt;span class="lnt"&gt;286
+&lt;/span&gt;&lt;span class="lnt"&gt;287
+&lt;/span&gt;&lt;span class="lnt"&gt;288
+&lt;/span&gt;&lt;span class="lnt"&gt;289
+&lt;/span&gt;&lt;span class="lnt"&gt;290
+&lt;/span&gt;&lt;span class="lnt"&gt;291
+&lt;/span&gt;&lt;span class="lnt"&gt;292
+&lt;/span&gt;&lt;span class="lnt"&gt;293
+&lt;/span&gt;&lt;span class="lnt"&gt;294
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Project_DND/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Config/ # 引擎配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── DefaultEditor.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── DefaultEngine.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── DefaultGame.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── DefaultInput.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Localization/ # 本地化编译配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game_Compile.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game_Export.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game_ExportDialogueScript.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game_Gather.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game_GenerateReports.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game_Import.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game_ImportDialogue.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Game_ImportDialogueScript.ini
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── Tags/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── DND_GASData.ini # GAS 标签定义
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Content/ # 游戏资产
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── AI/ # AI 行为资产
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BB_EnemyBase.uasset # Blackboard
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── BT_EnemyBase.uasset # BehaviorTree
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Blueprints/ # 蓝图
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BP_DNDCameraPawn.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BP_DNDGameModeBase.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BP_DNDHUD.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BP_DNDPlayerController.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── AI/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── BP_DND_AIController.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Character/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── BP_DND_CharacterBase.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── BP_DND_EnemyBase.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Combat/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── BP_CombatManager.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── BP_EnconterTrigger.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── BP_GridManager.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Environment/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── BP_GrassInteraction.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── GAS/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── BP_GA_MeleeAttack.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── BP_GE_ActionCost.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── BP_GE_Damage.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── UI/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── Camera/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ └── BP_Shake_HeavyHit.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── CharacterCreation/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCAbilityStep.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCAlignmentStep.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCBackgroundStep.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCClassStep.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCMaster.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCNameStep.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCNewCharacterStep.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_CCRaceStep.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ └── Components/ # 通用组件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_BackButton.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_ChoiceButton.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_ClassButton.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ └── UMG_RaceButton.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── CommonComps/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_AbilityScoreRow.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_ClassFeature.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_SkillSelectItem.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ ├── UMG_SkillSelector_Popup.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ │ └── UMG_Tooltip_ClassFeature.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── SceneWidgets/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── BP_DamageNote.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── BP_DeathCard.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── WBP_DamageText.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── WBP_HealthDial.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Utility/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── BP_TexToModelBaker.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Characters/Mannequins/ # UE 默认人模（待替换）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Data/ # 数据驱动资产
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Curve/Camera/ # 摄像机曲线
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── Curve_Aperture_MainCam.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── Curve_Pitch_MainCam.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DataAsset/ # 运行时缓存
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DA_AlignmentData.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DA_BackgroundData.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DA_ClassFeatureData.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DA_ClassesData.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DA_PlayerCharacter_Default.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DA_RaceData.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── DA_SkillData.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DataTable/ # 数据表
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_AlignmentSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_ArmorSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_BackgroundSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_ClassFeatureSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_ClassesSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_EquipmentSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_LevelProgSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_RaceSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_RaceTraitSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_SkillSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_SpellSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_SpellSlotSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DT_SubclassSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── DT_WeaponSheet.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Template/ # 预制角色模板
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DA_Template_Elf_Rouge.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DA_Template_Halforc_Barbarian.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DA_Template_Human_Fighter.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── FX/ # 特效（待完善）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── LandScape/SMF/ # 地表材质函数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── SMF_GrassBase_01.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── SMF_GrassBase_02.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── SMF_GrassBase_03.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Localization/Game/ # 本地化资源
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game.csv # 源文本
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game.locmeta
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game.manifest
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── en/ # 英文
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── Game.archive
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── Game.locres
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── zh-CN/ # 中文
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Game.archive
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Game.locres
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Maps/ # 关卡地图
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Forest_Map.umap
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── MainMap.umap
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── TestUI.umap
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Material/ # 材质系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Characters/ # 角色材质
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── M_Chara.uasset # 基础角色材质
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── M_Thick.uasset # 厚涂风格材质
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── Instance/ # 材质实例
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── MI_Chara_Barb_{idle,attack,hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── MI_Chara_Fighter_{idle,attack,hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── MI_Chara_Rouge_{idle,attack,hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Decal/M_SelectionDecal.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Foliage/ # 植被材质
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── M_Grass.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── M_Mushroom.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── Instance/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Landscape/ # 地形材质
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── M_Ground.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── Inst/M_Ground_Inst.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── MPC/ # 材质参数集
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── MPC_GlobalWind.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── MPC_Interaction.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── MaterialFunction/ # 材质函数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── MF_GetAlignmentSectorID.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── MF_GrassInteraction.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── MF_Kajiyakay.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── MF_ShiftTangent.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── MF_StrandSpecular.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── PostProcess/ # 后处理
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── M_Outline_PP.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── UI/ # UI 材质
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── M_Alignment_Frame.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── M_HealthBase.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── M_RaceAvatar.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── M_UI_Carved.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── M_UI_StickyNote.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Instance/M_UI_StickyNote_Inst.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Mesh/ # 网格体
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Characters/ # 角色纸片人
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── SM_Barb_{Idle,Attack,Hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── SM_Fighter_{Idle,Attack,Hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── SM_Rouge_{Idle,Attack,Hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Combat/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── SM_Damage.uasset # 伤害标记
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── SM_DeathCard.uasset # 死亡卡
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Components/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── SM_BasePlane.uasset # 物理底座
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Foliage/ # 植被网格体
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── SM_Grass_Base_{01,02,03}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── SM_Mushroom_{01,03,04,05,07}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── ForTest/Box_test.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Settings/Localization/ # 本地化设置表
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── ST_Character.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── ST_UIText.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── Texture/ # 贴图
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Foliage/ # 植被贴图
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── T_Mushroom_*_D.uasset (漫反射)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── T_Mushroom_*_N.uasset (法线)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── T_Moss_{D,N,RSB}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── T_Noise.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── ForTest/ # 角色 Sprite 测试贴图
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── barb_{idle,attack,hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── thief_{idle,attack,hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── warrior_{Idle,battle,hit,dead}.uasset
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Source/ # C++ 源码
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Project_DND.Target.cs # 目标文件（游戏）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Project_DNDEditor.Target.cs # 目标文件（编辑器）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── Project_DND/ # 主模块
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Project_DND.{h,cpp} # 模块入口
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Project_DND.Build.cs # 构建依赖
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── AI/ # 人工智能
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_AIController.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Tasks/ # BehaviorTree Task
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BTTask_AttackTarget.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BTTask_EndTurn.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── BTTask_GetRandomLocation.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── BTTask_MoveToTarget_Grid.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Character/ # 角色系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_CharacterBase.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Components/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_UnitVisualComponent.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Combat/ # 战斗系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_CombatManager.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_CombatRules.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_GridManager.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_GridTypes.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_UnitInitializer.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Actor/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── DND_EncounterTrigger.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Components/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_GridMovementComponent.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Common/ # 蓝图通用函数库
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_CommonFunctionForBP.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Data/ # 数据定义（C++ 侧）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_DataEnum.h
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_DataStructsTable.h
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_AlignmentData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_ArmorData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_BackgroundData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_CharacterData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_ClassesData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_ClassesFeatureData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_LevelProgressionData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_RaceData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_SkillData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_SpellData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_SpellSlotData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_SubclassData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_WeaponData.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Debug/ # 调试工具
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_ClearCacheEditor.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_DebugSaveFile.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── GAS/ # Gameplay Ability System
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_AttributeSet.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_GameplayTags.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Ability/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── DND_GA_Attack.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Effects/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_GE_ActionCost.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_GE_Damage.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_GE_InitStats.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Interface/ # 接口
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_CharacterStatsInterface.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_TurnBasedUnit.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── SaveSystem/ # 存档系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_SaveGame.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Settings/ # 游戏设置
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_LocalizationSettings.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── UI/ # 用户界面
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── DND_TooltipWidgetBase.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── Actors/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── DND_DamageVisualActor.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── DND_DeathVisualActor.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── CharacterCreation/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── DND_CharacterCreationViewModel.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── Widgets/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_WorldInfoWidget.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── Utility/ # 工具
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── DND_DiceSystem.{h,cpp}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── DND_CameraPawn.{h,cpp} # 摄像机
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── DND_GameModeBase.{h,cpp} # 游戏模式
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── DND_HUD.{h,cpp} # HUD
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── DND_PlayerController.{h,cpp} # 玩家控制器
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Project_DND.sln # Visual Studio 解决方案
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── Project_DND.uproject # UE 项目文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── .vsconfig # VS 组件配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── Binaries/ &amp;amp; Intermediate/ &amp;amp; Saved/ &amp;amp; DerivedDataCache/ # 编译/运行时生成（忽略）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="当前阶段"&gt;当前阶段
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;底层框架和数据层基本完成。&lt;/strong&gt; 当前核心任务：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;搭建展示场景&lt;/strong&gt; — 把现有系统串成一条完整的可体验流程：
+&lt;code&gt;角色创建 → 进入关卡 → 自由探索 → 遇敌触发 → 回合制战斗 → 胜利/失败&lt;/code&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h3 id="近期待办清单"&gt;近期待办清单
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 展示场景集成（遭遇触发器 → Forest_Map 打通流程）&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 角色模型替换（从 Mannequins 到最终角色）&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 主菜单与关卡加载流程&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; VFX / SFX 打磨&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; UI 美化与动画过渡&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 战斗结算与奖励展示&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

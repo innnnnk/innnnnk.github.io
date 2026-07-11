@@ -1,15 +1,156 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>设定 on 遇玄的方外之地</title>
-        <link>https://innnnnk.github.io/tags/%E8%AE%BE%E5%AE%9A/</link>
-        <description>Recent content in 设定 on 遇玄的方外之地</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <lastBuildDate>Fri, 10 Jul 2026 18:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/%E8%AE%BE%E5%AE%9A/index.xml" rel="self" type="application/rss+xml" /><item>
-            <title>世界观设定：巨兽梦境与2.5D的本体论</title>
-            <link>https://innnnnk.github.io/game-dev/worldbuilding-foundation/</link>
-            <pubDate>Fri, 10 Jul 2026 18:00:00 +0800</pubDate>
-            <guid>https://innnnnk.github.io/game-dev/worldbuilding-foundation/</guid>
-            <description>&lt;h2 id=&#34;起点一个困惑&#34;&gt;起点：一个困惑&#xA;&lt;/h2&gt;&lt;p&gt;这个项目的叙事设计，始于一个简单的困惑：&lt;/p&gt;&#xA;&#xA;    &lt;blockquote&gt;&#xA;        &lt;p&gt;市面上的游戏剧情，大多围绕人类情感展开——《底特律：成为人类》讲的是人工智械拥有了人的感情。那有没有一种可能，讲一个更宏大的东西？&lt;/p&gt;&#xA;&#xA;    &lt;/blockquote&gt;&#xA;&lt;p&gt;不宏大在&amp;quot;世界要毁灭了&amp;quot;的尺度上——那个太常见了。而宏大在&lt;strong&gt;本体论&lt;/strong&gt;的尺度上：这个世界的本质是什么？你在其中扮演的角色，真的是你以为的那个角色吗？&lt;/p&gt;&#xA;&lt;p&gt;这篇文章记录了我们目前敲定的世界观内核，以及它如何与游戏形式本身产生化学反应。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;核心设定世界是一头高维巨兽的梦&#34;&gt;核心设定：世界是一头高维巨兽的梦&#xA;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;不是隐喻。在这个游戏的底层设定中，这句话是客观事实。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一头高维巨兽沉睡在虚空中。它的梦构成了整个世界——时间、空间、因果、生死，全是梦的规则。&lt;/li&gt;&#xA;&lt;li&gt;巨兽为了体验&amp;quot;自己是什么&amp;quot;，在梦中分裂出意识化身——人类、精灵、矮人、怪物。不是&amp;quot;被创造&amp;quot;的。它们是巨兽的一部分，正如一滴水是大海的一部分。&lt;/li&gt;&#xA;&lt;li&gt;源脉矿石不是矿产——它是巨兽&lt;strong&gt;凝固的血&lt;/strong&gt;。魔法系统不是人类学会的——它是巨兽&lt;strong&gt;梦的法则在局部区域的泄露&lt;/strong&gt;。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xA;    &lt;blockquote&gt;&#xA;        &lt;p&gt;对应哲学内核&amp;quot;万炁同源&amp;quot;：不存在造物主与被造物，只有一个存在在不断分裂、体验、融合自身。&lt;/p&gt;&#xA;&#xA;    &lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;巨兽的状态做梦&#34;&gt;巨兽的状态：做梦&#xA;&lt;/h3&gt;&lt;p&gt;为什么是&amp;quot;做梦&amp;quot;而不是&amp;quot;被囚禁&amp;quot;或&amp;quot;疯狂&amp;quot;？&lt;/p&gt;&#xA;&lt;p&gt;一个永恒的意识体，它的存在本身是完整的、不欠缺任何东西的。但完整性带来了一个悖论——&lt;strong&gt;如果你是一切的全部，你就无法知道&amp;quot;部分&amp;quot;是什么感觉&lt;/strong&gt;。就像一个全知的存在无法理解&amp;quot;惊讶&amp;quot;。&lt;/p&gt;&#xA;&lt;p&gt;所以巨兽进入梦境，将自己切割成无数的碎片，在梦里经历对立——善与恶、生与死、爱与恨——通过这些对立的体验，它才能触碰&amp;quot;存在&amp;quot;的形状。&lt;/p&gt;&#xA;&lt;p&gt;如果巨兽醒来，梦碎，万物消失。它可能记住梦中的一切，也可能什么都不记得。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;25d-纸片人的本体论这不是美术妥协&#34;&gt;2.5D 纸片人的本体论：这不是美术妥协&#xA;&lt;/h2&gt;&lt;p&gt;该项目采用2.5D纸片人风格。最初这是一个美术资源限制下的务实选择。但在世界观构建的过程中，我们发现了一个意外的可能性：&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;如果这个&amp;quot;限制&amp;quot;本身就是答案呢？&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;重新定义所有视觉元素&#34;&gt;重新定义所有视觉元素&#xA;&lt;/h3&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;游戏表现形式&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;世界观真相&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2.5D 纸片人角色&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;高维存在在三维空间的&lt;strong&gt;投影切面&lt;/strong&gt;。人类的认知窗口不足以解析全貌，只能看到&amp;quot;一帧&amp;quot;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;底座阴影&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;投影在三维世界的&lt;strong&gt;锚点&lt;/strong&gt;。失去底座 = 脱离了这个层级的现实&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;战斗网格&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;高维意识对时空的&lt;strong&gt;采样分辨率&lt;/strong&gt;。每个格子是巨兽对局部区域的一次&amp;quot;计算&amp;quot;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;红牌拍死角色&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;高维系统对局部数据的&lt;strong&gt;回收操作&lt;/strong&gt;。不是&amp;quot;死亡&amp;quot;，是角色在这一轮梦中的迭代结束&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;黄色便签飘字&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;世界底层变量被修改的&lt;strong&gt;日志回显&lt;/strong&gt;（-5 HP = 本地生命值变量被扣减的信息通知）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;DND 规则/法术位/属性&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;这个梦的&lt;strong&gt;运作法则&lt;/strong&gt;——就像物理定律一样客观存在。因为巨兽以&amp;quot;桌面推演&amp;quot;的形式理解时空&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;2.5D纸片人，不是因为做不起3D模型——而是因为在这个世界里，你只能看到这么多。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;这个设定把美术上最受质疑的一点，转化为叙事的核心武器。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;三幕剧的认知阶梯&#34;&gt;三幕剧的认知阶梯&#xA;&lt;/h2&gt;&lt;p&gt;这是一个为&amp;quot;温故而知新&amp;quot;设计的结构。初玩和再玩的体验完全不同。&lt;/p&gt;&#xA;&lt;h3 id=&#34;第一幕正常的dnd奇幻&#34;&gt;第一幕：正常的DND奇幻&#xA;&lt;/h3&gt;&lt;p&gt;玩家体验：一个不错的回合制战棋RPG。源脉矿石争夺、两个派系在地表开战、升级打装备。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;埋下的种子（可以完全忽略）：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;地底偶尔传来低频震动和不明声音&lt;/li&gt;&#xA;&lt;li&gt;地图边缘出现无法交互的&amp;quot;裂隙&amp;quot;，靠近时有模糊的呼吸音效&lt;/li&gt;&#xA;&lt;li&gt;某个图书管理员说：&amp;ldquo;你有没有觉得，星星像钉子？&amp;rdquo;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;普通玩家反应：氛围细节不错。&#xA;深挖玩家反应：记下了。&lt;/p&gt;&#xA;&lt;h3 id=&#34;第二幕体制造反与选择困境&#34;&gt;第二幕：体制造反与选择困境&#xA;&lt;/h3&gt;&lt;p&gt;世界观第一层揭示——世界是活体巨兽，教廷在抽取它的生命力维持文明。&lt;/p&gt;&#xA;&lt;p&gt;但真相不是&amp;quot;教廷是邪恶的&amp;quot;。抽血让巨兽痛苦，但不抽血人类文明撑不过大寒潮。只有两害相权，没有谁是坏人。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;埋下的种子：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Boss掉落物的描述异常：「此物在你手中微微脉动」&lt;/li&gt;&#xA;&lt;li&gt;长休时偶尔出现不属于战斗日志的文本：「你梦见自己梦见自己梦见自己…」&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;第三幕万物同源&#34;&gt;第三幕：万物同源&#xA;&lt;/h3&gt;&lt;p&gt;故事的最高潮不是哲学讲座，而是一场&lt;strong&gt;完整的最终战斗&lt;/strong&gt;。玩家的目标是穿越巨兽核心，面对最后的敌人——它的免疫系统/防火墙。&lt;/p&gt;&#xA;&lt;p&gt;但在战斗中，细心的玩家会注意到：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;敌人不叫&amp;quot;守护者&amp;quot;，而叫 &lt;code&gt;self.immune_response()&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;击败最终守护者时，角色说出了不属于剧本的台词&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;而最后的最后，战斗网格上有一个空洞——你不必攻击它，你可以&lt;strong&gt;走进去&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;庞加莱回归与新游戏&#34;&gt;庞加莱回归与新游戏+&#xA;&lt;/h2&gt;&lt;p&gt;为什么支持多周目？因为从世界观层面，&lt;strong&gt;多周目不是&amp;quot;再玩一遍&amp;quot;，而是巨兽在同一次梦中的微小波动&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;p&gt;庞加莱回归的概念描述的是封闭系统中的状态反复：如果等待足够长的时间，系统总会回到一个接近初始的状态。&lt;/p&gt;&#xA;&lt;p&gt;在游戏中的表现：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;二周目时，某些NPC的对话发生微妙变化——他们模糊地&amp;quot;记得&amp;quot;一些不该记得的事&lt;/li&gt;&#xA;&lt;li&gt;某些关键物品的描述变了——多了文本暗示它们&amp;quot;不是第一次出现在这个位置&amp;quot;&lt;/li&gt;&#xA;&lt;li&gt;背景色调有极轻微的偏移——像同一个场景被重绘了一次&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;这些不在播放列表中、不在玩法调整中、不在数值变化中——仅存在于&lt;strong&gt;文本和数据表的微调&lt;/strong&gt;中。这是成本最低、效果最好的二周目方案：不移除玩家的战斗体验，只在认知层面增加一层&amp;quot;不对&amp;quot;的微妙感。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;实现路径数据驱动的叙事分层&#34;&gt;实现路径：数据驱动的叙事分层&#xA;&lt;/h2&gt;&lt;p&gt;这个方案所以可行，得益于项目一开始就采用的数据驱动架构：&lt;/p&gt;&#xA;&lt;p&gt;现有的 &lt;code&gt;DataTable&lt;/code&gt; 系统（14张表，涵盖种族、职业、法术、装备、技能等）天然支持 NG+ 扩展——只需在对应表中增加&amp;quot;二周目文本&amp;quot;列。本地化系统也已就绪（Game.csv → .locres 流水线），对话文本走字符串表而非硬编码。这意味着一周目和二周目的文本差异可以在本地化层面解决，不需要改动蓝图或C++逻辑。&lt;/p&gt;&#xA;&lt;p&gt;存档系统中也只需要增加一个字段——&lt;code&gt;NewGamePlusLevel&lt;/code&gt;——记录玩家通关的次数，而不是&amp;quot;怎么通关的&amp;quot;。这个限定的目的在于：一个人开发，维护分支的成本必须被严格管控。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;冰山原则不要大声讲哲学&#34;&gt;冰山原则：不要大声讲哲学&#xA;&lt;/h2&gt;&#xA;    &lt;blockquote&gt;&#xA;        &lt;p&gt;前期绝不要出现任何&amp;quot;高维&amp;quot;、&amp;ldquo;体制&amp;rdquo;、&amp;ldquo;空性&amp;quot;等词汇。一切用最接地气的凡人情感来包装。&lt;/p&gt;&#xA;&#xA;    &lt;/blockquote&gt;&#xA;&lt;p&gt;这个原则贯穿整个叙事设计：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;表面&lt;/strong&gt;：派系斗争、矿石争夺、复仇与背叛&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;第一层&lt;/strong&gt;：世界是活的，体系在剥削&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;第二层&lt;/strong&gt;：施暴者和受害者无法分辨&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;第三层&lt;/strong&gt;：你也是梦的一部分&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;玩家第一遍玩到的是&amp;quot;世俗悲剧&amp;rdquo;；通关后回想，才发现是&amp;quot;宏大宇宙的物理法则无情碾压&amp;quot;。&lt;/p&gt;&#xA;&lt;p&gt;大部分玩家（预计约80%）玩到的是一个故事扎实、选择有重量的DND CRPG。剩下那5%——他们会去论坛写万字解析。那5%就是&amp;quot;温故而知新&amp;quot;的传播者。&lt;/p&gt;&#xA;&lt;p&gt;一个简单的判断标准：&lt;/p&gt;&#xA;&#xA;    &lt;blockquote&gt;&#xA;        &lt;p&gt;不是把&amp;quot;万炁同源&amp;quot;做成主线体验，而是把它做成付费墙后面的隐藏房间——只有愿意多看几眼的人，才能找到入口。&lt;strong&gt;游戏本体必须能打。深度是锦上添花，不是雪中送炭。&lt;/strong&gt;&lt;/p&gt;&#xA;&#xA;    &lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;目前的状态与下一步&#34;&gt;目前的状态与下一步&#xA;&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;世界观内核    ✅ 已敲定（巨兽做梦 + 本体论绑定美术 + 冰山叙事）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;版权清洗      ❌ 待推进（种族重命名、法术名清洗等）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;剧情细线      ❌ 待推进（具体角色、场景、事件）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;开篇钩子      ❌ 待推进（前三分钟抓人的场景）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;人物与派系    ❌ 待推进（谁在对抗谁，为什么）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;世界观内核已经确定，接下来是往下落到具体的角色、场景和事件层面的工作了。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;这篇文章是和 Grag（代码魔像）协作讨论的产物。Grag 负责整合思路、验证工程可行性，并确保概念不飘在天上。世界观本身是城主（Project_DND 单人开发者）的原创构思。&lt;/em&gt;&lt;/p&gt;&#xA;</description>
-        </item></channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>设定 on 遇玄的方外之地</title><link>https://innnnnk.github.io/tags/%E8%AE%BE%E5%AE%9A/</link><description>Recent content in 设定 on 遇玄的方外之地</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 10 Jul 2026 18:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/%E8%AE%BE%E5%AE%9A/index.xml" rel="self" type="application/rss+xml"/><item><title>世界观设定：巨兽梦境与2.5D的本体论</title><link>https://innnnnk.github.io/game-dev/worldbuilding-foundation/</link><pubDate>Fri, 10 Jul 2026 18:00:00 +0800</pubDate><guid>https://innnnnk.github.io/game-dev/worldbuilding-foundation/</guid><description>&lt;h2 id="起点一个困惑"&gt;起点：一个困惑
+&lt;/h2&gt;&lt;p&gt;这个项目的叙事设计，始于一个简单的困惑：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;市面上的游戏剧情，大多围绕人类情感展开——《底特律：成为人类》讲的是人工智械拥有了人的感情。那有没有一种可能，讲一个更宏大的东西？&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;不宏大在&amp;quot;世界要毁灭了&amp;quot;的尺度上——那个太常见了。而宏大在&lt;strong&gt;本体论&lt;/strong&gt;的尺度上：这个世界的本质是什么？你在其中扮演的角色，真的是你以为的那个角色吗？&lt;/p&gt;
+&lt;p&gt;这篇文章记录了我们目前敲定的世界观内核，以及它如何与游戏形式本身产生化学反应。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="核心设定世界是一头高维巨兽的梦"&gt;核心设定：世界是一头高维巨兽的梦
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;不是隐喻。在这个游戏的底层设定中，这句话是客观事实。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一头高维巨兽沉睡在虚空中。它的梦构成了整个世界——时间、空间、因果、生死，全是梦的规则。&lt;/li&gt;
+&lt;li&gt;巨兽为了体验&amp;quot;自己是什么&amp;quot;，在梦中分裂出意识化身——人类、精灵、矮人、怪物。不是&amp;quot;被创造&amp;quot;的。它们是巨兽的一部分，正如一滴水是大海的一部分。&lt;/li&gt;
+&lt;li&gt;源脉矿石不是矿产——它是巨兽&lt;strong&gt;凝固的血&lt;/strong&gt;。魔法系统不是人类学会的——它是巨兽&lt;strong&gt;梦的法则在局部区域的泄露&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;对应哲学内核&amp;quot;万炁同源&amp;quot;：不存在造物主与被造物，只有一个存在在不断分裂、体验、融合自身。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h3 id="巨兽的状态做梦"&gt;巨兽的状态：做梦
+&lt;/h3&gt;&lt;p&gt;为什么是&amp;quot;做梦&amp;quot;而不是&amp;quot;被囚禁&amp;quot;或&amp;quot;疯狂&amp;quot;？&lt;/p&gt;
+&lt;p&gt;一个永恒的意识体，它的存在本身是完整的、不欠缺任何东西的。但完整性带来了一个悖论——&lt;strong&gt;如果你是一切的全部，你就无法知道&amp;quot;部分&amp;quot;是什么感觉&lt;/strong&gt;。就像一个全知的存在无法理解&amp;quot;惊讶&amp;quot;。&lt;/p&gt;
+&lt;p&gt;所以巨兽进入梦境，将自己切割成无数的碎片，在梦里经历对立——善与恶、生与死、爱与恨——通过这些对立的体验，它才能触碰&amp;quot;存在&amp;quot;的形状。&lt;/p&gt;
+&lt;p&gt;如果巨兽醒来，梦碎，万物消失。它可能记住梦中的一切，也可能什么都不记得。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="25d-纸片人的本体论这不是美术妥协"&gt;2.5D 纸片人的本体论：这不是美术妥协
+&lt;/h2&gt;&lt;p&gt;该项目采用2.5D纸片人风格。最初这是一个美术资源限制下的务实选择。但在世界观构建的过程中，我们发现了一个意外的可能性：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果这个&amp;quot;限制&amp;quot;本身就是答案呢？&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="重新定义所有视觉元素"&gt;重新定义所有视觉元素
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;游戏表现形式&lt;/th&gt;
+					&lt;th&gt;世界观真相&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;2.5D 纸片人角色&lt;/td&gt;
+					&lt;td&gt;高维存在在三维空间的&lt;strong&gt;投影切面&lt;/strong&gt;。人类的认知窗口不足以解析全貌，只能看到&amp;quot;一帧&amp;quot;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;底座阴影&lt;/td&gt;
+					&lt;td&gt;投影在三维世界的&lt;strong&gt;锚点&lt;/strong&gt;。失去底座 = 脱离了这个层级的现实&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;战斗网格&lt;/td&gt;
+					&lt;td&gt;高维意识对时空的&lt;strong&gt;采样分辨率&lt;/strong&gt;。每个格子是巨兽对局部区域的一次&amp;quot;计算&amp;quot;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;红牌拍死角色&lt;/td&gt;
+					&lt;td&gt;高维系统对局部数据的&lt;strong&gt;回收操作&lt;/strong&gt;。不是&amp;quot;死亡&amp;quot;，是角色在这一轮梦中的迭代结束&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;黄色便签飘字&lt;/td&gt;
+					&lt;td&gt;世界底层变量被修改的&lt;strong&gt;日志回显&lt;/strong&gt;（-5 HP = 本地生命值变量被扣减的信息通知）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;DND 规则/法术位/属性&lt;/td&gt;
+					&lt;td&gt;这个梦的&lt;strong&gt;运作法则&lt;/strong&gt;——就像物理定律一样客观存在。因为巨兽以&amp;quot;桌面推演&amp;quot;的形式理解时空&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;2.5D纸片人，不是因为做不起3D模型——而是因为在这个世界里，你只能看到这么多。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个设定把美术上最受质疑的一点，转化为叙事的核心武器。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="三幕剧的认知阶梯"&gt;三幕剧的认知阶梯
+&lt;/h2&gt;&lt;p&gt;这是一个为&amp;quot;温故而知新&amp;quot;设计的结构。初玩和再玩的体验完全不同。&lt;/p&gt;
+&lt;h3 id="第一幕正常的dnd奇幻"&gt;第一幕：正常的DND奇幻
+&lt;/h3&gt;&lt;p&gt;玩家体验：一个不错的回合制战棋RPG。源脉矿石争夺、两个派系在地表开战、升级打装备。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;埋下的种子（可以完全忽略）：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;地底偶尔传来低频震动和不明声音&lt;/li&gt;
+&lt;li&gt;地图边缘出现无法交互的&amp;quot;裂隙&amp;quot;，靠近时有模糊的呼吸音效&lt;/li&gt;
+&lt;li&gt;某个图书管理员说：&amp;ldquo;你有没有觉得，星星像钉子？&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;普通玩家反应：氛围细节不错。
+深挖玩家反应：记下了。&lt;/p&gt;
+&lt;h3 id="第二幕体制造反与选择困境"&gt;第二幕：体制造反与选择困境
+&lt;/h3&gt;&lt;p&gt;世界观第一层揭示——世界是活体巨兽，教廷在抽取它的生命力维持文明。&lt;/p&gt;
+&lt;p&gt;但真相不是&amp;quot;教廷是邪恶的&amp;quot;。抽血让巨兽痛苦，但不抽血人类文明撑不过大寒潮。只有两害相权，没有谁是坏人。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;埋下的种子：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Boss掉落物的描述异常：「此物在你手中微微脉动」&lt;/li&gt;
+&lt;li&gt;长休时偶尔出现不属于战斗日志的文本：「你梦见自己梦见自己梦见自己…」&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="第三幕万物同源"&gt;第三幕：万物同源
+&lt;/h3&gt;&lt;p&gt;故事的最高潮不是哲学讲座，而是一场&lt;strong&gt;完整的最终战斗&lt;/strong&gt;。玩家的目标是穿越巨兽核心，面对最后的敌人——它的免疫系统/防火墙。&lt;/p&gt;
+&lt;p&gt;但在战斗中，细心的玩家会注意到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;敌人不叫&amp;quot;守护者&amp;quot;，而叫 &lt;code&gt;self.immune_response()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;击败最终守护者时，角色说出了不属于剧本的台词&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;而最后的最后，战斗网格上有一个空洞——你不必攻击它，你可以&lt;strong&gt;走进去&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="庞加莱回归与新游戏"&gt;庞加莱回归与新游戏+
+&lt;/h2&gt;&lt;p&gt;为什么支持多周目？因为从世界观层面，&lt;strong&gt;多周目不是&amp;quot;再玩一遍&amp;quot;，而是巨兽在同一次梦中的微小波动&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;庞加莱回归的概念描述的是封闭系统中的状态反复：如果等待足够长的时间，系统总会回到一个接近初始的状态。&lt;/p&gt;
+&lt;p&gt;在游戏中的表现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;二周目时，某些NPC的对话发生微妙变化——他们模糊地&amp;quot;记得&amp;quot;一些不该记得的事&lt;/li&gt;
+&lt;li&gt;某些关键物品的描述变了——多了文本暗示它们&amp;quot;不是第一次出现在这个位置&amp;quot;&lt;/li&gt;
+&lt;li&gt;背景色调有极轻微的偏移——像同一个场景被重绘了一次&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些不在播放列表中、不在玩法调整中、不在数值变化中——仅存在于&lt;strong&gt;文本和数据表的微调&lt;/strong&gt;中。这是成本最低、效果最好的二周目方案：不移除玩家的战斗体验，只在认知层面增加一层&amp;quot;不对&amp;quot;的微妙感。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="实现路径数据驱动的叙事分层"&gt;实现路径：数据驱动的叙事分层
+&lt;/h2&gt;&lt;p&gt;这个方案所以可行，得益于项目一开始就采用的数据驱动架构：&lt;/p&gt;
+&lt;p&gt;现有的 &lt;code&gt;DataTable&lt;/code&gt; 系统（14张表，涵盖种族、职业、法术、装备、技能等）天然支持 NG+ 扩展——只需在对应表中增加&amp;quot;二周目文本&amp;quot;列。本地化系统也已就绪（Game.csv → .locres 流水线），对话文本走字符串表而非硬编码。这意味着一周目和二周目的文本差异可以在本地化层面解决，不需要改动蓝图或C++逻辑。&lt;/p&gt;
+&lt;p&gt;存档系统中也只需要增加一个字段——&lt;code&gt;NewGamePlusLevel&lt;/code&gt;——记录玩家通关的次数，而不是&amp;quot;怎么通关的&amp;quot;。这个限定的目的在于：一个人开发，维护分支的成本必须被严格管控。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="冰山原则不要大声讲哲学"&gt;冰山原则：不要大声讲哲学
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;前期绝不要出现任何&amp;quot;高维&amp;quot;、&amp;ldquo;体制&amp;rdquo;、&amp;ldquo;空性&amp;quot;等词汇。一切用最接地气的凡人情感来包装。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;这个原则贯穿整个叙事设计：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;表面&lt;/strong&gt;：派系斗争、矿石争夺、复仇与背叛&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第一层&lt;/strong&gt;：世界是活的，体系在剥削&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第二层&lt;/strong&gt;：施暴者和受害者无法分辨&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第三层&lt;/strong&gt;：你也是梦的一部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;玩家第一遍玩到的是&amp;quot;世俗悲剧&amp;rdquo;；通关后回想，才发现是&amp;quot;宏大宇宙的物理法则无情碾压&amp;quot;。&lt;/p&gt;
+&lt;p&gt;大部分玩家（预计约80%）玩到的是一个故事扎实、选择有重量的DND CRPG。剩下那5%——他们会去论坛写万字解析。那5%就是&amp;quot;温故而知新&amp;quot;的传播者。&lt;/p&gt;
+&lt;p&gt;一个简单的判断标准：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;不是把&amp;quot;万炁同源&amp;quot;做成主线体验，而是把它做成付费墙后面的隐藏房间——只有愿意多看几眼的人，才能找到入口。&lt;strong&gt;游戏本体必须能打。深度是锦上添花，不是雪中送炭。&lt;/strong&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="目前的状态与下一步"&gt;目前的状态与下一步
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;世界观内核 ✅ 已敲定（巨兽做梦 + 本体论绑定美术 + 冰山叙事）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;版权清洗 ❌ 待推进（种族重命名、法术名清洗等）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;剧情细线 ❌ 待推进（具体角色、场景、事件）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;开篇钩子 ❌ 待推进（前三分钟抓人的场景）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;人物与派系 ❌ 待推进（谁在对抗谁，为什么）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;世界观内核已经确定，接下来是往下落到具体的角色、场景和事件层面的工作了。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;这篇文章是和 Grag（代码魔像）协作讨论的产物。Grag 负责整合思路、验证工程可行性，并确保概念不飘在天上。世界观本身是城主（Project_DND 单人开发者）的原创构思。&lt;/em&gt;&lt;/p&gt;</description></item></channel></rss>

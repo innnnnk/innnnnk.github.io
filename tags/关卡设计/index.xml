@@ -1,15 +1,536 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>关卡设计 on 遇玄的方外之地</title>
-        <link>https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/</link>
-        <description>Recent content in 关卡设计 on 遇玄的方外之地</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <lastBuildDate>Thu, 09 Jul 2026 18:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" /><item>
-            <title>真菌森林展示场景 · 布局设计</title>
-            <link>https://innnnnk.github.io/game-dev/fungal-forest-showcase/</link>
-            <pubDate>Thu, 09 Jul 2026 18:00:00 +0800</pubDate>
-            <guid>https://innnnnk.github.io/game-dev/fungal-forest-showcase/</guid>
-            <description>&lt;h2 id=&#34;背景&#34;&gt;背景&#xA;&lt;/h2&gt;&lt;p&gt;Project_DND 目前卡在场景搭建阶段。Demo 需要一个能展示核心玩法（自由探索 + 回合制战斗 + 2.5D 美术风格）的展示场景。&lt;/p&gt;&#xA;&lt;p&gt;场景主题：&lt;strong&gt;真菌森林（Fungal Forest）&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;空间结构珠串式布局&#34;&gt;空间结构：珠串式布局&#xA;&lt;/h2&gt;&lt;p&gt;Demo 场景采用&lt;strong&gt;线性珠串结构&lt;/strong&gt;——6 个精心编排的区域沿一条主路径串联，而非开放世界：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;🌿入口 → 🍄走廊 → ⚔小战 → 🌑峡谷 → 👑BOSS → ✨结尾&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 好奇     沉浸     紧张     压抑     高潮     释放&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;h3 id=&#34;为什么不是开放区域&#34;&gt;为什么不是开放区域？&#xA;&lt;/h3&gt;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;引导可控&lt;/strong&gt; — 确保 Demo 玩家在 5-8 分钟内看到所有精彩内容&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;资产需求低&lt;/strong&gt; — 不需要填充 360° 视野，只需打磨可见路径&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;节奏可控&lt;/strong&gt; — &amp;ldquo;下一个转角有什么&amp;quot;比&amp;quot;随便逛逛&amp;quot;更有驱动力&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;俯视布局图&#34;&gt;俯视布局图&#xA;&lt;/h2&gt;&lt;div style=&#34;position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;border-radius:12px;margin:24px 0;&#34;&gt;&#xA;  &lt;iframe src=&#34;https://innnnnk.github.io/game-dev/fungal-forest-layout.html&#34; style=&#34;position:absolute;top:0;left:0;width:100%;height:100%;border:none;&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://innnnnk.github.io/game-dev/fungal-forest-layout.html&#34; &gt;全屏查看布局图&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;六大区域&#34;&gt;六大区域&#xA;&lt;/h2&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;区域&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;代号&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;功能&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;空间尺寸&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;时长&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;情绪&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;A&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;森林入口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;出生点，自由移动教学&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;15×15m 椭圆&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~60s&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;好奇&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;幽光走廊&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;氛围展示，S 形蜿蜒路径&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~50m 走廊&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~90s&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;沉浸&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;腐木空地&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;小型遭遇（2 只真菌幼体）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;20×18m 椭圆&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~120s&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;紧张&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;D&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;深菇峡谷&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;战斗后喘息，氛围升级&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~30m 直廊&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~60s&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;压抑&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;E&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;巨菇王座&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;BOSS 战（真菌之主 + 2 小怪）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;30×25m 圆形&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~180s&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;高潮&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;F&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;孢子之径&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;胜利感收束&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;10m 小径&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;~30s&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;释放&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;设计要点&#34;&gt;设计要点&#xA;&lt;/h2&gt;&lt;h3 id=&#34;空间节奏同一条路六种感受&#34;&gt;空间节奏：同一条路，六种感受&#xA;&lt;/h3&gt;&lt;p&gt;核心技巧是&lt;strong&gt;改变宽度、曲率和围合感&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;A 入口&lt;/strong&gt; — 开阔椭圆，给人安全感&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;B 走廊&lt;/strong&gt; — S 形弯道，激发好奇心（&amp;ldquo;拐角后面是什么？&amp;quot;）&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;C 空地&lt;/strong&gt; — 突然开阔 + 障碍物 → 警觉 → 战斗触发&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;D 峡谷&lt;/strong&gt; — 笔直收窄，两侧高墙，压抑→前方有光→必须前进&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;E 竞技场&lt;/strong&gt; — 圆形闭合空间，无处可逃&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;F 出口&lt;/strong&gt; — 重新开阔，暖光，胜利释放&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;光照梯度&#34;&gt;光照梯度&#xA;&lt;/h3&gt;&lt;p&gt;从暖到冷再到暖的完整弧线：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A: 暖色夕阳 God Rays → B: 冷色荧光渐显 → C: 均匀中性战斗光&lt;/li&gt;&#xA;&lt;li&gt;D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;encounter-设计&#34;&gt;Encounter 设计&#xA;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;小型遭遇（C 区）：&lt;/strong&gt; 2 只远程真菌幼体 + 中央倒木掩体 → 教学性质的暖身战&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;BOSS 战（E 区）：&lt;/strong&gt; 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;资产状态&#34;&gt;资产状态&#xA;&lt;/h2&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;类别&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;已有&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;需新增（高优）&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;蘑菇&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;5 种中小变体 ✅&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;巨型蘑菇茎（3 变体）、伞盖平台&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;地面&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;草地 + 苔藓 ✅&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;地面孢子 Decal&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;障碍&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;—&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;倒木（2 变体）、岩石（3 变体）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;装饰&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;—&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;菌丝藤蔓、自发光孢子粒子 ×2&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;材质&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;蘑菇 / 草地 / 苔藓 ✅&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;自发光孢子材质&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;叙事引导七条通道&#34;&gt;叙事引导：七条通道&#xA;&lt;/h2&gt;&lt;p&gt;Demo 的目标不是在一小时内揭示世界观，而是让玩家在体验结束时感觉「这个游戏有东西，不是普通奇幻」。以下是七条引导通道——它们共同传递「不对劲」的感觉，但各自做各自的事，互不依赖。&lt;/p&gt;&#xA;&lt;p&gt;七条通道共享两个核心母题：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;「记得」&lt;/strong&gt; — 贯穿声音、文本、NPC、玩法&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;「这里是活的」&lt;/strong&gt; — 贯穿声音、视觉、玩法&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;通道一声音引导&#34;&gt;通道一：声音引导&#xA;&lt;/h3&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;位置&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;声音内容&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;引导什么&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;全局&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;环境底噪——低沉、持续的嗡鸣（不是音乐，是地底本身的「呼吸声」）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;全程暗示：这个森林不是普通的森林&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B 区营地&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;走到残骸旁 → 嗡鸣短暂消失几秒，然后恢复&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「这里曾经有人，他们遇到了什么」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;D 区峡谷&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;螺旋纹路附近 → 嗡鸣的频率改变——稍微变高、或加一层泛音&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「这里有比矿工更古老的东西」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C 区战斗&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;菌丝宿主被击败 → 一声非人的叹息（不是惨叫）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「它不是在死亡，它是在被释放」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;E 区 BOSS&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;第二阶段 → 嗡鸣变成多重和声（像很多声音在同时低语）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「它不止是一个，它是很多个」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;F 区出口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;走出森林 → 嗡鸣消失。完全安静 2-3 秒。然后风声&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「你出来了。但那个声音还在你脑子里」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 声音不说任何话，但让你的身体先于大脑感到不安。嗡鸣的频率和人紧张时体内的共振接近。&lt;/p&gt;&#xA;&lt;h3 id=&#34;通道二视觉异常引导&#34;&gt;通道二：视觉异常引导&#xA;&lt;/h3&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;位置&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;视觉设计&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;引导什么&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B 区营地&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;帐篷里有半杯水——没有涟漪，但杯壁上有细小的菌丝在生长&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「他们离开得很突然。或者根本没离开」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C 区战斗&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;菌丝宿主死亡 → 不倒地 → 孢子从体内释放 → 躯体萎缩成干壳 → 2 秒后干壳上长出小蘑菇&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「死亡规则在这里不一样」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;D 区峡谷&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;螺旋纹路附近 → 玩家自己的影子短暂消失 0.3 秒 → 恢复&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「你的存在在这里不稳定」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;D 区峡谷&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;螺旋纹路上有微弱的脉搏般亮度变化——大约每 6 秒亮一下&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「它是活的」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;E 区 BOSS&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;场地地面偶尔出现网格线的短暂错位——战斗网格本身在闪烁&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「物理法则在这里不稳定」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;F 区出口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;走出后，入口处的蘑菇朝向微微转动——转向玩家离开的方向&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「它们在看着你」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 视觉异常都在玩家注意力边缘。不是过场动画——是眼角余光捕捉到的。&lt;/p&gt;&#xA;&lt;h3 id=&#34;通道三文本引导日记--物品描述&#34;&gt;通道三：文本引导（日记 / 物品描述）&#xA;&lt;/h3&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;位置&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;文本内容&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;引导什么&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B 区日记&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「第三天。蘑菇在跟我说话。不，不是在说话。它在……&lt;strong&gt;记得我&lt;/strong&gt;。」——字迹中断&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;引入「记忆」概念。不是普通的寄生——是有意识的&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;E 区掉落物&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「此物在你手中脉动，仿佛记得什么。」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Callback「记得」，把矿工日记和 BOSS 连起来&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;可选：矿工帐篷里的记录&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「工头说挖到了新矿脉。晶体品质很高。他笑了。但他昨晚梦到了自己不会做梦。」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「矿石会影响梦」——不解释，只是记录&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 文本不解释，只呈现现象。让玩家自己连起来。&lt;/p&gt;&#xA;&lt;h3 id=&#34;通道四npc-对话引导&#34;&gt;通道四：NPC 对话引导&#xA;&lt;/h3&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;位置&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;谁&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;说了什么&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;引导什么&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;A 区入口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;委托人&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;建立任务&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;F 区出口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;委托人&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「你是第三个回来的。前两个……记不太清了。这是你的报酬。」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;制造核心疑问——「他不知道？还是在装？那块矿石是什么？」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;F 区出口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;委托人&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;看你手中的晶核两秒。然后：「留着吧。你应该留着。」转身离开。&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;他不解释。但他知道这是什么。他选择不说&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 说最少的话，露出最多的疑点。委托人全程只说三句话，但每句话都在增加不安。&lt;/p&gt;&#xA;&lt;h3 id=&#34;通道五空间节奏引导&#34;&gt;通道五：空间节奏引导&#xA;&lt;/h3&gt;&lt;p&gt;这是关卡布局的核心设计——6 个区域的宽度、曲率、围合感不同，情绪也随之变化：&lt;/p&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;区域&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;空间特征&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;引导的情绪&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;A 入口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;开阔椭圆、暖光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;安全感：「这是一个正常的地方」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B 走廊&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;S 形弯道、逐渐变冷的光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;好奇 + 轻微不安：「拐角后面是什么」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C 空地&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;突然开阔、但被障碍物分割、中性战斗光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;警觉：「这里可能有东西」→ 战斗&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;D 峡谷&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;收窄、高墙、极暗、纯荧光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;压抑：「我必须往前走，但我不确定我想」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;E 竞技场&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;圆形封闭、戏剧化强对比光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;被困感：「无路可退」→ BOSS 战&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;F 出口&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;重新开阔、暖光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;释放：「我出来了」——但不安还在&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 空间本身就是叙事。玩家不需要任何文本，光是走一遍，身体就会感受到情绪的起伏。&lt;/p&gt;&#xA;&lt;h3 id=&#34;通道六光渐变引导&#34;&gt;通道六：光渐变引导&#xA;&lt;/h3&gt;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;区域&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;光色&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;引导什么&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;A → B&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;暖色夕阳 → 冷色荧光渐显&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;从「安全的人类世界」过渡到「真菌的地下世界」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B → C&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;均匀中性战斗光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;让玩家专注于战斗，暂时忘记环境的异常&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C → D&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;光照降到全局最暗&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;视觉上的威胁感达到峰值&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;D → E&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;戏剧化强对比（亮处极亮，暗处极暗）&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;史诗感——这是最终对决&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;E → F&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;暖金色胜利光&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;让玩家在物理和心理上同时回归「安全」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 光的变化速度要慢到玩家不会主动注意到——他们只会感觉「怎么越来越不舒服」但说不出为什么。&lt;/p&gt;&#xA;&lt;h3 id=&#34;通道七玩法反馈引导玩法--叙事连接点&#34;&gt;通道七：玩法反馈引导（「玩法 = 叙事」连接点）&#xA;&lt;/h3&gt;&lt;p&gt;用游戏机制本身来叙事——不需要额外的文本或过场。&lt;/p&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;位置&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;玩法机制&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;叙事引导&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B 区&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;矿石碎片可交互，靠近时战斗网格短暂闪烁&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「矿石和空间稳定性有关」——但玩家不知道这意味着什么&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C 区&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;菌丝宿主的 AI 行为：它们不躲避、不逃跑——朝你走来，像在拥抱&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「它们不是在攻击你。它们想传染你。」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;E 区 BOSS&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;孢子云掩体——但站在孢子云里超过一轮 → 行动条变慢 → 画面边缘出现菌丝纹路&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「掩体不是安全的。它在改变你。」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;全局&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;击杀一只菌丝宿主后，下一只在战斗开始时看向你角色的眼睛——比普通敌人多停留半秒&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;「它认识你。或者它认识你身上的某个东西。」&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 玩法是唯一一种玩家「必须参与」的叙事。看日记可以跳过，听声音可以忽略——但战斗中发生的事情，每个玩家都会经历。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;七条通道的协同效果&#34;&gt;七条通道的协同效果&#xA;&lt;/h3&gt;&lt;p&gt;这些通道不是独立运作的。它们像交响乐的不同乐器——同时演奏，但玩家只能感受到整体效果：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;声音说：          「不舒服。」            —— 嗡鸣、叹息、消失&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;视觉说：          「不对劲。」            —— 影子消失、蘑菇转向、脉动&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;文本说：          「记得。」              —— 日记、掉落物描述&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NPC 说：          「前两个不记得。」      —— 矛盾&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;空间说：          「你越来越深入了。」    —— 收窄、变暗&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;光说：            「你离开安全区域了。」  —— 暖→冷→暖&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;玩法说：          「战斗不是普通的战斗。」 —— 死亡≠死亡&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;玩家不会分解出「这是声音引导、这是文本引导」。他们只会有一种感觉：&lt;/p&gt;&#xA;&#xA;    &lt;blockquote&gt;&#xA;        &lt;p&gt;「这个地方不对劲。我要继续探索。」&lt;/p&gt;&#xA;&#xA;    &lt;/blockquote&gt;&#xA;&lt;p&gt;而这正是 Demo 的目标。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;demo-叙事架构最小配置&#34;&gt;Demo 叙事架构（最小配置）&#xA;&lt;/h2&gt;&lt;p&gt;基于七条通道，为 Demo 6 区叠加叙事层——不改动关卡空间布局：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A 入口 ── 委托人给任务。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          三选一快速职业选择（战士 / 法师 / 游荡者）。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B 走廊 ── 营地残骸 + 矿工日记。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          「第三天。蘑菇在跟我说话……它在……记得我。」（字迹中断）&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          帐篷里半杯水 + 菌丝在杯壁生长。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          可选：矿石碎片（交互 → 网格闪烁）。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C 空地 ── 两个菌丝宿主（被寄生的矿工）。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          战斗 —— AI 不躲避，朝玩家走来。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          击败后：不倒地，孢子从体内释放，躯体萎缩成干壳。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          干壳上 2 秒后长出小蘑菇。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D 峡谷 ── 墙上螺旋纹路。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          靠近时：影子消失 0.3 秒，嗡鸣频率改变。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          纹路每 6 秒微弱发光一次（脉搏感）。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E BOSS ── 真菌之主。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          第二阶段：嗡鸣变多重和声，网格线偶尔错位。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          孢子云掩体 —— 站太久会被缓慢感染。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          击败后掉落「脉动的晶核」：&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          「此物在你手中脉动，仿佛记得什么。」&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;F 出口 ── 委托人等在那里。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          「你是第三个回来的。前两个……记不太清了。」&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          给报酬。袋子里有金币 + 一块微热的矿石。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          看晶核两秒：「留着吧。你应该留着。」转身离开。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          身后蘑菇朝向微微转向玩家。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          嗡鸣消失。完全安静。然后风声。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;全剧终。60 分钟。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;hr&gt;&#xA;&lt;h2 id=&#34;下一步&#34;&gt;下一步&#xA;&lt;/h2&gt;&lt;ol&gt;&#xA;&lt;li&gt;在 UE 中创建 &lt;code&gt;FungalForest_Showcase&lt;/code&gt; 关卡&lt;/li&gt;&#xA;&lt;li&gt;用 BSP Box 按分区尺寸搭建白盒&lt;/li&gt;&#xA;&lt;li&gt;Walk through 验证空间感&lt;/li&gt;&#xA;&lt;li&gt;逐步用实际资产替换白盒&lt;/li&gt;&#xA;&lt;li&gt;实施七条引导通道（从低成本通道开始：文本 → 空间 → 光 → 视觉 → 玩法 → 声音 → NPC）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;设计文档完整版：&lt;a class=&#34;link&#34; href=&#34;https://github.com/innnnnk/innnnnk.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;Project_DND/Design/FungalForest_Showcase_Design.md&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;&#xA;</description>
-        </item></channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>关卡设计 on 遇玄的方外之地</title><link>https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/</link><description>Recent content in 关卡设计 on 遇玄的方外之地</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 09 Jul 2026 18:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml"/><item><title>真菌森林展示场景 · 布局设计</title><link>https://innnnnk.github.io/game-dev/fungal-forest-showcase/</link><pubDate>Thu, 09 Jul 2026 18:00:00 +0800</pubDate><guid>https://innnnnk.github.io/game-dev/fungal-forest-showcase/</guid><description>&lt;h2 id="背景"&gt;背景
+&lt;/h2&gt;&lt;p&gt;Project_DND 目前卡在场景搭建阶段。Demo 需要一个能展示核心玩法（自由探索 + 回合制战斗 + 2.5D 美术风格）的展示场景。&lt;/p&gt;
+&lt;p&gt;场景主题：&lt;strong&gt;真菌森林（Fungal Forest）&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="空间结构珠串式布局"&gt;空间结构：珠串式布局
+&lt;/h2&gt;&lt;p&gt;Demo 场景采用&lt;strong&gt;线性珠串结构&lt;/strong&gt;——6 个精心编排的区域沿一条主路径串联，而非开放世界：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;🌿入口 → 🍄走廊 → ⚔小战 → 🌑峡谷 → 👑BOSS → ✨结尾
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 好奇 沉浸 紧张 压抑 高潮 释放
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="为什么不是开放区域"&gt;为什么不是开放区域？
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;引导可控&lt;/strong&gt; — 确保 Demo 玩家在 5-8 分钟内看到所有精彩内容&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;资产需求低&lt;/strong&gt; — 不需要填充 360° 视野，只需打磨可见路径&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;节奏可控&lt;/strong&gt; — &amp;ldquo;下一个转角有什么&amp;quot;比&amp;quot;随便逛逛&amp;quot;更有驱动力&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="俯视布局图"&gt;俯视布局图
+&lt;/h2&gt;&lt;div style="position:relative;width:100%;padding-bottom:56.25%;overflow:hidden;border-radius:12px;margin:24px 0;"&gt;
+ &lt;iframe src="https://innnnnk.github.io/game-dev/fungal-forest-layout.html" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" loading="lazy"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-layout.html" &gt;全屏查看布局图&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="六大区域"&gt;六大区域
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;区域&lt;/th&gt;
+					&lt;th&gt;代号&lt;/th&gt;
+					&lt;th&gt;功能&lt;/th&gt;
+					&lt;th&gt;空间尺寸&lt;/th&gt;
+					&lt;th&gt;时长&lt;/th&gt;
+					&lt;th&gt;情绪&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;A&lt;/td&gt;
+					&lt;td&gt;森林入口&lt;/td&gt;
+					&lt;td&gt;出生点，自由移动教学&lt;/td&gt;
+					&lt;td&gt;15×15m 椭圆&lt;/td&gt;
+					&lt;td&gt;~60s&lt;/td&gt;
+					&lt;td&gt;好奇&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;B&lt;/td&gt;
+					&lt;td&gt;幽光走廊&lt;/td&gt;
+					&lt;td&gt;氛围展示，S 形蜿蜒路径&lt;/td&gt;
+					&lt;td&gt;~50m 走廊&lt;/td&gt;
+					&lt;td&gt;~90s&lt;/td&gt;
+					&lt;td&gt;沉浸&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;C&lt;/td&gt;
+					&lt;td&gt;腐木空地&lt;/td&gt;
+					&lt;td&gt;小型遭遇（2 只真菌幼体）&lt;/td&gt;
+					&lt;td&gt;20×18m 椭圆&lt;/td&gt;
+					&lt;td&gt;~120s&lt;/td&gt;
+					&lt;td&gt;紧张&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;D&lt;/td&gt;
+					&lt;td&gt;深菇峡谷&lt;/td&gt;
+					&lt;td&gt;战斗后喘息，氛围升级&lt;/td&gt;
+					&lt;td&gt;~30m 直廊&lt;/td&gt;
+					&lt;td&gt;~60s&lt;/td&gt;
+					&lt;td&gt;压抑&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;E&lt;/td&gt;
+					&lt;td&gt;巨菇王座&lt;/td&gt;
+					&lt;td&gt;BOSS 战（真菌之主 + 2 小怪）&lt;/td&gt;
+					&lt;td&gt;30×25m 圆形&lt;/td&gt;
+					&lt;td&gt;~180s&lt;/td&gt;
+					&lt;td&gt;高潮&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;F&lt;/td&gt;
+					&lt;td&gt;孢子之径&lt;/td&gt;
+					&lt;td&gt;胜利感收束&lt;/td&gt;
+					&lt;td&gt;10m 小径&lt;/td&gt;
+					&lt;td&gt;~30s&lt;/td&gt;
+					&lt;td&gt;释放&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="设计要点"&gt;设计要点
+&lt;/h2&gt;&lt;h3 id="空间节奏同一条路六种感受"&gt;空间节奏：同一条路，六种感受
+&lt;/h3&gt;&lt;p&gt;核心技巧是&lt;strong&gt;改变宽度、曲率和围合感&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A 入口&lt;/strong&gt; — 开阔椭圆，给人安全感&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;B 走廊&lt;/strong&gt; — S 形弯道，激发好奇心（&amp;ldquo;拐角后面是什么？&amp;quot;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C 空地&lt;/strong&gt; — 突然开阔 + 障碍物 → 警觉 → 战斗触发&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;D 峡谷&lt;/strong&gt; — 笔直收窄，两侧高墙，压抑→前方有光→必须前进&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;E 竞技场&lt;/strong&gt; — 圆形闭合空间，无处可逃&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;F 出口&lt;/strong&gt; — 重新开阔，暖光，胜利释放&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="光照梯度"&gt;光照梯度
+&lt;/h3&gt;&lt;p&gt;从暖到冷再到暖的完整弧线：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A: 暖色夕阳 God Rays → B: 冷色荧光渐显 → C: 均匀中性战斗光&lt;/li&gt;
+&lt;li&gt;D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="encounter-设计"&gt;Encounter 设计
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;小型遭遇（C 区）：&lt;/strong&gt; 2 只远程真菌幼体 + 中央倒木掩体 → 教学性质的暖身战&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BOSS 战（E 区）：&lt;/strong&gt; 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="资产状态"&gt;资产状态
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;类别&lt;/th&gt;
+					&lt;th&gt;已有&lt;/th&gt;
+					&lt;th&gt;需新增（高优）&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;蘑菇&lt;/td&gt;
+					&lt;td&gt;5 种中小变体 ✅&lt;/td&gt;
+					&lt;td&gt;巨型蘑菇茎（3 变体）、伞盖平台&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;地面&lt;/td&gt;
+					&lt;td&gt;草地 + 苔藓 ✅&lt;/td&gt;
+					&lt;td&gt;地面孢子 Decal&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;障碍&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;倒木（2 变体）、岩石（3 变体）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;装饰&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;菌丝藤蔓、自发光孢子粒子 ×2&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;材质&lt;/td&gt;
+					&lt;td&gt;蘑菇 / 草地 / 苔藓 ✅&lt;/td&gt;
+					&lt;td&gt;自发光孢子材质&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="叙事引导七条通道"&gt;叙事引导：七条通道
+&lt;/h2&gt;&lt;p&gt;Demo 的目标不是在一小时内揭示世界观，而是让玩家在体验结束时感觉「这个游戏有东西，不是普通奇幻」。以下是七条引导通道——它们共同传递「不对劲」的感觉，但各自做各自的事，互不依赖。&lt;/p&gt;
+&lt;p&gt;七条通道共享两个核心母题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;「记得」&lt;/strong&gt; — 贯穿声音、文本、NPC、玩法&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;「这里是活的」&lt;/strong&gt; — 贯穿声音、视觉、玩法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="通道一声音引导"&gt;通道一：声音引导
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;位置&lt;/th&gt;
+					&lt;th&gt;声音内容&lt;/th&gt;
+					&lt;th&gt;引导什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;全局&lt;/td&gt;
+					&lt;td&gt;环境底噪——低沉、持续的嗡鸣（不是音乐，是地底本身的「呼吸声」）&lt;/td&gt;
+					&lt;td&gt;全程暗示：这个森林不是普通的森林&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;B 区营地&lt;/td&gt;
+					&lt;td&gt;走到残骸旁 → 嗡鸣短暂消失几秒，然后恢复&lt;/td&gt;
+					&lt;td&gt;「这里曾经有人，他们遇到了什么」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;D 区峡谷&lt;/td&gt;
+					&lt;td&gt;螺旋纹路附近 → 嗡鸣的频率改变——稍微变高、或加一层泛音&lt;/td&gt;
+					&lt;td&gt;「这里有比矿工更古老的东西」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;C 区战斗&lt;/td&gt;
+					&lt;td&gt;菌丝宿主被击败 → 一声非人的叹息（不是惨叫）&lt;/td&gt;
+					&lt;td&gt;「它不是在死亡，它是在被释放」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;E 区 BOSS&lt;/td&gt;
+					&lt;td&gt;第二阶段 → 嗡鸣变成多重和声（像很多声音在同时低语）&lt;/td&gt;
+					&lt;td&gt;「它不止是一个，它是很多个」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;F 区出口&lt;/td&gt;
+					&lt;td&gt;走出森林 → 嗡鸣消失。完全安静 2-3 秒。然后风声&lt;/td&gt;
+					&lt;td&gt;「你出来了。但那个声音还在你脑子里」&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 声音不说任何话，但让你的身体先于大脑感到不安。嗡鸣的频率和人紧张时体内的共振接近。&lt;/p&gt;
+&lt;h3 id="通道二视觉异常引导"&gt;通道二：视觉异常引导
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;位置&lt;/th&gt;
+					&lt;th&gt;视觉设计&lt;/th&gt;
+					&lt;th&gt;引导什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;B 区营地&lt;/td&gt;
+					&lt;td&gt;帐篷里有半杯水——没有涟漪，但杯壁上有细小的菌丝在生长&lt;/td&gt;
+					&lt;td&gt;「他们离开得很突然。或者根本没离开」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;C 区战斗&lt;/td&gt;
+					&lt;td&gt;菌丝宿主死亡 → 不倒地 → 孢子从体内释放 → 躯体萎缩成干壳 → 2 秒后干壳上长出小蘑菇&lt;/td&gt;
+					&lt;td&gt;「死亡规则在这里不一样」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;D 区峡谷&lt;/td&gt;
+					&lt;td&gt;螺旋纹路附近 → 玩家自己的影子短暂消失 0.3 秒 → 恢复&lt;/td&gt;
+					&lt;td&gt;「你的存在在这里不稳定」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;D 区峡谷&lt;/td&gt;
+					&lt;td&gt;螺旋纹路上有微弱的脉搏般亮度变化——大约每 6 秒亮一下&lt;/td&gt;
+					&lt;td&gt;「它是活的」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;E 区 BOSS&lt;/td&gt;
+					&lt;td&gt;场地地面偶尔出现网格线的短暂错位——战斗网格本身在闪烁&lt;/td&gt;
+					&lt;td&gt;「物理法则在这里不稳定」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;F 区出口&lt;/td&gt;
+					&lt;td&gt;走出后，入口处的蘑菇朝向微微转动——转向玩家离开的方向&lt;/td&gt;
+					&lt;td&gt;「它们在看着你」&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 视觉异常都在玩家注意力边缘。不是过场动画——是眼角余光捕捉到的。&lt;/p&gt;
+&lt;h3 id="通道三文本引导日记--物品描述"&gt;通道三：文本引导（日记 / 物品描述）
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;位置&lt;/th&gt;
+					&lt;th&gt;文本内容&lt;/th&gt;
+					&lt;th&gt;引导什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;B 区日记&lt;/td&gt;
+					&lt;td&gt;「第三天。蘑菇在跟我说话。不，不是在说话。它在……&lt;strong&gt;记得我&lt;/strong&gt;。」——字迹中断&lt;/td&gt;
+					&lt;td&gt;引入「记忆」概念。不是普通的寄生——是有意识的&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;E 区掉落物&lt;/td&gt;
+					&lt;td&gt;「此物在你手中脉动，仿佛记得什么。」&lt;/td&gt;
+					&lt;td&gt;Callback「记得」，把矿工日记和 BOSS 连起来&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;可选：矿工帐篷里的记录&lt;/td&gt;
+					&lt;td&gt;「工头说挖到了新矿脉。晶体品质很高。他笑了。但他昨晚梦到了自己不会做梦。」&lt;/td&gt;
+					&lt;td&gt;「矿石会影响梦」——不解释，只是记录&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 文本不解释，只呈现现象。让玩家自己连起来。&lt;/p&gt;
+&lt;h3 id="通道四npc-对话引导"&gt;通道四：NPC 对话引导
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;位置&lt;/th&gt;
+					&lt;th&gt;谁&lt;/th&gt;
+					&lt;th&gt;说了什么&lt;/th&gt;
+					&lt;th&gt;引导什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;A 区入口&lt;/td&gt;
+					&lt;td&gt;委托人&lt;/td&gt;
+					&lt;td&gt;「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」&lt;/td&gt;
+					&lt;td&gt;建立任务&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;F 区出口&lt;/td&gt;
+					&lt;td&gt;委托人&lt;/td&gt;
+					&lt;td&gt;「你是第三个回来的。前两个……记不太清了。这是你的报酬。」&lt;/td&gt;
+					&lt;td&gt;制造核心疑问——「他不知道？还是在装？那块矿石是什么？」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;F 区出口&lt;/td&gt;
+					&lt;td&gt;委托人&lt;/td&gt;
+					&lt;td&gt;看你手中的晶核两秒。然后：「留着吧。你应该留着。」转身离开。&lt;/td&gt;
+					&lt;td&gt;他不解释。但他知道这是什么。他选择不说&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 说最少的话，露出最多的疑点。委托人全程只说三句话，但每句话都在增加不安。&lt;/p&gt;
+&lt;h3 id="通道五空间节奏引导"&gt;通道五：空间节奏引导
+&lt;/h3&gt;&lt;p&gt;这是关卡布局的核心设计——6 个区域的宽度、曲率、围合感不同，情绪也随之变化：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;区域&lt;/th&gt;
+					&lt;th&gt;空间特征&lt;/th&gt;
+					&lt;th&gt;引导的情绪&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;A 入口&lt;/td&gt;
+					&lt;td&gt;开阔椭圆、暖光&lt;/td&gt;
+					&lt;td&gt;安全感：「这是一个正常的地方」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;B 走廊&lt;/td&gt;
+					&lt;td&gt;S 形弯道、逐渐变冷的光&lt;/td&gt;
+					&lt;td&gt;好奇 + 轻微不安：「拐角后面是什么」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;C 空地&lt;/td&gt;
+					&lt;td&gt;突然开阔、但被障碍物分割、中性战斗光&lt;/td&gt;
+					&lt;td&gt;警觉：「这里可能有东西」→ 战斗&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;D 峡谷&lt;/td&gt;
+					&lt;td&gt;收窄、高墙、极暗、纯荧光&lt;/td&gt;
+					&lt;td&gt;压抑：「我必须往前走，但我不确定我想」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;E 竞技场&lt;/td&gt;
+					&lt;td&gt;圆形封闭、戏剧化强对比光&lt;/td&gt;
+					&lt;td&gt;被困感：「无路可退」→ BOSS 战&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;F 出口&lt;/td&gt;
+					&lt;td&gt;重新开阔、暖光&lt;/td&gt;
+					&lt;td&gt;释放：「我出来了」——但不安还在&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 空间本身就是叙事。玩家不需要任何文本，光是走一遍，身体就会感受到情绪的起伏。&lt;/p&gt;
+&lt;h3 id="通道六光渐变引导"&gt;通道六：光渐变引导
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;区域&lt;/th&gt;
+					&lt;th&gt;光色&lt;/th&gt;
+					&lt;th&gt;引导什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;A → B&lt;/td&gt;
+					&lt;td&gt;暖色夕阳 → 冷色荧光渐显&lt;/td&gt;
+					&lt;td&gt;从「安全的人类世界」过渡到「真菌的地下世界」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;B → C&lt;/td&gt;
+					&lt;td&gt;均匀中性战斗光&lt;/td&gt;
+					&lt;td&gt;让玩家专注于战斗，暂时忘记环境的异常&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;C → D&lt;/td&gt;
+					&lt;td&gt;光照降到全局最暗&lt;/td&gt;
+					&lt;td&gt;视觉上的威胁感达到峰值&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;D → E&lt;/td&gt;
+					&lt;td&gt;戏剧化强对比（亮处极亮，暗处极暗）&lt;/td&gt;
+					&lt;td&gt;史诗感——这是最终对决&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;E → F&lt;/td&gt;
+					&lt;td&gt;暖金色胜利光&lt;/td&gt;
+					&lt;td&gt;让玩家在物理和心理上同时回归「安全」&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 光的变化速度要慢到玩家不会主动注意到——他们只会感觉「怎么越来越不舒服」但说不出为什么。&lt;/p&gt;
+&lt;h3 id="通道七玩法反馈引导玩法--叙事连接点"&gt;通道七：玩法反馈引导（「玩法 = 叙事」连接点）
+&lt;/h3&gt;&lt;p&gt;用游戏机制本身来叙事——不需要额外的文本或过场。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;位置&lt;/th&gt;
+					&lt;th&gt;玩法机制&lt;/th&gt;
+					&lt;th&gt;叙事引导&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;B 区&lt;/td&gt;
+					&lt;td&gt;矿石碎片可交互，靠近时战斗网格短暂闪烁&lt;/td&gt;
+					&lt;td&gt;「矿石和空间稳定性有关」——但玩家不知道这意味着什么&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;C 区&lt;/td&gt;
+					&lt;td&gt;菌丝宿主的 AI 行为：它们不躲避、不逃跑——朝你走来，像在拥抱&lt;/td&gt;
+					&lt;td&gt;「它们不是在攻击你。它们想传染你。」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;E 区 BOSS&lt;/td&gt;
+					&lt;td&gt;孢子云掩体——但站在孢子云里超过一轮 → 行动条变慢 → 画面边缘出现菌丝纹路&lt;/td&gt;
+					&lt;td&gt;「掩体不是安全的。它在改变你。」&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;全局&lt;/td&gt;
+					&lt;td&gt;击杀一只菌丝宿主后，下一只在战斗开始时看向你角色的眼睛——比普通敌人多停留半秒&lt;/td&gt;
+					&lt;td&gt;「它认识你。或者它认识你身上的某个东西。」&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;设计原则：&lt;/strong&gt; 玩法是唯一一种玩家「必须参与」的叙事。看日记可以跳过，听声音可以忽略——但战斗中发生的事情，每个玩家都会经历。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="七条通道的协同效果"&gt;七条通道的协同效果
+&lt;/h3&gt;&lt;p&gt;这些通道不是独立运作的。它们像交响乐的不同乐器——同时演奏，但玩家只能感受到整体效果：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;声音说： 「不舒服。」 —— 嗡鸣、叹息、消失
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;视觉说： 「不对劲。」 —— 影子消失、蘑菇转向、脉动
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;文本说： 「记得。」 —— 日记、掉落物描述
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NPC 说： 「前两个不记得。」 —— 矛盾
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;空间说： 「你越来越深入了。」 —— 收窄、变暗
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;光说： 「你离开安全区域了。」 —— 暖→冷→暖
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;玩法说： 「战斗不是普通的战斗。」 —— 死亡≠死亡
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;玩家不会分解出「这是声音引导、这是文本引导」。他们只会有一种感觉：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;「这个地方不对劲。我要继续探索。」&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;而这正是 Demo 的目标。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="demo-叙事架构最小配置"&gt;Demo 叙事架构（最小配置）
+&lt;/h2&gt;&lt;p&gt;基于七条通道，为 Demo 6 区叠加叙事层——不改动关卡空间布局：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;A 入口 ── 委托人给任务。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 三选一快速职业选择（战士 / 法师 / 游荡者）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;B 走廊 ── 营地残骸 + 矿工日记。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 「第三天。蘑菇在跟我说话……它在……记得我。」（字迹中断）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 帐篷里半杯水 + 菌丝在杯壁生长。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 可选：矿石碎片（交互 → 网格闪烁）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;C 空地 ── 两个菌丝宿主（被寄生的矿工）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 战斗 —— AI 不躲避，朝玩家走来。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 击败后：不倒地，孢子从体内释放，躯体萎缩成干壳。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 干壳上 2 秒后长出小蘑菇。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;D 峡谷 ── 墙上螺旋纹路。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 靠近时：影子消失 0.3 秒，嗡鸣频率改变。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 纹路每 6 秒微弱发光一次（脉搏感）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;E BOSS ── 真菌之主。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 第二阶段：嗡鸣变多重和声，网格线偶尔错位。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 孢子云掩体 —— 站太久会被缓慢感染。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 击败后掉落「脉动的晶核」：
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 「此物在你手中脉动，仿佛记得什么。」
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;F 出口 ── 委托人等在那里。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 「你是第三个回来的。前两个……记不太清了。」
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 给报酬。袋子里有金币 + 一块微热的矿石。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 看晶核两秒：「留着吧。你应该留着。」转身离开。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 身后蘑菇朝向微微转向玩家。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 嗡鸣消失。完全安静。然后风声。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;全剧终。60 分钟。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="下一步"&gt;下一步
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在 UE 中创建 &lt;code&gt;FungalForest_Showcase&lt;/code&gt; 关卡&lt;/li&gt;
+&lt;li&gt;用 BSP Box 按分区尺寸搭建白盒&lt;/li&gt;
+&lt;li&gt;Walk through 验证空间感&lt;/li&gt;
+&lt;li&gt;逐步用实际资产替换白盒&lt;/li&gt;
+&lt;li&gt;实施七条引导通道（从低成本通道开始：文本 → 空间 → 光 → 视觉 → 玩法 → 声音 → NPC）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;设计文档完整版：&lt;a class="link" href="https://github.com/innnnnk/innnnnk.github.io" target="_blank" rel="noopener"
+ &gt;Project_DND/Design/FungalForest_Showcase_Design.md&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description></item></channel></rss>
