@@ -16,7 +16,7 @@
 <meta property='og:description' content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态">
 <meta property='og:url' content='https://innnnnk.github.io/game-dev/narrative-design-tracker/'>
 <meta property='og:site_name' content='遇玄的方外之地'>
-<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='剧情设计' /><meta property='article:tag' content='叙事' /><meta property='article:tag' content='设计文档' /><meta property='article:tag' content='Demo' /><meta property='article:published_time' content='2026-07-11T23:30:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-11T23:30:00&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='剧情设计' /><meta property='article:tag' content='叙事' /><meta property='article:tag' content='设计文档' /><meta property='article:published_time' content='2026-07-11T23:30:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-11T23:30:00&#43;08:00'/>
 <meta name="twitter:title" content="剧情设计追踪表">
 <meta name="twitter:description" content="CRPG 剧情设计五模块全景表——地基、结构、人物、具体内容、体验设计的确定与待定状态">
     </head>
@@ -201,30 +201,29 @@
         <li><a href="#第一层地基世界观设定之前就要想清的">第一层：地基（世界观设定之前就要想清的）</a></li>
         <li><a href="#第二层结构故事怎么讲">第二层：结构（故事怎么讲）</a></li>
         <li><a href="#第三层人物故事靠谁来承载">第三层：人物（故事靠谁来承载）</a></li>
-        <li><a href="#demo-主角身份叙事滤镜方案">Demo 主角身份：叙事滤镜方案</a></li>
-        <li><a href="#真菌之主的叙事身份">真菌之主的叙事身份</a></li>
-      </ol>
-    </li>
-    <li><a href="#demo-同伴矮人矿工">Demo 同伴：矮人矿工</a>
-      <ol>
-        <li><a href="#设计动机">设计动机</a></li>
-        <li><a href="#基本信息">基本信息</a></li>
-        <li><a href="#完整叙事弧线">完整叙事弧线</a></li>
-        <li><a href="#boss-战四阶段设计">Boss 战四阶段设计</a></li>
-        <li><a href="#设计原理">设计原理</a></li>
-        <li><a href="#技术实现路径">技术实现路径</a></li>
-        <li><a href="#教廷的知情层级">教廷的知情层级</a></li>
         <li><a href="#第四层具体内容落地的文本和事件">第四层：具体内容（落地的文本和事件）</a></li>
         <li><a href="#第五层体验设计玩家感受到什么">第五层：体验设计（玩家感受到什么）</a></li>
         <li><a href="#状态总览">状态总览</a></li>
         <li><a href="#与正式版的关系">与正式版的关系</a></li>
       </ol>
     </li>
+    <li><a href="#叙事引导七条通道">叙事引导：七条通道</a>
+      <ol>
+        <li><a href="#通道一声音引导">通道一：声音引导</a></li>
+        <li><a href="#通道二视觉异常引导">通道二：视觉异常引导</a></li>
+        <li><a href="#通道三文本引导日记--物品描述">通道三：文本引导（日记 / 物品描述）</a></li>
+        <li><a href="#通道四npc-对话引导">通道四：NPC 对话引导</a></li>
+        <li><a href="#通道五空间节奏引导">通道五：空间节奏引导</a></li>
+        <li><a href="#通道六光渐变引导">通道六：光渐变引导</a></li>
+        <li><a href="#通道七玩法反馈引导玩法--叙事连接点">通道七：玩法反馈引导（「玩法 = 叙事」连接点）</a></li>
+        <li><a href="#七条通道的协同效果">七条通道的协同效果</a></li>
+      </ol>
+    </li>
     <li><a href="#微克苏鲁设计原则">微克苏鲁设计原则</a>
       <ol>
         <li><a href="#核心公式">核心公式</a></li>
         <li><a href="#与万炁同源的关系">与万炁同源的关系</a></li>
-        <li><a href="#demo-中的具体表现">Demo 中的具体表现</a></li>
+        <li><a href="#核心规则">核心规则</a></li>
         <li><a href="#贯穿三个认知阶段">贯穿三个认知阶段</a></li>
       </ol>
     </li>
@@ -324,30 +323,29 @@
         <li><a href="#第一层地基世界观设定之前就要想清的">第一层：地基（世界观设定之前就要想清的）</a></li>
         <li><a href="#第二层结构故事怎么讲">第二层：结构（故事怎么讲）</a></li>
         <li><a href="#第三层人物故事靠谁来承载">第三层：人物（故事靠谁来承载）</a></li>
-        <li><a href="#demo-主角身份叙事滤镜方案">Demo 主角身份：叙事滤镜方案</a></li>
-        <li><a href="#真菌之主的叙事身份">真菌之主的叙事身份</a></li>
-      </ol>
-    </li>
-    <li><a href="#demo-同伴矮人矿工">Demo 同伴：矮人矿工</a>
-      <ol>
-        <li><a href="#设计动机">设计动机</a></li>
-        <li><a href="#基本信息">基本信息</a></li>
-        <li><a href="#完整叙事弧线">完整叙事弧线</a></li>
-        <li><a href="#boss-战四阶段设计">Boss 战四阶段设计</a></li>
-        <li><a href="#设计原理">设计原理</a></li>
-        <li><a href="#技术实现路径">技术实现路径</a></li>
-        <li><a href="#教廷的知情层级">教廷的知情层级</a></li>
         <li><a href="#第四层具体内容落地的文本和事件">第四层：具体内容（落地的文本和事件）</a></li>
         <li><a href="#第五层体验设计玩家感受到什么">第五层：体验设计（玩家感受到什么）</a></li>
         <li><a href="#状态总览">状态总览</a></li>
         <li><a href="#与正式版的关系">与正式版的关系</a></li>
       </ol>
     </li>
+    <li><a href="#叙事引导七条通道">叙事引导：七条通道</a>
+      <ol>
+        <li><a href="#通道一声音引导">通道一：声音引导</a></li>
+        <li><a href="#通道二视觉异常引导">通道二：视觉异常引导</a></li>
+        <li><a href="#通道三文本引导日记--物品描述">通道三：文本引导（日记 / 物品描述）</a></li>
+        <li><a href="#通道四npc-对话引导">通道四：NPC 对话引导</a></li>
+        <li><a href="#通道五空间节奏引导">通道五：空间节奏引导</a></li>
+        <li><a href="#通道六光渐变引导">通道六：光渐变引导</a></li>
+        <li><a href="#通道七玩法反馈引导玩法--叙事连接点">通道七：玩法反馈引导（「玩法 = 叙事」连接点）</a></li>
+        <li><a href="#七条通道的协同效果">七条通道的协同效果</a></li>
+      </ol>
+    </li>
     <li><a href="#微克苏鲁设计原则">微克苏鲁设计原则</a>
       <ol>
         <li><a href="#核心公式">核心公式</a></li>
         <li><a href="#与万炁同源的关系">与万炁同源的关系</a></li>
-        <li><a href="#demo-中的具体表现">Demo 中的具体表现</a></li>
+        <li><a href="#核心规则">核心规则</a></li>
         <li><a href="#贯穿三个认知阶段">贯穿三个认知阶段</a></li>
       </ol>
     </li>
@@ -401,7 +399,7 @@
 </table></div>
 <hr>
 <h2 id="crpg-剧情设计模块全景表">CRPG 剧情设计模块全景表
-</h2><p>这是一份<strong>活文档</strong>——记录 Project_DND 剧情设计五个模块的当前状态。每当我们确定一个模块的子项，就更新这张表。Demo 阶段只需要从每个模块中取最小单元。</p>
+</h2><p>这是一份<strong>活文档</strong>——记录 Project_DND 剧情设计五个模块的当前状态。</p>
 
     <blockquote>
         <p>📐 五个模块的依赖关系：地基 → 结构 → 人物 → 具体内容 → 体验设计<br>
@@ -442,19 +440,19 @@
 					<td><strong>玩家角色锚</strong></td>
 					<td>玩家是&quot;谁&quot;？</td>
 					<td>✅ 已确定</td>
-					<td><strong>佣兵公会调查员</strong> — Demo 三选一快速职业选择（战士/法师/游荡者）。表层身份具体，底层埋着&quot;被认出&quot;的种子（回声藓用你的声音说话、影子短暂消失）</td>
+					<td><strong>佣兵公会调查员</strong> — 表层身份具体，底层埋着&quot;被认出&quot;的种子（回声藓用你的声音说话、影子短暂消失）</td>
 			</tr>
 			<tr>
 					<td><strong>怪诞法则</strong></td>
 					<td>怪诞的规则是什么？</td>
 					<td>✅ 已确定</td>
-					<td><strong>单源怪诞</strong> — 全部源于源脉矿石接触 + 时间 = 异化。分三级：L1 认知偏移（Demo大量用）、L2 生物形态（Demo有限用）、L3 逻辑崩塌（正式版第三幕用）。怪诞随剧情深入而加剧——越接近巨兽核心，梦越不稳定</td>
+					<td><strong>单源怪诞</strong> — 全部源于源脉矿石接触 + 时间 = 异化。分三级：L1 认知偏移、L2 生物形态、L3 逻辑崩塌（正式版第三幕用）。怪诞随剧情深入而加剧</td>
 			</tr>
 			<tr>
 					<td><strong>微克苏鲁</strong></td>
 					<td>对未知的恐惧在叙事中的角色是引子还是结局？</td>
 					<td>✅ 已确定</td>
-					<td><strong>恐惧是引子，认知是过程，回家是结局。</strong> 微克苏鲁 = 克苏鲁的叙述手法 + 万炁同源的宇宙内核。表层让玩家感受&quot;对未知的不安&quot;（指向自身而非外部：你是你吗？记忆是你的吗？），深层揭示&quot;那个不可名状的存在——是你自己，是更大的你&quot;。所有暗示不能指向&quot;外部威胁&quot;，只能指向&quot;你和你的关系&quot;</td>
+					<td><strong>恐惧是引子，认知是过程，回家是结局。</strong> 详见 <a class="link" href="#%e5%be%ae%e5%85%8b%e8%8b%8f%e9%b2%81%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99" >微克苏鲁设计原则</a></td>
 			</tr>
 	</tbody>
 </table></div>
@@ -480,7 +478,8 @@
 					<td><strong>关卡叙事映射（Demo）</strong></td>
 					<td>真菌森林 6 区各自承载什么叙事功能？</td>
 					<td>✅ 已确定</td>
-					<td>A 入口 — 安全感建立 + 任务接收；B 走廊 — 好奇 + 第一个异常（日记）；C 空地 — 警觉→战斗 + 死亡规则展示；D 峡谷 — 压抑 + 古老存在暗示；E 竞技场 — 被困感 + BOSS 战 + 怪诞升级；F 出口 — 释放 + 核心疑问（委托人记忆矛盾）</td>
+					<td>A 入口 — 安全感建立 + 任务接收；B 走廊 — 好奇 + 第一个异常（日记）+ 解救同伴；C 空地 — 警觉→战斗 + 死亡规则展示；D 峡谷 — 压抑 + 古老存在暗示；E 竞技场 — 被困感 + BOSS 战 + 怪诞升级；F 出口 — 释放 + 核心疑问。详见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
+    >真菌森林展示场景</a></td>
 			</tr>
 			<tr>
 					<td><strong>关键路径（Demo）</strong></td>
@@ -495,11 +494,10 @@
 					<td>正式版待设计</td>
 			</tr>
 			<tr>
-					<td><strong>节奏控制（Demo）</strong></td>
+					<td><strong>节奏控制</strong></td>
 					<td>紧张/舒缓交替</td>
 					<td>✅ 已确定</td>
-					<td>通过空间节奏（宽度/曲率/围合感）+ 光渐变（暖→冷→暖）+ 怪诞梯度（0→7/10）三重控制。详见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
-    >真菌森林展示场景</a></td>
+					<td>通过空间节奏（宽度/曲率/围合感）+ 光渐变（暖→冷→暖）+ 怪诞梯度三重控制。详见 <a class="link" href="#%e5%8f%99%e4%ba%8b%e5%bc%95%e5%af%bc%e4%b8%83%e6%9d%a1%e9%80%9a%e9%81%93" >叙事引导：七条通道</a></td>
 			</tr>
 	</tbody>
 </table></div>
@@ -518,38 +516,40 @@
 			<tr>
 					<td><strong>主角定义</strong></td>
 					<td>空白画布还是固定角色？与世界的初始关系？</td>
-					<td>✅ 已确定（Demo）</td>
-					<td>Demo 采用**&ldquo;叙事滤镜&quot;方案**：三个固定身份 + 一个自定义，共享同一套关卡流程（A→F），仅在文本/对话上产生差异。正式版可升级为独立故事线——或不升级。详见下方展开</td>
+					<td>✅ 已确定</td>
+					<td>三个固定身份 + 一个自定义，共享同一套关卡流程，仅在文本/对话上产生差异（叙事滤镜方案）。详见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
+    >真菌森林展示场景</a></td>
 			</tr>
 			<tr>
 					<td><strong>核心NPC/同伴</strong></td>
 					<td>有完整弧光的角色。每人代表对核心冲突的一种立场</td>
 					<td>✅ 已确定（Demo）</td>
-					<td><strong>矮人矿工同伴</strong> — 在 B 区营地残骸旁解救。幸存矿工，男性矮人。AI 控制，战斗中协助清小怪。完整叙事弧线：被救→同战→孢子云感染→反水→被玩家&quot;释放&rdquo;→结局成为委托人真相的指证者。详见 <a class="link" href="#demo-%e5%90%8c%e4%bc%b4%e7%9f%ae%e4%ba%ba%e7%9f%bf%e5%b7%a5" >同伴设计</a></td>
+					<td><strong>矮人矿工同伴</strong> — B 区解救，AI 控制。完整弧线：被救→同战→感染→反水→释放→指证。详见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
+    >真菌森林展示场景</a></td>
 			</tr>
 			<tr>
 					<td><strong>派系/势力（Demo）</strong></td>
 					<td>Demo 出现的势力</td>
 					<td>✅ 已确定</td>
-					<td>三方：<strong>佣兵公会</strong>（委托人）— 维持秩序但不知情（Demo呈现的版本）；<strong>晶石矿工行会</strong>（受害者）— 挖掘中触碰了不该碰的东西；<strong>螺旋文明/真菌教派</strong>（不在场）— 比真菌之主更晚的文明，试图标记/控制它</td>
+					<td><strong>佣兵公会</strong>（委托人）、<strong>晶石矿工行会</strong>（受害者）、<strong>螺旋文明/真菌教派</strong>（不在场）</td>
 			</tr>
 			<tr>
 					<td><strong>教廷知情层级</strong></td>
 					<td>教廷对矿工异化知道多少？</td>
 					<td>✅ 已确定</td>
-					<td><strong>三层结构：</strong> Demo/第一幕呈现为&quot;不知情&quot;——公会送矿工采矿，不知道会发生什么；正式版第二幕揭示&quot;知情且沉默&quot;——他们送人进去是实验性质的，但不告诉任何人；第三幕揭示更深层的动机——他们的沉默是因为他们本身就是巨兽免疫系统的一部分</td>
+					<td>三层：Demo/第一幕&quot;不知情&quot;→ 正式版 Act 2&quot;知情且沉默&quot;→ Act 3&quot;教廷是巨兽免疫系统的一部分&quot;</td>
 			</tr>
 			<tr>
 					<td><strong>反派（Demo）</strong></td>
 					<td>BOSS 的叙事身份</td>
 					<td>✅ 已确定</td>
-					<td><strong>真菌之主 — 被唤醒的古老存在 + 异化的终点。</strong> 它是第一滴源脉之血与地底真菌结合而成的原始意识，比螺旋文明更古老。矿工挖到了穿透它沉睡层的矿脉——矿石和菌丝在此互溶。矿工被吸入它的记忆网络，不变成真菌之主（只有一个），而是变成网络的节点。击败不是消灭，是暂时切断——它在更深处继续存在。详见下方展开</td>
+					<td><strong>真菌之主</strong> — 第一滴源脉之血与地底真菌结合而成的原始意识。详见下方展开</td>
 			</tr>
 			<tr>
 					<td><strong>功能性NPC（Demo）</strong></td>
 					<td>任务发布者、背景板</td>
 					<td>✅ 已确定</td>
-					<td>委托人 — A/F 区出现。只说明必须说的话，不展开背景；同伴 — 矮人矿工，B 区解救，全程跟随至 F 区</td>
+					<td>委托人（A/F 区）；矮人矿工同伴（B→F 全程）</td>
 			</tr>
 			<tr>
 					<td><strong>派系/势力（正式版）</strong></td>
@@ -560,372 +560,6 @@
 	</tbody>
 </table></div>
 <hr>
-<h3 id="demo-主角身份叙事滤镜方案">Demo 主角身份：叙事滤镜方案
-</h3><p>Demo 提供三种固定身份 + 一个自定义，共享同一套关卡流程（A→B→C→D→E→F），仅在文本/对话上产生差异。玩家通过入口处的简单选择（而非完整角色创建）确定身份——或者在完整角色创建的最后一步&quot;背景&quot;中选择。</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>身份</th>
-					<th>种族</th>
-					<th>一句话描述</th>
-					<th>与矮人同伴的互动差异</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>调查员</strong></td>
-					<td>人类</td>
-					<td>佣兵公会派遣。任务：调查矿工失踪</td>
-					<td>同伴对他有戒备——&ldquo;你是公会的人，你们只在乎矿石。&ldquo;释放后态度软化：&ldquo;但你没有丢下我。&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>矿工</strong></td>
-					<td>矮人</td>
-					<td>迟到的矿工——或幸存者。进入森林时他的队伍已经进去了</td>
-					<td>同伴认出他。劫后余生的亲切感——但也因此更容易触发反水（情感绑定越强→感染越容易深入）。释放后同伴说：&ldquo;你来了。我们都在等你来。&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>精灵学者</strong></td>
-					<td>精灵</td>
-					<td>来自工业城市。来研究森林生态——不知道下面是矿场</td>
-					<td>同伴对这个&quot;外人&quot;不信任——&ldquo;你在研究我们？像研究标本？&ldquo;释放后态度转变：&ldquo;你不是来研究。你是来……理解的。&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>自定义</strong></td>
-					<td>任意</td>
-					<td>三方雇佣兵。不受任何势力绑定</td>
-					<td>中性关系。同伴对雇佣兵保持职业距离，释放后简单点头——&ldquo;欠你一条命。&rdquo;</td>
-			</tr>
-	</tbody>
-</table></div>
-<p><strong>设计原则：</strong> 不是&quot;独立故事线&rdquo;（DOS2 式工作量 ×3），而是**&ldquo;叙事滤镜&rdquo;**（同一流程 + 文本条件分支 ≈ ×1.3 工作量）。Game.csv 中加 <code>Role</code> 条件列即可实现。矮人同伴对所有身份都有专属互动差异——这不是角色路线，是&quot;同一个同伴在不同人眼里说不同的话&rdquo;。</p>
-<p><strong>正式版扩展方向（设计留档——Demo 不做）：</strong></p>
-<ul>
-<li>可升级为独立故事线——每个身份有专属中幕和结局</li>
-<li>三个固定身份的故事可在正式版交汇——同一事件（如教廷决策），矿工是执行者，调查员是记录者，精灵是外部利益相关者</li>
-<li>自定义角色始终走佣兵路线——最标准的 CRPG 体验</li>
-</ul>
-<hr>
-<h3 id="真菌之主的叙事身份">真菌之主的叙事身份
-</h3>
-    <blockquote>
-        <p>它是第一滴源脉之血凝固后、与地底真菌结合而成的<strong>原始意识</strong>。比螺旋文明更古老。在人类、精灵、矮人出现之前——它就在地底沉睡。没有语言、没有思想——只有一种缓慢的、跨越千年的感知。它记得巨兽的心跳。</p>
-
-    </blockquote>
-<p><strong>矿工触发了什么：</strong> 矿工挖到了一片穿透真菌之主沉睡层的矿脉。在这个深度，矿石和菌丝互溶。触碰矿石 = 触碰它。矿工开始异化，不是被寄生——是被吸入它的记忆网络。</p>
-<p><strong>真菌之主 vs 矿工的关系：</strong> 真菌之主只有一个。矿工不会变成新的真菌之主——他们变成网络的<strong>节点</strong>。他们的记忆还在，他们通过真菌之主继续存在。真菌之主通过他们&quot;看&quot;到了人类。Demo 里玩家击败两个菌丝宿主——他们在那一刻被暂时释放，但记忆留在了网里。BOSS 战不是与一只怪物的战斗——是与一个由矿工记忆编织成的存在战斗。</p>
-<p><strong>击败的意义：</strong> 击败不是消灭——是暂时切断物理锚点。它在更深处继续存在。晶核是它的一块记忆碎片——它在脉动，在被带出森林后继续&quot;记得&quot;你。</p>
-<p><strong>与 Demo 元素的关联：</strong></p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>Demo 元素</th>
-					<th>与真菌之主的关系</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>矿工日记</td>
-					<td>矿工被网络&quot;记住&quot;时的第一手记录</td>
-			</tr>
-			<tr>
-					<td>菌丝宿主</td>
-					<td>异化中期——正在变成网络的节点</td>
-			</tr>
-			<tr>
-					<td>螺旋纹路</td>
-					<td>螺旋文明后来发现它，试图标记/控制。纹路是&quot;测量&rdquo;——但真菌之主不是螺旋文明的产物</td>
-			</tr>
-			<tr>
-					<td>BOSS 战</td>
-					<td>打断——让古老存在退回更深的地底。同伴可能在战中反水（见下方同伴设计），反水后的&quot;释放&quot;让真菌之主短暂失神</td>
-			</tr>
-			<tr>
-					<td>晶核掉落</td>
-					<td>记忆碎片。「此物在你手中脉动，仿佛记得什么」</td>
-			</tr>
-	</tbody>
-</table></div>
-<hr>
-<h2 id="demo-同伴矮人矿工">Demo 同伴：矮人矿工
-</h2><h3 id="设计动机">设计动机
-</h3><p>Demo 原本设计为纯单人。但 Boss 战需要&quot;1 vs 真菌之主&quot;之外的战术层次——一个同伴能在叙事和玩法上同时增加深度。</p>
-<p>核心思路：<strong>同伴不是额外的战斗单位，而是 Demo 故事的一部分。</strong> 他在六区中拥有完整叙事弧线：被救→同战→被感染→反水→被释放→成为真相的指证者。</p>
-<h3 id="基本信息">基本信息
-</h3><div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>属性</th>
-					<th>内容</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>名称</td>
-					<td>待定（矿工同伴）</td>
-			</tr>
-			<tr>
-					<td>种族</td>
-					<td>矮人（男）</td>
-			</tr>
-			<tr>
-					<td>身份</td>
-					<td>失踪矿工之一。B 区被困在菌丝中，玩家靠近时触发解救交互</td>
-			</tr>
-			<tr>
-					<td>职业模板</td>
-					<td>战士系（简易，不需要复杂法术 AI）</td>
-			</tr>
-			<tr>
-					<td>战斗控制</td>
-					<td>AI 控制，跟随玩家，攻击最近目标，偏好聚集在小怪群</td>
-			</tr>
-			<tr>
-					<td>美术</td>
-					<td>1 套矮人矿工 Sprite（idle/attack/hit/dead），2.5D 纸片人</td>
-			</tr>
-	</tbody>
-</table></div>
-<h3 id="完整叙事弧线">完整叙事弧线
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">B 区 — 解救
-</span></span><span class="line"><span class="cl">  营地残骸旁。菌丝缠绕的矮人矿工奄奄一息。
-</span></span><span class="line"><span class="cl">  玩家靠近 → 交互解困。
-</span></span><span class="line"><span class="cl">  → 同伴加入：&#34;还有……六个人在里面。&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">C 区 — 并肩作战
-</span></span><span class="line"><span class="cl">  同伴参与小型遭遇战，协助清小怪。
-</span></span><span class="line"><span class="cl">  菌丝宿主被击败、孢子释放、躯体干枯→长蘑菇。
-</span></span><span class="line"><span class="cl">  同伴沉默两秒：&#34;那是哈洛德。他上个月还在教我磨镐头。&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">D 区 — 异常加深
-</span></span><span class="line"><span class="cl">  螺旋纹路附近，同伴的影子也短暂消失。
-</span></span><span class="line"><span class="cl">  → &#34;我感觉……有人在摸我的后脑勺。但没有人。&#34;
-</span></span><span class="line"><span class="cl">  暗示：他比玩家更容易受影响——他是矿工，接触矿石更久。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">E 区 — 感染→反水→释放（详见下方四阶段）
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">F 区 — 指证
-</span></span><span class="line"><span class="cl">  委托人：&#34;你是第三个回来的。&#34;
-</span></span><span class="line"><span class="cl">  同伴沉默。然后对委托人：
-</span></span><span class="line"><span class="cl">  → &#34;你上次说，只有十二个矿工。但我数到十三个名字。&#34;
-</span></span><span class="line"><span class="cl">  委托人愣住。转身离开。
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="boss-战四阶段设计">Boss 战四阶段设计
-</h3><p>Boss 战原本为 1 玩家 vs 真菌之主 + 2 小怪。同伴加入后，战斗变为动态四阶段：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">阶段一：并肩（~60s）
-</span></span><span class="line"><span class="cl">  玩家 + 矮人 vs 真菌之主 + 2 小怪
-</span></span><span class="line"><span class="cl">  矮人负责清小怪、顶前排。一切正常。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">阶段二：反水（~30s）
-</span></span><span class="line"><span class="cl">  触发条件：Boss 血量 &lt; 60% 且 矮人在孢子云中停留超过 1 轮
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  矮人头像框边缘出现菌丝纹路。
-</span></span><span class="line"><span class="cl">  他转身，动作帧从&#34;攻击&#34;切成&#34;朝向玩家&#34;。
-</span></span><span class="line"><span class="cl">  最后一句话：
-</span></span><span class="line"><span class="cl">  → &#34;我不疼了。你也应该来。来和我们在一起。&#34;
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  矮人暂时成为敌人单位，但比普通敌人弱：
-</span></span><span class="line"><span class="cl">  - HP 只有正常状态的 50%
-</span></span><span class="line"><span class="cl">  - AI 只用基础普攻，不用技能
-</span></span><span class="line"><span class="cl">  - 动作有延迟（菌丝操控 + 他在内心抵抗）
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  玩家瞬间变成 1 vs 4（真菌之主 + 2 小怪 + 虚弱矮人）
-</span></span><span class="line"><span class="cl">  压力增加，但不是碾压——矮人故意被设计成虚弱状态
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">阶段三：释放（~20s）
-</span></span><span class="line"><span class="cl">  矮人的 HP 降到 0 → 不放&#34;死亡红牌&#34; → 触发特殊演出：
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  菌丝出体 → 孢子散入空中 → 矮人倒地 → 起身，状态清除
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  矮人跪在场地边缘，单手撑地。不再参战。
-</span></span><span class="line"><span class="cl">  他说：
-</span></span><span class="line"><span class="cl">  → &#34;我看到了他们……哈洛德、老詹姆、卡里克……
-</span></span><span class="line"><span class="cl">      他们只是……回不来了。&#34;
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  释放效果：
-</span></span><span class="line"><span class="cl">  → 真菌之主短暂失神 1 轮（失去了一个节点）
-</span></span><span class="line"><span class="cl">  → 玩家获得&#34;觉醒&#34;buff（攻击力 +30%，持续 2 轮）
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">阶段四：收尾（~70s）
-</span></span><span class="line"><span class="cl">  玩家 + buff vs 真菌之主 + 残余小怪
-</span></span><span class="line"><span class="cl">  矮人在边缘，活着，但不再参战。
-</span></span><span class="line"><span class="cl">  击败真菌之主 → 晶核掉落 → 后续同原设计
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="设计原理">设计原理
-</h3><p><strong>为什么不是纯数值补偿？</strong></p>
-<ul>
-<li>不引入&quot;能量条→大招&quot;新系统 → Demo 开发时间紧，不做 5 分钟才会用一次的系统</li>
-<li>不是纯剧情杀 → 玩家不能亲手打同伴的话，反水没有情感重量</li>
-</ul>
-<p><strong>&ldquo;反水→释放→增益&quot;的中间路线：</strong></p>
-<ul>
-<li>同伴反水时是虚弱的 → 数值上可控（HP 减半 + 无技能 + 动作延迟）</li>
-<li>击败他不是杀他 → 是&quot;释放&quot;他 → 和 C 区菌丝宿主的死亡规则一致：&ldquo;死亡在这里不一样&rdquo;</li>
-<li>释放效果帮助玩家 → 不是惩罚玩家，而是奖励玩家&quot;在乎同伴&rdquo;</li>
-<li>Buff 不是无中生有 → 来自真菌之主失去节点时的震荡</li>
-</ul>
-<p><strong>微克苏鲁指向：</strong></p>
-<ul>
-<li>同伴说&quot;来吧，加入我们。&rdquo; → 指向玩家自身的感染可能性</li>
-<li>&ldquo;我看到了他们……他们回不来了。&rdquo; → 死亡不是终结，是变成网络节点</li>
-<li>全程不指向外部威胁，指向&quot;你和你认识的人的关系&quot;</li>
-</ul>
-<h3 id="技术实现路径">技术实现路径
-</h3><p>基于现有架构，同伴系统新增内容有限：</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>系统</th>
-					<th>新增量</th>
-					<th>说明</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>AI</td>
-					<td>复制 <code>BT_EnemyBase</code> → <code>BT_CompanionBase</code>，改目标选择逻辑</td>
-					<td>1 新 Blackboard + 1 新 BehaviorTree</td>
-			</tr>
-			<tr>
-					<td>战斗框架</td>
-					<td><code>DND_CombatManager</code> 扩展同伴回合队列；Boss 战中监听同伴 HP=0 触发&quot;释放&quot;流程</td>
-					<td>2-3 处改动</td>
-			</tr>
-			<tr>
-					<td>GAS</td>
-					<td>同伴复用 <code>DND_CharacterBase</code> 和 <code>AttributeSet</code></td>
-					<td>0 新代码，纯数据配置</td>
-			</tr>
-			<tr>
-					<td>状态管理</td>
-					<td>同伴状态机：Ally → Infected（反水）→ Released（释放后不参战）</td>
-					<td>1 个枚举 + 状态切换逻辑</td>
-			</tr>
-			<tr>
-					<td>美术</td>
-					<td>1 套矮人矿工 Sprite（idle/attack/hit/dead）</td>
-					<td>美术工作量（可与现有 Sprite 共用管线）</td>
-			</tr>
-			<tr>
-					<td>文本</td>
-					<td>同伴 6 句关键文本（B/C/D/E×2/F）+ 4 个身份的条件文本变体</td>
-					<td>Game.csv 新增行</td>
-			</tr>
-	</tbody>
-</table></div>
-<hr>
-<h3 id="教廷的知情层级">教廷的知情层级
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Demo / 第一幕呈现：
-</span></span><span class="line"><span class="cl">  &#34;教廷/公会送矿工采矿。他们不知道会发生什么。&#34;
-</span></span><span class="line"><span class="cl">  玩家的感受：这是一次普通的委托，只是有点不对劲。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">正式版 Act 2 揭示：
-</span></span><span class="line"><span class="cl">  &#34;教廷早就知道。送人进去是实验性质的——但不告诉任何人，
-</span></span><span class="line"><span class="cl">   包括送去的人自己。&#34;
-</span></span><span class="line"><span class="cl">  玩家的感受：他们不是无辜的。但他们也不是恶意的——
-</span></span><span class="line"><span class="cl">  他们需要矿石维持文明。两害相权。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">正式版 Act 3 更深层：
-</span></span><span class="line"><span class="cl">  &#34;他们的沉默不只是政治决定。
-</span></span><span class="line"><span class="cl">   教廷的高层——可能连自己都没意识到——
-</span></span><span class="line"><span class="cl">   他们正在执行巨兽的免疫反应。
-</span></span><span class="line"><span class="cl">   试图唤醒巨兽的（真菌之主）被压制。
-</span></span><span class="line"><span class="cl">   试图保持天真的（矿工）被牺牲。
-</span></span><span class="line"><span class="cl">   教廷是 immune_response() 的一个器官。&#34;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
 <h3 id="第四层具体内容落地的文本和事件">第四层：具体内容（落地的文本和事件）
 </h3><div class="table-wrapper"><table>
 	<thead>
@@ -947,20 +581,19 @@
 					<td><strong>任务/委托（Demo）</strong></td>
 					<td>接任务 → 做任务 → 交任务 闭环</td>
 					<td>⚠️ 框架已有</td>
-					<td>委托→调查→回报。需确定 UI 实现方式（HUD 目标提示 / 任务日志？）</td>
+					<td>委托→调查→回报。需确定 UI 实现方式</td>
 			</tr>
 			<tr>
-					<td><strong>场景叙事（Demo）</strong></td>
+					<td><strong>场景叙事</strong></td>
 					<td>不用对话讲的故事</td>
 					<td>✅ 已确定（七条通道）</td>
-					<td>声音引导、视觉异常引导、文本引导、NPC对话引导、空间节奏引导、光渐变引导、玩法反馈引导。详见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
-    >真菌森林展示场景</a></td>
+					<td>声音引导、视觉异常引导、文本引导、NPC对话引导、空间节奏引导、光渐变引导、玩法反馈引导。详见 <a class="link" href="#%e5%8f%99%e4%ba%8b%e5%bc%95%e5%af%bc%e4%b8%83%e6%9d%a1%e9%80%9a%e9%81%93" >下方</a></td>
 			</tr>
 			<tr>
 					<td><strong>文本资产（Demo）</strong></td>
 					<td>物品描述、日记、UI文本</td>
 					<td>⚠️ 框架已有，未最终定稿</td>
-					<td>矿工日记、BOSS 掉落物描述、可选矿工记录 → 需在Game.csv/本地化流水线中确定最终措辞</td>
+					<td>矿工日记、BOSS 掉落物描述等 → 需在 Game.csv 中确定最终措辞</td>
 			</tr>
 			<tr>
 					<td><strong>过场/演出</strong></td>
@@ -986,31 +619,31 @@
 					<td><strong>入门钩子（Demo）</strong></td>
 					<td>前 3-5 分钟抓住玩家</td>
 					<td>✅ 已确定</td>
-					<td>不是意象化开场 — 是<strong>具体的目标</strong>。玩家看到森林入口、接到委托、选职业、走进去。第一个 5 分钟：熟悉操作 + 感受空间 + 发现第一本日记</td>
+					<td>具体的目标：森林入口、接委托、选职业、走进去。第一个 5 分钟：熟悉操作 + 感受空间 + 发现第一本日记</td>
 			</tr>
 			<tr>
 					<td><strong>Demo 结束钩子</strong></td>
 					<td>Demo 结束后玩家脑子里留着什么</td>
 					<td>✅ 已确定</td>
-					<td>&ldquo;你是第三个回来的。前两个……记不太清了。&rdquo; + 矮人同伴的沉默和质疑 + 包裹里那块微热的矿石 + BOSS 的脉动晶核 + 同伴数到第13个名字。玩家带走的不是答案，是三个问题：&ldquo;这里是什么？委托人瞒着什么？那个矮人——他还是他自己吗？&rdquo;</td>
+					<td>委托人的记忆矛盾 + 同伴的质疑 + 微热的矿石 + 脉动晶核。玩家带走的不是答案，是问题</td>
 			</tr>
 			<tr>
 					<td><strong>Demo 结束画面</strong></td>
-					<td>Steam 新品节 Demo 结束后的呈现</td>
+					<td>Steam 新品节 Demo 结束后呈现</td>
 					<td>⚠️ 待定</td>
-					<td>考虑结束画面文字：「你走出森林。包裹里的晶石还是热的。」+ 愿望单链接</td>
+					<td>考虑结束画面文字 + 愿望单链接</td>
 			</tr>
 			<tr>
 					<td><strong>多周目/NG+ 设计</strong></td>
 					<td>庞加莱回归、文本微调</td>
 					<td>⚠️ 世界观文档有方向</td>
-					<td>Demo 不涉及。正式版数据驱动实现方案已讨论</td>
+					<td>Demo 不涉及。正式版数据驱动方案已讨论</td>
 			</tr>
 			<tr>
 					<td><strong>Demo 硬约束（不做什么）</strong></td>
 					<td>防止 scope creep</td>
 					<td>✅ 已确定</td>
-					<td>不解释源脉矿石起源、不展示真菌教派真人、不揭示巨兽之梦、不让 NPC 说出任何世界观关键词、不做超过 10 秒的过场动画、不做存读档</td>
+					<td>不解释起源、不展示真菌教派真人、不揭示巨兽之梦、不让 NPC 说出世界观关键词、不做超过 10 秒过场、不做存读档</td>
 			</tr>
 	</tbody>
 </table></div>
@@ -1025,7 +658,7 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">🟢 地基      ████████████████████ 100% — 五块全部确定
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">🟢 地基      ████████████████████ 100%
 </span></span><span class="line"><span class="cl">🟢 结构      ████████████████░░░░  80% — Demo结构已定，正式版待推进
 </span></span><span class="line"><span class="cl">🟢 人物      █████████████████░░░  85% — Demo人物全部确定（含同伴），正式版同伴/派系待推进
 </span></span><span class="line"><span class="cl">🟡 具体内容  ██████░░░░░░░░░░░░░░  30% — 框架已有，文本措辞+系统实现待推进
@@ -1075,6 +708,312 @@
 			</tr>
 	</tbody>
 </table></div>
+<hr>
+<h2 id="叙事引导七条通道">叙事引导：七条通道
+</h2><p><strong>这是 Project_DND 的通用叙事方法论</strong>——不仅适用于真菌森林，也适用于正式版所有关卡。七条通道共享两个核心母题：</p>
+<ul>
+<li><strong>「记得」</strong> — 贯穿声音、文本、NPC、玩法</li>
+<li><strong>「这里是活的」</strong> — 贯穿声音、视觉、玩法</li>
+</ul>
+<hr>
+<h3 id="通道一声音引导">通道一：声音引导
+</h3><p>声音不说任何话，但让身体先于大脑感到不安。</p>
+<p><strong>原则：</strong> 嗡鸣的频率和人紧张时体内的共振接近。声音只在关键时刻变化——变化本身就是叙事。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置原型</th>
+					<th>声音设计</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>全局</td>
+					<td>环境底噪——与环境主题匹配的持续低频声（不是音乐，是场景本身的&quot;呼吸声&quot;）</td>
+					<td>全程暗示：这个场景不是普通的场景</td>
+			</tr>
+			<tr>
+					<td>异常物附近</td>
+					<td>靠近异常物 → 底噪频率改变（变高/加泛音/短暂消失）</td>
+					<td>「这里有什么不对劲」</td>
+			</tr>
+			<tr>
+					<td>战斗击杀</td>
+					<td>敌人被击败 → 非人叹息（不是惨叫）</td>
+					<td>「它不是在死亡，它是在被释放」</td>
+			</tr>
+			<tr>
+					<td>BOSS 战后期</td>
+					<td>底噪变多重和声（多个声音同时低语）</td>
+					<td>「它不止是一个，它是很多个」</td>
+			</tr>
+			<tr>
+					<td>出口</td>
+					<td>离开场景 → 底噪消失，短暂完全安静，然后自然声音恢复</td>
+					<td>「你出来了。但那个声音还在你脑子里」</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="通道二视觉异常引导">通道二：视觉异常引导
+</h3><p>视觉异常都在玩家注意力边缘——不是过场动画，是眼角余光捕捉到的。</p>
+<p><strong>原则：</strong> 异常要在&quot;看得见但又没完全看见&quot;的区域。它们不说任何话，但组合起来建立一个认知：这里的存在法则，和认知下的不一样。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置原型</th>
+					<th>视觉设计</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>营地/遗迹</td>
+					<td>残留物品上有细微的异常生长（菌丝/结晶/锈蚀不过是在向上蔓延）</td>
+					<td>「他们离开得很突然。或者根本没离开」</td>
+			</tr>
+			<tr>
+					<td>战斗中</td>
+					<td>敌人死亡 → 不倒地 → 体内&quot;释放&quot;（孢子/光/烟）→ 躯体萎缩成空壳 → 空壳上长出新东西</td>
+					<td>「死亡规则在这里不一样」</td>
+			</tr>
+			<tr>
+					<td>异常符号附近</td>
+					<td>玩家自己的影子短暂消失/变形/延迟 → 恢复</td>
+					<td>「你的存在在这里不稳定」</td>
+			</tr>
+			<tr>
+					<td>异常符号本身</td>
+					<td>微弱的脉搏般亮度变化（低频闪烁，不规律）</td>
+					<td>「它是活的」</td>
+			</tr>
+			<tr>
+					<td>BOSS 场地</td>
+					<td>战斗网格本身偶尔闪烁/错位</td>
+					<td>「物理法则在这里不稳定」</td>
+			</tr>
+			<tr>
+					<td>出口</td>
+					<td>离开后，场景中的某个元素（植被/石头/光影）微微转向玩家离开的方向</td>
+					<td>「它们在看着你」</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="通道三文本引导日记--物品描述">通道三：文本引导（日记 / 物品描述）
+</h3><p>文本不解释，只呈现现象。让玩家自己连起来。</p>
+<p><strong>原则：</strong> 每段文本只说一件事——一个细节、一个感受、一个矛盾的观察。不串联，不总结。字迹中断和反复修改本身就是叙事。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置原型</th>
+					<th>文本类型</th>
+					<th>引导要点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>早期区域</td>
+					<td>日记/记录</td>
+					<td>引入核心概念（记忆、异常感知等），用凡人视角而非解释性语言</td>
+			</tr>
+			<tr>
+					<td>BOSS 战后</td>
+					<td>掉落物描述</td>
+					<td>Callback 之前的概念，把 NPC 日记和 BOSS 连起来</td>
+			</tr>
+			<tr>
+					<td>可选区域</td>
+					<td>补充记录</td>
+					<td>提供额外信息——不解释，只是多一个&quot;不对劲&quot;的例证</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="通道四npc-对话引导">通道四：NPC 对话引导
+</h3><p>说最少的话，露出最多的疑点。</p>
+<p><strong>原则：</strong> Demo 所有 NPC 的台词总和应少于一张 A4 纸。每句话都要承担至少两个功能（推进任务 + 暗示异常 / 传递信息 + 制造问题）。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置原型</th>
+					<th>谁</th>
+					<th>功能</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>入口</td>
+					<td>委托人/引导NPC</td>
+					<td>建立任务 + 铺垫矛盾（说的话在结尾会有回响）</td>
+			</tr>
+			<tr>
+					<td>探索中</td>
+					<td>同伴（如有）</td>
+					<td>提供&quot;内部人&quot;视角——他说的话玩家可能没资格说</td>
+			</tr>
+			<tr>
+					<td>BOSS 前/后</td>
+					<td>同伴/引导NPC</td>
+					<td>状态变化：感染/清醒/沉默——台词减少本身就是叙事</td>
+			</tr>
+			<tr>
+					<td>出口</td>
+					<td>委托人/同伴</td>
+					<td>回收入口的铺垫 + 制造新的疑问</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="通道五空间节奏引导">通道五：空间节奏引导
+</h3><p>空间本身就是叙事。玩家不需要任何文本，光是走一遍，身体就会感受到情绪的起伏。</p>
+<p><strong>原则：</strong> 通过改变路径的宽度、曲率和围合感来控制情绪。六个区域的典型情绪弧线：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域位置</th>
+					<th>空间特征</th>
+					<th>引导的情绪</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>入口</td>
+					<td>开阔、暖光、低密度信息</td>
+					<td>安全感：「这是一个正常的地方」</td>
+			</tr>
+			<tr>
+					<td>过渡</td>
+					<td>S 形弯道、逐渐变冷的光</td>
+					<td>好奇 + 轻微不安：「拐角后面是什么」</td>
+			</tr>
+			<tr>
+					<td>遭遇前</td>
+					<td>突然开阔、但被障碍物分割</td>
+					<td>警觉：「这里可能有东西」→ 战斗</td>
+			</tr>
+			<tr>
+					<td>遭遇后</td>
+					<td>收窄、暗光</td>
+					<td>压抑：「我必须往前走，但我不确定我想」</td>
+			</tr>
+			<tr>
+					<td>BOSS</td>
+					<td>圆形封闭、强对比光</td>
+					<td>被困感：「无路可退」</td>
+			</tr>
+			<tr>
+					<td>出口</td>
+					<td>重新开阔、暖光</td>
+					<td>释放：「我出来了」——但不安还在</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="通道六光渐变引导">通道六：光渐变引导
+</h3><p>光的变化速度要慢到玩家不会主动注意到——他们只会感觉&quot;怎么越来越不舒服&quot;但说不出为什么。</p>
+<p><strong>原则：</strong> 完整的光色弧线：暖（安全）→ 冷（异界）→ 最暗（威胁峰值）→ 戏剧对比（高潮）→ 暖（回归但不完全）。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>阶段</th>
+					<th>光色</th>
+					<th>引导什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>入口 → 过渡</td>
+					<td>暖 → 冷渐显</td>
+					<td>从「安全的人类世界」过渡到「异常场域」</td>
+			</tr>
+			<tr>
+					<td>过渡 → 遭遇</td>
+					<td>均匀中性</td>
+					<td>让玩家专注于战斗，暂时忘记环境异常</td>
+			</tr>
+			<tr>
+					<td>遭遇 → BOSS 前</td>
+					<td>光照降到全局最暗</td>
+					<td>视觉上的威胁感达到峰值</td>
+			</tr>
+			<tr>
+					<td>BOSS 战</td>
+					<td>戏剧化强对比（亮处极亮，暗处极暗）</td>
+					<td>史诗感——这是最终对决</td>
+			</tr>
+			<tr>
+					<td>BOSS → 出口</td>
+					<td>暖金色胜利光</td>
+					<td>让玩家在物理和心理上同时回归「安全」——但不完全</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="通道七玩法反馈引导玩法--叙事连接点">通道七：玩法反馈引导（「玩法 = 叙事」连接点）
+</h3><p>玩法是唯一一种玩家「必须参与」的叙事。看日记可以跳过，听声音可以忽略——但战斗中发生的事情，每个玩家都会经历。</p>
+<p><strong>原则：</strong> 永远不问玩家「你怎么看」，只给他们一个必须参与的情境，而他们在其中不得不产生一个反应。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>位置原型</th>
+					<th>玩法机制</th>
+					<th>叙事引导</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>探索中</td>
+					<td>异常物可交互，靠近时战斗网格短暂闪烁</td>
+					<td>「矿石和空间稳定性有关」——具体为什么，不解释</td>
+			</tr>
+			<tr>
+					<td>遭遇战</td>
+					<td>敌人的 AI 行为异常：不躲避、不逃跑——朝玩家走来，像在拥抱</td>
+					<td>「它们不是在攻击你。它们想传染你。」</td>
+			</tr>
+			<tr>
+					<td>BOSS 战</td>
+					<td>掩体（孢子云/暗影等）提供战术优势——但站太久会被缓慢感染</td>
+					<td>「掩体不是安全的。它在改变你。」</td>
+			</tr>
+			<tr>
+					<td>全局</td>
+					<td>击杀一只后，下一只在战斗开始时多看你半秒</td>
+					<td>「它认识你。或者它认识你身上的某个东西。」</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h3 id="七条通道的协同效果">七条通道的协同效果
+</h3><p>这些通道不是独立运作的。它们像交响乐的不同乐器——同时演奏，但玩家只能感受到整体效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">声音说： 「不舒服。」         —— 嗡鸣、叹息、消失
+</span></span><span class="line"><span class="cl">视觉说： 「不对劲。」         —— 影子消失、脉动、生长
+</span></span><span class="line"><span class="cl">文本说： 「记得。」           —— 日记、掉落物描述
+</span></span><span class="line"><span class="cl">NPC 说： 「矛盾。」           —— 说的话和做的事不一致
+</span></span><span class="line"><span class="cl">空间说： 「你越来越深入了。」 —— 收窄、变暗、围合
+</span></span><span class="line"><span class="cl">光说：   「你离开安全区域了。」 —— 暖→冷→暖
+</span></span><span class="line"><span class="cl">玩法说： 「规则不一样。」     —— 死亡≠死亡、感染是诱人的
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>玩家不会分解出「这是声音引导、这是文本引导」。他们只会有一种感觉：</p>
+
+    <blockquote>
+        <p>「这个地方不对劲。我要继续探索。」</p>
+
+    </blockquote>
 <hr>
 <h2 id="微克苏鲁设计原则">微克苏鲁设计原则
 </h2><h3 id="核心公式">核心公式
@@ -1141,7 +1080,7 @@
 </span></span><span class="line"><span class="cl">你没有被吓疯。你被悲伤淹没了。&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="demo-中的具体表现">Demo 中的具体表现
+</div><h3 id="核心规则">核心规则
 </h3><p>所有微克苏鲁暗示必须遵循一个关键规则：<strong>不能指向&quot;外部威胁&quot;，只能指向&quot;你和你的关系&quot;。</strong></p>
 <div class="table-wrapper"><table>
 	<thead>
@@ -1187,7 +1126,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">第一幕/Demo（微克苏鲁表层）：
-</span></span><span class="line"><span class="cl">  矿工日记字迹中断 → 书是空白的 → 你读到的记忆是谁的？
+</span></span><span class="line"><span class="cl">  日记字迹中断 → 书是空白的 → 你读到的记忆是谁的？
 </span></span><span class="line"><span class="cl">  菌丝宿主认识你 → 你不认识它 → 你怎么可能认识它？
 </span></span><span class="line"><span class="cl">  委托人忘记了他刚说的话 → 不是阴谋 → 是记忆法则在这里不适用
 </span></span><span class="line"><span class="cl">  玩家的感受：&#34;这个地方不对劲。我要继续探索。&#34;（恐惧 = 引子）
@@ -1218,8 +1157,6 @@
         
             <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">设计文档</a>
         
-            <a href="/tags/demo/">Demo</a>
-        
     </section>
 
 
@@ -1244,26 +1181,6 @@
     
 
     
-
-<aside>
-    <h2 class="section-title"></h2>
-    <div class="subsection-list">
-        <div class="article-list--tile">
-            
-                
-<article class="">
-    <a href="/game-dev/fungal-forest-showcase/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">真菌森林展示场景 · 布局设计</h2>
-        </div>
-    </a>
-</article>
-            
-        </div>
-    </div>
-</aside>
 
      
     
