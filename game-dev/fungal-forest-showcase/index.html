@@ -244,6 +244,14 @@
     <li><a href="#demo-叙事架构完整流程">Demo 叙事架构（完整流程）</a></li>
     <li><a href="#资产状态">资产状态</a></li>
     <li><a href="#下一步">下一步</a></li>
+    <li><a href="#demo-开发待办">Demo 开发待办</a>
+      <ol>
+        <li><a href="#p0--没这个跑不起来">P0 — 没这个跑不起来</a></li>
+        <li><a href="#p1--能跑但体验会打折">P1 — 能跑但体验会打折</a></li>
+        <li><a href="#p2--锦上添花">P2 — 锦上添花</a></li>
+        <li><a href="#建议实现顺序">建议实现顺序</a></li>
+      </ol>
+    </li>
   </ol>
 
             </nav>
@@ -383,6 +391,14 @@
     <li><a href="#demo-叙事架构完整流程">Demo 叙事架构（完整流程）</a></li>
     <li><a href="#资产状态">资产状态</a></li>
     <li><a href="#下一步">下一步</a></li>
+    <li><a href="#demo-开发待办">Demo 开发待办</a>
+      <ol>
+        <li><a href="#p0--没这个跑不起来">P0 — 没这个跑不起来</a></li>
+        <li><a href="#p1--能跑但体验会打折">P1 — 能跑但体验会打折</a></li>
+        <li><a href="#p2--锦上添花">P2 — 锦上添花</a></li>
+        <li><a href="#建议实现顺序">建议实现顺序</a></li>
+      </ol>
+    </li>
   </ol>
 
             </nav>
@@ -1140,7 +1156,155 @@
 </ul>
 </li>
 </ol>
-
+<hr>
+<h2 id="demo-开发待办">Demo 开发待办
+</h2><p>以下是基于当前已有架构，Demo 还缺的系统/内容。按优先级排列。</p>
+<h3 id="p0--没这个跑不起来">P0 — 没这个跑不起来
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>真菌森林关卡</td>
+					<td>新建 <code>FungalForest_Showcase.umap</code>，按文档六区尺寸搭建白盒</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>Demo 快速选职业入口</td>
+					<td>Demo 不经过正式版 9 步 CC 流程。A 区入口需要小弹窗：战士/法师/游荡者，选完直接进场景。三职业 Level 1 差异化：初始属性分配不同 + 各一个专属技能，共用一个基础模板</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>同伴系统</td>
+					<td><code>BT_CompanionBase</code> 行为树 + 同伴状态机（Ally→Infected→Released）+ <code>CombatManager</code> 扩展同伴回合队列</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>Boss 战特殊机制</td>
+					<td>孢子云掩体（隐形 + 感染倒计时）+ 四阶段切换逻辑（反水触发条件、释放流程、Boss 失神、觉醒 buff）+ 孢子云 Debuff UI 提示（同伴头顶显示&quot;孢子云：下回合将被腐化&quot;）</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>菌丝宿主敌人</td>
+					<td>新的 Enemy DataTable 行：AI 不躲避、朝玩家走来。击败演出：孢子释放 → 躯体萎缩 → 干壳长出蘑菇。干壳旁掉落铭牌</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>真菌之主 Boss</td>
+					<td>Boss 专属 DataTable 行：AOE + 第 2 回合召唤 2 小怪 + 回血。击败后掉落晶核 + 铭牌</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="p1--能跑但体验会打折">P1 — 能跑但体验会打折
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>7</td>
+					<td>文本交互弹窗</td>
+					<td>可交互物件按 E 弹出文本窗口（日记、铭牌描述、B 区营救提示）。不需要对话树——最简文本弹窗即可</td>
+			</tr>
+			<tr>
+					<td>8</td>
+					<td>极简背包 UI</td>
+					<td>可打开的格子面板。Demo 阶段只需显示关键物品（铭牌 x/N、晶核、矿石）。不需要装备/拖拽/分类/负重</td>
+			</tr>
+			<tr>
+					<td>9</td>
+					<td>可拾取物系统</td>
+					<td>11 个铭牌 + 晶核 + Boss 掉落铭牌。拾取交互逻辑 + 铭牌计数追踪</td>
+			</tr>
+			<tr>
+					<td>10</td>
+					<td>检查点/重生</td>
+					<td>Boss 战失败 → 回到 D 区出口（进入 E 区前）。关卡内重生点，不需要完整存读档系统</td>
+			</tr>
+			<tr>
+					<td>11</td>
+					<td>B 区营救交互</td>
+					<td>靠近被困矮人 → 按交互键 → 菌丝消散演出 + 相机拉近看到铭牌 + 同伴站起加入</td>
+			</tr>
+			<tr>
+					<td>12</td>
+					<td>简易演出系统</td>
+					<td>菌丝宿主死亡演出（孢子释放+萎缩+长蘑菇）、同伴释放演出（菌丝出体+孢子倒地起身）、E 区菌丝节点视觉。当前已有 DamageNote 和 DeathCard 组件，需扩展</td>
+			</tr>
+			<tr>
+					<td>13</td>
+					<td>听觉反馈</td>
+					<td>环境低频嗡鸣、靠近异常物频率改变、同伴释放后嗡鸣消失。需要音频资产 + 触发逻辑</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="p2--锦上添花">P2 — 锦上添花
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>14</td>
+					<td>真菌森林环境资产</td>
+					<td>巨型蘑菇茎（3 变体）、伞盖平台、倒木（2 变体）、岩石（3 变体）、菌丝藤蔓、地面孢子 Decal、自发光孢子粒子 ×2</td>
+			</tr>
+			<tr>
+					<td>15</td>
+					<td>视觉异常效果</td>
+					<td>影子短暂消失（D 区）、螺旋纹路脉搏光、岩壁菌丝脉络、B 区菌丝覆盖的身形、E 区节点人形凹陷</td>
+			</tr>
+			<tr>
+					<td>16</td>
+					<td>Quick Start 画面</td>
+					<td>Demo 启动时一个静态画面：游戏名称 + 操作说明（WASD/点击交互/回合制战斗）+ 预计时长（约 60 分钟）</td>
+			</tr>
+			<tr>
+					<td>17</td>
+					<td>Demo 结束画面</td>
+					<td>Steam 愿望单链接 + 结束语</td>
+			</tr>
+			<tr>
+					<td>18</td>
+					<td>法师系统</td>
+					<td>DT_SpellSlotSheet 法师行。Demo Level 1 简化方案：2 戏法（无限）+ 1 个 1 环法术（每场战斗 1 次）。不需长休/短休系统——Demo 没有&quot;休&quot;的需求</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="建议实现顺序">建议实现顺序
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">第1步：白盒关卡 + 快速选职业入口（P0 #1 #2）
+</span></span><span class="line"><span class="cl">第2步：敌人 + 同伴（P0 #3 #5 #6）
+</span></span><span class="line"><span class="cl">第3步：交互系统（P1 #7 #8 #9 #11）
+</span></span><span class="line"><span class="cl">第4步：Boss 战机制 + 检查点（P0 #4 + P1 #10）
+</span></span><span class="line"><span class="cl">第5步：演出 + 声音（P1 #12 #13）
+</span></span><span class="line"><span class="cl">第6步：环境资产 + 视觉异常 + 首尾画面（P2 #14-#18）
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
