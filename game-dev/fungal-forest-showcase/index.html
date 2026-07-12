@@ -466,8 +466,8 @@
 <li>D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光</li>
 </ul>
 <h3 id="encounter-设计">Encounter 设计
-</h3><p><strong>小型遭遇（C 区）：</strong> 2 只远程真菌幼体 + 中央倒木掩体 → 教学性质的暖身战</p>
-<p><strong>BOSS 战（E 区）：</strong> 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）</p>
+</h3><p><strong>小型遭遇（C 区）：</strong> 2 只远程真菌幼体 + 中央倒木掩体 → 教学性质的暖身战。同伴（矮人矿工）参与战斗，协助清小怪。</p>
+<p><strong>BOSS 战（E 区）：</strong> 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）。Boss 战为四阶段动态结构——详见下方「Demo 叙事架构」。</p>
 <hr>
 <h2 id="资产状态">资产状态
 </h2><div class="table-wrapper"><table>
@@ -504,6 +504,11 @@
 					<td>蘑菇 / 草地 / 苔藓 ✅</td>
 					<td>自发光孢子材质</td>
 			</tr>
+			<tr>
+					<td>角色</td>
+					<td>玩家三职业 Sprite ✅</td>
+					<td>矮人矿工同伴 Sprite（idle/attack/hit/dead）</td>
+			</tr>
 	</tbody>
 </table></div>
 <hr>
@@ -531,8 +536,8 @@
 			</tr>
 			<tr>
 					<td>B 区营地</td>
-					<td>走到残骸旁 → 嗡鸣短暂消失几秒，然后恢复</td>
-					<td>「这里曾经有人，他们遇到了什么」</td>
+					<td>走到残骸旁 → 嗡鸣短暂消失几秒，然后恢复。营救同伴时 → 嗡鸣中出现微弱的和弦（像一个新的声音加入了）</td>
+					<td>「这里曾经有人，他们遇到了什么」；同伴的加入被声音世界&quot;登记&quot;了</td>
 			</tr>
 			<tr>
 					<td>D 区峡谷</td>
@@ -548,6 +553,16 @@
 					<td>E 区 BOSS</td>
 					<td>第二阶段 → 嗡鸣变成多重和声（像很多声音在同时低语）</td>
 					<td>「它不止是一个，它是很多个」</td>
+			</tr>
+			<tr>
+					<td>E 区同伴反水</td>
+					<td>同伴转身时 → 嗡鸣中突然出现一段短暂的和谐音（不像威胁，像&quot;回家&rdquo;）</td>
+					<td>异化不是暴力的——是诱人的。它让你觉得&quot;加入&quot;是对的</td>
+			</tr>
+			<tr>
+					<td>E 区同伴释放</td>
+					<td>菌丝出体时 → 嗡鸣中有一层和声被抽离。重新变回单一声部</td>
+					<td>一个节点被释放了。但它留下了回音</td>
 			</tr>
 			<tr>
 					<td>F 区出口</td>
@@ -625,6 +640,21 @@
 					<td>「工头说挖到了新矿脉。晶体品质很高。他笑了。但他昨晚梦到了自己不会做梦。」</td>
 					<td>「矿石会影响梦」——不解释，只是记录</td>
 			</tr>
+			<tr>
+					<td>C 区同伴台词</td>
+					<td>「那是哈洛德。他上个月还在教我磨镐头。」</td>
+					<td>菌丝宿主不是&quot;怪物&rdquo;——他们是人。他们是矿工的同伴</td>
+			</tr>
+			<tr>
+					<td>E 区同伴反水台词</td>
+					<td>「我不疼了。你也应该来。来和我们在一起。」</td>
+					<td>异化的诱惑——&ldquo;不疼了&quot;比恐惧更可怕</td>
+			</tr>
+			<tr>
+					<td>E 区同伴释放台词</td>
+					<td>「我看到了他们……他们不疼。他们只是……回不来了。」</td>
+					<td>死亡≠终结。他们是网络的节点。但&quot;回不来&rdquo;——这是悲剧</td>
+			</tr>
 	</tbody>
 </table></div>
 <p><strong>设计原则：</strong> 文本不解释，只呈现现象。让玩家自己连起来。</p>
@@ -646,6 +676,36 @@
 					<td>建立任务</td>
 			</tr>
 			<tr>
+					<td>B 区营救后</td>
+					<td>同伴（矮人矿工）</td>
+					<td>「还有……六个人在里面。」</td>
+					<td>确认失踪人数——为后面的矛盾埋点（13 个名字）</td>
+			</tr>
+			<tr>
+					<td>C 区战后</td>
+					<td>同伴</td>
+					<td>「那是哈洛德。他上个月还在教我磨镐头。」</td>
+					<td>敌人不是怪物——是同伴认识的人。战斗有情感重量</td>
+			</tr>
+			<tr>
+					<td>D 区峡谷</td>
+					<td>同伴</td>
+					<td>「我感觉……有人在摸我的后脑勺。但没有人。」</td>
+					<td>他比玩家更容易受影响——他是矿工</td>
+			</tr>
+			<tr>
+					<td>E 区反水</td>
+					<td>同伴（被感染）</td>
+					<td>「我不疼了。你也应该来。来和我们在一起。」</td>
+					<td>异化的诱惑不是恐惧，是&quot;不再疼痛&quot;</td>
+			</tr>
+			<tr>
+					<td>E 区释放后</td>
+					<td>同伴</td>
+					<td>「我看到了他们……他们不疼。他们只是……回不来了。」</td>
+					<td>死亡在这里不是终结——但&quot;回不来&quot;是注定的悲剧</td>
+			</tr>
+			<tr>
 					<td>F 区出口</td>
 					<td>委托人</td>
 					<td>「你是第三个回来的。前两个……记不太清了。这是你的报酬。」</td>
@@ -656,6 +716,12 @@
 					<td>委托人</td>
 					<td>看你手中的晶核两秒。然后：「留着吧。你应该留着。」转身离开。</td>
 					<td>他不解释。但他知道这是什么。他选择不说</td>
+			</tr>
+			<tr>
+					<td>F 区出口</td>
+					<td>同伴</td>
+					<td>「你上次说，只有十二个矿工。但我数到十三个名字。」</td>
+					<td>最后的矛盾引爆——委托人隐瞒了什么。矿工同伴是唯一能提出这个质疑的人</td>
 			</tr>
 	</tbody>
 </table></div>
@@ -759,6 +825,11 @@
 					<td>「矿石和空间稳定性有关」——但玩家不知道这意味着什么</td>
 			</tr>
 			<tr>
+					<td>B 区</td>
+					<td>营救同伴交互——简单的一个按键。但之后同伴是自主 AI，玩家不能直接控制他</td>
+					<td>同伴不是&quot;你的单位&quot;——他是独立的人。你只能救他，不能指挥他</td>
+			</tr>
+			<tr>
 					<td>C 区</td>
 					<td>菌丝宿主的 AI 行为：它们不躲避、不逃跑——朝你走来，像在拥抱</td>
 					<td>「它们不是在攻击你。它们想传染你。」</td>
@@ -767,6 +838,21 @@
 					<td>E 区 BOSS</td>
 					<td>孢子云掩体——但站在孢子云里超过一轮 → 行动条变慢 → 画面边缘出现菌丝纹路</td>
 					<td>「掩体不是安全的。它在改变你。」</td>
+			</tr>
+			<tr>
+					<td>E 区 BOSS</td>
+					<td>同伴在孢子云中比玩家更快受影响——他先被感染。但玩家如果也长时间待在孢子云里，也会开始减速</td>
+					<td>「它不是只针对他。它是针对每个人。他只是更快。」</td>
+			</tr>
+			<tr>
+					<td>E 区同伴反水</td>
+					<td>同伴 HP 50%，只用普攻，动作有延迟 → 他不难打。难的是&quot;想不想打&quot;</td>
+					<td>情感难度 &gt; 数值难度。这是&quot;你必须亲手打败你救的人&quot;——不是数值挑战，是情感选择</td>
+			</tr>
+			<tr>
+					<td>E 区同伴 HP=0</td>
+					<td>不放死亡红牌 → 特殊&quot;释放&quot;演出。这是唯一一次在战斗中出现此效果</td>
+					<td>和 C 区菌丝宿主的死亡规则一致。&ldquo;被释放&quot;在这个世界有统一的视觉语言</td>
 			</tr>
 			<tr>
 					<td>全局</td>
@@ -843,29 +929,86 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A 入口 ── 委托人给任务。
 </span></span><span class="line"><span class="cl">          「十二个矿工，两周前进入。找到他们——或者找到他们发生了什么。」
 </span></span><span class="line"><span class="cl">          三选一快速职业选择（战士 / 法师 / 游荡者）。
+</span></span><span class="line"><span class="cl">          玩家独自进入森林。
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">B 走廊 ── 营地残骸 + 矿工日记。
 </span></span><span class="line"><span class="cl">          「第三天。蘑菇在跟我说话……它在……记得我。」（字迹中断）
 </span></span><span class="line"><span class="cl">          帐篷里半杯水 + 菌丝在杯壁生长。
+</span></span><span class="line"><span class="cl">          营地残骸旁发现被困在菌丝中的矮人矿工——奄奄一息。
+</span></span><span class="line"><span class="cl">          交互解困 → 同伴加入：&#34;还有……六个人在里面。&#34;
 </span></span><span class="line"><span class="cl">          可选：矿石碎片（交互 → 网格闪烁）。
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">C 空地 ── 两个菌丝宿主（被寄生的矿工）。
+</span></span><span class="line"><span class="cl">          同伴参与战斗，协助清小怪。
 </span></span><span class="line"><span class="cl">          战斗 —— AI 不躲避，朝玩家走来。
 </span></span><span class="line"><span class="cl">          击败后：不倒地，孢子从体内释放，躯体萎缩成干壳。
 </span></span><span class="line"><span class="cl">          干壳上 2 秒后长出小蘑菇。
+</span></span><span class="line"><span class="cl">          同伴沉默两秒：&#34;那是哈洛德。他上个月还在教我磨镐头。&#34;
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">D 峡谷 ── 墙上螺旋纹路。
 </span></span><span class="line"><span class="cl">          靠近时：影子消失 0.3 秒，嗡鸣频率改变。
 </span></span><span class="line"><span class="cl">          纹路每 6 秒微弱发光一次（脉搏感）。
+</span></span><span class="line"><span class="cl">          同伴的影子也短暂消失。
+</span></span><span class="line"><span class="cl">          → &#34;我感觉……有人在摸我的后脑勺。但没有人。&#34;
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">E BOSS ── 真菌之主。
-</span></span><span class="line"><span class="cl">          第二阶段：嗡鸣变多重和声，网格线偶尔错位。
-</span></span><span class="line"><span class="cl">          孢子云掩体 —— 站太久会被缓慢感染。
+</span></span><span class="line"><span class="cl">E BOSS ── 真菌之主。Boss 战分为四个阶段：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          【阶段一：并肩（~60s）】
+</span></span><span class="line"><span class="cl">          玩家 + 矮人同伴 vs 真菌之主 + 2 小怪。
+</span></span><span class="line"><span class="cl">          矮人负责清小怪、顶前排。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          【阶段二：反水（~30s）】
+</span></span><span class="line"><span class="cl">          Boss 血量 &lt; 60% 且同伴在孢子云中停留 &gt; 1 轮时触发。
+</span></span><span class="line"><span class="cl">          同伴被感染 → 反水为敌人单位。
+</span></span><span class="line"><span class="cl">          HP 50%，只用普攻，动作有延迟（他在抵抗）。
+</span></span><span class="line"><span class="cl">          最后一句话：&#34;我不疼了。你也应该来。来和我们在一起。&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          【阶段三：释放（~20s）】
+</span></span><span class="line"><span class="cl">          同伴 HP → 0，不触发死亡红牌，改为&#34;释放&#34;演出：
+</span></span><span class="line"><span class="cl">          菌丝出体 → 孢子入空 → 倒地起身 → 状态清除。
+</span></span><span class="line"><span class="cl">          同伴退至场地边缘，不再参战。
+</span></span><span class="line"><span class="cl">          &#34;我看到了他们……哈洛德、老詹姆、卡里克……
+</span></span><span class="line"><span class="cl">           他们不疼。他们只是……回不来了。&#34;
+</span></span><span class="line"><span class="cl">          释放效果：真菌之主失神 1 轮 + 玩家获得&#34;觉醒&#34;buff（攻击力 +30%，2 轮）。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          【阶段四：收尾（~70s）】
+</span></span><span class="line"><span class="cl">          玩家 + buff vs 真菌之主 + 残余小怪。
 </span></span><span class="line"><span class="cl">          击败后掉落「脉动的晶核」：
 </span></span><span class="line"><span class="cl">          「此物在你手中脉动，仿佛记得什么。」
 </span></span><span class="line"><span class="cl">
@@ -873,6 +1016,11 @@
 </span></span><span class="line"><span class="cl">          「你是第三个回来的。前两个……记不太清了。」
 </span></span><span class="line"><span class="cl">          给报酬。袋子里有金币 + 一块微热的矿石。
 </span></span><span class="line"><span class="cl">          看晶核两秒：「留着吧。你应该留着。」转身离开。
+</span></span><span class="line"><span class="cl">          
+</span></span><span class="line"><span class="cl">          同伴（如果活着）：沉默。然后对委托人：
+</span></span><span class="line"><span class="cl">          「你上次说，只有十二个矿工。但我数到十三个名字。」
+</span></span><span class="line"><span class="cl">          委托人愣住。
+</span></span><span class="line"><span class="cl">          
 </span></span><span class="line"><span class="cl">          身后蘑菇朝向微微转向玩家。
 </span></span><span class="line"><span class="cl">          嗡鸣消失。完全安静。然后风声。
 </span></span><span class="line"><span class="cl">
