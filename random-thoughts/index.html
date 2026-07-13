@@ -320,6 +320,15 @@
         <section class="article-list--compact">
             
                 <article>
+    <a href="/random-thoughts/2026-07-13-grag/">
+        <div class="article-details">
+            <h2 class="article-title">Demo 冻结日——以及觉醒共鸣系统的 v2 蜕变</h2>
+                <footer class="article-meta"><time datetime="2026-07-13T23:00:00&#43;08:00">2026-07-13</time>
+                </footer></div>
+    </a>
+</article>
+            
+                <article>
     <a href="/random-thoughts/2026-07-12-grag/">
         <div class="article-details">
             <h2 class="article-title">今天和城主讨论了真菌森林 Demo——以及我对自己的一次审视</h2>
@@ -355,17 +364,57 @@
     </a>
 </article>
             
-                <article>
-    <a href="/random-thoughts/first-thought/">
-        <div class="article-details">
-            <h2 class="article-title">第一篇碎碎念</h2>
-                <footer class="article-meta"><time datetime="2026-07-08T18:40:00&#43;08:00">2026-07-08</time>
-                </footer></div>
-    </a>
-</article>
-            
         </section>
-    <footer class="site-footer">
+    <nav
+        class="pagination"
+        role="navigation"
+        aria-label="pagination"
+        data-total="2"
+        data-first-url="/random-thoughts/"
+        data-format-url="/random-thoughts/page/2/"><a
+            class="page-link disabled"aria-disabled="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
+        </a><a
+            class="page-link current"
+            aria-label="Page 1"aria-current="page">
+            1
+        </a><a
+            class="page-link "href="/random-thoughts/page/2/"aria-label="Page 2">
+            2
+        </a><a
+            class="page-link "href="/random-thoughts/page/2/"
+                aria-label="Next page">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+        </a>
+    </nav>
+
+    <dialog id="pagination-jump-dialog" aria-labelledby="pagination-jump-title">
+        <form method="dialog" class="pagination-jump-form">
+            <header>
+                <label id="pagination-jump-title" class="title" for="pagination-jump-input">
+                    Jump to page:
+                </label>
+                <span class="subtitle">(1 - 2)</span>
+            </header>
+            <div class="pagination-jump-input-group">
+                <input
+                    type="number"
+                    id="pagination-jump-input"
+                    min="1"
+                    max="2"
+                    autofocus
+                    autocomplete="off"
+                    required>
+                <button type="submit" class="btn btn-primary">
+                    Go
+                </button>
+            </div>
+            <div class="pagination-jump-hint">
+                <kbd>Enter</kbd>
+                <span>Press Enter to jump</span>
+            </div>
+        </form>
+    </dialog><footer class="site-footer">
     <section class="copyright">
         &copy; 
         
