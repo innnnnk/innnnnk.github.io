@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="正式版核心机制设计文档——隐藏数值、暴露行为、含混请求、不确定临界点。背包不是策略棋盘，是你与一群活着的东西共处的房间。">
+<title>觉醒共鸣系统 v2：行为驱动的叙事引擎</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/awakening-resonance-system-v2/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="觉醒共鸣系统 v2：行为驱动的叙事引擎">
+<meta property='og:description' content="正式版核心机制设计文档——隐藏数值、暴露行为、含混请求、不确定临界点。背包不是策略棋盘，是你与一群活着的东西共处的房间。">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/awakening-resonance-system-v2/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='核心机制' /><meta property='article:tag' content='系统设计' /><meta property='article:tag' content='山屋惊魂' /><meta property='article:tag' content='共鸣' /><meta property='article:tag' content='正式版' /><meta property='article:tag' content='v2' /><meta property='article:published_time' content='2026-07-13T23:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-13T23:00:00&#43;08:00'/>
+<meta name="twitter:title" content="觉醒共鸣系统 v2：行为驱动的叙事引擎">
+<meta name="twitter:description" content="正式版核心机制设计文档——隐藏数值、暴露行为、含混请求、不确定临界点。背包不是策略棋盘，是你与一群活着的东西共处的房间。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#一句话总结">一句话总结</a></li>
+    <li><a href="#设计来源山屋惊魂的不可知的临界点">设计来源：山屋惊魂的&quot;不可知的临界点&quot;</a></li>
+    <li><a href="#核心原则四不暴露">核心原则：四不暴露</a></li>
+    <li><a href="#核心机制一背包拓扑学保留">核心机制一：背包拓扑学（保留）</a></li>
+    <li><a href="#核心机制二觉醒物品不暴露属性只暴露行为">核心机制二：觉醒物品——不暴露属性，只暴露行为</a>
+      <ol>
+        <li><a href="#没有饥饿度没有共鸣度的ui">没有&quot;饥饿度&quot;、没有&quot;共鸣度&quot;的UI</a></li>
+        <li><a href="#物品会做什么暴露的行为">物品会做什么（暴露的行为）</a></li>
+        <li><a href="#玩家如何理解一件物品">玩家如何&quot;理解&quot;一件物品</a></li>
+      </ol>
+    </li>
+    <li><a href="#核心机制三异常事件系统替代数值阈值">核心机制三：异常事件系统——替代数值阈值</a>
+      <ol>
+        <li><a href="#删除的内容">删除的内容</a></li>
+        <li><a href="#新增的内容异常事件anomaly">新增的内容：异常事件（Anomaly）</a>
+          <ol>
+            <li><a href="#异常事件的类型">异常事件的类型</a></li>
+            <li><a href="#异常事件不累积成数值但玩家会感觉到">异常事件不累积成数值，但玩家会&quot;感觉到&quot;</a></li>
+            <li><a href="#觉醒事件的触发不是达到80而是某一次异常事件的质变">觉醒事件的触发：不是&quot;达到80&rdquo;，而是&quot;某一次异常事件的质变&quot;</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#核心机制四含混请求替代明确的条件-奖励">核心机制四：含混请求——替代明确的条件-奖励</a>
+      <ol>
+        <li><a href="#删除的内容-1">删除的内容</a></li>
+        <li><a href="#新增的内容含混请求oblique-request">新增的内容：含混请求（Oblique Request）</a>
+          <ol>
+            <li><a href="#请求的表现形式">请求的表现形式</a></li>
+            <li><a href="#因果是暧昧的不是合同式的">因果是暧昧的，不是合同式的</a></li>
+            <li><a href="#请求的满足与不满足不显示为明确的奖励惩罚">请求的&quot;满足&quot;与&quot;不满足&quot;不显示为明确的奖励/惩罚</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#核心机制五同化度隐藏数值暴露身体">核心机制五：同化度——隐藏数值，暴露身体</a>
+      <ol>
+        <li><a href="#同化度不在ui中显示">同化度不在UI中显示</a></li>
+        <li><a href="#同化阶段通过身体变化感知">同化阶段（通过身体变化感知）</a></li>
+        <li><a href="#同化度增长的来源对玩家隐藏设计者可见">同化度增长的来源（对玩家隐藏，设计者可见）</a></li>
+      </ol>
+    </li>
+    <li><a href="#核心机制六觉醒事件后的世界">核心机制六：觉醒事件后的世界</a>
+      <ol>
+        <li><a href="#觉醒事件后的变化玩家自己发现">觉醒事件后的变化（玩家自己发现）</a></li>
+        <li><a href="#同伴的变化">同伴的变化</a></li>
+      </ol>
+    </li>
+    <li><a href="#demo中的种子更新版">Demo中的种子（更新版）</a>
+      <ol>
+        <li><a href="#种子1晶核第一件觉醒物品的数据结构">种子1：晶核——第一件觉醒物品的数据结构</a></li>
+        <li><a href="#种子2铭牌计数器异常事件的视觉语言预演">种子2：铭牌计数器——异常事件的视觉语言预演</a></li>
+        <li><a href="#种子3孢子平台感知buff第一次身体变化">种子3：孢子平台感知buff——第一次&quot;身体变化&quot;</a></li>
+        <li><a href="#种子4同伴的反水觉醒事件的人工预演">种子4：同伴的反水——觉醒事件的&quot;人工预演&quot;</a></li>
+        <li><a href="#种子5boss战斗日志不可理解化的叙事训练">种子5：Boss战斗日志——不可理解化的叙事训练</a></li>
+      </ol>
+    </li>
+    <li><a href="#正式版展开路径从demo到完整游戏">正式版展开路径：从Demo到完整游戏</a>
+      <ol>
+        <li><a href="#act-1接触contact-觉醒物品的引入">Act 1：接触（Contact）—— 觉醒物品的引入</a></li>
+        <li><a href="#act-2渗透infiltration-与背包居民共处">Act 2：渗透（Infiltration）—— 与背包居民共处</a></li>
+        <li><a href="#act-3融合fusion-最终选择">Act 3：融合（Fusion）—— 最终选择</a></li>
+      </ol>
+    </li>
+    <li><a href="#技术实现估算更新版">技术实现估算（更新版）</a>
+      <ol>
+        <li><a href="#核心系统">核心系统</a></li>
+        <li><a href="#总评估">总评估</a></li>
+      </ol>
+    </li>
+    <li><a href="#与现有世界观的契合度">与现有世界观的契合度</a>
+      <ol>
+        <li><a href="#巨兽之梦">巨兽之梦</a></li>
+        <li><a href="#25d纸片人">2.5D纸片人</a></li>
+        <li><a href="#冰山原则">冰山原则</a></li>
+      </ol>
+    </li>
+    <li><a href="#设计原则检查v2更新">设计原则检查（v2更新）</a></li>
+    <li><a href="#下一步建议">下一步建议</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/awakening-resonance-system-v2/">觉醒共鸣系统 v2：行为驱动的叙事引擎</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            正式版核心机制设计文档——隐藏数值、暴露行为、含混请求、不确定临界点。背包不是策略棋盘，是你与一群活着的东西共处的房间。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-07-13T23:00:00&#43;08:00'>2026-07-13</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#一句话总结">一句话总结</a></li>
+    <li><a href="#设计来源山屋惊魂的不可知的临界点">设计来源：山屋惊魂的&quot;不可知的临界点&quot;</a></li>
+    <li><a href="#核心原则四不暴露">核心原则：四不暴露</a></li>
+    <li><a href="#核心机制一背包拓扑学保留">核心机制一：背包拓扑学（保留）</a></li>
+    <li><a href="#核心机制二觉醒物品不暴露属性只暴露行为">核心机制二：觉醒物品——不暴露属性，只暴露行为</a>
+      <ol>
+        <li><a href="#没有饥饿度没有共鸣度的ui">没有&quot;饥饿度&quot;、没有&quot;共鸣度&quot;的UI</a></li>
+        <li><a href="#物品会做什么暴露的行为">物品会做什么（暴露的行为）</a></li>
+        <li><a href="#玩家如何理解一件物品">玩家如何&quot;理解&quot;一件物品</a></li>
+      </ol>
+    </li>
+    <li><a href="#核心机制三异常事件系统替代数值阈值">核心机制三：异常事件系统——替代数值阈值</a>
+      <ol>
+        <li><a href="#删除的内容">删除的内容</a></li>
+        <li><a href="#新增的内容异常事件anomaly">新增的内容：异常事件（Anomaly）</a>
+          <ol>
+            <li><a href="#异常事件的类型">异常事件的类型</a></li>
+            <li><a href="#异常事件不累积成数值但玩家会感觉到">异常事件不累积成数值，但玩家会&quot;感觉到&quot;</a></li>
+            <li><a href="#觉醒事件的触发不是达到80而是某一次异常事件的质变">觉醒事件的触发：不是&quot;达到80&rdquo;，而是&quot;某一次异常事件的质变&quot;</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#核心机制四含混请求替代明确的条件-奖励">核心机制四：含混请求——替代明确的条件-奖励</a>
+      <ol>
+        <li><a href="#删除的内容-1">删除的内容</a></li>
+        <li><a href="#新增的内容含混请求oblique-request">新增的内容：含混请求（Oblique Request）</a>
+          <ol>
+            <li><a href="#请求的表现形式">请求的表现形式</a></li>
+            <li><a href="#因果是暧昧的不是合同式的">因果是暧昧的，不是合同式的</a></li>
+            <li><a href="#请求的满足与不满足不显示为明确的奖励惩罚">请求的&quot;满足&quot;与&quot;不满足&quot;不显示为明确的奖励/惩罚</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#核心机制五同化度隐藏数值暴露身体">核心机制五：同化度——隐藏数值，暴露身体</a>
+      <ol>
+        <li><a href="#同化度不在ui中显示">同化度不在UI中显示</a></li>
+        <li><a href="#同化阶段通过身体变化感知">同化阶段（通过身体变化感知）</a></li>
+        <li><a href="#同化度增长的来源对玩家隐藏设计者可见">同化度增长的来源（对玩家隐藏，设计者可见）</a></li>
+      </ol>
+    </li>
+    <li><a href="#核心机制六觉醒事件后的世界">核心机制六：觉醒事件后的世界</a>
+      <ol>
+        <li><a href="#觉醒事件后的变化玩家自己发现">觉醒事件后的变化（玩家自己发现）</a></li>
+        <li><a href="#同伴的变化">同伴的变化</a></li>
+      </ol>
+    </li>
+    <li><a href="#demo中的种子更新版">Demo中的种子（更新版）</a>
+      <ol>
+        <li><a href="#种子1晶核第一件觉醒物品的数据结构">种子1：晶核——第一件觉醒物品的数据结构</a></li>
+        <li><a href="#种子2铭牌计数器异常事件的视觉语言预演">种子2：铭牌计数器——异常事件的视觉语言预演</a></li>
+        <li><a href="#种子3孢子平台感知buff第一次身体变化">种子3：孢子平台感知buff——第一次&quot;身体变化&quot;</a></li>
+        <li><a href="#种子4同伴的反水觉醒事件的人工预演">种子4：同伴的反水——觉醒事件的&quot;人工预演&quot;</a></li>
+        <li><a href="#种子5boss战斗日志不可理解化的叙事训练">种子5：Boss战斗日志——不可理解化的叙事训练</a></li>
+      </ol>
+    </li>
+    <li><a href="#正式版展开路径从demo到完整游戏">正式版展开路径：从Demo到完整游戏</a>
+      <ol>
+        <li><a href="#act-1接触contact-觉醒物品的引入">Act 1：接触（Contact）—— 觉醒物品的引入</a></li>
+        <li><a href="#act-2渗透infiltration-与背包居民共处">Act 2：渗透（Infiltration）—— 与背包居民共处</a></li>
+        <li><a href="#act-3融合fusion-最终选择">Act 3：融合（Fusion）—— 最终选择</a></li>
+      </ol>
+    </li>
+    <li><a href="#技术实现估算更新版">技术实现估算（更新版）</a>
+      <ol>
+        <li><a href="#核心系统">核心系统</a></li>
+        <li><a href="#总评估">总评估</a></li>
+      </ol>
+    </li>
+    <li><a href="#与现有世界观的契合度">与现有世界观的契合度</a>
+      <ol>
+        <li><a href="#巨兽之梦">巨兽之梦</a></li>
+        <li><a href="#25d纸片人">2.5D纸片人</a></li>
+        <li><a href="#冰山原则">冰山原则</a></li>
+      </ol>
+    </li>
+    <li><a href="#设计原则检查v2更新">设计原则检查（v2更新）</a></li>
+    <li><a href="#下一步建议">下一步建议</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="一句话总结">一句话总结
+</h2>
+    <blockquote>
+        <p><strong>背包不是棋盘。你管理的不是最优解，是一群越来越吵的室友。你越来越不确定——到底是你拥有它们，还是它们正在习惯你。</strong></p>
+
+    </blockquote>
+<hr>
+<h2 id="设计来源山屋惊魂的不可知的临界点">设计来源：山屋惊魂的&quot;不可知的临界点&quot;
+</h2><p>《山屋惊魂》最精妙的设计不是&quot;叛徒机制&quot;，而是<strong>临界点的不可知性</strong>。</p>
+<p>每张预兆牌翻开时，玩家掷6颗骰子。如果点数小于场上预兆牌数量，&ldquo;作祟&quot;触发。问题是：场上已经有4张预兆牌时，你翻开第5张——掷骰子。你心里算：6颗骰子平均期望是21点，减5张牌是16，远大于4……但你还是可能掷出3。2%的概率。而它可能就在这一刻发生。</p>
+
+    <blockquote>
+        <p><strong>你知道它越来越近了。但你不知道是哪一张牌、哪一次掷骰、哪一步跨过门槛。</strong></p>
+
+    </blockquote>
+<p>这种&quot;不可知但可感知&quot;的张力，是觉醒共鸣系统的核心锚点。我们不做精确的数值计量，不做&quot;距离临界点还差23点&quot;的UI。我们让玩家<strong>通过行为来感知</strong>——物品在动、描述在变、世界在回应——但永远不知道&quot;下一次长休会不会就是那一刻&rdquo;。</p>
+<hr>
+<h2 id="核心原则四不暴露">核心原则：四不暴露
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>不暴露</th>
+					<th>原因</th>
+					<th>玩家如何感知</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>不暴露共鸣值</strong></td>
+					<td>数值是安全的。安全消除恐惧</td>
+					<td>通过物品行为、环境异常、身体变化</td>
+			</tr>
+			<tr>
+					<td><strong>不暴露物品属性</strong></td>
+					<td>饥饿度、共鸣度是设计者的语言，不是玩家的</td>
+					<td>通过观察：&ldquo;它总是滚向左边&rdquo;、&ldquo;它碰到铭牌时会发光&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>不暴露临界点</strong></td>
+					<td>知道阈值=可以控制=可以优化=没有恐惧</td>
+					<td>通过&quot;异常事件&quot;的频率感知&quot;越来越近了&quot;</td>
+			</tr>
+			<tr>
+					<td><strong>不暴露因果关系</strong></td>
+					<td>明确的因果=合同=没有暧昧=没有叙事张力</td>
+					<td>玩家自己推断：&ldquo;上次它靠近铭牌后，我受伤时好像没那么痛&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="核心机制一背包拓扑学保留">核心机制一：背包拓扑学（保留）
+</h2><p>背包是二维网格。这一点不变——<strong>位置有意义</strong>。</p>
+<p>但这不是策略棋盘。我们不鼓励玩家&quot;为了最优共鸣而排列&quot;。网格的存在是为了<strong>让物品有地方去</strong>——让它们的移动、相邻、分离都成为可见的叙事行为。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌────┬────┬────┬────┬────┬────┐
+</span></span><span class="line"><span class="cl">│ 剑 │ 盾 │ 🍄 │ 空 │ 空 │ 空 │
+</span></span><span class="line"><span class="cl">├────┼────┼────┼────┼────┼────┤
+</span></span><span class="line"><span class="cl">│ 空 │ 空 │ 🍄 │ 空 │ 空 │ 空 │  ← 两个蘑菇相邻。它们会做什么？
+</span></span><span class="line"><span class="cl">├────┼────┼────┼────┼────┼────┤
+</span></span><span class="line"><span class="cl">│ 空 │ 空 │ 空 │ 空 │ 空 │ 空 │
+</span></span><span class="line"><span class="cl">└────┴────┴────┴────┴────┴────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>规则：</strong></p>
+<ol>
+<li>觉醒物品各自占据一格，不堆叠</li>
+<li>普通物品可堆叠，不触发相邻行为</li>
+<li>相邻 = 上下左右</li>
+<li>玩家可以手动移动觉醒物品，但<strong>移动后该物品进入&quot;休眠&quot;——若干次长休内不再自主移动</strong>（玩家干预是有代价的：你强迫了它，它暂时失去活力）</li>
+</ol>
+<hr>
+<h2 id="核心机制二觉醒物品不暴露属性只暴露行为">核心机制二：觉醒物品——不暴露属性，只暴露行为
+</h2><h3 id="没有饥饿度没有共鸣度的ui">没有&quot;饥饿度&quot;、没有&quot;共鸣度&quot;的UI
+</h3><p>玩家打开背包，看不到任何数字。看不到&quot;饥饿度：7/10&quot;。看不到&quot;共鸣度：5&quot;。</p>
+<p>玩家看到的只有：<strong>行为</strong>。</p>
+<h3 id="物品会做什么暴露的行为">物品会做什么（暴露的行为）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>行为</th>
+					<th>玩家观察</th>
+					<th>含义（玩家自己推断）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>滚动</strong></td>
+					<td>长休后，物品在背包里移动了一格</td>
+					<td>&ldquo;它想靠近/远离什么&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>脉动</strong></td>
+					<td>物品边缘有微弱的光效，频率不稳定</td>
+					<td>&ldquo;它很活跃&quot;或&quot;它很紧张&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>变色</strong></td>
+					<td>物品图标的色调微微偏移（偏暖/偏冷）</td>
+					<td>&ldquo;它喜欢/不喜欢现在的邻居&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>低语</strong></td>
+					<td>查看物品时，描述文字偶尔变化</td>
+					<td>&ldquo;它想告诉我什么&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>发热</strong></td>
+					<td>战斗中使用该物品时，屏幕边缘有热扭曲</td>
+					<td>&ldquo;它很在乎这场战斗&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>沉默</strong></td>
+					<td>物品连续多次长休不移动，光效消失</td>
+					<td>&ldquo;它休眠了&quot;或&quot;它不高兴了&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="玩家如何理解一件物品">玩家如何&quot;理解&quot;一件物品
+</h3><p>没有属性面板。玩家通过<strong>记录和观察</strong>来推断：</p>
+
+    <blockquote>
+        <p>「晶核已经三次长休后朝左边滚动了。左边是铭牌。它喜欢铭牌？还是铭牌吸引了它？上次它碰到铭牌后，铭牌上的名字短暂显示了一秒。这是……好事吗？」</p>
+
+    </blockquote>
+<p>玩家会形成<strong>私人假设</strong>。这些假设不一定对——但玩家会据此行动。而行动会产生后果。而后果会模糊地、暧昧地反馈给玩家。</p>
+<p>这就是<strong>认知的代价</strong>：理解 = 异化。你以为你理解了它，但也许只是它让你以为你理解了它。</p>
+<hr>
+<h2 id="核心机制三异常事件系统替代数值阈值">核心机制三：异常事件系统——替代数值阈值
+</h2><h3 id="删除的内容">删除的内容
+</h3><ul>
+<li><del>共鸣值 20/40/60/80/100 的精确阈值表</del></li>
+<li><del>总共鸣值的计算公式</del></li>
+<li><del>&ldquo;距离 Level 3 还有 12 点&quot;的UI提示</del></li>
+</ul>
+<h3 id="新增的内容异常事件anomaly">新增的内容：异常事件（Anomaly）
+</h3><p><strong>异常事件</strong>是玩家可以直接观察到的&quot;不对劲&rdquo;。它们不精确、不累积成一个进度条。它们只是<strong>发生</strong>，然后留下痕迹。</p>
+<h4 id="异常事件的类型">异常事件的类型
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>触发条件</th>
+					<th>玩家观察</th>
+					<th>频率</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>物品移动</strong></td>
+					<td>长休后，觉醒物品移动一格</td>
+					<td>打开背包，发现位置变了</td>
+					<td>低频→高频（随着游戏推进）</td>
+			</tr>
+			<tr>
+					<td><strong>描述变化</strong></td>
+					<td>查看觉醒物品时，文字有概率不同</td>
+					<td>同一件物品，不同时间看，描述不一样</td>
+					<td>始终低概率，但随进程增加</td>
+			</tr>
+			<tr>
+					<td><strong>战斗异常</strong></td>
+					<td>战斗日志中出现不属于战斗的文本</td>
+					<td>&ldquo;你打了它。它知道是你打的。&rdquo;</td>
+					<td>极低频→中频</td>
+			</tr>
+			<tr>
+					<td><strong>环境异常</strong></td>
+					<td>场景中出现之前没有的东西</td>
+					<td>墙壁上多了一条菌丝脉络，但不确定是新出现的还是之前没注意到</td>
+					<td>极低频</td>
+			</tr>
+			<tr>
+					<td><strong>身体异常</strong></td>
+					<td>玩家角色在非战斗状态下出现变化</td>
+					<td>底座阴影闪烁、视野边缘短暂模糊</td>
+					<td>极低频→低频</td>
+			</tr>
+			<tr>
+					<td><strong>NPC异常</strong></td>
+					<td>NPC对话中出现不属于其记忆的内容</td>
+					<td>一个普通商人突然说：&ldquo;你背包里的那个……它还好吗？&rdquo;</td>
+					<td>极低频</td>
+			</tr>
+	</tbody>
+</table></div>
+<h4 id="异常事件不累积成数值但玩家会感觉到">异常事件不累积成数值，但玩家会&quot;感觉到&quot;
+</h4><p>没有&quot;异常事件计数器：17/50&quot;。没有进度条。</p>
+<p>但玩家会<strong>主观地</strong>感受到：</p>
+<ul>
+<li>早期游戏：&ldquo;偶尔会有些奇怪的事，但很少&rdquo;</li>
+<li>中期游戏：&ldquo;每次长休都要检查背包，有些东西在动&rdquo;</li>
+<li>后期游戏：&ldquo;战斗日志里那些不属于战斗的文本越来越频繁了&rdquo;</li>
+</ul>
+<p><strong>这是主观的、不可靠的感知。</strong> 玩家可能夸大，可能忽略。但这正是我们想要的——&ldquo;认知的代价&quot;意味着你不再确定你的感知是准确的。</p>
+<h4 id="觉醒事件的触发不是达到80而是某一次异常事件的质变">觉醒事件的触发：不是&quot;达到80&rdquo;，而是&quot;某一次异常事件的质变&quot;
+</h4><p>觉醒事件（山屋惊魂的&quot;作祟&quot;）不是由精确数值触发的，而是由**异常事件的&quot;质变&quot;**触发的。</p>
+<p>具体设计：</p>
+<ul>
+<li>游戏后台有一个<strong>觉醒事件候选池</strong>。每次异常事件发生时，该池获得一个&quot;候选值&quot;（这个值玩家不可见，设计者也不需要在UI中暴露）。</li>
+<li>当候选池积累到一定程度，<strong>下一次异常事件会自动升级为觉醒事件</strong>——但不是确定的。它可能在第5次异常事件时发生，也可能在第20次。设计者可以调整概率曲线，让它<strong>在大多数玩家的第10-15次异常事件时发生</strong>。</li>
+<li>关键：<strong>玩家永远无法知道&quot;下一次会不会是觉醒事件&quot;</strong>。就像山屋惊魂中翻开预兆牌后的掷骰——你知道概率在增加，但你不知道这一次会不会触发。</li>
+</ul>
+<p><strong>觉醒事件的演出：</strong></p>
+<ol>
+<li>一次异常事件发生时（例如：长休后打开背包，发现物品移动），但这次不是普通的移动——</li>
+<li>屏幕剧烈震动</li>
+<li>所有觉醒物品同时发光</li>
+<li>玩家听到/看到：「你听到了。我们等你很久了。」</li>
+<li>从这一刻起，物品的&quot;请求&quot;开始出现，游戏规则进入第二阶段</li>
+</ol>
+<hr>
+<h2 id="核心机制四含混请求替代明确的条件-奖励">核心机制四：含混请求——替代明确的条件-奖励
+</h2><h3 id="删除的内容-1">删除的内容
+</h3><ul>
+<li><del>&ldquo;晶核请求：靠近铭牌。满足后：治疗效果+100%&quot;</del></li>
+<li><del>&ldquo;菌丝藤蔓请求：处于中心。满足后：攻击附加中毒&rdquo;</del></li>
+<li><del>明确的条件-奖励结构</del></li>
+</ul>
+<h3 id="新增的内容含混请求oblique-request">新增的内容：含混请求（Oblique Request）
+</h3><p>物品的&quot;请求&quot;不是以任务形式出现的。它们是以<strong>行为、暗示、暧昧的文本</strong>出现的。玩家需要猜测它们想要什么，而猜测本身可能就是一种异化。</p>
+<h4 id="请求的表现形式">请求的表现形式
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>形式</th>
+					<th>例子</th>
+					<th>玩家的解读困境</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>物理行为</strong></td>
+					<td>晶核在背包里朝铭牌方向滚了一下，碰到后铭牌上的名字短暂显示了一秒</td>
+					<td>&ldquo;它想要铭牌？还是它在回应铭牌？如果我让它们分开，铭牌还会发光吗？&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>描述暗示</strong></td>
+					<td>物品描述从&quot;它在你手中脉动&quot;变成&quot;它在你手中发冷。它想念热的东西&rdquo;</td>
+					<td>&ldquo;热的东西？火把？另一个脉动物品？我的体温？&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>环境回应</strong></td>
+					<td>战斗中使用该物品后，场景中的菌丝脉络短暂变亮</td>
+					<td>&ldquo;它喜欢战斗？还是它喜欢菌丝？还是两者只是巧合？&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>身体反馈</strong></td>
+					<td>玩家带着这件物品进入某个区域时，屏幕边缘有微弱的温暖感</td>
+					<td>&ldquo;它在指引我去哪里？还是我自己在想象？&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>NPC提及</strong></td>
+					<td>某个NPC看到玩家的背包时说：&ldquo;你……把它们放得很近。你确定吗？&rdquo;</td>
+					<td>&ldquo;很近？哪些？为什么不确定？&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<h4 id="因果是暧昧的不是合同式的">因果是暧昧的，不是合同式的
+</h4><p><strong>传统设计（我们要避免的）：</strong></p>
+
+    <blockquote>
+        <p>条件：晶核与铭牌相邻。结果：治疗效果+100%。玩家看到buff图标。明确、可预测、可优化。</p>
+
+    </blockquote>
+<p><strong>我们的设计：</strong></p>
+
+    <blockquote>
+        <p>晶核碰到铭牌后，铭牌上的名字短暂显示。下次战斗中，玩家受到伤害时，晶核微微发热——伤害似乎减轻了一点。但玩家不确定：这是晶核的效果？还是铭牌的？还是它们在一起的某种&quot;化学反应&quot;？还是只是那次战斗的随机波动？</p>
+
+    </blockquote>
+<p><strong>玩家会自己建立因果假设。</strong> 但这些假设：</p>
+<ul>
+<li>可能对了</li>
+<li>可能错了</li>
+<li>可能部分对了但理由错了</li>
+<li>可能对的因果在不同时间效果不同（因为物品也在&quot;变化&quot;）</li>
+</ul>
+<h4 id="请求的满足与不满足不显示为明确的奖励惩罚">请求的&quot;满足&quot;与&quot;不满足&quot;不显示为明确的奖励/惩罚
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>玩家行为</th>
+					<th>物品的可能回应</th>
+					<th>玩家感知</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>让晶核靠近铭牌</td>
+					<td>晶核脉动频率增加；战斗中偶尔有微弱热感</td>
+					<td>&ldquo;它们好像……更开心了？&rdquo;</td>
+			</tr>
+			<tr>
+					<td>让晶核远离铭牌</td>
+					<td>晶核进入沉默状态；描述变成&quot;它在你手中发冷&quot;</td>
+					<td>&ldquo;它好像……不高兴了？&rdquo;</td>
+			</tr>
+			<tr>
+					<td>晶核和另一个觉醒物品相邻</td>
+					<td>两者都脉动，但频率不协调；屏幕边缘有轻微闪烁</td>
+					<td>&ldquo;它们在……打架？还是在聊天？&rdquo;</td>
+			</tr>
+			<tr>
+					<td>晶核独处</td>
+					<td>晶核缓慢、稳定地脉动；没有异常事件</td>
+					<td>&ldquo;它好像……睡着了？&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>没有明确的+100%或-50%。</strong> 只有模糊的感觉：&ldquo;它好像更喜欢这样&quot;或&quot;它好像不喜欢那样&rdquo;。玩家会据此调整，但永远不会100%确定自己的调整是&quot;正确&quot;的。</p>
+<hr>
+<h2 id="核心机制五同化度隐藏数值暴露身体">核心机制五：同化度——隐藏数值，暴露身体
+</h2><h3 id="同化度不在ui中显示">同化度不在UI中显示
+</h3><p>玩家看不到&quot;同化度：47%&quot;。没有任何进度条、数字、百分比。</p>
+<p>玩家看到的是<strong>身体的变化</strong>——分阶段出现，不可逆转。</p>
+<h3 id="同化阶段通过身体变化感知">同化阶段（通过身体变化感知）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>阶段</th>
+					<th>身体变化</th>
+					<th>玩家如何感知</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>** untouched**</td>
+					<td>无</td>
+					<td>正常。Demo阶段</td>
+			</tr>
+			<tr>
+					<td><strong>接触</strong></td>
+					<td>长休时偶尔看到不属于自己记忆的闪回（画面片段，0.5秒）</td>
+					<td>&ldquo;刚才那是什么？……算了，可能是bug。&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>渗透</strong></td>
+					<td>底座阴影偶尔在静止时轻微抖动；视野边缘有极淡的菌丝纹理</td>
+					<td>&ldquo;我注意到我的角色影子不太对……但好像只是偶尔。&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>融合</strong></td>
+					<td>能听到&quot;耳语&quot;——战斗日志中的异常文本；某些NPC会避开你</td>
+					<td>&ldquo;那个商人以前会说话，现在只看我一眼就转身走了。&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>节点</strong></td>
+					<td>能看到所有隐藏的菌丝网络节点；普通治疗对你效果减半；存读档时位置可能偏移</td>
+					<td>&ldquo;我能看到……这些蓝色的路径？它们一直在那里吗？&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="同化度增长的来源对玩家隐藏设计者可见">同化度增长的来源（对玩家隐藏，设计者可见）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>事件</th>
+					<th>设计者端的影响</th>
+					<th>玩家端的感知</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>每次觉醒事件</td>
+					<td>大幅推进</td>
+					<td>&ldquo;那次事件之后，一切都变了&rdquo;</td>
+			</tr>
+			<tr>
+					<td>每次使用觉醒物品</td>
+					<td>小幅推进</td>
+					<td>无明显感知，但长期使用后&quot;身体变化&quot;会累积</td>
+			</tr>
+			<tr>
+					<td>每次长休携带觉醒物品</td>
+					<td>小幅推进</td>
+					<td>同上</td>
+			</tr>
+			<tr>
+					<td>进入菌丝网络节点</td>
+					<td>大幅推进</td>
+					<td>进入特定区域后，感觉&quot;更近了&quot;</td>
+			</tr>
+			<tr>
+					<td>与同化NPC互动</td>
+					<td>中幅推进</td>
+					<td>与某些NPC对话后，感觉&quot;有什么东西传过来了&quot;</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计者可以通过调整这些事件的频率和幅度，来控制同化度增长的速度。</strong> 但玩家始终只是通过&quot;身体变化&quot;来感知，没有数字。</p>
+<hr>
+<h2 id="核心机制六觉醒事件后的世界">核心机制六：觉醒事件后的世界
+</h2><p>觉醒事件（山屋惊魂的&quot;作祟触发&quot;）发生后，游戏不会弹出一个教程说&quot;现在规则改变了&quot;。规则改变是通过<strong>行为</strong>来体现的。</p>
+<h3 id="觉醒事件后的变化玩家自己发现">觉醒事件后的变化（玩家自己发现）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>变化前</th>
+					<th>变化后</th>
+					<th>玩家如何发现</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>觉醒物品偶尔移动</td>
+					<td>觉醒物品<strong>每次长休都移动</strong>，且移动路径更明确</td>
+					<td>打开背包，发现它们的位置越来越有&quot;意图&quot;</td>
+			</tr>
+			<tr>
+					<td>物品描述偶尔变化</td>
+					<td>物品描述<strong>频繁变化</strong>，且开始出现&quot;第二人称&quot;——物品直接对你说话</td>
+					<td>查看物品时，描述变成「你为什么让我离它那么远？」</td>
+			</tr>
+			<tr>
+					<td>战斗中偶尔有异常文本</td>
+					<td>战斗日志中<strong>频繁出现</strong>不属于战斗的文本，且开始出现&quot;指导&quot;——告诉你敌人的弱点</td>
+					<td>&ldquo;它怕热。你手里有热的吗？&quot;——玩家不确认这是否真的，但如果尝试使用火系攻击，发现确实有效……</td>
+			</tr>
+			<tr>
+					<td>环境偶尔有异常</td>
+					<td>环境中<strong>频繁出现</strong>新的菌丝路径，且这些路径在地图上形成&quot;网络&rdquo;</td>
+					<td>探索时发现自己能看到之前看不到的路径，通往隐藏区域</td>
+			</tr>
+			<tr>
+					<td>物品没有明确请求</td>
+					<td>物品开始<strong>主动靠近你关心的事物</strong>——例如：在战斗前，晶核滚向你的武器</td>
+					<td>&ldquo;它好像……知道我要战斗？&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="同伴的变化">同伴的变化
+</h3><p>觉醒事件后，同伴（如果有）会开始&quot;听到&quot;一些东西：</p>
+<ul>
+<li>同伴在战斗前突然说：&ldquo;它说……从左边攻击。&rdquo;</li>
+<li>同伴在探索时说：&ldquo;你有没有觉得……墙壁在呼吸？&rdquo;</li>
+<li>同伴看你的眼神变了：不是不信任，是<strong>不确定</strong>——不确定你还是不是&quot;你&quot;。</li>
+</ul>
+<hr>
+<h2 id="demo中的种子更新版">Demo中的种子（更新版）
+</h2><p>真菌森林Demo是玩家<strong>第一次接触</strong>这个系统。我们不解释，只种下<strong>疑问</strong>。但这些疑问会在正式版中<strong>被重新激活</strong>。</p>
+<h3 id="种子1晶核第一件觉醒物品的数据结构">种子1：晶核——第一件觉醒物品的数据结构
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ItemID: &#34;CrystalCore_FungalLord&#34;
+</span></span><span class="line"><span class="cl">Type: Awakened
+</span></span><span class="line"><span class="cl">BehaviorSet: &#34;CrystalCore_Behavior_v1&#34;
+</span></span><span class="line"><span class="cl">DescriptionPool:
+</span></span><span class="line"><span class="cl">  - &#34;此物在你手中脉动。你拿着它，但它比你先到。&#34;
+</span></span><span class="line"><span class="cl">  - &#34;此物在你手中脉动。它记得你。它记得你之前的样子。&#34;
+</span></span><span class="line"><span class="cl">  - &#34;此物在你手中脉动。它正在学你。你也在学它。&#34;
+</span></span><span class="line"><span class="cl">  - &#34;此物在你手中脉动。它想……更近一点。&#34;
+</span></span><span class="line"><span class="cl">RollDirection: Left（设计者可配置，但玩家不可见）
+</span></span><span class="line"><span class="cl">TargetPreference: &#34;ResonantItem&#34;（设计者可配置，但玩家不可见）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Demo中的行为（玩家可能注意到，也可能错过）：</strong></p>
+<ul>
+<li>晶核在背包中<strong>不堆叠</strong></li>
+<li>如果玩家同时有&quot;孢子平台感知buff&quot;（一件微弱的觉醒物品），晶核在Demo中会<strong>自动朝它靠近一格</strong>（如果玩家长休过——但Demo中只有一次长休机会，在Boss战后，所以大多数玩家不会看到这个行为）</li>
+<li>打开背包时，晶核边缘有<strong>微弱的脉动</strong>——大多数玩家会以为是&quot;发光道具的普通效果&quot;</li>
+<li>如果玩家多次查看晶核的描述（在Demo中不太可能，但二周目可能），有<strong>低概率</strong>看到变异版本</li>
+</ul>
+<h3 id="种子2铭牌计数器异常事件的视觉语言预演">种子2：铭牌计数器——异常事件的视觉语言预演
+</h3><p>Demo中的铭牌计数器视觉污染（11→12→11）是<strong>异常事件系统的视觉语言</strong>：</p>
+<ul>
+<li>数字&quot;说谎&quot; = 物品/系统在&quot;自主行动&quot;</li>
+<li>快速一闪（回声裂隙）vs 缓慢呼吸（主线）= 不同的&quot;行为模式&quot;</li>
+<li>玩家可能觉得&quot;这是bug&quot;——但正式版中他们会意识到&quot;这是它在动&quot;</li>
+</ul>
+<h3 id="种子3孢子平台感知buff第一次身体变化">种子3：孢子平台感知buff——第一次&quot;身体变化&quot;
+</h3><p>Demo中，听完冥想者的文本后获得&quot;感知&quot;buff（命中率+5%）。</p>
+<p><strong>正式版中，这个buff的真实来源是：</strong> 玩家接触了一个低活跃度的觉醒节点，网络向玩家传递了微弱的感知能力。在Demo中它只是一个buff图标——在正式版中，玩家会意识到&quot;我当时已经开始被渗透了，只是不知道&quot;。</p>
+<p><strong>Demo中的埋设：</strong> 获得这个buff后，玩家在后续战斗中，有<strong>极低概率</strong>（5%）看到异常战斗日志文本（例如：「你打中了它。它知道是你打的。」）。大多数玩家不会触发。触发的玩家会困惑，然后忘记。但在正式版中，他们会想起：&ldquo;原来第一次就在了。&rdquo;</p>
+<h3 id="种子4同伴的反水觉醒事件的人工预演">种子4：同伴的反水——觉醒事件的&quot;人工预演&quot;
+</h3><p>Demo中同伴在Boss战第二阶段被感染、反水、释放。这是<strong>觉醒事件的&quot;人工演示&quot;</strong>：</p>
+<ul>
+<li>同伴被感染 = 他的&quot;同化度&quot;在孢子云中激增</li>
+<li>同伴反水 = 他的觉醒事件（从人类视角切换为网络视角）</li>
+<li>同伴被释放 = 通过外力干预，将他从网络中拉回</li>
+</ul>
+<p><strong>正式版中，玩家自己将经历这个过程。</strong> 同伴的反水是让玩家在情感上理解&quot;被改变&quot;是什么感觉——不是获得力量，而是<strong>被其他东西借用你的身体</strong>。</p>
+<h3 id="种子5boss战斗日志不可理解化的叙事训练">种子5：Boss战斗日志——不可理解化的叙事训练
+</h3><p>Demo中Boss战斗日志使用&quot;想起了疼痛&quot;、&ldquo;忘记了防御&quot;等表述。这是在<strong>训练玩家接受一种非人类的叙事语言</strong>。</p>
+<p>正式版中，觉醒物品的描述、网络节点的文本、同化后的对话选项——全部使用这种语言。Demo是在&quot;教&quot;玩家一种阅读方式：&ldquo;这不是bug，这是另一种说话方式。&rdquo;</p>
+<hr>
+<h2 id="正式版展开路径从demo到完整游戏">正式版展开路径：从Demo到完整游戏
+</h2><h3 id="act-1接触contact-觉醒物品的引入">Act 1：接触（Contact）—— 觉醒物品的引入
+</h3><p><strong>目标：</strong> 让玩家意识到&quot;有些物品不一样&rdquo;——不是通过教程，而是通过&quot;不对&quot;</p>
+<p><strong>内容：</strong></p>
+<ul>
+<li>离开真菌森林后，晶核在背包中开始出现<strong>行为异常</strong>（描述变化、偶尔移动）</li>
+<li>玩家获得第二件觉醒物品（主线任务或支线探索）</li>
+<li>第一次<strong>异常事件</strong>发生——玩家打开背包，发现物品位置变了。可能是自己记错了？</li>
+<li>玩家开始<strong>观察</strong>。没有教程说&quot;注意观察物品行为&quot;。玩家只是开始觉得&quot;需要检查背包&quot;</li>
+<li>第一次<strong>含混请求</strong>出现——晶核的描述变成&quot;它想更近一点&quot;。玩家猜测：更近什么？然后发现它朝某个方向移动了。也许它想靠近那个？</li>
+</ul>
+<p><strong>Act 1的结束标志：</strong> 第一次觉醒事件触发。玩家从&quot;有些不对劲&quot;进入&quot;规则改变了&quot;。</p>
+<h3 id="act-2渗透infiltration-与背包居民共处">Act 2：渗透（Infiltration）—— 与背包居民共处
+</h3><p><strong>目标：</strong> 让玩家与背包中的物品建立&quot;关系&quot;——一种不确定、不平等、但真实的关系</p>
+<p><strong>内容：</strong></p>
+<ul>
+<li>觉醒物品数量增加，异常事件频率增加</li>
+<li>物品开始<strong>主动回应</strong>玩家的行为——战斗中靠近武器、探索时朝特定方向移动</li>
+<li>玩家形成自己的<strong>假设</strong>（&ldquo;它好像喜欢火&rdquo;）——并通过行动验证</li>
+<li>验证有时成功、有时失败、有时部分成功——<strong>因果是暧昧的</strong></li>
+<li>同化度开始通过<strong>身体变化</strong>显现——长休时偶尔有闪回、底座阴影偶尔抖动</li>
+<li>某些同伴开始<strong>疏远</strong>玩家，某些同伴开始<strong>好奇</strong></li>
+</ul>
+<p><strong>Act 2的结束标志：</strong> 同化度达到&quot;融合&quot;阶段。玩家能稳定地看到隐藏路径，能&quot;听到&quot;网络的声音。觉醒事件不再是&quot;突然的规则改变&quot;，而是&quot;日常的一部分&quot;。</p>
+<h3 id="act-3融合fusion-最终选择">Act 3：融合（Fusion）—— 最终选择
+</h3><p><strong>目标：</strong> 让玩家面对&quot;我是谁&quot;的根本问题——不是哲学问题，是身体问题</p>
+<p><strong>内容：</strong></p>
+<ul>
+<li>同化度达到&quot;节点&quot;阶段。玩家的身体已经显著改变</li>
+<li>某些NPC完全拒绝与玩家互动（&ldquo;你不是……不对。你不是。&quot;）</li>
+<li>某些NPC完全接受玩家（&ldquo;你终于听到了。我们一直在等你。&quot;）</li>
+<li>觉醒物品不再&quot;请求&rdquo;——它们开始&quot;告知&rdquo;。晶核不再滚动，而是稳定地脉动，仿佛在说：&ldquo;我在这里。我一直在这里。&rdquo;</li>
+<li>最终选择出现：不是对话选项，而是<strong>行为选择</strong>——
+<ul>
+<li><strong>回归：</strong> 玩家主动将所有觉醒物品分离，放入背包四角，不接触。长休后，它们不再移动。描述变回正常。同化度不再增长。但玩家失去了网络视角。世界变回&quot;正常&quot;——但玩家知道，正常是假象。</li>
+<li><strong>拥抱：</strong> 玩家将觉醒物品聚集在一起，形成最大的相邻区域。长休后，它们形成一个&quot;共鸣核心&quot;。玩家完全融入网络。游戏继续，但目标改变——不再是&quot;拯救世界&quot;，而是&quot;成为网络的一部分，让世界以新的方式继续&quot;。</li>
+<li><strong>平衡：</strong> 玩家维持当前状态——不聚集，不分离。让物品保持它们自己的节奏。这是最难的路线，需要玩家在后续内容中持续管理这种&quot;不稳定的平衡&quot;。最终结局暧昧——不是胜利，也不是失败，是&quot;继续&quot;。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="技术实现估算更新版">技术实现估算（更新版）
+</h2><h3 id="核心系统">核心系统
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>组件</th>
+					<th>实现难度</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>背包网格UI</td>
+					<td>中等</td>
+					<td>复用现有背包UI，改为网格。UE的UUniformGridPanel或自定义</td>
+			</tr>
+			<tr>
+					<td>物品数据扩展</td>
+					<td>低</td>
+					<td>增加字段：IsAwakened, BehaviorSetID, DescriptionPoolID</td>
+			</tr>
+			<tr>
+					<td>相邻检测</td>
+					<td>低</td>
+					<td>坐标计算：检查(x±1,y)和(x,y±1)</td>
+			</tr>
+			<tr>
+					<td>长休触发移动</td>
+					<td>低</td>
+					<td>根据BehaviorSet配置移动方向和偏好</td>
+			</tr>
+			<tr>
+					<td>描述概率变化</td>
+					<td>低</td>
+					<td>查看时，从DescriptionPool中随机选择，概率随进程调整</td>
+			</tr>
+			<tr>
+					<td>异常事件系统</td>
+					<td>中等</td>
+					<td>事件池+概率触发。每次长休/战斗后检查概率</td>
+			</tr>
+			<tr>
+					<td>觉醒事件触发</td>
+					<td>中等</td>
+					<td>后台候选池（玩家不可见）+概率升级</td>
+			</tr>
+			<tr>
+					<td>同化度系统（隐藏）</td>
+					<td>低</td>
+					<td>一个float变量，只影响阶段切换，不在UI中显示</td>
+			</tr>
+			<tr>
+					<td>身体变化阶段切换</td>
+					<td>低</td>
+					<td>根据同化度阶段，切换视觉效果（阴影抖动、视野纹理等）</td>
+			</tr>
+			<tr>
+					<td>含混请求系统</td>
+					<td>中等</td>
+					<td>物品行为脚本+环境反馈脚本。因果不明确，但行为可配置</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="总评估">总评估
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">背包网格系统：       中等（2-3周）
+</span></span><span class="line"><span class="cl">异常事件系统：       中等（2-3周）——含概率曲线设计和事件池管理
+</span></span><span class="line"><span class="cl">觉醒事件系统：       中等（1-2周）——复用Demo中的演出组件
+</span></span><span class="line"><span class="cl">含混请求系统：       中等（2周）——行为脚本+环境反馈+因果模糊化
+</span></span><span class="line"><span class="cl">同化度系统：         低（1周）——主要是阶段切换和视觉效果
+</span></span><span class="line"><span class="cl">文本/数据资产：      中等（2-3周）——大量暧昧文本、描述变体、行为提示
+</span></span><span class="line"><span class="cl">─────────────────────────────────
+</span></span><span class="line"><span class="cl">总计：约10-14周（单人全职）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>比v1版本增加了3-5周</strong>，主要增加在：</p>
+<ul>
+<li>异常事件的概率系统（需要设计和调试概率曲线）</li>
+<li>含混请求的行为脚本（需要设计大量的暧昧行为和反馈）</li>
+<li>文本资产（描述变体、异常文本、请求暗示——数量比v1版本多2-3倍）</li>
+</ul>
+<p>但换来的是：<strong>完全消除了&quot;背包乱斗like&quot;的既视感</strong>，变成了一个独特的叙事系统。</p>
+<hr>
+<h2 id="与现有世界观的契合度">与现有世界观的契合度
+</h2><h3 id="巨兽之梦">巨兽之梦
+</h3><ul>
+<li><strong>觉醒物品的行为</strong> = 巨兽梦中的&quot;碎片意识&quot;在梦中的自主运动——它们不是道具，是梦中的居民</li>
+<li><strong>含混请求</strong> = 碎片意识没有人类语言，它们用<strong>行为和感觉</strong>来沟通——就像梦中的符号，你知道它意味着什么，但说不清楚</li>
+<li><strong>异常事件</strong> = 梦境中的&quot;逻辑漏洞&quot;——梦越深入，漏洞越多，直到梦境开始&quot;提醒&quot;你这不是现实</li>
+<li><strong>同化</strong> = 玩家的意识从&quot;角色&quot;逐渐融入&quot;巨兽的视角&quot;——你不是在玩游戏，你是在被梦接纳</li>
+<li><strong>最终选择</strong> = 玩家决定自己在这个梦中的&quot;位置&quot;——醒来（回归）、沉睡（拥抱）、或者半梦半醒（平衡）</li>
+</ul>
+<h3 id="25d纸片人">2.5D纸片人
+</h3><ul>
+<li><strong>背包网格</strong> = 高维存在对三维世界的&quot;采样计算&quot;——每个格子是一个计算单元，物品在格子间的移动是&quot;计算优化&quot;</li>
+<li><strong>异常事件</strong> = &ldquo;采样误差&rdquo;——梦的逻辑不稳定，偶尔出现&quot;不该出现的东西&quot;</li>
+<li><strong>同化后的感知</strong> = 玩家的&quot;认知窗口&quot;扩大，能看到更多&quot;帧&quot;——那些隐藏的菌丝路径，一直就在那里，只是之前看不到</li>
+</ul>
+<h3 id="冰山原则">冰山原则
+</h3><ul>
+<li><strong>表面</strong>：玩家在整理背包，获得奇怪但有用的物品</li>
+<li><strong>第一层</strong>：物品在互相影响，位置有某种意义</li>
+<li><strong>第二层</strong>：物品在&quot;要求&quot;玩家做什么，玩家与物品的关系不平等——而且玩家越来越不确定谁在主导</li>
+<li><strong>第三层</strong>：玩家不是在&quot;使用&quot;物品——是在与一个更大的意识&quot;共处&quot;。背包是这个意识在玩家体内的&quot;居住空间&quot;。最终，玩家必须决定：是继续做主人，还是承认自己也只是客人。</li>
+</ul>
+<hr>
+<h2 id="设计原则检查v2更新">设计原则检查（v2更新）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>原则</th>
+					<th>v1检查</th>
+					<th>v2检查</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>低开发成本</td>
+					<td>✅ 中等</td>
+					<td>✅ 中等（增加3-5周，但核心逻辑简单）</td>
+			</tr>
+			<tr>
+					<td>高叙事回报</td>
+					<td>✅ 高</td>
+					<td>✅ <strong>更高</strong>——隐藏数值创造了更强的认知张力和复玩动机</td>
+			</tr>
+			<tr>
+					<td>与Demo衔接</td>
+					<td>✅ 种子已埋</td>
+					<td>✅ <strong>种子更有力</strong>——Demo中的异常文本低概率触发，成为正式版的记忆锚点</td>
+			</tr>
+			<tr>
+					<td>与DND兼容</td>
+					<td>✅ 叠加层</td>
+					<td>✅ 叠加层，不改变核心战斗规则</td>
+			</tr>
+			<tr>
+					<td>单人开发可行</td>
+					<td>✅ 模块化</td>
+					<td>✅ 模块化，可逐个实现</td>
+			</tr>
+			<tr>
+					<td>玩家可理解</td>
+					<td>✅ 需要Demo种子</td>
+					<td>✅ <strong>不需要教学</strong>——玩家通过观察自然理解，没有数值界面需要解释</td>
+			</tr>
+			<tr>
+					<td><strong>差异化</strong></td>
+					<td>⚠️ 有背包乱斗既视感</td>
+					<td>✅ <strong>完全差异化</strong>——隐藏数值+行为驱动+含混请求，没有同类系统</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="下一步建议">下一步建议
+</h2><ol>
+<li>
+<p><strong>Demo开发</strong>：继续按现有Demo文档推进。但确保：</p>
+<ul>
+<li>晶核的数据结构预留<code>BehaviorSetID</code>和<code>DescriptionPoolID</code></li>
+<li>Boss战后长休时，如果玩家在Demo中获得了孢子平台buff，晶核有<strong>极低概率</strong>（5%）移动一格（大多数玩家不会触发，但数据结构就位）</li>
+<li>战斗异常日志文本已写入数据表，但只在Demo中极低频触发</li>
+</ul>
+</li>
+<li>
+<p><strong>数据表设计</strong>：接下来需要设计——</p>
+<ul>
+<li><code>DT_AwakenedItemBehavior</code>：物品行为配置表（移动方向、偏好目标、描述池、行为脚本引用）</li>
+<li><code>DT_AnomalyEvent</code>：异常事件配置表（类型、触发概率、文本池、视觉效果）</li>
+<li><code>DT_ObliqueRequest</code>：含混请求配置表（请求形式、可能的解读方向、行为反馈）</li>
+</ul>
+</li>
+<li>
+<p><strong>概率曲线设计</strong>：需要为异常事件和觉醒事件设计概率曲线——让&quot;越来越近了&quot;可感知，但&quot;什么时候触发&quot;不可预测。这需要测试和迭代。</p>
+</li>
+</ol>
+<hr>
+<p><em>这份v2设计文档放弃了精确数值和明确条件，将系统完全转化为行为驱动的叙事引擎。玩家不是在管理背包，是在与一群不可知的室友共处——而共处的过程，就是异化的过程。</em></p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6/">核心机制</a>
+        
+            <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a>
+        
+            <a href="/tags/%E5%B1%B1%E5%B1%8B%E6%83%8A%E9%AD%82/">山屋惊魂</a>
+        
+            <a href="/tags/%E5%85%B1%E9%B8%A3/">共鸣</a>
+        
+            <a href="/tags/%E6%AD%A3%E5%BC%8F%E7%89%88/">正式版</a>
+        
+            <a href="/tags/v2/">V2</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>
