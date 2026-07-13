@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真菌森林展示场景 · 30分钟布局</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a2e;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; font-family: -apple-system, system-ui, sans-serif;
+    padding: 24px;
+  }
+  .sheet {
+    background: #16213e;
+    border-radius: 16px; padding: 40px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    max-width: 1300px;
+  }
+  h1 { color: #e0e7ff; font-size: 22px; text-align: center; margin-bottom: 4px; }
+  .subtitle { color: #8b9dc3; font-size: 13px; text-align: center; margin-bottom: 24px; }
+  .mermaid-wrapper { background: #0f172a; border-radius: 12px; padding: 24px; }
+  .legend {
+    display: flex; gap: 20px; justify-content: center; margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .legend span { color: #c4ccde; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>真菌森林展示场景 · 珠串式布局（30分钟版）</h1>
+  <p class="subtitle">六大区域 · 总长约 135m · 体验时长 30–35 分钟</p>
+
+  <div class="mermaid-wrapper">
+    <pre class="mermaid">
+flowchart LR
+    subgraph A["🌿 A · 森林入口<br/>15×15m · ~60s · 好奇"]
+        A1["🏁 START"]
+        A2["🍄 异常蘑菇<br/>菌盖朝向玩家"]
+        A3["选职业<br/>战士/游荡者"]
+        A4["委托人 NPC"]
+    end
+
+    subgraph B["🍄 B · 幽光走廊<br/>S形 ~65m · ~150s · 沉浸"]
+        B1["⛺ 营地残骸"]
+        B2["📓 矿工日记<br/>「它在……学我」"]
+        B3["🧍 菌丝覆身形"]
+        B4["🏷️ 铭牌 ×3"]
+        B5["⚒️ 解救矮人<br/>脖子铭牌"]
+    end
+
+    subgraph C["⚔ C · 腐木空地<br/>20×18m · ~120s · 紧张"]
+        C1["🪵 倒木掩体"]
+        C2["🧟 菌丝宿主 ×2<br/>识别停顿 0.3s"]
+        C3["⚒️ 同伴并肩"]
+        C4["🏷️ 干壳掉铭牌 ×2"]
+    end
+
+    subgraph D["🌑 D · 深菇峡谷<br/>~30m · ~60s · 压抑"]
+        D1["🧬 岩壁菌丝脉络"]
+        D2["🌀 螺旋纹路<br/>脉搏光"]
+        D3["🎴 影子异常 · 嗡鸣"]
+        D4["🏷️ 铭牌 ×2"]
+        D5["💬 「有人摸我后脑勺」"]
+    end
+
+    subgraph E["👑 E · 巨菇王座<br/>30×25m · ~180s · 高潮"]
+        E1["🍄 FUNGAL LORD"]
+        E2["☁️ 孢子云 ×3"]
+        E3["👾 小怪 ×2"]
+        E4["🏷️ 铭牌 ×3"]
+        E5["⭐ Boss铭牌<br/>名字被刮掉·发热"]
+        E6["💎 脉动晶核"]
+    end
+
+    subgraph F["✨ F · 尾声<br/>~50s · 回味"]
+        F1["委托人<br/>「第三个回来的」"]
+        F2["🌑 黑屏手写体<br/>12块·明明只捡了11块"]
+        F3["💙 Steam 愿望单"]
+    end
+
+    A --> B --> C --> D --> E --> F
+
+    style A fill:#2d4a3e,stroke:#4ade80,color:#86efac
+    style B fill:#312e81,stroke:#6366f1,color:#a5b4fc
+    style C fill:#3b2f2f,stroke:#ef4444,color:#fca5a5
+    style D fill:#1e1b4b,stroke:#7c3aed,color:#c4b5fd
+    style E fill:#2d1b4e,stroke:#f59e0b,color:#fcd34d
+    style F fill:#3b3a1e,stroke:#f59e0b,color:#fde68a
+    </pre>
+  </div>
+
+  <div class="legend">
+    <span>🌿 探索区（绿）</span>
+    <span>⚔ 战斗区（红）</span>
+    <span>👑 Boss区（金）</span>
+    <span>⚠️ 异常空间（紫）</span>
+    <span>🏷️ 铭牌收集点</span>
+    <span>⚒️ 同伴行动点</span>
+  </div>
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'loose' });
+</script>
+</body>
+</html>

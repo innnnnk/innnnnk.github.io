@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真菌森林展示场景 · 60分钟全景布局</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a2e;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; font-family: -apple-system, system-ui, sans-serif;
+    padding: 24px;
+  }
+  .sheet {
+    background: #16213e;
+    border-radius: 16px; padding: 40px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    max-width: 1400px;
+  }
+  h1 { color: #e0e7ff; font-size: 22px; text-align: center; margin-bottom: 4px; }
+  .subtitle { color: #8b9dc3; font-size: 13px; text-align: center; margin-bottom: 24px; }
+  .mermaid-wrapper { background: #0f172a; border-radius: 12px; padding: 24px; }
+  .legend {
+    display: flex; gap: 20px; justify-content: center; margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .legend span { color: #c4ccde; font-size: 12px; }
+  .legend .branch { color: #34d399; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>真菌森林展示场景 · 珠串式+双支线全景布局（60分钟版）</h1>
+  <p class="subtitle">主线六大区域 + 二条可选支线 · 全探索 ~60min · 直奔主线 ~30min</p>
+
+  <div class="mermaid-wrapper">
+    <pre class="mermaid">
+flowchart TB
+    subgraph LEGEND[" "]
+        direction LR
+        L1["主线"] ~~~ L2["可选支线"] ~~~ L3["恢复内容"]
+        style L1 stroke:#fcd34d,color:#fcd34d
+        style L2 stroke:#34d399,color:#34d399
+        style L3 stroke:#fbbf24,color:#fbbf24
+    end
+
+    subgraph A["🌿 A · 森林入口 · 15×15m · 好奇"]
+        direction TB
+        A0["🏁 START"]
+        A1["🍄 异常蘑菇<br/>底座阴影闪烁"]
+        A2["选职业<br/>⚔战士 🗡游荡者 🔮法师"]
+        A3["委托人<br/>「找到12个矿工」"]
+    end
+
+    subgraph SIDE1["🔮 支线1：回声裂隙<br/>15×10m 地下空间 · 10–15min"]
+        direction TB
+        S1a["🪨 菌丝半掩岩石裂隙<br/>底座阴影偏转提示"]
+        S1b["🧱 矿工画板<br/>菌丝画的螺旋纹路"]
+        S1c["🎒 破损背包<br/>「第七天，我能听懂它们了」"]
+        S1d["🐛 菌丝幼体 ×3<br/>HP-30%·包抄战术"]
+        S1e["👑 回声宿主<br/>胸口发光铭牌·孢子云3×3"]
+        S1f["💧 积水倒影<br/>人形≠宿主形状"]
+        S1g["🏷️ 铭牌计数器闪烁<br/>1→2→1（第0次污染）"]
+    end
+
+    subgraph B["🍄 B · 幽光走廊 · S形 ~65m · 沉浸"]
+        direction TB
+        B1["⛺ 营地残骸"]
+        B2["📓 矿工日记<br/>「它在……学我」"]
+        B3["🧍 菌丝覆身形"]
+        B4["🏷️ 铭牌 ×3"]
+        B5["⚒️ 解救矮人矿工<br/>脖子铭牌·同伴加入"]
+    end
+
+    subgraph C["⚔ C · 腐木空地 · 20×18m · 紧张"]
+        direction TB
+        C1["🪵 倒木掩体"]
+        C2["🧟 菌丝宿主 ×2<br/>识别动画 0.3s"]
+        C3["⚒️ 同伴并肩"]
+        C4["💬 哈洛德条件台词<br/>「他上个月还在教我磨镐头」"]
+        C5["🏷️ 干壳掉铭牌 ×2"]
+    end
+
+    subgraph D["🌑 D · 深菇峡谷 · ~30m · 压抑"]
+        direction TB
+        D1["🧬 岩壁菌丝脉络<br/>菌丝穿过铭牌"]
+        D2["🌀 螺旋纹路<br/>脉搏光·影子消失"]
+        D3["🎴 底座阴影随机抖动<br/>每30s·0.3s"]
+        D4["💬 「有人摸我后脑勺」<br/>同伴视线偏转→岔路"]
+        D5["🏷️ 铭牌 ×2"]
+    end
+
+    subgraph SIDE2["🧘 支线2：孢子平台<br/>5×5m 圆形平台 · 5–8min"]
+        direction TB
+        S2a["🌫️ 孢子云覆盖<br/>能见度 3 格"]
+        S2b["🧘 冥想者<br/>盘腿坐着·不攻击"]
+        S2c["📜 淡金色文本 ×3<br/>「这是第三次」"]
+        S2d["💪 觉醒Buff<br/>Boss命中率+5%"]
+        S2e["⚔️ 攻击→消散<br/>铭牌日期「今天」"]
+    end
+
+    subgraph E["👑 E · 巨菇王座 · 30×25m · 高潮"]
+        direction TB
+        E1["🍄 FUNGAL LORD"]
+        E2["☁️ 孢子云 ×3<br/>记忆文本3段淡金色"]
+        E3["👾 小怪 ×2"]
+        E4["P1并肩→P2反水→P3释放→P4收尾"]
+        E5["📋 战斗日志5条<br/>「想起了疼痛」"]
+        E6["🏷️ 铭牌 ×3 + Boss铭牌"]
+        E7["💎 脉动晶核<br/>脚边生成"]
+    end
+
+    subgraph F["✨ F · 尾声 · ~50s · 回味"]
+        direction TB
+        F1["委托人<br/>「第三个回来的」"]
+        F2["⚒️ 同伴质问<br/>「多出来的那个人是谁？」"]
+        F3["📊 铭牌计数器<br/>5块抖动·8块淡紫·11块闪烁"]
+        F4["🌑 黑屏手写体<br/>「数了数铭牌·十二块」"]
+        F5["💙 Steam 愿望单"]
+    end
+
+    A -->|"主线"| B
+    B -->|"主线"| C
+    C -->|"主线"| D
+    D -->|"主线"| E
+    E -->|"主线"| F
+
+    A -.->|"可选"| SIDE1
+    SIDE1 -.->|"返回"| B
+    D -.->|"可选"| SIDE2
+    SIDE2 -.->|"返回"| E
+
+    style A fill:#2d4a3e,stroke:#4ade80,color:#86efac
+    style B fill:#312e81,stroke:#6366f1,color:#a5b4fc
+    style C fill:#3b2f2f,stroke:#ef4444,color:#fca5a5
+    style D fill:#1e1b4b,stroke:#7c3aed,color:#c4b5fd
+    style E fill:#2d1b4e,stroke:#f59e0b,color:#fcd34d
+    style F fill:#3b3a1e,stroke:#f59e0b,color:#fde68a
+    style SIDE1 fill:#064e3b,stroke:#34d399,stroke-dasharray:5 3,color:#6ee7b7
+    style SIDE2 fill:#064e3b,stroke:#34d399,stroke-dasharray:5 3,color:#6ee7b7
+    style LEGEND fill:none,stroke:none
+    </pre>
+  </div>
+
+  <div class="legend">
+    <span style="color:#fcd34d;">⬛ 主线区域</span>
+    <span style="color:#34d399;">⬜ 可选支线（虚线）</span>
+    <span style="color:#fbbf24;">★ 60分钟恢复/新增内容</span>
+    <span style="color:#c4ccde;">🏷️ 铭牌收集点</span>
+    <span style="color:#c4ccde;">⚒️ 同伴行动点</span>
+  </div>
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'loose' });
+</script>
+</body>
+</html>
