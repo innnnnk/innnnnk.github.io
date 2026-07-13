@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、角色身份、同伴系统、叙事架构">
-<title>真菌森林展示场景 · 布局设计</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="主线 + 两条可选支线的 60 分钟 Demo —— 认知的代价由玩家在森林中停留的时间来兑现">
+<title>Demo 深潜版：60分钟完整体验设计</title>
 
 
-<link rel="canonical" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/">
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
 
 
-<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="真菌森林展示场景 · 布局设计">
-<meta property='og:description' content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、角色身份、同伴系统、叙事架构">
-<meta property='og:url' content='https://innnnnk.github.io/game-dev/fungal-forest-showcase/'>
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="Demo 深潜版：60分钟完整体验设计">
+<meta property='og:description' content="主线 + 两条可选支线的 60 分钟 Demo —— 认知的代价由玩家在森林中停留的时间来兑现">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/fungal-forest-demo/'>
 <meta property='og:site_name' content='遇玄的方外之地'>
-<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='场景设计' /><meta property='article:tag' content='关卡设计' /><meta property='article:tag' content='真菌森林' /><meta property='article:tag' content='Demo' /><meta property='article:published_time' content='2026-07-09T18:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-09T18:00:00&#43;08:00'/>
-<meta name="twitter:title" content="真菌森林展示场景 · 布局设计">
-<meta name="twitter:description" content="Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、角色身份、同伴系统、叙事架构">
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='Demo' /><meta property='article:tag' content='支线设计' /><meta property='article:tag' content='叙事设计' /><meta property='article:tag' content='关卡设计' /><meta property='article:published_time' content='2026-07-13T20:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-13T20:00:00&#43;08:00'/>
+<meta name="twitter:title" content="Demo 深潜版：60分钟完整体验设计">
+<meta name="twitter:description" content="主线 + 两条可选支线的 60 分钟 Demo —— 认知的代价由玩家在森林中停留的时间来兑现">
     </head>
     <body class="
     article-page
@@ -195,13 +195,22 @@
             <nav class="toc-nav" id="TableOfContents">
                 
   <ol>
+    <li><a href="#设计原则">设计原则</a></li>
     <li><a href="#背景">背景</a></li>
     <li><a href="#空间结构珠串式布局">空间结构：珠串式布局</a>
       <ol>
         <li><a href="#为什么不是开放区域">为什么不是开放区域？</a></li>
       </ol>
     </li>
-    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#与-30-分钟版本的关系">与 30 分钟版本的关系</a></li>
+    <li><a href="#时间分配玩家首次体验">时间分配（玩家首次体验）</a></li>
+    <li><a href="#三种玩家类型的节奏">三种玩家类型的节奏</a>
+      <ol>
+        <li><a href="#类型-a探索型5565-min">类型 A：探索型（55–65 min）</a></li>
+        <li><a href="#类型-b战斗型3540-min">类型 B：战斗型（35–40 min）</a></li>
+        <li><a href="#类型-c速通型2530-min">类型 C：速通型（25–30 min）</a></li>
+      </ol>
+    </li>
     <li><a href="#设计要点">设计要点</a>
       <ol>
         <li><a href="#空间节奏同一条路六种感受">空间节奏：同一条路，六种感受</a></li>
@@ -209,6 +218,29 @@
         <li><a href="#encounter-设计">Encounter 设计</a></li>
       </ol>
     </li>
+    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#支线1回声裂隙echo-cleft">支线1：回声裂隙（Echo Cleft）</a>
+      <ol>
+        <li><a href="#位置与入口">位置与入口</a></li>
+        <li><a href="#空间">空间</a></li>
+        <li><a href="#敌人">敌人</a></li>
+        <li><a href="#可交互物件">可交互物件</a></li>
+        <li><a href="#击败回声宿主的演出">击败回声宿主的演出</a></li>
+        <li><a href="#技术实现">技术实现</a></li>
+      </ol>
+    </li>
+    <li><a href="#支线2孢子平台spore-platform">支线2：孢子平台（Spore Platform）</a>
+      <ol>
+        <li><a href="#位置与入口-1">位置与入口</a></li>
+        <li><a href="#空间-1">空间</a></li>
+        <li><a href="#冥想者">冥想者</a></li>
+        <li><a href="#淡金色文本">淡金色文本</a></li>
+        <li><a href="#玩家的选择与后果">玩家的选择与后果</a></li>
+        <li><a href="#叙事功能">叙事功能</a></li>
+        <li><a href="#技术实现-1">技术实现</a></li>
+      </ol>
+    </li>
+    <li><a href="#两条支线的叙事验证">两条支线的叙事验证</a></li>
     <li><a href="#玩家角色叙事滤镜方案">玩家角色：叙事滤镜方案</a></li>
     <li><a href="#词汇敏感度矩阵">词汇敏感度矩阵</a>
       <ol>
@@ -238,17 +270,17 @@
         <li><a href="#设计动机">设计动机</a></li>
         <li><a href="#基本信息">基本信息</a></li>
         <li><a href="#完整叙事弧线">完整叙事弧线</a></li>
+        <li><a href="#技术实现路径">技术实现路径</a></li>
       </ol>
     </li>
     <li><a href="#boss-战四阶段设计">Boss 战四阶段设计</a>
       <ol>
         <li><a href="#设计原理">设计原理</a></li>
-        <li><a href="#技术实现路径">技术实现路径</a></li>
+        <li><a href="#技术实现路径-1">技术实现路径</a></li>
       </ol>
     </li>
     <li><a href="#demo-叙事架构完整流程">Demo 叙事架构（完整流程）</a></li>
     <li><a href="#资产状态">资产状态</a></li>
-    <li><a href="#下一步">下一步</a></li>
     <li><a href="#demo-开发待办">Demo 开发待办</a>
       <ol>
         <li><a href="#p0--没这个跑不起来">P0 — 没这个跑不起来</a></li>
@@ -263,7 +295,7 @@
           <ol>
             <li><a href="#触发条件">触发条件</a></li>
             <li><a href="#叙事降级">叙事降级</a></li>
-            <li><a href="#设计原则">设计原则</a></li>
+            <li><a href="#设计原则-1">设计原则</a></li>
           </ol>
         </li>
         <li><a href="#补丁二战斗教学触发器">补丁二：战斗教学触发器</a>
@@ -300,6 +332,10 @@
         </li>
       </ol>
     </li>
+    <li><a href="#开发顺序">开发顺序</a></li>
+    <li><a href="#风险与应对">风险与应对</a></li>
+    <li><a href="#发布策略建议">发布策略建议</a></li>
+    <li><a href="#60-分钟版本的核心卖点">60 分钟版本的核心卖点</a></li>
   </ol>
 
             </nav>
@@ -320,12 +356,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/game-dev/fungal-forest-showcase/">真菌森林展示场景 · 布局设计</a>
+            <a href="/game-dev/fungal-forest-demo/">Demo 深潜版：60分钟完整体验设计</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Steam 新品节 Demo 场景的完整设计方案：珠串式结构、分区定义、资产清单、光照方案、角色身份、同伴系统、叙事架构
+            主线 &#43; 两条可选支线的 60 分钟 Demo —— 认知的代价由玩家在森林中停留的时间来兑现
         </h3>
         
     </div>
@@ -350,7 +386,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                    <time class="article-time--published" datetime='2026-07-09T18:00:00&#43;08:00'>2026-07-09</time>
+                    <time class="article-time--published" datetime='2026-07-13T20:00:00&#43;08:00'>2026-07-13</time>
                 
 
                 
@@ -390,13 +426,22 @@
             <nav class="toc-nav">
                 
   <ol>
+    <li><a href="#设计原则">设计原则</a></li>
     <li><a href="#背景">背景</a></li>
     <li><a href="#空间结构珠串式布局">空间结构：珠串式布局</a>
       <ol>
         <li><a href="#为什么不是开放区域">为什么不是开放区域？</a></li>
       </ol>
     </li>
-    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#与-30-分钟版本的关系">与 30 分钟版本的关系</a></li>
+    <li><a href="#时间分配玩家首次体验">时间分配（玩家首次体验）</a></li>
+    <li><a href="#三种玩家类型的节奏">三种玩家类型的节奏</a>
+      <ol>
+        <li><a href="#类型-a探索型5565-min">类型 A：探索型（55–65 min）</a></li>
+        <li><a href="#类型-b战斗型3540-min">类型 B：战斗型（35–40 min）</a></li>
+        <li><a href="#类型-c速通型2530-min">类型 C：速通型（25–30 min）</a></li>
+      </ol>
+    </li>
     <li><a href="#设计要点">设计要点</a>
       <ol>
         <li><a href="#空间节奏同一条路六种感受">空间节奏：同一条路，六种感受</a></li>
@@ -404,6 +449,29 @@
         <li><a href="#encounter-设计">Encounter 设计</a></li>
       </ol>
     </li>
+    <li><a href="#六大区域">六大区域</a></li>
+    <li><a href="#支线1回声裂隙echo-cleft">支线1：回声裂隙（Echo Cleft）</a>
+      <ol>
+        <li><a href="#位置与入口">位置与入口</a></li>
+        <li><a href="#空间">空间</a></li>
+        <li><a href="#敌人">敌人</a></li>
+        <li><a href="#可交互物件">可交互物件</a></li>
+        <li><a href="#击败回声宿主的演出">击败回声宿主的演出</a></li>
+        <li><a href="#技术实现">技术实现</a></li>
+      </ol>
+    </li>
+    <li><a href="#支线2孢子平台spore-platform">支线2：孢子平台（Spore Platform）</a>
+      <ol>
+        <li><a href="#位置与入口-1">位置与入口</a></li>
+        <li><a href="#空间-1">空间</a></li>
+        <li><a href="#冥想者">冥想者</a></li>
+        <li><a href="#淡金色文本">淡金色文本</a></li>
+        <li><a href="#玩家的选择与后果">玩家的选择与后果</a></li>
+        <li><a href="#叙事功能">叙事功能</a></li>
+        <li><a href="#技术实现-1">技术实现</a></li>
+      </ol>
+    </li>
+    <li><a href="#两条支线的叙事验证">两条支线的叙事验证</a></li>
     <li><a href="#玩家角色叙事滤镜方案">玩家角色：叙事滤镜方案</a></li>
     <li><a href="#词汇敏感度矩阵">词汇敏感度矩阵</a>
       <ol>
@@ -433,17 +501,17 @@
         <li><a href="#设计动机">设计动机</a></li>
         <li><a href="#基本信息">基本信息</a></li>
         <li><a href="#完整叙事弧线">完整叙事弧线</a></li>
+        <li><a href="#技术实现路径">技术实现路径</a></li>
       </ol>
     </li>
     <li><a href="#boss-战四阶段设计">Boss 战四阶段设计</a>
       <ol>
         <li><a href="#设计原理">设计原理</a></li>
-        <li><a href="#技术实现路径">技术实现路径</a></li>
+        <li><a href="#技术实现路径-1">技术实现路径</a></li>
       </ol>
     </li>
     <li><a href="#demo-叙事架构完整流程">Demo 叙事架构（完整流程）</a></li>
     <li><a href="#资产状态">资产状态</a></li>
-    <li><a href="#下一步">下一步</a></li>
     <li><a href="#demo-开发待办">Demo 开发待办</a>
       <ol>
         <li><a href="#p0--没这个跑不起来">P0 — 没这个跑不起来</a></li>
@@ -458,7 +526,7 @@
           <ol>
             <li><a href="#触发条件">触发条件</a></li>
             <li><a href="#叙事降级">叙事降级</a></li>
-            <li><a href="#设计原则">设计原则</a></li>
+            <li><a href="#设计原则-1">设计原则</a></li>
           </ol>
         </li>
         <li><a href="#补丁二战斗教学触发器">补丁二：战斗教学触发器</a>
@@ -495,6 +563,10 @@
         </li>
       </ol>
     </li>
+    <li><a href="#开发顺序">开发顺序</a></li>
+    <li><a href="#风险与应对">风险与应对</a></li>
+    <li><a href="#发布策略建议">发布策略建议</a></li>
+    <li><a href="#60-分钟版本的核心卖点">60 分钟版本的核心卖点</a></li>
   </ol>
 
             </nav>
@@ -505,10 +577,18 @@
     <section class="article-content">
     
     
-    <h2 id="背景">背景
+    <h2 id="设计原则">设计原则
+</h2><p>60 分钟版本不是&quot;把 30 分钟版本拉长&quot;，而是<strong>在完整主干上嫁接两条可选支线</strong>，让玩家有机会在主线之外&quot;多待一会儿&quot;——而这个&quot;多待&quot;的代价，是<strong>对世界的理解更深，但身体更不安</strong>。</p>
+
+    <blockquote>
+        <p>&ldquo;认知的代价&quot;在 60 分钟版本中不只是主题，而是<strong>结构</strong>：你越想知道真相，你在森林里停留越久，你看到的&quot;不对&quot;就越多。</p>
+
+    </blockquote>
+<hr>
+<h2 id="背景">背景
 </h2><p>Project_DND 目前卡在场景搭建阶段。Demo 需要一个能展示核心玩法（自由探索 + 回合制战斗 + 2.5D 美术风格）的展示场景。</p>
 <p>场景主题：<strong>真菌森林（Fungal Forest）</strong>。</p>
-<p><strong>预计体验时长：30-35 分钟</strong>（关键路径叙事 ~730s + 两场战斗 + 探索走动）。</p>
+<p><strong>预计体验时长：30-60 分钟（主线 ~30min，全探索 ~60min）</strong>（关键路径叙事 ~730s + 两场战斗 + 探索走动）。</p>
 <hr>
 <h2 id="空间结构珠串式布局">空间结构：珠串式布局
 </h2><p>Demo 场景采用<strong>线性珠串结构</strong>——6 个精心编排的区域沿一条主路径串联，而非开放世界：</p>
@@ -524,10 +604,181 @@
 </div>
 </div><h3 id="为什么不是开放区域">为什么不是开放区域？
 </h3><ol>
-<li><strong>引导可控</strong> — 确保 Demo 玩家在 30-35 分钟内看到所有精彩内容</li>
+<li><strong>引导可控</strong> — 确保 Demo 玩家在 30-60 分钟（主线 ~30min，全探索 ~60min）内看到所有精彩内容</li>
 <li><strong>资产需求低</strong> — 不需要填充 360° 视野，只需打磨可见路径</li>
 <li><strong>节奏可控</strong> — &ldquo;下一个转角有什么&quot;比&quot;随便逛逛&quot;更有驱动力</li>
 </ol>
+<h2 id="与-30-分钟版本的关系">与 30 分钟版本的关系
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">60分钟版本 = 30分钟版本（完整主干：A→B→C→D→E→F）
+</span></span><span class="line"><span class="cl">           + 支线1：回声裂隙
+</span></span><span class="line"><span class="cl">           + 支线2：孢子平台
+</span></span><span class="line"><span class="cl">           + 恢复被 30 分钟版本砍掉的内容
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>两条支线都是<strong>完全可选</strong>的。玩家可以一路直奔 Boss，在 30 分钟内通关；也可以探索支线，把体验拉到 50–60 分钟。</p>
+<p>60 分钟版本在 30 分钟版本基础上<strong>恢复</strong>以下内容：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>内容</th>
+					<th>30分钟版本</th>
+					<th>60分钟版本</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>法师职业</td>
+					<td>❌ 暂锁</td>
+					<td>✅ 开放（2 戏法 + 1 个 1 环法术/场战斗）</td>
+			</tr>
+			<tr>
+					<td>同伴 AI 性格签名</td>
+					<td>❌ 只保留默认台词</td>
+					<td>✅ 识别动画 + 哈洛德条件台词分支</td>
+			</tr>
+			<tr>
+					<td>Boss 战斗日志</td>
+					<td>3 条替换</td>
+					<td>✅ 5 条完整不可理解化</td>
+			</tr>
+			<tr>
+					<td>孢子云记忆文本</td>
+					<td>❌ 纯机制</td>
+					<td>✅ 3 段淡金色文本</td>
+			</tr>
+			<tr>
+					<td>D 区底座阴影抖动</td>
+					<td>❌ 去掉</td>
+					<td>✅ 每 30 秒随机抖动</td>
+			</tr>
+			<tr>
+					<td>同伴质问委托人</td>
+					<td>❌ 去掉</td>
+					<td>✅ 保留（F 区：「多出来的那个人是谁？」）</td>
+			</tr>
+			<tr>
+					<td>铭牌计数器视觉污染</td>
+					<td>❌ 去掉</td>
+					<td>✅ 第 5 块→抖动 / 第 8 块→淡紫 / 第 11 块→缓慢呼吸式闪烁（三周期，淡紫）</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="时间分配玩家首次体验">时间分配（玩家首次体验）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>内容</th>
+					<th>预估时长</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>主线</strong>（A→B→C→D→E→F）</td>
+					<td>25–35 min</td>
+					<td>同 30 分钟版本主干 + 恢复内容</td>
+			</tr>
+			<tr>
+					<td><strong>支线1：回声裂隙</strong></td>
+					<td>10–15 min</td>
+					<td>小型地下空间 + 3 只幼体 + 1 只精英 + 探索</td>
+			</tr>
+			<tr>
+					<td><strong>支线2：孢子平台</strong></td>
+					<td>5–8 min</td>
+					<td>氛围型，纯文本 + 选择</td>
+			</tr>
+			<tr>
+					<td><strong>支线间移动/发现</strong></td>
+					<td>3–5 min</td>
+					<td>找到裂隙入口、找到岔路、犹豫是否进入</td>
+			</tr>
+			<tr>
+					<td><strong>合计</strong></td>
+					<td><strong>43–63 min</strong></td>
+					<td>全支线 + 仔细探索 ≈ 60 min；直奔主线 ≈ 30 min</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="三种玩家类型的节奏">三种玩家类型的节奏
+</h2><p>60 分钟版本的结构带有自适应的特性——不同类型的玩家会自然找到自己的节奏，不需要强制引导。</p>
+<h3 id="类型-a探索型5565-min">类型 A：探索型（55–65 min）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A 区：3 min — 异常蘑菇 + 发现回声裂隙入口
+</span></span><span class="line"><span class="cl">  ↓ 进入支线1：回声裂隙（~12 min）
+</span></span><span class="line"><span class="cl">B 区：5 min — 仔细阅读日记 + 搜索营地 + 营救同伴
+</span></span><span class="line"><span class="cl">C 区：6 min — 战斗 + 听同伴完整台词
+</span></span><span class="line"><span class="cl">D 区：4 min — 观察螺旋纹路 + 拾取铭牌 + 阴影抖动
+</span></span><span class="line"><span class="cl">  ↓ 发现孢子平台岔路
+</span></span><span class="line"><span class="cl">  ↓ 进入支线2：孢子平台（~7 min，听完 3 段文本）
+</span></span><span class="line"><span class="cl">E 区：15 min — Boss 四阶段 + 孢子云记忆文本
+</span></span><span class="line"><span class="cl">F 区：3 min — 同伴质问委托人 + 黑屏便签
+</span></span><span class="line"><span class="cl">合计：55 min
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="类型-b战斗型3540-min">类型 B：战斗型（35–40 min）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">主线快速通关（~26 min）+ 可能发现一条支线（+10 min）→ ~36 min
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="类型-c速通型2530-min">类型 C：速通型（25–30 min）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">直奔主线，忽略所有可交互物，只打强制战斗
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>三种类型都能在 Demo 中找到自己的节奏。</strong> 可选的深度，而非强制的长度。</p>
+<h2 id="设计要点">设计要点
+</h2><h3 id="空间节奏同一条路六种感受">空间节奏：同一条路，六种感受
+</h3><p>核心技巧是<strong>改变宽度、曲率和围合感</strong>：</p>
+<ul>
+<li><strong>A 入口</strong> — 开阔椭圆，给人安全感。但<strong>出生点前方 8m 处有一棵倒下的蘑菇</strong>——菌盖朝向玩家来时的方向，不是朝上。这是玩家遇到的第一个&quot;不对劲&rdquo;。靠近按 E，角色底座阴影闪烁一次，根据身份说出不同台词。</li>
+<li><strong>B 走廊</strong> — S 形弯道，激发好奇心（&ldquo;拐角后面是什么？&quot;）</li>
+<li><strong>C 空地</strong> — 突然开阔 + 障碍物 → 警觉 → 战斗触发</li>
+<li><strong>D 峡谷</strong> — 笔直收窄，两侧高墙，压抑→前方有光→必须前进。玩家静止时，底座阴影偶尔轻微抖动。</li>
+<li><strong>E 竞技场</strong> — 圆形闭合空间，无处可逃</li>
+<li><strong>F 出口</strong> — 重新开阔，暖光，但结尾不是&quot;胜利释放&rdquo;——是&quot;你走出森林，数了数铭牌，十二块。你明明记得只捡了十一块。&rdquo;</li>
+</ul>
+<h3 id="光照梯度">光照梯度
+</h3><p>从暖到冷再到暖的完整弧线：</p>
+<ul>
+<li>A: 暖色夕阳 God Rays → B: 冷色荧光渐显 → C: 均匀中性战斗光</li>
+<li>D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光</li>
+</ul>
+<h3 id="encounter-设计">Encounter 设计
+</h3><p><strong>小型遭遇（C 区）：</strong> 2 只菌丝宿主 + 中央倒木掩体 → 教学性质的暖身战。同伴（矮人矿工）参与战斗，协助清小怪。</p>
+<p><strong>BOSS 战（E 区）：</strong> 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）。Boss 战为四阶段动态结构——详见下方「Boss 战四阶段设计」。</p>
+<hr>
 <h2 id="六大区域">六大区域
 </h2><div class="table-wrapper"><table>
 	<thead>
@@ -592,26 +843,261 @@
 	</tbody>
 </table></div>
 <hr>
-<h2 id="设计要点">设计要点
-</h2><h3 id="空间节奏同一条路六种感受">空间节奏：同一条路，六种感受
-</h3><p>核心技巧是<strong>改变宽度、曲率和围合感</strong>：</p>
+<h2 id="支线1回声裂隙echo-cleft">支线1：回声裂隙（Echo Cleft）
+</h2><h3 id="位置与入口">位置与入口
+</h3><p>A 区异常蘑菇旁，一个被菌丝半掩的岩石裂隙。裂隙入口只有 1.5m 高，玩家需要弯腰进入——相机自动降低 0.5m，暗示&quot;你在进入另一个空间&quot;。</p>
+<p><strong>入口提示：</strong> A 区异常蘑菇交互后，如果玩家在周围逗留超过 5 秒，底座阴影会朝裂隙方向微微偏移一次，随后恢复正常。玩家可能注意到，也可能错过。</p>
+
+    <blockquote>
+        <p><strong>设计说明：</strong> 裂隙入口始终存在——不依赖异常蘑菇交互解锁。异常蘑菇的阴影偏移只是&quot;提示&quot;而非&quot;钥匙&quot;。玩家可以直接走进裂隙，错过蘑菇只意味着错过一个氛围细节，而非内容阻断。</p>
+
+    </blockquote>
+<h3 id="空间">空间
+</h3><p>15×10m 的小型地下空间，天花板 2m，压抑。墙壁上有发光的菌丝脉络（复用 D 区岩壁材质）。中央有一个浅坑，坑底有积水。</p>
+<h3 id="敌人">敌人
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>敌人</th>
+					<th>数量</th>
+					<th>特性</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>菌丝幼体</td>
+					<td>3 只</td>
+					<td>比 C 区菌丝宿主弱（HP -30%），但会群体行动——一只发现玩家后，另外两只从侧面包抄</td>
+			</tr>
+			<tr>
+					<td>回声宿主</td>
+					<td>1 只</td>
+					<td>精英菌丝宿主。外观与普通宿主相同，但<strong>胸口嵌着一块发光的铭牌</strong>。额外技能：每 3 回合释放一次孢子云（范围 3×3 格，持续 2 回合）</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="可交互物件">可交互物件
+</h3><p><strong>1. 矿工画板（墙壁旁）</strong></p>
+<p>一块平整的岩壁，上面用菌丝画满了螺旋纹路。不是涂鸦——是<strong>重复的几何图案</strong>，像某种记录。</p>
+
+    <blockquote>
+        <p>交互文本：「有人在这里画了很久。菌丝的走势精确得像测量过。」</p>
+
+    </blockquote>
+<p>叙事含义：这不是螺旋文明留下的纹路——是<strong>被异化的矿工自己画的</strong>。他们在网络里看到了某种图案，用菌丝把它描在了墙上。</p>
+<p><strong>2. 破损背包（浅坑边缘）</strong></p>
+<p>一个被菌丝半埋的矿工背包。</p>
+
+    <blockquote>
+        <p>交互文本（第二篇矿工日记）：「第七天。我开始能听懂它们了。不是听懂话——是听懂意图。它们在……等待什么。或者说，等待谁。」</p>
+
+    </blockquote>
+<p><strong>3. 回声宿主的铭牌（击败后掉落）</strong></p>
 <ul>
-<li><strong>A 入口</strong> — 开阔椭圆，给人安全感。但<strong>出生点前方 8m 处有一棵倒下的蘑菇</strong>——菌盖朝向玩家来时的方向，不是朝上。这是玩家遇到的第一个&quot;不对劲&rdquo;。靠近按 E，角色底座阴影闪烁一次，根据身份说出不同台词。</li>
-<li><strong>B 走廊</strong> — S 形弯道，激发好奇心（&ldquo;拐角后面是什么？&quot;）</li>
-<li><strong>C 空地</strong> — 突然开阔 + 障碍物 → 警觉 → 战斗触发</li>
-<li><strong>D 峡谷</strong> — 笔直收窄，两侧高墙，压抑→前方有光→必须前进。玩家静止时，底座阴影偶尔轻微抖动。</li>
-<li><strong>E 竞技场</strong> — 圆形闭合空间，无处可逃</li>
-<li><strong>F 出口</strong> — 重新开阔，暖光，但结尾不是&quot;胜利释放&rdquo;——是&quot;你走出森林，数了数铭牌，十二块。你明明记得只捡了十一块。&quot;</li>
+<li>拾取时的描述：「一块矿工身份牌。名字已模糊不清。」</li>
+<li><strong>但当你把它放进背包时，铭牌计数器闪烁了一下——从 1 变成了 2，又变回 1。</strong></li>
 </ul>
-<h3 id="光照梯度">光照梯度
-</h3><p>从暖到冷再到暖的完整弧线：</p>
+<p>这是视觉污染的第 0 次触发，比主线铭牌计数器（第 5 块时才抖动）更早。如果你先进入了回声裂隙，计数器在捡到第一块铭牌时就开始说谎。</p>
+
+    <blockquote>
+        <p><strong>视觉差异：</strong> 回声裂隙的闪烁是&quot;快速一闪&quot;（0.15 秒，数字瞬间跳变后恢复）。主线的第 11 块闪烁是&quot;缓慢呼吸式&quot;——数字从 11 呼吸到 12 再回 11，共三个呼吸周期（每个周期约 1.5 秒），颜色偏向淡紫。两次闪烁的视觉差异让玩家意识到&quot;这次不一样&quot;。</p>
+
+    </blockquote>
+<p><strong>呼应&quot;13 块铭牌&quot;：</strong> 这块铭牌是&quot;多出来的&quot;那块——它和 Boss 掉落的那块被刮掉名字的铭牌是同一对，一个是&quot;多出来的人&quot;，另一个是&quot;被遗忘的人&quot;。</p>
+<h3 id="击败回声宿主的演出">击败回声宿主的演出
+</h3><ul>
+<li>不倒地。孢子从胸口（铭牌位置）涌出，躯体像&quot;漏气的皮囊&quot;一样萎缩。</li>
+<li>萎缩后，坑底的积水反射出微弱的光——光里有一个<strong>人形的倒影</strong>，但不是回声宿主的形状。倒影持续了 2 秒，然后消失。</li>
+<li>同伴（如果在场）：「……那个影子，比他的身体大。」</li>
+</ul>
+<p><strong>叙事含义：</strong> 这个矿工正在变成网络的节点——他的&quot;存在&quot;已经不再局限于身体的范围。影子比身体大，因为他在网络中的&quot;体积&quot;比在物理世界中的大。</p>
+<h3 id="技术实现">技术实现
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>系统</th>
+					<th>新增量</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>关卡</td>
+					<td>新建 <code>EchoCleft_SubLevel.umap</code>（15×10m）</td>
+					<td>复用 D 区岩壁材质 + A 区蘑菇资产</td>
+			</tr>
+			<tr>
+					<td>敌人（菌丝幼体）</td>
+					<td>DataTable 新增一行</td>
+					<td>复用菌丝宿主 AI，数值下调</td>
+			</tr>
+			<tr>
+					<td>敌人（回声宿主）</td>
+					<td>复用菌丝宿主，新增孢子云技能</td>
+					<td>复用 Boss 战的孢子云 Ability，缩小范围至 3×3</td>
+			</tr>
+			<tr>
+					<td>可交互物</td>
+					<td>2 个（画板 + 背包）</td>
+					<td>复用现有文本交互弹窗系统</td>
+			</tr>
+			<tr>
+					<td>演出（倒影）</td>
+					<td>坑底积水材质新增参数</td>
+					<td>Reflection 参数，击败回声宿主后临时开启</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="支线2孢子平台spore-platform">支线2：孢子平台（Spore Platform）
+</h2><h3 id="位置与入口-1">位置与入口
+</h3><p>D 区峡谷和 E 区 Boss 场地之间，一条被苔藓半掩的岔路。岔路入口不显眼——只有当玩家靠近时，蘑菇朝向会微微转向岔路方向（0.5 秒的动画，玩家可能注意到，也可能错过）。</p>
+<p><strong>辅助提示：</strong> 如果同伴在场，D 区同伴说出「我感觉……有人在摸我的后脑勺」后，同伴的视线会朝岔路方向偏转一次。</p>
+<h3 id="空间-1">空间
+</h3><p>5×5m 的圆形平台，被浓密的孢子云完全覆盖。玩家进入后，能见度降至 3 格。平台中央有一块平坦的石头，石头上坐着一个<strong>冥想者</strong>。</p>
+<h3 id="冥想者">冥想者
+</h3><ul>
+<li>外观：菌丝宿主的外观，但姿态是<strong>盘腿坐着</strong>，双手放在膝盖上。</li>
+<li>行为：<strong>不攻击。</strong> 即使玩家走到它面前，它也不动。不回应交互。</li>
+<li>如果玩家攻击它：它不反击。受到第一次伤害后&quot;消散&quot;——像被风吹散的孢子。留下一块铭牌，日期是<strong>今天</strong>。</li>
+<li>如果玩家听完文本后离开，再回来：它仍在原地，说：「你还在。很好。」</li>
+<li>如果玩家击败 Boss 后带着晶核回来：冥想者沉默。菌丝微微发光，和背包里晶核的脉动同步。不需要额外文本——纯视觉同步。（判断条件：<code>HasCrystalItem</code> 布尔值）</li>
+</ul>
+<h3 id="淡金色文本">淡金色文本
+</h3><p>玩家进入孢子平台后，不需要按任何键。文本自动出现在屏幕底部，每 10 秒一段。颜色为淡金色，前缀带 <code>·</code>（冥想者的&quot;自述&quot;标记）。与 E 区 Boss 孢子云记忆文本区分——孢子云文本前缀为淡金色下划线（&ldquo;网络的记录&quot;标记）。同一 Widget，不同参数。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>触发条件</th>
+					<th>文本</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>进入平台后 3 秒</td>
+					<td><code>·</code> 「你闻到了……铁锈？不，是矿场。你从没来过这个矿场。」</td>
+			</tr>
+			<tr>
+					<td>停留 10 秒</td>
+					<td><code>·</code> 「这里有人喊过你的名字。但不是你的同伴。」</td>
+			</tr>
+			<tr>
+					<td>停留 20 秒</td>
+					<td><code>·</code> 「你走出去了。然后你又回来了。这是第三次。」</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>第三段文本的三种读法：</strong></p>
 <ul>
-<li>A: 暖色夕阳 God Rays → B: 冷色荧光渐显 → C: 均匀中性战斗光</li>
-<li>D: 最暗，纯荧光照明 → E: 戏剧化强对比 → F: 暖金色胜利光</li>
+<li><strong>首次玩家：</strong> 困惑——&ldquo;第三次？我第一次玩啊。&rdquo;</li>
+<li><strong>二周目玩家：</strong> 震惊——&ldquo;它知道。它一直知道。&rdquo;</li>
+<li><strong>仔细阅读文档的人：</strong> 这是&quot;庞加莱回归&quot;的最小可行暗示——巨兽的梦中，状态会反复。你已经在巨兽的梦里走过三次。</li>
 </ul>
-<h3 id="encounter-设计">Encounter 设计
-</h3><p><strong>小型遭遇（C 区）：</strong> 2 只菌丝宿主 + 中央倒木掩体 → 教学性质的暖身战。同伴（矮人矿工）参与战斗，协助清小怪。</p>
-<p><strong>BOSS 战（E 区）：</strong> 真菌之主（近战 AOE + 召唤 + 回血）+ 第 2 回合孵化 2 只小怪 + 动态孢子云（提供可移动隐形掩体）。Boss 战为四阶段动态结构——详见下方「Boss 战四阶段设计」。</p>
+<h3 id="玩家的选择与后果">玩家的选择与后果
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>选择</th>
+					<th>结果</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>听完三段文本后离开</td>
+					<td>获得&quot;觉醒&quot;buff（Boss 战命中率 +5%，持续整场战斗）。冥想者仍在原地</td>
+			</tr>
+			<tr>
+					<td>听到第二段后攻击冥想者</td>
+					<td>冥想者消散，掉落铭牌（日期&quot;今天&rdquo;）。无 buff</td>
+			</tr>
+			<tr>
+					<td>听到第一段后离开</td>
+					<td>无奖励，无惩罚。冥想者保持沉默。角色离开孢子平台时，阴影在原地停留 0.2 秒才跟上——像孢子云有点&quot;黏&quot;。纯视觉异常，无 buff、无文本</td>
+			</tr>
+			<tr>
+					<td>听完三段后攻击</td>
+					<td>冥想者不反击，消散前说：「你每次都会选择这个。」</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>&ldquo;每次&rdquo;——对首次玩家是困惑，对二周目玩家是重锤。</strong></p>
+<h3 id="叙事功能">叙事功能
+</h3><ul>
+<li>这是 Demo 中最&quot;不安全&quot;的空间——没有战斗，但信息密度最高，脆弱感最重</li>
+<li>将&quot;多周目&quot;从文档设定变成可感知的体验。即使只玩一次，也会感到&quot;有什么地方不对&quot;</li>
+<li>&ldquo;命中率 +5%&ldquo;的 buff 是机制奖励，但它的来源是&quot;听完一个疯子的自言自语&rdquo;——奖励与代价绑定。你为了变强，听了不该听的东西</li>
+</ul>
+
+    <blockquote>
+        <p><strong>节奏说明：</strong> 孢子平台出口到 E 区 Boss 场地之间，预留 10-15 秒的静默通道。孢子云从浓转淡，能见度从 3 格恢复至正常。没有敌人、没有文本、没有异常——让玩家在下坡走向 Boss 场地的那几步里，有一个消化&quot;这是第三次&quot;这句台词的空隙。不是 cutscene，就是一段空的、安静的路。</p>
+
+    </blockquote>
+<h3 id="技术实现-1">技术实现
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>系统</th>
+					<th>新增量</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>关卡</td>
+					<td>在 <code>FungalForest_Showcase.umap</code> 中增加 5×5m 岔路 + 平台</td>
+					<td>复用孢子云体积 + 石头资产</td>
+			</tr>
+			<tr>
+					<td>冥想者 AI</td>
+					<td>复用菌丝宿主外观，新建 <code>BT_Meditator.uasset</code></td>
+					<td>从 EnemyBase 改，移除 Attack/Seek 节点，只剩 Idle</td>
+			</tr>
+			<tr>
+					<td>文本触发</td>
+					<td>进入体积 → 定时器驱动 3 段文本</td>
+					<td>复用孢子云记忆文本的 UI 系统（屏幕底部淡金色）</td>
+			</tr>
+			<tr>
+					<td>Buff 授予</td>
+					<td>听完第 3 段 → 给玩家添加 <code>GE_Awakened</code></td>
+					<td>复用 GAS InitStats 思路，新建 Duration=Infinite 的 GE</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="两条支线的叙事验证">两条支线的叙事验证
+</h2><p>每条支线必须通过四个问题的检验：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>问题</th>
+					<th>回声裂隙</th>
+					<th>孢子平台</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>是否与核心主题&quot;认知的代价&quot;相关？</strong></td>
+					<td>✅ 玩家为了多一块铭牌进入裂隙，看到的却是矿工自己画的螺旋纹路——人类才是最初的制造者</td>
+					<td>✅ 玩家为了 buff 听完冥想者的文本，但听到的内容让自己怀疑&quot;我是不是已经玩过这个游戏&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>是否可选？</strong></td>
+					<td>✅ 裂隙入口在 A 区侧边，不阻挡主路径</td>
+					<td>✅ 岔路在 D 区末尾，不阻挡进入 E 区</td>
+			</tr>
+			<tr>
+					<td><strong>是否复用现有系统？</strong></td>
+					<td>✅ 全部复用（菌丝幼体/宿主 AI、孢子云、文本弹窗、铭牌）</td>
+					<td>✅ 全部复用（孢子云体积、菌丝宿主外观、GAS buff、文本 UI）</td>
+			</tr>
+			<tr>
+					<td><strong>新增资产是否不超过 3 个？</strong></td>
+					<td>✅ 新增：EchoCleft_SubLevel、回声宿主 DataTable 行、倒影材质参数</td>
+					<td>✅ 新增：BT_Meditator、GE_Awakened、5×5m 平台地形</td>
+			</tr>
+	</tbody>
+</table></div>
 <hr>
 <h2 id="玩家角色叙事滤镜方案">玩家角色：叙事滤镜方案
 </h2><p>Demo 提供三种固定身份 + 一个自定义，共享同一套关卡流程（A→B→C→D→E→F），仅在文本/对话上产生差异。玩家通过入口处的简单选择确定身份。</p>
@@ -954,6 +1440,55 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<h3 id="技术实现路径">技术实现路径
+</h3><p>基于现有架构，同伴系统新增内容有限：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>系统</th>
+					<th>新增量</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AI</td>
+					<td>复制 <code>BT_EnemyBase</code> → <code>BT_CompanionBase</code>，改目标选择逻辑</td>
+					<td>1 新 Blackboard + 1 新 BehaviorTree</td>
+			</tr>
+			<tr>
+					<td>战斗框架</td>
+					<td><code>DND_CombatManager</code> 扩展同伴回合队列；Boss 战中监听同伴 HP=0 触发&quot;释放&quot;流程</td>
+					<td>2-3 处改动</td>
+			</tr>
+			<tr>
+					<td>GAS</td>
+					<td>同伴复用 <code>DND_CharacterBase</code> 和 <code>AttributeSet</code></td>
+					<td>0 新代码，纯数据配置</td>
+			</tr>
+			<tr>
+					<td>状态管理</td>
+					<td>同伴状态机：Ally → Infected（反水）→ Released（释放后不参战）</td>
+					<td>1 个枚举 + 状态切换逻辑</td>
+			</tr>
+			<tr>
+					<td>美术</td>
+					<td>1 套矮人矿工 Sprite（idle/attack/hit/dead）</td>
+					<td>美术工作量（可与现有 Sprite 共用管线）</td>
+			</tr>
+			<tr>
+					<td>文本</td>
+					<td>同伴 6 句关键文本（B/C/D/E×2/F）+ 4 个身份的条件文本变体 + 铭牌描述（2 种）</td>
+					<td>Game.csv 新增行</td>
+			</tr>
+			<tr>
+					<td>可拾取物</td>
+					<td>11 个铭牌 + 1 个 Boss 掉落铭牌。普通铭牌统一描述，Boss 铭牌特殊描述</td>
+					<td>Game.csv 新增 2 条文本行</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
 <h2 id="boss-战四阶段设计">Boss 战四阶段设计
 </h2><p>Boss 战原本为 1 玩家 vs 真菌之主 + 2 小怪。同伴加入后，战斗变为动态四阶段：</p>
 <div class="highlight"><div class="chroma">
@@ -1067,7 +1602,7 @@
 <li>情感难度 &gt; 数值难度——这是&quot;你必须亲手打败你救的人&quot;</li>
 </ul>
 <hr>
-<h3 id="技术实现路径">技术实现路径
+<h3 id="技术实现路径-1">技术实现路径
 </h3><p>基于现有架构，同伴系统新增内容有限：</p>
 <div class="table-wrapper"><table>
 	<thead>
@@ -1241,11 +1776,12 @@
 </span><span class="lnt">120
 </span><span class="lnt">121
 </span><span class="lnt">122
+</span><span class="lnt">123
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A 入口 ── 委托人给任务。
 </span></span><span class="line"><span class="cl">          「十二个矿工，两周前进入的。找到他们——或者找到他们发生了什么。」
-</span></span><span class="line"><span class="cl">          三选一快速职业选择（战士 / 游荡者。法师暂锁——法术系统 Demo 中不完整）。
+</span></span><span class="line"><span class="cl">          三选一快速职业选择（战士 / 游荡者 / 法师）。法师提供 2 戏法 + 1 个 1 环法术/场战斗。。
 </span></span><span class="line"><span class="cl">          玩家独自进入森林。
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">          **出生点前方 8m，一棵倒下的蘑菇。**
@@ -1267,6 +1803,7 @@
 </span></span><span class="line"><span class="cl">          交互解困 → 相机拉近 → 矮人脖子上的铭牌。
 </span></span><span class="line"><span class="cl">          提示文本：&#34;他胸前挂着一块金属牌子，生了锈，上面隐约刻着一个名字。&#34;
 </span></span><span class="line"><span class="cl">          同伴起身，拍掉身上的孢子。
+</span></span><span class="line"><span class="cl">          同伴站直了，从地上捡起一块石头在手里掂了掂——像在确认自己还活着。沉默 2 秒。
 </span></span><span class="line"><span class="cl">          →「还有……六个人在里面。」
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">C 空地 ── 两个菌丝宿主（被寄生的矿工）。
@@ -1364,7 +1901,7 @@
 </span></span><span class="line"><span class="cl">          身后蘑菇朝向微微转向玩家。
 </span></span><span class="line"><span class="cl">          嗡鸣消失。完全安静。然后风声。
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">全剧终。约 30-35 分钟。
+</span></span><span class="line"><span class="cl">全剧终。主线约 30 分钟，全探索约 60 分钟。
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
@@ -1416,20 +1953,6 @@
 	</tbody>
 </table></div>
 <hr>
-<h2 id="下一步">下一步
-</h2><ol>
-<li>在 UE 中创建 <code>FungalForest_Showcase</code> 关卡</li>
-<li>用 BSP Box 按分区尺寸搭建白盒</li>
-<li>Walk through 验证空间感</li>
-<li>逐步用实际资产替换白盒</li>
-<li>实施叙事引导（从低成本通道开始：文本 → 空间 → 光 → 视觉 → 玩法 → 声音 → NPC）
-<ul>
-<li>七条叙事引导的通用方法论详见 <a class="link" href="https://innnnnk.github.io/game-dev/narrative-design-tracker/#%e5%8f%99%e4%ba%8b%e5%bc%95%e5%af%bc%e4%b8%83%e6%9d%a1%e9%80%9a%e9%81%93"  target="_blank" rel="noopener"
-    >剧情设计追踪表</a></li>
-</ul>
-</li>
-</ol>
-<hr>
 <h2 id="demo-开发待办">Demo 开发待办
 </h2><p>以下是基于当前已有架构，Demo 还缺的系统/内容。按优先级排列。</p>
 <h3 id="p0--没这个跑不起来">P0 — 没这个跑不起来
@@ -1455,7 +1978,7 @@
 			<tr>
 					<td>3</td>
 					<td>Demo 快速选职业入口</td>
-					<td>Demo 不经过正式版 9 步 CC 流程。A 区入口需要小弹窗：战士/游荡者（法师暂锁）。选完直接进场景。两职业 Level 1 差异化：初始属性分配不同 + 各一个专属技能</td>
+					<td>Demo 不经过正式版 9 步 CC 流程。A 区入口需要小弹窗：战士/游荡者/法师。选完直接进场景。三职业 Level 1 差异化：初始属性分配不同 + 各一个专属技能（法师：2 戏法 + 1 个 1 环法术/场战斗）</td>
 			</tr>
 			<tr>
 					<td>4</td>
@@ -1552,7 +2075,7 @@
 			<tr>
 					<td>20</td>
 					<td><strong>铭牌计数器视觉污染</strong></td>
-					<td>HUD 显示&quot;铭牌 x/11&quot;。第 5 块时数字抖动，第 8 块时变淡紫 2 秒，第 11 块时 11→12→11 闪烁</td>
+					<td>HUD 显示&quot;铭牌 x/11&quot;。第 5 块时数字抖动，第 8 块时变淡紫 2 秒，第 11 块时缓慢呼吸式闪烁（11→12→11，三个呼吸周期，颜色偏淡紫）。回声裂隙闪烁为快速一闪（0.15 秒），与主线闪烁视觉不同</td>
 			</tr>
 			<tr>
 					<td>21</td>
@@ -1589,7 +2112,7 @@
 			<tr>
 					<td>25</td>
 					<td>Quick Start 画面</td>
-					<td>Demo 启动时一个静态画面：游戏名称 + 操作说明（WASD/点击交互/回合制战斗）+ 预计时长（约 30-35 分钟）</td>
+					<td>Demo 启动时一个静态画面：游戏名称 + 操作说明（WASD/点击交互/回合制战斗）+ 预计时长（约 30-60 分钟（主线 ~30min，全探索 ~60min））</td>
 			</tr>
 			<tr>
 					<td>26</td>
@@ -1598,7 +2121,7 @@
 			</tr>
 			<tr>
 					<td>27</td>
-					<td>法师系统</td>
+					<td>法师系统（✅ 60分钟版本已开放）</td>
 					<td>DT_SpellSlotSheet 法师行。Demo Level 1 简化方案：2 戏法（无限）+ 1 个 1 环法术（每场战斗 1 次）。不需长休/短休系统——Demo 没有&quot;休&quot;的需求</td>
 			</tr>
 	</tbody>
@@ -1671,7 +2194,7 @@
 			</tr>
 	</tbody>
 </table></div>
-<h4 id="设计原则">设计原则
+<h4 id="设计原则-1">设计原则
 </h4><ul>
 <li>同伴死亡不惩罚玩家。Boss 血量下调 + 直接跳过反水阶段，整体难度持平甚至略低</li>
 <li>叙事不降级为&quot;无趣&quot;——同伴不在场时，D/E/F 区用环境细节填补缺失的台词</li>
@@ -1852,8 +2375,8 @@
 </span></span><span class="line"><span class="cl">│                                 │
 </span></span><span class="line"><span class="cl">│  ┌──────────┐                  │
 </span></span><span class="line"><span class="cl">│  │ 🔮 法师  │                  │
-</span></span><span class="line"><span class="cl">│  │ Demo 暂  │                  │
-</span></span><span class="line"><span class="cl">│  │ 不可用   │  (灰色)          │
+</span></span><span class="line"><span class="cl">│  │ 简单直观  │                  │
+</span></span><span class="line"><span class="cl">│  │          │                  │
 </span></span><span class="line"><span class="cl">│  └──────────┘                  │
 </span></span><span class="line"><span class="cl">└─────────────────────────────────┘
 </span></span></code></pre></td></tr></table>
@@ -1861,7 +2384,7 @@
 </div><ul>
 <li>战士标签：<code>近战 · 耐打 · 简单直接</code></li>
 <li>游荡者标签：<code>灵活 · 暴击 · 需要走位</code></li>
-<li>法师标签：<code>法术 · 控场 · Demo 暂不可用</code>（灰色不可点击）</li>
+<li>法师标签：<code>法术 · 控场 · 简单直观</code></li>
 </ul>
 <p>每行不超过 10 个字。不需要图标——职业名称本身就是信息。</p>
 <hr>
@@ -1997,7 +2520,7 @@
 			<tr>
 					<td>31</td>
 					<td>选职业界面说明文本</td>
-					<td>战士/游荡者各一行 10 字内功能提示。法师灰色不可选 + &ldquo;Demo 暂不可用&rdquo;</td>
+					<td>战士/游荡者各一行 10 字内功能提示。战士/游荡者/法师各一行 10 字内功能提示</td>
 			</tr>
 			<tr>
 					<td>32</td>
@@ -2006,6 +2529,143 @@
 			</tr>
 	</tbody>
 </table></div>
+<h2 id="开发顺序">开发顺序
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">阶段1：完成 30 分钟版本主干 → 跑通（4–6 周）
+</span></span><span class="line"><span class="cl">  ├ 白盒关卡 + 流程管理器 + 选职业入口
+</span></span><span class="line"><span class="cl">  ├ 敌人 + 同伴基础系统
+</span></span><span class="line"><span class="cl">  ├ 交互系统 + 可拾取物
+</span></span><span class="line"><span class="cl">  ├ Boss 战四阶段 + 检查点
+</span></span><span class="line"><span class="cl">  └ 演出 + 声音 + 首尾画面
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">阶段2：恢复 60 分钟版本特色内容（+2 周）
+</span></span><span class="line"><span class="cl">  ├ 法师简化系统
+</span></span><span class="line"><span class="cl">  ├ 同伴 AI 性格签名（识别动画 + 条件台词）
+</span></span><span class="line"><span class="cl">  ├ 孢子云记忆文本（3 段）
+</span></span><span class="line"><span class="cl">  ├ D 区底座阴影随机抖动
+</span></span><span class="line"><span class="cl">  ├ 铭牌计数器视觉污染
+</span></span><span class="line"><span class="cl">  ├ Boss 战完整不可理解化（5 条日志）
+</span></span><span class="line"><span class="cl">  └ F 区同伴质问委托人
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">阶段3：支线内容（+2–3 周）
+</span></span><span class="line"><span class="cl">  ├ 孢子平台（优先实现——成本最低）
+</span></span><span class="line"><span class="cl">  └ 回声裂隙（新关卡 + 精英敌人 + 可交互物）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">阶段4：Polish（+1–2 周）
+</span></span><span class="line"><span class="cl">  ├ 环境资产替换白盒
+</span></span><span class="line"><span class="cl">  ├ Quick Start / 结束画面
+</span></span><span class="line"><span class="cl">  └ 平衡调整 + 边缘情况修复
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>总周期：8–12 周（单人全职）。</strong> 每个阶段都可以独立发布——阶段 1 完成后就是一个可发布的 30 分钟 Demo，后续阶段是增量叠加。</p>
+<hr>
+<h2 id="风险与应对">风险与应对
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>风险</th>
+					<th>概率</th>
+					<th>影响</th>
+					<th>应对</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>回声宿主的孢子云技能数值不平衡</td>
+					<td>中</td>
+					<td>回声裂隙战斗难度过高</td>
+					<td>将孢子云范围从 3×3 降到 2×2，或移除伤害只保留视野遮蔽</td>
+			</tr>
+			<tr>
+					<td>玩家找不到支线入口</td>
+					<td>中</td>
+					<td>支线内容被浪费</td>
+					<td>A 区异常蘑菇交互后，底座阴影朝裂隙方向偏移一次提示。D 区同伴视线朝岔路偏转一次。不强制引导，只给&quot;可错过的信号&quot;</td>
+			</tr>
+			<tr>
+					<td>冥想者的&quot;不攻击&quot;行为让玩家困惑</td>
+					<td>低</td>
+					<td>玩家不确定该做什么</td>
+					<td>进入平台后 UI 提示：「按 E 倾听 / 按左键攻击」——两行，三秒后淡出</td>
+			</tr>
+			<tr>
+					<td>60 分钟版本开发周期过长</td>
+					<td>高</td>
+					<td>错过 Steam 新品节</td>
+					<td>Fallback：放弃支线 2（孢子平台），保留支线 1。孢子平台可在发售后作为免费更新补丁加入。或者——先发布 30 分钟版本上新品节，60 分钟版本作为&quot;完整体验版&quot;在发售前更新</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="发布策略建议">发布策略建议
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>场景</th>
+					<th>建议</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>时间充裕（3 个月+）</strong></td>
+					<td>直接做 60 分钟版本，Steam 新品节发布</td>
+			</tr>
+			<tr>
+					<td><strong>时间中等（6–8 周）</strong></td>
+					<td>做 30 分钟版本上新品节。60 分钟内容（支线 + 法师 + 性格签名）作为&quot;完整体验版&quot;在发售前通过 Steam 更新</td>
+			</tr>
+			<tr>
+					<td><strong>时间紧张（4 周以下）</strong></td>
+					<td>做 30 分钟版本，但保留 A 区异常蘑菇——它是不可删减的锚点。孢子平台（成本极低）尽力塞进去</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="60-分钟版本的核心卖点">60 分钟版本的核心卖点
+</h2>
+    <blockquote>
+        <p><strong>&ldquo;一场 60 分钟的完整遭遇——每次偏离主线的探索，都会让你离真相更近一步，但也离安全更远一步。&rdquo;</strong></p>
+
+    </blockquote>
+<p>这不是&quot;一个更长的 Demo&quot;。这是一个<strong>有深度选择</strong>的短篇体验。玩家在 60 分钟内会经历：</p>
+<ol>
+<li><strong>发现不对劲</strong>（A 区蘑菇）</li>
+<li><strong>面对&quot;真相不是别人给的&quot;</strong>（回声裂隙——矿工自己在画螺旋纹路）</li>
+<li><strong>建立情感连接</strong>（B 区营救同伴）</li>
+<li><strong>面对&quot;你已经被认出了&quot;</strong>（孢子平台——冥想者知道你是第几次来）</li>
+<li><strong>亲手打朋友</strong>（E 区反水）</li>
+<li><strong>带走一个问题 + 一个谎言</strong>（F 区——委托人说&quot;第三个&quot;，但铭牌数不对；铭牌计数器全程在说谎）</li>
+</ol>
+<p><strong>30 分钟版本展示异常——这个世界不对。60 分钟版本让你亲手触碰真相——而每一次触碰，都在改变你。你不是在&quot;发现&quot;这个世界的秘密，你是在&quot;选择&quot;知道多少。而你知道得越多，身体越开始变得不像自己。</strong></p>
+<hr>
+<p><em>60 分钟版本是 Project_DND 的&quot;完整体验 Demo&quot;。它不是更长——而是更深。每一次偏离主线的选择，都是玩家自愿支付的&quot;认知的代价&quot;。</em></p>
 
 </section>
 
@@ -2014,13 +2674,13 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E5%9C%BA%E6%99%AF%E8%AE%BE%E8%AE%A1/">场景设计</a>
+            <a href="/tags/demo/">Demo</a>
+        
+            <a href="/tags/%E6%94%AF%E7%BA%BF%E8%AE%BE%E8%AE%A1/">支线设计</a>
+        
+            <a href="/tags/%E5%8F%99%E4%BA%8B%E8%AE%BE%E8%AE%A1/">叙事设计</a>
         
             <a href="/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/">关卡设计</a>
-        
-            <a href="/tags/%E7%9C%9F%E8%8F%8C%E6%A3%AE%E6%9E%97/">真菌森林</a>
-        
-            <a href="/tags/demo/">Demo</a>
         
     </section>
 
@@ -2046,6 +2706,59 @@
     
 
     
+
+<aside>
+    <h2 class="section-title"></h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            
+                
+<article class="">
+    <a href="/game-dev/demo-60min-expanded/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Demo 深潜版：60分钟完整体验设计</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/fungal-forest-showcase/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">真菌森林展示场景 · 布局设计</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/narrative-design-tracker/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">剧情设计追踪表</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/worldbuilding-foundation/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">世界观设定：巨兽梦境与2.5D的本体论</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
 
      
     
