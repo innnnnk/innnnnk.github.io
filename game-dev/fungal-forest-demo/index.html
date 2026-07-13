@@ -1018,11 +1018,11 @@
 	<tbody>
 			<tr>
 					<td>听完三段文本后离开</td>
-					<td>获得&quot;觉醒&quot;buff（Boss 战命中率 +5%，持续整场战斗）。冥想者仍在原地</td>
+					<td>获得&quot;感知&quot;buff（Boss 战命中率 +5%，持续整场战斗，命中时 UI 飘淡金色小字&quot;感知命中&rdquo;）。冥想者仍在原地</td>
 			</tr>
 			<tr>
 					<td>听到第二段后攻击冥想者</td>
-					<td>冥想者消散，掉落铭牌（日期&quot;今天&rdquo;）。无 buff</td>
+					<td>冥想者消散，掉落铭牌（日期&quot;今天&quot;）。无 buff</td>
 			</tr>
 			<tr>
 					<td>听到第一段后离开</td>
@@ -1114,7 +1114,7 @@
 </table></div>
 <hr>
 <h2 id="玩家角色叙事滤镜方案">玩家角色：叙事滤镜方案
-</h2><p>Demo 提供三种固定身份 + 一个自定义，共享同一套关卡流程（A→B→C→D→E→F），仅在文本/对话上产生差异。玩家通过入口处的简单选择确定身份。</p>
+</h2><p>Demo 提供三种固定身份，共享同一套关卡流程（A→B→C→D→E→F），仅在文本/对话上产生差异。玩家通过入口处的简单选择确定身份。</p>
 <div class="table-wrapper"><table>
 	<thead>
 			<tr>
@@ -1142,12 +1142,6 @@
 					<td>精灵</td>
 					<td>来自工业城市。来研究森林生态——不知道下面是矿场</td>
 					<td>同伴对这个&quot;外人&quot;不信任——&ldquo;你在研究我们？像研究标本？&ldquo;释放后态度转变：&ldquo;你不是来研究。你是来……理解的。&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>自定义</strong></td>
-					<td>任意</td>
-					<td>三方雇佣兵。不受任何势力绑定</td>
-					<td>中性关系。同伴对雇佣兵保持职业距离，释放后简单点头——&ldquo;欠你一条命。&rdquo;</td>
 			</tr>
 	</tbody>
 </table></div>
@@ -1591,7 +1585,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  释放效果：
 </span></span><span class="line"><span class="cl">  → 真菌之主短暂失神 1 轮（失去了一个节点）
-</span></span><span class="line"><span class="cl">  → 玩家获得&#34;觉醒&#34;buff（攻击力 +30%，持续 2 轮）
+</span></span><span class="line"><span class="cl">  → 玩家获得&#34;断裂&#34;buff（攻击力 +30%，持续 2 轮）
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">阶段四：收尾（~70s）
 </span></span><span class="line"><span class="cl">  玩家 + buff vs 真菌之主 + 残余小怪
@@ -1796,7 +1790,6 @@
 </span><span class="lnt">124
 </span><span class="lnt">125
 </span><span class="lnt">126
-</span><span class="lnt">127
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A 入口 ── 委托人给任务。
@@ -1811,12 +1804,11 @@
 </span></span><span class="line"><span class="cl">            - 调查员：「风是从那边吹来的。菌盖不应该朝这边。」
 </span></span><span class="line"><span class="cl">            - 矿工：「这不对。蘑菇知道有人要来。」
 </span></span><span class="line"><span class="cl">            - 精灵学者：「它在……转向？不，是生长方向。生长方向不会错。」
-</span></span><span class="line"><span class="cl">            - 自定义：（没有语音，只有底座阴影闪烁 + 轻微 UI 音效）
 </span></span><span class="line"><span class="cl">          
 </span></span><span class="line"><span class="cl">          机制影响：无。纯氛围。但从第 3 分钟开始，玩家知道&#34;规则不对&#34;。
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">B 走廊 ── 营地残骸 + 矿工日记 + 菌丝覆盖的身形。
-</span></span><span class="line"><span class="cl">          「第三天。蘑菇在跟我说话……它似乎在……记住我。」（字迹中断）
+</span></span><span class="line"><span class="cl">          「第三天。蘑菇在跟我说话……它似乎在……学我。」（字迹中断）
 </span></span><span class="line"><span class="cl">          帐篷外：菌丝覆盖的隆起，隐约勾勒出趴着的身形。
 </span></span><span class="line"><span class="cl">          旁边菌丝里半埋着铭牌。搜索营地 → 拾取 3 块铭牌。
 </span></span><span class="line"><span class="cl">          营地残骸旁发现被困在菌丝中的矮人矿工——奄奄一息。
@@ -1871,7 +1863,7 @@
 </span></span><span class="line"><span class="cl">          同伴退至场地边缘，不再参战。
 </span></span><span class="line"><span class="cl">          &#34;我看到了他们……哈洛德、老詹姆、卡里克……
 </span></span><span class="line"><span class="cl">           他们回不来了。&#34;
-</span></span><span class="line"><span class="cl">          释放效果：真菌之主失神 1 轮 + 玩家获得&#34;觉醒&#34;buff（攻击力 +30%，2 轮）。
+</span></span><span class="line"><span class="cl">          释放效果：真菌之主失神 1 轮 + 玩家获得&#34;断裂&#34;buff（攻击力 +30%，2 轮）。
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">          【阶段四：收尾（~70s）】
 </span></span><span class="line"><span class="cl">          玩家 + buff vs 真菌之主 + 残余小怪。
@@ -2217,8 +2209,8 @@
 			</tr>
 			<tr>
 					<td>F 区</td>
-					<td>同伴指证委托人。</td>
-					<td>跳过同伴指证。委托人：「你是第二个回来的。第一个……记不太清了。」数量从&quot;第三个&quot;降为&quot;第二个&rdquo;——暗示同伴算第一个回来的人，但委托人忘了。微热的矿石仍然给玩家。</td>
+					<td>同伴指证委托人。同伴看玩家：「晶核你留着吧。它……它在等你。」</td>
+					<td>跳过同伴指证。委托人：「你是第二个回来的。第一个……记不太清了。」数量从&quot;第三个&quot;降为&quot;第二个&rdquo;——暗示同伴算第一个回来的人，但委托人忘了。微热的矿石仍然给玩家。玩家整理背包时，晶核在背包格子里自主脉动了一次——没有声音，没有文本。同伴缺席时，世界对玩家的&quot;回应&quot;。</td>
 			</tr>
 	</tbody>
 </table></div>
@@ -2226,7 +2218,7 @@
 </h4><ul>
 <li>同伴死亡不惩罚玩家。Boss 血量下调 + 直接跳过反水阶段，整体难度持平甚至略低</li>
 <li>叙事不降级为&quot;无趣&quot;——同伴不在场时，D/E/F 区用环境细节填补缺失的台词</li>
-<li>E 区多出的那块铭牌不计数（铭牌总数仍为 11+1+1=13）。它只是静静地在那里</li>
+<li>E 区多出的那块铭牌不计数——它只是一块破损的身份牌，静静地落在场地边缘。不改变计数器，不改变 F 区结尾文本</li>
 </ul>
 <hr>
 <h3 id="补丁二战斗教学触发器">补丁二：战斗教学触发器
@@ -2279,14 +2271,14 @@
 <p><strong>击败后：</strong></p>
 <ul>
 <li>孢子虫萎缩（复用菌丝宿主死亡演出的简化版——只萎缩不长蘑菇）</li>
-<li>掉落一块铭牌（让玩家建立&quot;战斗掉落 → 铭牌&quot;的认知）</li>
-<li>铭牌描述和 B 区普通铭牌一致：<code>一块矿工身份牌。名字已模糊不清。</code></li>
+<li>掉落一块破损铭牌（让玩家建立&quot;战斗掉落 → 铭牌&quot;的认知）</li>
+<li>铭牌描述：<code>一块矿工身份牌。比其他的小一圈，边缘有裂口。名字已模糊不清。</code>（拾取后自动合并，不增加计数器）</li>
 </ul>
 <h4 id="设计要点-2">设计要点
 </h4><ul>
 <li>不打断沉浸感。孢子虫是&quot;世界里的生物&quot;，不是&quot;教学 NPC&quot;</li>
 <li>不掉落不消失——如果玩家忽略它直接走进 B 区，它只是静静地浮动在那里</li>
-<li>铭牌总数从 11 拾取变为 12 拾取。但 F 区结尾文本不改——&ldquo;你数了数铭牌。十二块。&ldquo;教学战掉落的那块就是第十二块</li>
+<li>铭牌总数不变。孢子虫掉落的铭牌是&quot;破损的&quot;——比普通铭牌小一圈，边缘有裂口。背包中不单独计数：拾取后自动合并到最后一块普通铭牌中，不改变计数器。F 区结尾文本不变——&ldquo;你数了数铭牌。十二块&rdquo;——玩家捡到 12 块（11 普通 + 1 破损 = 计数器显示 12），但物理上存在 13 块铭牌</li>
 <li>10 秒完成，不拖节奏</li>
 </ul>
 <hr>
@@ -2484,7 +2476,7 @@
 <li>第三行延迟 6s 淡入（和第二行一起显示——不覆盖，累积）</li>
 <li>全部文本显示完毕后停留 4 秒</li>
 </ul>
-<p><strong>愿望单画面：</strong> 文本淡出（1.5s）后，显示一张预渲染静态图：游戏标题 Logo + Steam 愿望单链接的 URL 文本（不是可点击的超链接——Demo 阶段通过 Steam overlay 的默认浏览器处理，或者直接显示文字&quot;在 Steam 搜索 Project_DND 加入愿望单&rdquo;）。不需要 Steam SDK 集成。</p>
+<p><strong>愿望单画面：</strong> 文本淡出（1.5s）后，显示一张预渲染静态图：游戏标题 Logo + Steam 愿望单链接的 URL 文本（不是可点击的超链接——Demo 阶段通过 Steam overlay 的默认浏览器处理，或者直接显示文字&quot;在 Steam 搜索 Project_DND 加入愿望单&quot;）。不需要 Steam SDK 集成。</p>
 <p><strong>音效配合（补丁三 #8）：</strong> 黑屏时触发&quot;嗡鸣消失 + 风起&quot;音频。嗡鸣在第 2 秒淡出，风在第 2.5 秒进入。第一行文本出现时（延迟 0s），玩家同时听到风声——&ldquo;不再有嗡鸣了&rdquo;。</p>
 <h4 id="备选方案更低成本">备选方案（更低成本）
 </h4><p>如果 UI 动画开发时间不够：直接切成一张全屏静态图片（PNG），包含手写体文本 + 暗色渐变背景。玩家按任意键后显示愿望单页面。牺牲&quot;逐行淡入&quot;的效果，但不牺牲文本本身。</p>
@@ -2521,7 +2513,7 @@
 			<tr>
 					<td>28</td>
 					<td>同伴死亡分支逻辑</td>
-					<td>C 区同伴 HP=0 → 死亡红牌（不放释放演出）。D 区跳过同伴台词，纹路光脉加速。E 区跳过反水/释放阶段，Boss 血量-20%，多一块不计数铭牌。F 区委托人台词&quot;第二个&rdquo;→&ldquo;第一个&rdquo;</td>
+					<td>C 区同伴 HP=0 → 死亡红牌（不放释放演出）。D 区跳过同伴台词，纹路光脉加速。E 区跳过反水/释放阶段，Boss 血量-20%，多一块不计数铭牌。F 区委托人台词&quot;第二个&quot;→&ldquo;第一个&rdquo;</td>
 			</tr>
 			<tr>
 					<td>29</td>
