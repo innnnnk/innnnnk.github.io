@@ -2,408 +2,317 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1200, initial-scale=1.0">
-<title>真菌森林展示场景 — 布局图</title>
+<meta name="viewport" content="width=1000">
+<title>60分钟全景布局</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #1a1a2e;
-    display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; font-family: -apple-system, system-ui, sans-serif;
-    padding: 24px;
-  }
-  .sheet {
-    background: #16213e;
-    border-radius: 16px; padding: 40px;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
-    max-width: 1300px;
-  }
-  h1 {
-    color: #e0e7ff; font-size: 24px; font-weight: 700;
-    margin-bottom: 4px; text-align: center;
-  }
-  .subtitle {
-    color: #8b9dc3; font-size: 13px; text-align: center; margin-bottom: 28px;
-  }
-  svg { display: block; margin: 0 auto; }
-  .legend {
-    display: flex; gap: 24px; justify-content: center; margin-top: 24px;
-    flex-wrap: wrap;
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 8px; color: #c4ccde; font-size: 12px;
-  }
-  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a2e;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:-apple-system,sans-serif;padding:16px}
+.sheet{background:#16213e;border-radius:14px;padding:32px;box-shadow:0 4px 32px rgba(0,0,0,0.5);max-width:1050px}
+h1{color:#e0e7ff;font-size:20px;text-align:center;margin-bottom:2px}
+.sub{color:#8b9dc3;font-size:12px;text-align:center;margin-bottom:20px}
+svg{display:block;margin:0 auto}
 </style>
 </head>
 <body>
 <div class="sheet">
-  <h1>真菌森林展示场景 · 俯视布局</h1>
-  <p class="subtitle">珠串式结构 · 总长约 135m · 预计 30-35 分钟体验</p>
-
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
-
-    <!-- ====== DEFS ====== -->
-    <defs>
-      <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-        <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
-      </marker>
-      <marker id="arrowWarm" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-        <polygon points="0 0, 8 3, 0 6" fill="#f59e0b"/>
-      </marker>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="3" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="shadow">
-        <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
-      </filter>
-      <!-- Flicker animation for anomaly markers -->
-      <filter id="flickerGlow">
-        <feGaussianBlur stdDeviation="2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-
-    <!-- ====== BACKGROUND TERRAIN ====== -->
-    <rect x="20" y="60" width="1160" height="520" rx="20" fill="#1e3a2f" opacity="0.5"/>
-
-    <!-- ====== CONNECTORS ====== -->
-    <!-- A→B -->
-    <path d="M 170,320 C 200,320 210,320 240,320" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="8,4" opacity="0.5"/>
-    <!-- B→C -->
-    <path d="M 430,320 C 460,320 470,320 500,320" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="8,4" opacity="0.5"/>
-    <!-- C→D -->
-    <path d="M 670,320 C 700,320 710,320 740,320" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="8,4" opacity="0.5"/>
-    <!-- D→E -->
-    <path d="M 880,320 C 910,320 920,320 950,320" stroke="#7c3aed" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="8,4" opacity="0.5"/>
-    <!-- E→F -->
-    <path d="M 1100,320 C 1120,320 1130,320 1145,320" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="8,4" opacity="0.5"/>
-
-    <!-- ================================================================== -->
-    <!-- A 区：森林入口 -->
-    <!-- ================================================================== -->
-    <g filter="url(#shadow)">
-      <ellipse cx="120" cy="320" rx="65" ry="55" fill="#2d4a3e" stroke="#4ade80" stroke-width="2" stroke-dasharray="4,2"/>
-      <text x="120" y="295" text-anchor="middle" fill="#86efac" font-size="14" font-weight="700">🌿 A · 森林入口</text>
-      <text x="120" y="313" text-anchor="middle" fill="#9ca3af" font-size="11">15×15m · ~60s · 好奇</text>
-
-      <!-- START marker -->
-      <circle cx="85" cy="320" r="5" fill="#4ade80"/>
-      <text x="85" y="312" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="700">START</text>
-
-      <!-- Anomalous mushroom 8m ahead of spawn -->
-      <g filter="url(#flickerGlow)">
-        <text x="125" y="338" text-anchor="middle" font-size="16" opacity="0.9">🍄</text>
-        <text x="125" y="354" text-anchor="middle" fill="#fbbf24" font-size="8">异常蘑菇</text>
-        <text x="125" y="365" text-anchor="middle" fill="#d97706" font-size="7">菌盖朝向玩家</text>
-        <line x1="105" y1="340" x2="90" y2="340" stroke="#fbbf24" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
-        <!-- Arrow showing mushroom cap direction (toward spawn = "wrong" direction) -->
-        <polygon points="100,340 94,336 94,344" fill="#fbbf24" opacity="0.7"/>
-      </g>
-
-      <!-- Identity selection prompt -->
-      <rect x="130" y="295" width="48" height="20" rx="4" fill="#1e40af" opacity="0.7" stroke="#60a5fa" stroke-width="1"/>
-      <text x="154" y="309" text-anchor="middle" fill="#93c5fd" font-size="8">选职业</text>
-
-      <!-- Employer NPC -->
-      <circle cx="150" cy="305" r="5" fill="#fbbf24" opacity="0.8"/>
-      <text x="150" y="295" text-anchor="middle" fill="#fcd34d" font-size="8">委托人</text>
-    </g>
-
-    <!-- ================================================================== -->
-    <!-- B 区：幽光走廊 -->
-    <!-- ================================================================== -->
-    <g filter="url(#shadow)">
-      <!-- S-shaped corridor -->
-      <path d="M 240,290 C 290,290 310,310 350,310 C 390,310 400,330 430,350" stroke="#6366f1" stroke-width="28" fill="none" opacity="0.2" stroke-linecap="round"/>
-      <path d="M 240,290 C 290,290 310,310 350,310 C 390,310 400,330 430,350" stroke="#6366f1" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
-
-      <text x="340" y="268" text-anchor="middle" fill="#a5b4fc" font-size="14" font-weight="700">🍄 B · 幽光走廊</text>
-      <text x="340" y="284" text-anchor="middle" fill="#9ca3af" font-size="11">S形走廊 ~65m · ~150s · 沉浸</text>
-
-      <!-- Camp ruins -->
-      <rect x="275" y="298" width="36" height="20" rx="3" fill="#78350f" opacity="0.5" stroke="#92400e" stroke-width="1"/>
-      <text x="293" y="311" text-anchor="middle" fill="#d97706" font-size="7">营地残骸</text>
-
-      <!-- Miner diary -->
-      <circle cx="305" cy="290" r="3" fill="#fbbf24"/>
-      <text x="318" y="290" fill="#fcd34d" font-size="7">矿工日记</text>
-
-      <!-- Mycelium-covered body -->
-      <ellipse cx="350" cy="320" rx="12" ry="5" fill="#6366f1" opacity="0.4" stroke="#818cf8" stroke-width="0.8" stroke-dasharray="2,1"/>
-      <text x="350" y="332" text-anchor="middle" fill="#a5b4fc" font-size="6">菌丝覆身形</text>
-
-      <!-- Dogtags ×3 scattered around camp -->
-      <g fill="#fbbf24" opacity="0.9">
-        <rect x="282" y="322" width="5" height="7" rx="1"/>
-        <text x="285" y="334" text-anchor="middle" fill="#fcd34d" font-size="5">🏷️</text>
-        <rect x="338" y="312" width="5" height="7" rx="1"/>
-        <text x="341" y="324" text-anchor="middle" fill="#fcd34d" font-size="5">🏷️</text>
-        <rect x="370" y="338" width="5" height="7" rx="1"/>
-        <text x="373" y="350" text-anchor="middle" fill="#fcd34d" font-size="5">🏷️</text>
-      </g>
-
-      <!-- Dwarf rescue point -->
-      <g filter="url(#flickerGlow)">
-        <circle cx="415" cy="340" r="7" fill="#f59e0b" opacity="0.6" stroke="#fbbf24" stroke-width="1.5"/>
-        <text x="415" y="343" text-anchor="middle" fill="#fef08a" font-size="9">⚒️</text>
-        <text x="415" y="356" text-anchor="middle" fill="#fcd34d" font-size="8" font-weight="700">解救矮人</text>
-        <text x="415" y="367" text-anchor="middle" fill="#d97706" font-size="6">脖子上有铭牌</text>
-      </g>
-
-      <!-- Companion joins marker -->
-      <text x="425" y="310" fill="#fbbf24" font-size="7" text-anchor="middle">→ 同伴加入</text>
-    </g>
-
-    <!-- ================================================================== -->
-    <!-- C 区：腐木空地 -->
-    <!-- ================================================================== -->
-    <g filter="url(#shadow)">
-      <ellipse cx="580" cy="320" rx="75" ry="55" fill="#3b2f2f" stroke="#ef4444" stroke-width="2.5"/>
-      <text x="580" y="293" text-anchor="middle" fill="#fca5a5" font-size="14" font-weight="700">⚔ C · 腐木空地</text>
-      <text x="580" y="311" text-anchor="middle" fill="#9ca3af" font-size="11">20×18m · ~120s · 紧张</text>
-
-      <!-- Fallen log cover -->
-      <rect x="550" y="310" width="55" height="12" rx="4" fill="#78350f" opacity="0.7"/>
-      <text x="578" y="319" text-anchor="middle" fill="#92400e" font-size="7">倒木 (掩体)</text>
-
-      <!-- Mycelium Host ×2 -->
-      <g filter="url(#flickerGlow)">
-        <circle cx="535" cy="305" r="8" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.5"/>
-        <text x="535" y="308" text-anchor="middle" fill="#fca5a5" font-size="9">🧟</text>
-        <text x="535" y="295" text-anchor="middle" fill="#ef4444" font-size="8">菌丝宿主</text>
-      </g>
-      <g filter="url(#flickerGlow)">
-        <circle cx="620" cy="340" r="8" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.5"/>
-        <text x="620" y="343" text-anchor="middle" fill="#fca5a5" font-size="9">🧟</text>
-        <text x="620" y="355" text-anchor="middle" fill="#ef4444" font-size="8">菌丝宿主</text>
-      </g>
-
-      <!-- Dogtags dropped after kill -->
-      <text x="545" y="330" text-anchor="middle" fill="#fcd34d" font-size="6">🏷️ 干壳掉铭牌</text>
-      <text x="630" y="330" text-anchor="middle" fill="#fcd34d" font-size="6">🏷️ 干壳掉铭牌</text>
-
-      <!-- Companion fights alongside -->
-      <circle cx="570" cy="340" r="6" fill="#fbbf24" opacity="0.6" stroke="#f59e0b" stroke-width="1"/>
-      <text x="570" y="343" text-anchor="middle" fill="#fef08a" font-size="7">⚒️</text>
-      <text x="570" y="356" text-anchor="middle" fill="#fcd34d" font-size="7">同伴并肩</text>
-
-      <!-- Companion pauses to recognize host -->
-      <text x="505" y="365" text-anchor="middle" fill="#fbbf24" font-size="6" opacity="0.8">识别停顿 0.3s</text>
-
-      <!-- Kill sequence note -->
-      <text x="580" y="370" text-anchor="middle" fill="#9ca3af" font-size="6" font-style="italic">击杀→孢子释放→萎缩→长蘑菇</text>
-    </g>
-
-    <!-- ================================================================== -->
-    <!-- D 区：深菇峡谷 -->
-    <!-- ================================================================== -->
-    <g filter="url(#shadow)">
-      <rect x="710" y="285" width="120" height="70" rx="6" fill="#1e1b4b" stroke="#7c3aed" stroke-width="2"/>
-      <text x="770" y="302" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">🌑 D · 深菇峡谷</text>
-      <text x="770" y="318" text-anchor="middle" fill="#9ca3af" font-size="11">~30m · ~60s · 压抑</text>
-
-      <!-- Canyon walls -->
-      <line x1="710" y1="285" x2="830" y2="285" stroke="#7c3aed" stroke-width="4" opacity="0.5"/>
-      <line x1="710" y1="355" x2="830" y2="355" stroke="#7c3aed" stroke-width="4" opacity="0.5"/>
-
-      <!-- Mycelium veins on wall -->
-      <path d="M 720,295 Q 730,310 725,325 Q 720,340 730,350" stroke="#818cf8" stroke-width="2" fill="none" opacity="0.4"/>
-      <path d="M 740,292 Q 750,305 745,320 Q 740,335 748,348" stroke="#818cf8" stroke-width="2" fill="none" opacity="0.4"/>
-
-      <!-- Dogtags pierced by mycelium -->
-      <text x="728" y="325" font-size="7" fill="#fcd34d">🏷️</text>
-      <text x="732" y="328" font-size="5" fill="#a5b4fc">菌丝穿过铭牌</text>
-      <text x="758" y="340" font-size="7" fill="#fcd34d">🏷️</text>
-
-      <!-- Spiral marking on wall -->
-      <circle cx="795" cy="310" r="6" fill="none" stroke="#c084fc" stroke-width="1" opacity="0.6"/>
-      <circle cx="795" cy="310" r="3" fill="none" stroke="#c084fc" stroke-width="0.7" opacity="0.4"/>
-      <text x="795" y="300" text-anchor="middle" fill="#c084fc" font-size="6">螺旋纹路</text>
-
-      <!-- Shadow anomaly -->
-      <text x="770" y="345" text-anchor="middle" fill="#c4b5fd" font-size="6" opacity="0.7">🎴 影子异常 · 嗡鸣</text>
-
-      <!-- Companion whispers -->
-      <text x="770" y="370" text-anchor="middle" fill="#d97706" font-size="6" font-style="italic">"有人摸我后脑勺"</text>
-
-      <!-- Light at end of canyon -->
-      <ellipse cx="840" cy="320" rx="18" ry="25" fill="#fef08a" opacity="0.12"/>
-      <text x="840" y="340" text-anchor="middle" fill="#fde68a" font-size="6" opacity="0.5">前方有光</text>
-    </g>
-
-    <!-- ================================================================== -->
-    <!-- E 区：巨菇王座 -->
-    <!-- ================================================================== -->
-    <g filter="url(#shadow)">
-      <circle cx="1020" cy="320" r="80" fill="#2d1b4e" stroke="#f59e0b" stroke-width="3"/>
-      <text x="1020" y="268" text-anchor="middle" fill="#fcd34d" font-size="14" font-weight="700">👑 E · 巨菇王座 (BOSS)</text>
-      <text x="1020" y="285" text-anchor="middle" fill="#9ca3af" font-size="11">30×25m · ~180s · 高潮</text>
-
-      <!-- Central mycelium nexus -->
-      <circle cx="1020" cy="320" r="20" fill="#4a1d6b" stroke="#f59e0b" stroke-width="2" opacity="0.8"/>
-      <text x="1020" y="317" text-anchor="middle" fill="#fbbf24" font-size="7">菌丝节点</text>
-      <text x="1020" y="328" text-anchor="middle" fill="#c084fc" font-size="6">人形凹陷</text>
-
-      <!-- Spore clouds ×3 -->
-      <circle cx="980" cy="290" r="10" fill="#10b981" opacity="0.2" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3,2"/>
-      <text x="980" y="282" text-anchor="middle" fill="#34d399" font-size="7">孢子云</text>
-      <circle cx="1060" cy="350" r="10" fill="#10b981" opacity="0.2" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3,2"/>
-      <text x="1060" y="364" text-anchor="middle" fill="#34d399" font-size="7">孢子云</text>
-      <circle cx="980" cy="360" r="10" fill="#10b981" opacity="0.2" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3,2"/>
-      <text x="964" y="364" text-anchor="middle" fill="#34d399" font-size="7">孢子云</text>
-
-      <!-- Mushroom ring -->
-      <circle cx="1020" cy="320" r="55" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="6,8" opacity="0.35"/>
-
-      <!-- Boss marker -->
-      <circle cx="1020" cy="310" r="10" fill="#991b1b" stroke="#ef4444" stroke-width="2"/>
-      <text x="1020" y="314" text-anchor="middle" fill="#fca5a5" font-size="9" font-weight="700">FUNGAL LORD</text>
-
-      <!-- Minions -->
-      <circle cx="970" cy="340" r="5" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
-      <text x="960" y="336" fill="#fca5a5" font-size="6">小怪</text>
-      <circle cx="1070" cy="310" r="5" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
-      <text x="1080" y="306" fill="#fca5a5" font-size="6">小怪</text>
-
-      <!-- Scattered dogtags -->
-      <text x="1000" y="305" font-size="6" fill="#fcd34d">🏷️</text>
-      <text x="1045" y="295" font-size="6" fill="#fcd34d">🏷️</text>
-      <text x="1035" y="338" font-size="6" fill="#fcd34d">🏷️</text>
-
-      <!-- Special Boss dogtag -->
-      <text x="1060" y="385" text-anchor="middle" fill="#fbbf24" font-size="7">⭐ Boss铭牌</text>
-      <text x="1060" y="394" text-anchor="middle" fill="#d97706" font-size="6">名字被刮掉 · 发热</text>
-
-      <!-- Phase labels around arena -->
-      <text x="935" y="300" text-anchor="middle" fill="#fcd34d" font-size="7" font-weight="700">P1 并肩</text>
-      <text x="935" y="310" text-anchor="middle" fill="#fcd34d" font-size="6">玩家+矮人</text>
-
-      <text x="1100" y="305" text-anchor="middle" fill="#ef4444" font-size="7" font-weight="700">P2 反水</text>
-      <text x="1100" y="315" text-anchor="middle" fill="#ef4444" font-size="6">矮人被感染</text>
-
-      <text x="1100" y="335" text-anchor="middle" fill="#a5b4fc" font-size="7" font-weight="700">P3 释放</text>
-      <text x="1100" y="345" text-anchor="middle" fill="#a5b4fc" font-size="6">菌丝出体</text>
-
-      <text x="935" y="380" text-anchor="middle" fill="#4ade80" font-size="7" font-weight="700">P4 收尾</text>
-      <text x="935" y="390" text-anchor="middle" fill="#4ade80" font-size="6">觉醒Buff</text>
-
-      <!-- Companion arc in arena -->
-      <circle cx="1000" cy="305" r="5" fill="#fbbf24" opacity="0.5"/>
-      <text x="1000" y="297" text-anchor="middle" fill="#fcd34d" font-size="6">⚒️ 同伴</text>
-
-      <!-- Crystal drops at player feet (not corpse) -->
-      <g filter="url(#flickerGlow)">
-        <polygon points="1050,325 1053,320 1056,325 1053,330" fill="#fbbf24"/>
-        <text x="1053" y="340" text-anchor="middle" fill="#fcd34d" font-size="6">脉动晶核</text>
-      </g>
-
-      <!-- Boss death: no death anim → sink → gone -->
-      <text x="1020" y="405" text-anchor="middle" fill="#9ca3af" font-size="6" font-style="italic">击败→静止3s→沉入地下→"它走了"</text>
-    </g>
-
-    <!-- ================================================================== -->
-    <!-- F 区：孢子之径 -->
-    <!-- ================================================================== -->
-    <g filter="url(#shadow)">
-      <ellipse cx="1170" cy="320" rx="35" ry="45" fill="#3b3a1e" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2"/>
-      <text x="1170" y="297" text-anchor="middle" fill="#fde68a" font-size="13" font-weight="700">✨ F · 尾声</text>
-      <text x="1170" y="313" text-anchor="middle" fill="#9ca3af" font-size="11">~50s · 回味</text>
-
-      <!-- Employer waiting -->
-      <circle cx="1155" cy="305" r="4" fill="#fbbf24" opacity="0.7"/>
-      <text x="1155" y="297" text-anchor="middle" fill="#fcd34d" font-size="6">委托人</text>
-
-      <!-- Fade to black + handwritten text -->
-      <rect x="1145" y="325" width="50" height="18" rx="3" fill="#0f172a" opacity="0.6" stroke="#64748b" stroke-width="0.8"/>
-      <text x="1170" y="336" text-anchor="middle" fill="#c4ccde" font-size="6" font-style="italic">黑屏 · 手写体</text>
-
-      <text x="1170" y="350" text-anchor="middle" fill="#fde68a" font-size="6" opacity="0.8">"十二块。明明只捡了十一块。"</text>
-
-      <!-- Wishlist prompt -->
-      <text x="1170" y="365" text-anchor="middle" fill="#60a5fa" font-size="6">💙 Steam 愿望单</text>
-    </g>
-
-    <!-- ================================================================== -->
-    <!-- TIMELINE BAR -->
-    <!-- ================================================================== -->
-    <g transform="translate(20, 570)">
-      <rect x="0" y="0" width="1160" height="36" rx="6" fill="#0f172a" opacity="0.6"/>
-
-      <!-- A -->
-      <rect x="10" y="6" width="90" height="24" rx="4" fill="#2d4a3e"/>
-      <text x="55" y="22" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">A · 入口</text>
-      <text x="55" y="48" text-anchor="middle" fill="#9ca3af" font-size="9">好奇</text>
-      <text x="10" y="22" fill="#4ade80" font-size="8">▶</text>
-
-      <!-- B -->
-      <rect x="110" y="6" width="170" height="24" rx="4" fill="#312e81"/>
-      <text x="195" y="22" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="700">B · 走廊 + 营地</text>
-      <text x="195" y="48" text-anchor="middle" fill="#9ca3af" font-size="9">沉浸</text>
-
-      <!-- C -->
-      <rect x="290" y="6" width="200" height="24" rx="4" fill="#3b2f2f"/>
-      <text x="390" y="22" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="700">C · 小型遭遇</text>
-      <text x="390" y="48" text-anchor="middle" fill="#9ca3af" font-size="9">紧张</text>
-
-      <!-- D -->
-      <rect x="500" y="6" width="120" height="24" rx="4" fill="#1e1b4b"/>
-      <text x="560" y="22" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">D · 峡谷</text>
-      <text x="560" y="48" text-anchor="middle" fill="#9ca3af" font-size="9">压抑</text>
-
-      <!-- E -->
-      <rect x="630" y="6" width="340" height="24" rx="4" fill="#2d1b4e"/>
-      <text x="800" y="18" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="700">E · BOSS 四阶段</text>
-      <text x="800" y="32" text-anchor="middle" fill="#fbbf24" font-size="8">P1并肩→P2反水→P3释放→P4收尾</text>
-      <text x="800" y="48" text-anchor="middle" fill="#9ca3af" font-size="9">🔥 高潮</text>
-
-      <!-- F -->
-      <rect x="980" y="6" width="170" height="24" rx="4" fill="#3b3a1e"/>
-      <text x="1065" y="22" text-anchor="middle" fill="#fde68a" font-size="10" font-weight="700">F · 尾声</text>
-      <text x="1065" y="48" text-anchor="middle" fill="#9ca3af" font-size="9">回味</text>
-
-      <!-- Duration labels -->
-      <text x="55" y="66" text-anchor="middle" fill="#6b7280" font-size="8">60s</text>
-      <text x="195" y="66" text-anchor="middle" fill="#6b7280" font-size="8">90s</text>
-      <text x="390" y="66" text-anchor="middle" fill="#6b7280" font-size="8">120s</text>
-      <text x="560" y="66" text-anchor="middle" fill="#6b7280" font-size="8">60s</text>
-      <text x="800" y="66" text-anchor="middle" fill="#6b7280" font-size="8">180s</text>
-      <text x="1065" y="66" text-anchor="middle" fill="#6b7280" font-size="8">30s</text>
-    </g>
-
-    <!-- ================================================================== -->
-    <!-- LEGEND -->
-    <!-- ================================================================== -->
-    <g transform="translate(20, 650)">
-      <rect x="0" y="0" width="14" height="14" rx="3" fill="#2d4a3e" stroke="#4ade80" stroke-width="1"/>
-      <text x="18" y="12" fill="#c4ccde" font-size="11">探索区</text>
-
-      <rect x="100" y="0" width="14" height="14" rx="3" fill="#3b2f2f" stroke="#ef4444" stroke-width="1.5"/>
-      <text x="118" y="12" fill="#c4ccde" font-size="11">战斗区</text>
-
-      <rect x="200" y="0" width="14" height="14" rx="3" fill="#2d1b4e" stroke="#f59e0b" stroke-width="2"/>
-      <text x="218" y="12" fill="#c4ccde" font-size="11">BOSS 区</text>
-
-      <circle cx="320" cy="7" r="7" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="3,2"/>
-      <text x="332" y="12" fill="#c4ccde" font-size="11">孢子云 (感染风险区)</text>
-
-      <text x="505" y="12" fill="#fcd34d" font-size="12">🏷️</text>
-      <text x="520" y="12" fill="#c4ccde" font-size="11">矿工铭牌</text>
-
-      <circle cx="620" cy="7" r="5" fill="#fbbf24" opacity="0.6" stroke="#f59e0b" stroke-width="1"/>
-      <text x="630" y="12" fill="#c4ccde" font-size="11">同伴 (⚒️ 矮人矿工)</text>
-
-      <circle cx="780" cy="7" r="5" fill="#4ade80"/>
-      <text x="790" y="12" fill="#c4ccde" font-size="11">起始点</text>
-
-      <g transform="translate(880, 0)">
-        <text font-size="12" fill="#fbbf24" opacity="0.8">🍄</text>
-        <text x="16" y="12" fill="#c4ccde" font-size="11">异常物 (世界观钩子)</text>
-      </g>
-    </g>
-
-  </svg>
+<h1>真菌森林 · 60分钟全景布局</h1>
+<p class="sub">主线六区 + 双支线 · 全探索 ~60min · 直奔主线 ~30min · 单位 cm=游戏内 m</p>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+
+<defs>
+  <marker id="a" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#64748b"/></marker>
+  <marker id="ag" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#34d399"/></marker>
+  <filter id="sh"><feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/></filter>
+  <filter id="gl"><feGaussianBlur stdDeviation="2"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+
+<!-- BG -->
+<rect x="5" y="40" width="990" height="620" rx="16" fill="#1e3a2f" opacity="0.3"/>
+
+<!-- ===== MAIN PATH ===== -->
+<path d="M140,340 L220,340" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#a)" stroke-dasharray="6,3" opacity="0.5"/>
+<path d="M410,340 L490,340" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#a)" stroke-dasharray="6,3" opacity="0.5"/>
+<path d="M650,340 L710,340" stroke="#ef4444" stroke-width="2" fill="none" marker-end="url(#a)" stroke-dasharray="6,3" opacity="0.5"/>
+<path d="M850,340 L910,340" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#a)" stroke-dasharray="6,3" opacity="0.5"/>
+
+<!-- ===== BRANCH 1: Echo Cleft ===== -->
+<path d="M130,370 C130,410 80,430 80,480" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#ag)" stroke-dasharray="5,4" opacity="0.7"/>
+<path d="M80,580 C80,610 130,620 140,620 L220,620 L220,340" stroke="#34d399" stroke-width="1.5" fill="none" stroke-dasharray="4,4" opacity="0.4"/>
+
+<!-- ===== BRANCH 2: Spore Platform ===== -->
+<path d="M830,340 C830,380 830,430 830,470" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#ag)" stroke-dasharray="5,4" opacity="0.7"/>
+
+<!-- ================================================================== -->
+<!-- A 区 -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <ellipse cx="100" cy="340" rx="55" ry="45" fill="#2d4a3e" stroke="#4ade80" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="100" y="318" text-anchor="middle" fill="#86efac" font-size="13" font-weight="700">🌿 A·森林入口</text>
+  <text x="100" y="333" text-anchor="middle" fill="#9ca3af" font-size="10">15×15 · 好奇</text>
+
+  <circle cx="70" cy="340" r="4" fill="#4ade80"/>
+  <text x="70" y="334" text-anchor="middle" fill="#4ade80" font-size="8" font-weight="700">START</text>
+
+  <g filter="url(#gl)">
+    <text x="105" y="355" text-anchor="middle" font-size="14">🍄</text>
+    <text x="105" y="368" text-anchor="middle" fill="#fbbf24" font-size="7">异常蘑菇</text>
+    <line x1="90" y1="356" x2="75" y2="356" stroke="#fbbf24" stroke-width="0.6" stroke-dasharray="2,2"/>
+    <polygon points="82,356 78,353 78,359" fill="#fbbf24" opacity="0.6"/>
+  </g>
+
+  <rect x="110" y="305" width="44" height="16" rx="3" fill="#1e40af" opacity="0.6" stroke="#60a5fa" stroke-width="0.8"/>
+  <text x="132" y="316" text-anchor="middle" fill="#93c5fd" font-size="7">选职业</text>
+
+  <circle cx="130" cy="325" r="4" fill="#fbbf24" opacity="0.7"/>
+  <text x="130" y="318" text-anchor="middle" fill="#fcd34d" font-size="7">委托人</text>
+
+  <!-- Branch hint -->
+  <text x="100" y="392" text-anchor="middle" fill="#34d399" font-size="6" opacity="0.7">↓ 裂隙入口</text>
+</g>
+
+<!-- ================================================================== -->
+<!-- SIDE1: Echo Cleft -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <rect x="30" y="480" width="100" height="100" rx="8" fill="#064e3b" stroke="#34d399" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="80" y="498" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="700">🔮 回声裂隙</text>
+  <text x="80" y="512" text-anchor="middle" fill="#9ca3af" font-size="9">15×10 地下 · 10-15min</text>
+
+  <text x="45" y="530" fill="#a7f3d0" font-size="7">🧱 矿工画板</text>
+  <text x="45" y="542" fill="#6ee7b7" font-size="6">菌丝画的螺旋纹路</text>
+
+  <text x="45" y="556" fill="#a7f3d0" font-size="7">🎒 破损背包</text>
+  <text x="45" y="568" fill="#6ee7b7" font-size="6">「第七天，能听懂它们了」</text>
+
+  <circle cx="105" cy="530" r="7" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+  <text x="105" y="533" fill="#fca5a5" font-size="7">🐛×3</text>
+
+  <circle cx="105" cy="555" r="7" fill="#991b1b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="105" y="558" fill="#fca5a5" font-size="7">👑</text>
+  <text x="125" y="552" fill="#fbbf24" font-size="6">回声宿主</text>
+  <text x="125" y="562" fill="#d97706" font-size="5">发光铭牌·孢子云</text>
+
+  <text x="80" y="585" text-anchor="middle" fill="#6ee7b7" font-size="6">💧 积水倒影 ≠ 宿主形状</text>
+  <text x="80" y="597" text-anchor="middle" fill="#fbbf24" font-size="6">🏷️ 计数器1→2→1(第0次污染)</text>
+</g>
+
+<!-- ================================================================== -->
+<!-- B 区 -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <path d="M220,310 C260,310 280,325 320,325 C360,325 370,345 410,365" stroke="#6366f1" stroke-width="22" fill="none" opacity="0.15" stroke-linecap="round"/>
+  <path d="M220,310 C260,310 280,325 320,325 C360,325 370,345 410,365" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+
+  <text x="320" y="292" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="700">🍄 B·幽光走廊</text>
+  <text x="320" y="305" text-anchor="middle" fill="#9ca3af" font-size="10">S形 ~65 · 沉浸</text>
+
+  <rect x="258" y="316" width="32" height="14" rx="3" fill="#78350f" opacity="0.4" stroke="#92400e" stroke-width="0.8"/>
+  <text x="274" y="326" text-anchor="middle" fill="#d97706" font-size="6">营地残骸</text>
+  <circle cx="285" cy="310" r="2.5" fill="#fbbf24"/>
+  <text x="296" y="310" fill="#fcd34d" font-size="6">矿工日记</text>
+
+  <ellipse cx="330" cy="335" rx="10" ry="4" fill="#6366f1" opacity="0.3" stroke="#818cf8" stroke-width="0.6"/>
+  <text x="330" y="344" text-anchor="middle" fill="#a5b4fc" font-size="5">菌丝覆身形</text>
+
+  <g fill="#fbbf24" opacity="0.8">
+    <rect x="265" y="336" width="4" height="5" rx="1"/><text x="272" y="340" fill="#fcd34d" font-size="5">🏷️</text>
+    <rect x="318" y="330" width="4" height="5" rx="1"/><text x="325" y="334" fill="#fcd34d" font-size="5">🏷️</text>
+    <rect x="355" y="352" width="4" height="5" rx="1"/><text x="362" y="356" fill="#fcd34d" font-size="5">🏷️</text>
+  </g>
+
+  <g filter="url(#gl)">
+    <circle cx="400" cy="358" r="6" fill="#f59e0b" opacity="0.5" stroke="#fbbf24" stroke-width="1.2"/>
+    <text x="400" y="361" fill="#fef08a" font-size="7">⚒️</text>
+    <text x="400" y="372" text-anchor="middle" fill="#fcd34d" font-size="7" font-weight="700">解救矮人</text>
+    <text x="400" y="381" text-anchor="middle" fill="#d97706" font-size="5">脖子铭牌</text>
+  </g>
+</g>
+
+<!-- ================================================================== -->
+<!-- C 区 -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <ellipse cx="570" cy="340" rx="65" ry="45" fill="#3b2f2f" stroke="#ef4444" stroke-width="2"/>
+  <text x="570" y="318" text-anchor="middle" fill="#fca5a5" font-size="13" font-weight="700">⚔ C·腐木空地</text>
+  <text x="570" y="333" text-anchor="middle" fill="#9ca3af" font-size="10">20×18 · 紧张</text>
+
+  <rect x="540" y="330" width="48" height="10" rx="3" fill="#78350f" opacity="0.5"/>
+  <text x="564" y="338" text-anchor="middle" fill="#92400e" font-size="6">倒木(掩体)</text>
+
+  <g filter="url(#gl)">
+    <circle cx="525" cy="325" r="7" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="525" y="328" fill="#fca5a5" font-size="8">🧟</text>
+    <text x="525" y="316" text-anchor="middle" fill="#ef4444" font-size="7">菌丝宿主</text>
+  </g>
+  <g filter="url(#gl)">
+    <circle cx="610" cy="355" r="7" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="610" y="358" fill="#fca5a5" font-size="8">🧟</text>
+    <text x="610" y="367" text-anchor="middle" fill="#ef4444" font-size="7">菌丝宿主</text>
+  </g>
+
+  <circle cx="560" cy="355" r="5" fill="#fbbf24" opacity="0.5" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="560" y="352" fill="#fef08a" font-size="6">⚒️</text>
+
+  <text x="505" y="370" text-anchor="middle" fill="#fbbf24" font-size="5">识别停顿0.3s</text>
+  <text x="570" y="380" text-anchor="middle" fill="#fcd34d" font-size="5">哈洛德条件台词</text>
+  <text x="570" y="390" text-anchor="middle" fill="#9ca3af" font-size="5">击杀→孢子→萎缩→长蘑菇</text>
+</g>
+
+<!-- ================================================================== -->
+<!-- D 区 -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <rect x="710" y="310" width="110" height="60" rx="6" fill="#1e1b4b" stroke="#7c3aed" stroke-width="2"/>
+  <text x="765" y="326" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="700">🌑 D·深菇峡谷</text>
+  <text x="765" y="340" text-anchor="middle" fill="#9ca3af" font-size="10">~30 · 压抑</text>
+
+  <line x1="710" y1="310" x2="820" y2="310" stroke="#7c3aed" stroke-width="3" opacity="0.4"/>
+  <line x1="710" y1="370" x2="820" y2="370" stroke="#7c3aed" stroke-width="3" opacity="0.4"/>
+
+  <path d="M720,318 Q730,332 725,345 Q720,358 730,365" stroke="#818cf8" stroke-width="1.5" fill="none" opacity="0.35"/>
+  <circle cx="795" cy="335" r="5" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.5"/>
+  <circle cx="795" cy="335" r="2.5" fill="none" stroke="#c084fc" stroke-width="0.5" opacity="0.3"/>
+  <text x="795" y="328" text-anchor="middle" fill="#c084fc" font-size="5">螺旋纹路</text>
+
+  <text x="765" y="358" text-anchor="middle" fill="#c4b5fd" font-size="5">🎴 影子异常·嗡鸣·阴影抖动</text>
+  <text x="765" y="382" text-anchor="middle" fill="#d97706" font-size="5">「有人摸我后脑勺」→视线偏转</text>
+  <text x="735" y="352" font-size="6" fill="#fcd34d">🏷️</text>
+  <text x="790" y="360" font-size="6" fill="#fcd34d">🏷️</text>
+
+  <!-- Spore platform hint -->
+  <text x="765" y="398" text-anchor="middle" fill="#34d399" font-size="6" opacity="0.7">↓ 孢子平台岔路</text>
+</g>
+
+<!-- ================================================================== -->
+<!-- SIDE2: Spore Platform -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <circle cx="830" cy="510" r="35" fill="#064e3b" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="830" y="492" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">🧘 孢子平台</text>
+  <text x="830" y="506" text-anchor="middle" fill="#9ca3af" font-size="8">5×5 · 5-8min</text>
+
+  <text x="830" y="522" text-anchor="middle" fill="#a7f3d0" font-size="7">🌫️ 孢子云覆盖 能见度3</text>
+
+  <circle cx="830" cy="535" r="6" fill="#6366f1" opacity="0.5" stroke="#818cf8" stroke-width="1"/>
+  <text x="830" y="538" fill="#a5b4fc" font-size="6">🧘</text>
+
+  <text x="830" y="550" text-anchor="middle" fill="#fbbf24" font-size="6">📜 淡金色文本×3</text>
+  <text x="830" y="560" text-anchor="middle" fill="#d97706" font-size="5">「这是第三次」</text>
+
+  <text x="830" y="574" text-anchor="middle" fill="#34d399" font-size="6">💪 觉醒Buff 命中+5%</text>
+</g>
+
+<!-- ================================================================== -->
+<!-- E 区 -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <circle cx="930" cy="340" r="65" fill="#2d1b4e" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="930" y="295" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">👑 E·巨菇王座</text>
+  <text x="930" y="310" text-anchor="middle" fill="#9ca3af" font-size="10">30×25 · 高潮</text>
+
+  <circle cx="930" cy="340" r="16" fill="#4a1d6b" stroke="#f59e0b" stroke-width="1.5" opacity="0.7"/>
+  <text x="930" y="338" text-anchor="middle" fill="#fbbf24" font-size="6">菌丝节点</text>
+  <text x="930" y="348" text-anchor="middle" fill="#c084fc" font-size="5">人形凹陷</text>
+
+  <circle cx="895" cy="315" r="8" fill="#10b981" opacity="0.15" stroke="#34d399" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="895" y="308" text-anchor="middle" fill="#34d399" font-size="6">孢子云</text>
+  <circle cx="965" cy="365" r="8" fill="#10b981" opacity="0.15" stroke="#34d399" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="965" y="378" text-anchor="middle" fill="#34d399" font-size="6">孢子云</text>
+  <circle cx="895" cy="368" r="8" fill="#10b981" opacity="0.15" stroke="#34d399" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="880" y="382" text-anchor="middle" fill="#34d399" font-size="6">孢子云</text>
+
+  <circle cx="930" cy="330" r="8" fill="#991b1b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="930" y="333" fill="#fca5a5" font-size="7" font-weight="700">BOSS</text>
+
+  <circle cx="900" cy="355" r="4" fill="#7f1d1d" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="893" y="352" fill="#fca5a5" font-size="5">小怪</text>
+  <circle cx="965" cy="330" r="4" fill="#7f1d1d" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="972" y="328" fill="#fca5a5" font-size="5">小怪</text>
+
+  <text x="870" y="320" text-anchor="middle" fill="#fcd34d" font-size="6">P1并肩</text>
+  <text x="870" y="330" text-anchor="middle" fill="#ef4444" font-size="6">P2反水</text>
+  <text x="870" y="340" text-anchor="middle" fill="#a5b4fc" font-size="6">P3释放</text>
+  <text x="870" y="350" text-anchor="middle" fill="#4ade80" font-size="6">P4收尾</text>
+
+  <g filter="url(#gl)">
+    <polygon points="950,355 953,350 956,355 953,360" fill="#fbbf24"/>
+    <text x="953" y="368" text-anchor="middle" fill="#fcd34d" font-size="5">晶核</text>
+  </g>
+
+  <text x="965" y="395" text-anchor="middle" fill="#fbbf24" font-size="5">⭐Boss铭牌</text>
+  <text x="930" y="410" text-anchor="middle" fill="#9ca3af" font-size="5">记忆文本3段淡金色</text>
+  <text x="930" y="420" text-anchor="middle" fill="#9ca3af" font-size="5">战斗日志5条·不可理解化</text>
+</g>
+
+<!-- ================================================================== -->
+<!-- F 区 -->
+<!-- ================================================================== -->
+<g filter="url(#sh)">
+  <ellipse cx="975" cy="340" rx="28" ry="35" fill="#3b3a1e" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="975" y="322" text-anchor="middle" fill="#fde68a" font-size="12" font-weight="700">✨ F·尾声</text>
+  <text x="975" y="335" text-anchor="middle" fill="#9ca3af" font-size="9">~50s·回味</text>
+
+  <circle cx="965" cy="350" r="3" fill="#fbbf24" opacity="0.6"/>
+  <text x="958" y="358" fill="#fcd34d" font-size="5">委托人</text>
+
+  <rect x="955" y="365" width="40" height="14" rx="2" fill="#0f172a" opacity="0.5" stroke="#64748b" stroke-width="0.6"/>
+  <text x="975" y="374" text-anchor="middle" fill="#c4ccde" font-size="5">黑屏·手写体</text>
+
+  <text x="975" y="392" text-anchor="middle" fill="#fde68a" font-size="5">「十二块·明明十一块」</text>
+  <text x="975" y="404" text-anchor="middle" fill="#60a5fa" font-size="5">💙 愿望单</text>
+</g>
+
+<!-- ===== TIMELINE ===== -->
+<g transform="translate(5, 620)">
+  <rect x="0" y="0" width="990" height="40" rx="5" fill="#0f172a" opacity="0.5"/>
+
+  <rect x="8" y="5" width="70" height="22" rx="3" fill="#2d4a3e"/>
+  <text x="43" y="20" text-anchor="middle" fill="#86efac" font-size="9">A·入口</text>
+  <text x="43" y="50" text-anchor="middle" fill="#9ca3af" font-size="7">~3min</text>
+
+  <rect x="86" y="5" width="150" height="22" rx="3" fill="#312e81"/>
+  <text x="161" y="20" text-anchor="middle" fill="#a5b4fc" font-size="9">B·走廊+营地</text>
+  <text x="161" y="50" text-anchor="middle" fill="#9ca3af" font-size="7">~5min</text>
+
+  <rect x="244" y="5" width="170" height="22" rx="3" fill="#3b2f2f"/>
+  <text x="329" y="20" text-anchor="middle" fill="#fca5a5" font-size="9">C·小型遭遇</text>
+  <text x="329" y="50" text-anchor="middle" fill="#9ca3af" font-size="7">~6min</text>
+
+  <rect x="422" y="5" width="110" height="22" rx="3" fill="#1e1b4b"/>
+  <text x="477" y="20" text-anchor="middle" fill="#c4b5fd" font-size="9">D·峡谷</text>
+  <text x="477" y="50" text-anchor="middle" fill="#9ca3af" font-size="7">~4min</text>
+
+  <rect x="540" y="5" width="280" height="22" rx="3" fill="#2d1b4e"/>
+  <text x="680" y="20" text-anchor="middle" fill="#fcd34d" font-size="9">E·BOSS四阶段</text>
+  <text x="680" y="50" text-anchor="middle" fill="#9ca3af" font-size="7">~15min</text>
+
+  <rect x="828" y="5" width="154" height="22" rx="3" fill="#3b3a1e"/>
+  <text x="905" y="20" text-anchor="middle" fill="#fde68a" font-size="9">F·尾声</text>
+  <text x="905" y="50" text-anchor="middle" fill="#9ca3af" font-size="7">~3min</text>
+
+  <!-- Branch timelines -->
+  <rect x="8" y="60" width="70" height="16" rx="3" fill="#064e3b" stroke="#34d399" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="43" y="72" text-anchor="middle" fill="#6ee7b7" font-size="7">支线1: +12min</text>
+
+  <rect x="540" y="60" width="110" height="16" rx="3" fill="#064e3b" stroke="#34d399" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="595" y="72" text-anchor="middle" fill="#6ee7b7" font-size="7">支线2: +7min</text>
+</g>
+
+<!-- ===== LEGEND ===== -->
+<g transform="translate(5, 680)">
+  <rect x="0" y="0" width="10" height="10" rx="2" fill="#2d4a3e" stroke="#4ade80" stroke-width="0.8"/>
+  <text x="14" y="9" fill="#c4ccde" font-size="9">探索</text>
+  <rect x="55" y="0" width="10" height="10" rx="2" fill="#3b2f2f" stroke="#ef4444" stroke-width="1"/>
+  <text x="69" y="9" fill="#c4ccde" font-size="9">战斗</text>
+  <rect x="105" y="0" width="10" height="10" rx="2" fill="#2d1b4e" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="119" y="9" fill="#c4ccde" font-size="9">BOSS</text>
+  <rect x="165" y="0" width="10" height="10" rx="2" fill="#064e3b" stroke="#34d399" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="179" y="9" fill="#34d399" font-size="9">支线</text>
+  <text x="225" y="9" fill="#fcd34d" font-size="9">🏷️铭牌 ⚒️同伴 🍄异常物</text>
+</g>
+
+</svg>
 </div>
 </body>
 </html>
