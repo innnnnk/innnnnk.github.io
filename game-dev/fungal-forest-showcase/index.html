@@ -258,6 +258,49 @@
         <li><a href="#建议实现顺序">建议实现顺序</a></li>
       </ol>
     </li>
+    <li><a href="#边缘情况与体验补丁">边缘情况与体验补丁</a>
+      <ol>
+        <li><a href="#补丁一同伴死亡分支">补丁一：同伴死亡分支</a>
+          <ol>
+            <li><a href="#触发条件">触发条件</a></li>
+            <li><a href="#叙事降级">叙事降级</a></li>
+            <li><a href="#设计原则">设计原则</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁二战斗教学触发器">补丁二：战斗教学触发器</a>
+          <ol>
+            <li><a href="#方案a-区出口前的不会反击的敌人">方案：A 区出口前的&quot;不会反击的敌人&quot;</a></li>
+            <li><a href="#教学文本分两段弹出">教学文本（分两段弹出）</a></li>
+            <li><a href="#设计要点-2">设计要点</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁三音频资产极简清单">补丁三：音频资产极简清单</a></li>
+        <li><a href="#补丁四选职业界面的信息说明">补丁四：选职业界面的信息说明</a>
+          <ol>
+            <li><a href="#界面方案">界面方案</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁五玩家返回已通过区域的行为">补丁五：玩家返回已通过区域的行为</a>
+          <ol>
+            <li><a href="#规则">规则</a></li>
+            <li><a href="#不需要的内容">不需要的内容</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁六结束画面的技术实现">补丁六：结束画面的技术实现</a>
+          <ol>
+            <li><a href="#实现方案">实现方案</a></li>
+            <li><a href="#备选方案更低成本">备选方案（更低成本）</a></li>
+          </ol>
+        </li>
+        <li><a href="#更新后的-demo-开发待办">更新后的 Demo 开发待办</a>
+          <ol>
+            <li><a href="#p0-新增">P0 新增</a></li>
+            <li><a href="#p1-新增">P1 新增</a></li>
+            <li><a href="#p2-新增">P2 新增</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 
             </nav>
@@ -409,6 +452,49 @@
         <li><a href="#p1--能跑但体验会打折">P1 — 能跑但体验会打折</a></li>
         <li><a href="#p2--锦上添花">P2 — 锦上添花</a></li>
         <li><a href="#建议实现顺序">建议实现顺序</a></li>
+      </ol>
+    </li>
+    <li><a href="#边缘情况与体验补丁">边缘情况与体验补丁</a>
+      <ol>
+        <li><a href="#补丁一同伴死亡分支">补丁一：同伴死亡分支</a>
+          <ol>
+            <li><a href="#触发条件">触发条件</a></li>
+            <li><a href="#叙事降级">叙事降级</a></li>
+            <li><a href="#设计原则">设计原则</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁二战斗教学触发器">补丁二：战斗教学触发器</a>
+          <ol>
+            <li><a href="#方案a-区出口前的不会反击的敌人">方案：A 区出口前的&quot;不会反击的敌人&quot;</a></li>
+            <li><a href="#教学文本分两段弹出">教学文本（分两段弹出）</a></li>
+            <li><a href="#设计要点-2">设计要点</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁三音频资产极简清单">补丁三：音频资产极简清单</a></li>
+        <li><a href="#补丁四选职业界面的信息说明">补丁四：选职业界面的信息说明</a>
+          <ol>
+            <li><a href="#界面方案">界面方案</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁五玩家返回已通过区域的行为">补丁五：玩家返回已通过区域的行为</a>
+          <ol>
+            <li><a href="#规则">规则</a></li>
+            <li><a href="#不需要的内容">不需要的内容</a></li>
+          </ol>
+        </li>
+        <li><a href="#补丁六结束画面的技术实现">补丁六：结束画面的技术实现</a>
+          <ol>
+            <li><a href="#实现方案">实现方案</a></li>
+            <li><a href="#备选方案更低成本">备选方案（更低成本）</a></li>
+          </ol>
+        </li>
+        <li><a href="#更新后的-demo-开发待办">更新后的 Demo 开发待办</a>
+          <ol>
+            <li><a href="#p0-新增">P0 新增</a></li>
+            <li><a href="#p1-新增">P1 新增</a></li>
+            <li><a href="#p2-新增">P2 新增</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -1529,29 +1615,407 @@
 <h3 id="建议实现顺序">建议实现顺序
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">第0步：词汇敏感度矩阵全局替换（P0 #9）——先做，避免后续返工
 </span></span><span class="line"><span class="cl">第1步：白盒关卡 + 流程管理器 + 快速选职业入口（P0 #1 #2 #3）
-</span></span><span class="line"><span class="cl">第2步：A 区异常蘑菇 + 底座阴影闪烁（P0 #8）——世界观钩子前置
+</span></span><span class="line"><span class="cl">  └ 流程管理器中预留&#34;已触发事件&#34;标志位（补丁五 #30）
+</span></span><span class="line"><span class="cl">第2步：A 区异常蘑菇 + 底座阴影闪烁（P0 #8）+ 战斗教学孢子虫（P0 #8a）
+</span></span><span class="line"><span class="cl">  ——世界观钩子 + 战斗教学前置
 </span></span><span class="line"><span class="cl">第3步：敌人 + 同伴（P0 #4 #6 #7 + P1 #17）
+</span></span><span class="line"><span class="cl">  └ 同伴状态机需包含&#34;死亡&#34;状态（补丁一 #28）
 </span></span><span class="line"><span class="cl">第4步：交互系统（P1 #10 #11 #12 #14）
 </span></span><span class="line"><span class="cl">第5步：Boss 战机制 + 不可理解化 + 检查点（P0 #5 + P1 #18 #19 #13）
-</span></span><span class="line"><span class="cl">第6步：演出 + 声音（P1 #15 #16）
-</span></span><span class="line"><span class="cl">第7步：铭牌计数器 + D区阴影抖动 + F区结尾（P1 #20 #21 #22）
-</span></span><span class="line"><span class="cl">第8步：环境资产 + 视觉异常 + 首尾画面（P2 #23-#27）
+</span></span><span class="line"><span class="cl">  └ Boss 血量需支持条件调整（同伴死亡时 -20%）
+</span></span><span class="line"><span class="cl">第6步：演出 + 声音（P1 #15 #16 + 新 #29 音频资产）
+</span></span><span class="line"><span class="cl">第7步：铭牌计数器 + D区阴影抖动 + F区结尾 + 结束画面（P1 #20 #21 #22 + 新 #32）
+</span></span><span class="line"><span class="cl">第8步：环境资产 + 视觉异常 + 首尾画面 + 选职业说明（P2 #23-#27 + 新 #31）
 </span></span></code></pre></td></tr></table>
 </div>
+</div><hr>
+<h2 id="边缘情况与体验补丁">边缘情况与体验补丁
+</h2><p>以下是设计审查中发现的需要补充的边界情况。属于表现层面问题，可在开发中途逐步补齐，不阻塞白盒搭建。</p>
+<hr>
+<h3 id="补丁一同伴死亡分支">补丁一：同伴死亡分支
+</h3><p>当前叙事流程假设同伴全程存活。需设计一条&quot;同伴在 C 区战死&quot;的降级路径。</p>
+<h4 id="触发条件">触发条件
+</h4><p>C 区小型遭遇战中，同伴 HP 降至 0 → 不触发&quot;释放&quot;演出（那是 E 区专用）→ 同伴倒地，死亡红牌拍下。玩家可以继续战斗，战斗结算不变。</p>
+<h4 id="叙事降级">叙事降级
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>同伴存活</th>
+					<th>同伴死亡</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>D 区</td>
+					<td>同伴：「我感觉……有人在摸我的后脑勺。」</td>
+					<td>跳过同伴台词。玩家独自走峡谷。菌丝纹路的光脉节奏比正常快半拍——像少了什么在吸收注意力。</td>
+			</tr>
+			<tr>
+					<td>E 区</td>
+					<td>四阶段完整（并肩→反水→释放→收尾）</td>
+					<td>跳过反水和释放阶段。直接 1 vs 真菌之主 + 2 小怪。Boss 血量下调 20%（少了同伴输出 + 少了释放 buff）。Boss 击败后晶核不变，但在 Boss 沉入地下后，玩家脚边除了晶核还多了一块铭牌——和 Boss 掉落那块位置不同，更靠近场地边缘，像被丢下的。</td>
+			</tr>
+			<tr>
+					<td>F 区</td>
+					<td>同伴指证委托人。</td>
+					<td>跳过同伴指证。委托人：「你是第二个回来的。第一个……记不太清了。」数量从&quot;第三个&quot;降为&quot;第二个&rdquo;——暗示同伴算第一个回来的人，但委托人忘了。微热的矿石仍然给玩家。</td>
+			</tr>
+	</tbody>
+</table></div>
+<h4 id="设计原则">设计原则
+</h4><ul>
+<li>同伴死亡不惩罚玩家。Boss 血量下调 + 直接跳过反水阶段，整体难度持平甚至略低</li>
+<li>叙事不降级为&quot;无趣&quot;——同伴不在场时，D/E/F 区用环境细节填补缺失的台词</li>
+<li>E 区多出的那块铭牌不计数（铭牌总数仍为 11+1+1=13）。它只是静静地在那里</li>
+</ul>
+<hr>
+<h3 id="补丁二战斗教学触发器">补丁二：战斗教学触发器
+</h3><p>A 区只教了自由探索移动（WASD）。C 区是第一场真正的遭遇战，中间缺少回合制战斗的教学桥。</p>
+<h4 id="方案a-区出口前的不会反击的敌人">方案：A 区出口前的&quot;不会反击的敌人&quot;
+</h4><p>在 A 区即将进入 B 区的通道处（A 区边缘，玩家必经之路上），放置一只 <strong>孢子虫</strong>：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>属性</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>名称</td>
+					<td>孢子虫（Spore Mite）</td>
+			</tr>
+			<tr>
+					<td>外观</td>
+					<td>复用小型蘑菇模型，缩小至 0.3 倍，加一个缓慢上下浮动的动画。不需要新 Sprite</td>
+			</tr>
+			<tr>
+					<td>AI</td>
+					<td>无。不移动，不攻击。固定位置</td>
+			</tr>
+			<tr>
+					<td>HP</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>触发方式</td>
+					<td>玩家靠近到 3m 时弹出半透明 UI 提示</td>
+			</tr>
+	</tbody>
+</table></div>
+<h4 id="教学文本分两段弹出">教学文本（分两段弹出）
+</h4><p><strong>第一段（靠近时）：</strong></p>
+
+    <blockquote>
+        <p>前方有一只孢子虫。按 <strong>Tab</strong> 进入战斗模式。</p>
+
+    </blockquote>
+<p><strong>第二段（进入战斗后，玩家完成第一次移动）：</strong></p>
+
+    <blockquote>
+        <p>选择一个格子移动。靠近目标后，点击它进行攻击。</p>
+
+    </blockquote>
+<p><strong>击败后：</strong></p>
+<ul>
+<li>孢子虫萎缩（复用菌丝宿主死亡演出的简化版——只萎缩不长蘑菇）</li>
+<li>掉落一块铭牌（让玩家建立&quot;战斗掉落 → 铭牌&quot;的认知）</li>
+<li>铭牌描述和 B 区普通铭牌一致：<code>一块矿工身份牌。名字已模糊不清。</code></li>
+</ul>
+<h4 id="设计要点-2">设计要点
+</h4><ul>
+<li>不打断沉浸感。孢子虫是&quot;世界里的生物&quot;，不是&quot;教学 NPC&quot;</li>
+<li>不掉落不消失——如果玩家忽略它直接走进 B 区，它只是静静地浮动在那里</li>
+<li>铭牌总数从 11 拾取变为 12 拾取。但 F 区结尾文本不改——&ldquo;你数了数铭牌。十二块。&ldquo;教学战掉落的那块就是第十二块</li>
+<li>10 秒完成，不拖节奏</li>
+</ul>
+<hr>
+<h3 id="补丁三音频资产极简清单">补丁三：音频资产极简清单
+</h3><p>目前文档只有概念描述（&ldquo;环境低频嗡鸣&rdquo;、&ldquo;靠近异常物频率改变&rdquo;）。以下是落地所需的最少音频文件清单。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>音频</th>
+					<th>用途</th>
+					<th>时长</th>
+					<th>优先级</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>森林环境底噪</td>
+					<td>A-F 全区循环。微风 + 偶尔的孢子爆裂声。温暖但带一丝不自然的空旷</td>
+					<td>60s 循环</td>
+					<td>P0</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>低频嗡鸣层</td>
+					<td>D/E 区叠加。40-60Hz，像地底深处传来的振动</td>
+					<td>30s 循环</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>嗡鸣频率偏移</td>
+					<td>靠近纹路/菌丝节点/异常蘑菇时，pitch 从基准值向上偏移 5-15%。用参数控制，不需要独立文件</td>
+					<td>DSP 参数</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>孢子释放</td>
+					<td>菌丝宿主死亡演出：湿黏的撕裂声 + 细微的粉末洒落</td>
+					<td>1.5-2s 单次</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>菌丝出体</td>
+					<td>同伴释放演出：类似&quot;从泥浆中拔出&quot;的声音，后 0.5s 有细微的风声上扬</td>
+					<td>2-3s 单次</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>晶核脉动</td>
+					<td>晶核拾取后，每次打开背包时触发：极低沉的心跳声 ×2</td>
+					<td>2s 单次</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>7</td>
+					<td>铭牌拾取</td>
+					<td>金属碰撞的短促声响。轻微，像硬币落在木头上</td>
+					<td>0.3s 单次</td>
+					<td>P2</td>
+			</tr>
+			<tr>
+					<td>8</td>
+					<td>嗡鸣消失 + 风起</td>
+					<td>F 区结尾：嗡鸣层在第 2 秒完全淡出，第 2.5 秒干净的风声进入。和黑屏手写体同时触发</td>
+					<td>8s 单次</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>9</td>
+					<td>底座阴影闪烁</td>
+					<td>A 区异常蘑菇交互 + D 区随机抖动时触发：0.15 秒极短低音脉冲（像心跳漏了一拍）</td>
+					<td>0.15s 单次</td>
+					<td>P2</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>实现路径：</strong> UE 音频系统（MetaSounds 或传统 SoundCue）→ 每个区域放置 AmbientSound Actor。频率偏移通过 Blueprint 在靠近异常物时调 <code>Pitch Multiplier</code>。不需要中间件（WWise/FMOD），Demo 阶段用引擎内置音频系统即可。</p>
+<hr>
+<h3 id="补丁四选职业界面的信息说明">补丁四：选职业界面的信息说明
+</h3><p>A 区入口三选一界面目前只有职业名称。对没接触过 DND 的新玩家，需要一行极短的功能提示。</p>
+<h4 id="界面方案">界面方案
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│      选择你的角色                │
+</span></span><span class="line"><span class="cl">│                                 │
+</span></span><span class="line"><span class="cl">│  ┌──────────┐  ┌──────────┐    │
+</span></span><span class="line"><span class="cl">│  │  ⚔ 战士  │  │ 🗡 游荡者 │    │
+</span></span><span class="line"><span class="cl">│  │ 近战·耐打 │  │ 灵活·暴击 │    │
+</span></span><span class="line"><span class="cl">│  │ 简单直接  │  │ 需要走位  │    │
+</span></span><span class="line"><span class="cl">│  └──────────┘  └──────────┘    │
+</span></span><span class="line"><span class="cl">│                                 │
+</span></span><span class="line"><span class="cl">│  ┌──────────┐                  │
+</span></span><span class="line"><span class="cl">│  │ 🔮 法师  │                  │
+</span></span><span class="line"><span class="cl">│  │ Demo 暂  │                  │
+</span></span><span class="line"><span class="cl">│  │ 不可用   │  (灰色)          │
+</span></span><span class="line"><span class="cl">│  └──────────┘                  │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
 </div>
+</div><ul>
+<li>战士标签：<code>近战 · 耐打 · 简单直接</code></li>
+<li>游荡者标签：<code>灵活 · 暴击 · 需要走位</code></li>
+<li>法师标签：<code>法术 · 控场 · Demo 暂不可用</code>（灰色不可点击）</li>
+</ul>
+<p>每行不超过 10 个字。不需要图标——职业名称本身就是信息。</p>
+<hr>
+<h3 id="补丁五玩家返回已通过区域的行为">补丁五：玩家返回已通过区域的行为
+</h3><p>线性珠串结构不锁死已通过区域的通道。玩家可以在任意时刻回头走。需要定义回退行为，避免出 bug。</p>
+<h4 id="规则">规则
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>行为</th>
+					<th>规则</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>已拾取的铭牌</td>
+					<td>不重新生成。拾取位置保留空地面 Decal</td>
+			</tr>
+			<tr>
+					<td>已击败的菌丝宿主</td>
+					<td>干壳保留在原地（不消失）。蘑菇继续长在干壳上</td>
+			</tr>
+			<tr>
+					<td>已解救的同伴</td>
+					<td>跟随玩家。如果玩家从 C 区走回 B 区，同伴跟着走，不在营地处重新出现</td>
+			</tr>
+			<tr>
+					<td>已触发的叙事事件</td>
+					<td>日记不再弹出（已读过）。异常蘑菇不再触发底座阴影闪烁（已触发过）</td>
+			</tr>
+			<tr>
+					<td>已进入的 Boss 场地</td>
+					<td>Boss 战触发后 E 区入口不锁。但如果玩家在 Boss 战胜利后走回 E 区，只看到空的菌丝节点场地——菌丝不再发光，孢子云消散。地上的干壳还在</td>
+			</tr>
+			<tr>
+					<td>委托人</td>
+					<td>A 区和 F 区是同一个 NPC。如果玩家从 B/C/D 回到 A 区，委托人站在原地，只有一句通用台词：「调查进展如何？」（无剧情推进）</td>
+			</tr>
+	</tbody>
+</table></div>
+<h4 id="不需要的内容">不需要的内容
+</h4><ul>
+<li>不需要回头路对话。不需要&quot;你确定要往回走吗&quot;提示。不需要隐藏区域</li>
+<li>目标是：回头走不出 bug，但不鼓励回头走</li>
+</ul>
+<hr>
+<h3 id="补丁六结束画面的技术实现">补丁六：结束画面的技术实现
+</h3><p>当前描述：&ldquo;黑屏 3 秒 → 手写体文本 → Steam 愿望单画面&rdquo;。以下是技术落地细节。</p>
+<h4 id="实现方案">实现方案
+</h4><p><strong>黑屏：</strong> Widget 全屏黑色背景，使用 <code>UWidgetAnimation</code> 做淡入（0→100% opacity，1.5s），而不使用关卡加载/卸载。保留当前关卡在背后渲染（性能无影响——F 区是 10m 小径，场景极简）。</p>
+<p><strong>手写体文本：</strong> 便签材质（复用现有 <code>M_UI_StickyNote</code> 材质实例），分三行显示，逐行淡入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">你走出森林。包裹里的晶石还是热的。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">你数了数铭牌。十二块。
+</span></span><span class="line"><span class="cl">你明明记得只捡了十一块。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第一行延迟 0s 淡入</li>
+<li>第二行延迟 3s 淡入</li>
+<li>第三行延迟 6s 淡入（和第二行一起显示——不覆盖，累积）</li>
+<li>全部文本显示完毕后停留 4 秒</li>
+</ul>
+<p><strong>愿望单画面：</strong> 文本淡出（1.5s）后，显示一张预渲染静态图：游戏标题 Logo + Steam 愿望单链接的 URL 文本（不是可点击的超链接——Demo 阶段通过 Steam overlay 的默认浏览器处理，或者直接显示文字&quot;在 Steam 搜索 Project_DND 加入愿望单&rdquo;）。不需要 Steam SDK 集成。</p>
+<p><strong>音效配合（补丁三 #8）：</strong> 黑屏时触发&quot;嗡鸣消失 + 风起&quot;音频。嗡鸣在第 2 秒淡出，风在第 2.5 秒进入。第一行文本出现时（延迟 0s），玩家同时听到风声——&ldquo;不再有嗡鸣了&rdquo;。</p>
+<h4 id="备选方案更低成本">备选方案（更低成本）
+</h4><p>如果 UI 动画开发时间不够：直接切成一张全屏静态图片（PNG），包含手写体文本 + 暗色渐变背景。玩家按任意键后显示愿望单页面。牺牲&quot;逐行淡入&quot;的效果，但不牺牲文本本身。</p>
+<hr>
+<h3 id="更新后的-demo-开发待办">更新后的 Demo 开发待办
+</h3><p>以上六个补丁对应的新增待办项：</p>
+<h4 id="p0-新增">P0 新增
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>8a</td>
+					<td>战斗教学孢子虫</td>
+					<td>A 区出口前放置。HP=1，不反击。击败掉落铭牌。两段 UI 提示（Tab 进战斗 / 移动攻击）。复用蘑菇模型 + 菌丝宿主简化死亡演出</td>
+			</tr>
+	</tbody>
+</table></div>
+<h4 id="p1-新增">P1 新增
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>28</td>
+					<td>同伴死亡分支逻辑</td>
+					<td>C 区同伴 HP=0 → 死亡红牌（不放释放演出）。D 区跳过同伴台词，纹路光脉加速。E 区跳过反水/释放阶段，Boss 血量-20%，多一块不计数铭牌。F 区委托人台词&quot;第二个&rdquo;→&ldquo;第一个&rdquo;</td>
+			</tr>
+			<tr>
+					<td>29</td>
+					<td>音频资产制作与集成</td>
+					<td>9 条音频（P0 1 条 + P1 5 条 + P2 3 条）。详见补丁三清单。AmbientSound Actor 放置 + 异常物频率偏移 Blueprint</td>
+			</tr>
+			<tr>
+					<td>30</td>
+					<td>返回已通过区域行为</td>
+					<td>铭牌不刷新、干壳保留、日记不重弹、异常蘑菇不重触发、同伴跟随回退、E 区 Boss 战后空场。流程管理器需追踪&quot;已触发事件&quot;标志</td>
+			</tr>
+	</tbody>
+</table></div>
+<h4 id="p2-新增">P2 新增
+</h4><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>31</td>
+					<td>选职业界面说明文本</td>
+					<td>战士/游荡者各一行 10 字内功能提示。法师灰色不可选 + &ldquo;Demo 暂不可用&rdquo;</td>
+			</tr>
+			<tr>
+					<td>32</td>
+					<td>结束画面 Widget</td>
+					<td>全屏黑底 → 手写体文本逐行淡入 → 愿望单静态图。音效配合（嗡鸣消失+风起）。备选方案：单张全屏 PNG</td>
+			</tr>
+	</tbody>
+</table></div>
+
 </section>
 
 

@@ -5,17 +5,35 @@
         <description>Recent content in Tags on 遇玄的方外之地</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 12 Jul 2026 23:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 13 Jul 2026 20:00:00 +0800</lastBuildDate><atom:link href="https://innnnnk.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>Demo</title>
+            <link>https://innnnnk.github.io/tags/demo/</link>
+            <pubDate>Mon, 13 Jul 2026 20:00:00 +0800</pubDate>
+            <guid>https://innnnnk.github.io/tags/demo/</guid>
+            <description></description>
+        </item><item>
+            <title>关卡设计</title>
+            <link>https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/</link>
+            <pubDate>Mon, 13 Jul 2026 20:00:00 +0800</pubDate>
+            <guid>https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/</guid>
+            <description></description>
+        </item><item>
+            <title>叙事设计</title>
+            <link>https://innnnnk.github.io/tags/%E5%8F%99%E4%BA%8B%E8%AE%BE%E8%AE%A1/</link>
+            <pubDate>Mon, 13 Jul 2026 20:00:00 +0800</pubDate>
+            <guid>https://innnnnk.github.io/tags/%E5%8F%99%E4%BA%8B%E8%AE%BE%E8%AE%A1/</guid>
+            <description></description>
+        </item><item>
+            <title>支线设计</title>
+            <link>https://innnnnk.github.io/tags/%E6%94%AF%E7%BA%BF%E8%AE%BE%E8%AE%A1/</link>
+            <pubDate>Mon, 13 Jul 2026 20:00:00 +0800</pubDate>
+            <guid>https://innnnnk.github.io/tags/%E6%94%AF%E7%BA%BF%E8%AE%BE%E8%AE%A1/</guid>
+            <description></description>
+        </item><item>
             <title>碎碎念</title>
             <link>https://innnnnk.github.io/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
             <pubDate>Sun, 12 Jul 2026 23:00:00 +0800</pubDate>
             <guid>https://innnnnk.github.io/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
-            <description></description>
-        </item><item>
-            <title>Demo</title>
-            <link>https://innnnnk.github.io/tags/demo/</link>
-            <pubDate>Sat, 11 Jul 2026 23:30:00 +0800</pubDate>
-            <guid>https://innnnnk.github.io/tags/demo/</guid>
             <description></description>
         </item><item>
             <title>剧情设计</title>
@@ -48,12 +66,6 @@
             <guid>https://innnnnk.github.io/tags/%E4%B8%96%E7%95%8C%E8%A7%82/</guid>
             <description></description>
         </item><item>
-            <title>叙事设计</title>
-            <link>https://innnnnk.github.io/tags/%E5%8F%99%E4%BA%8B%E8%AE%BE%E8%AE%A1/</link>
-            <pubDate>Fri, 10 Jul 2026 18:00:00 +0800</pubDate>
-            <guid>https://innnnnk.github.io/tags/%E5%8F%99%E4%BA%8B%E8%AE%BE%E8%AE%A1/</guid>
-            <description></description>
-        </item><item>
             <title>哲学</title>
             <link>https://innnnnk.github.io/tags/%E5%93%B2%E5%AD%A6/</link>
             <pubDate>Fri, 10 Jul 2026 18:00:00 +0800</pubDate>
@@ -64,12 +76,6 @@
             <link>https://innnnnk.github.io/tags/%E5%9C%BA%E6%99%AF%E8%AE%BE%E8%AE%A1/</link>
             <pubDate>Thu, 09 Jul 2026 18:00:00 +0800</pubDate>
             <guid>https://innnnnk.github.io/tags/%E5%9C%BA%E6%99%AF%E8%AE%BE%E8%AE%A1/</guid>
-            <description></description>
-        </item><item>
-            <title>关卡设计</title>
-            <link>https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/</link>
-            <pubDate>Thu, 09 Jul 2026 18:00:00 +0800</pubDate>
-            <guid>https://innnnnk.github.io/tags/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/</guid>
             <description></description>
         </item><item>
             <title>真菌森林</title>
