@@ -1476,6 +1476,11 @@
 	</tbody>
 </table></div>
 <p><strong>保留不变（L1 安全）：</strong> 矿石、矿场、矿工、蘑菇、森林、公会、佣金、委托、真菌之主、菌丝宿主、铭牌、身份牌。</p>
+
+    <blockquote>
+        <p><strong>补充（2026-07-22）：</strong> &ldquo;源脉矿石（Sanguin Ore）&ldquo;&ldquo;源脉文（Sanguin-Script）&ldquo;为<strong>内部文档专用术语</strong>（设计文档、资产清单），游戏内一切资产命名 / DataTable 行名 / 文本仍走 <code>DeepMine_Ore</code> / <code>glowing ore</code>。源脉文字符系统设计详见 <code>GameDoc/sanguin-script/sanguin-script-design.md</code>（28 字符，矿石刻痕即字符初始形态——与「源脉矿石：Demo 中的视觉锚点」章节互为引用）。</p>
+
+    </blockquote>
 <hr>
 <h2 id="真菌之主的叙事身份">真菌之主的叙事身份
 </h2>
@@ -1620,7 +1625,7 @@
 <li><strong>转速分级：</strong> 小型个体转得稍快，大型个体更慢更懒——越大越迟缓，压迫感越强</li>
 <li>每个树桩带随机角度偏移 + 独立响应延迟（永远差半拍，避免齐刷刷同转的机械感）</li>
 <li>超出跟踪半径进入休眠，省性能</li>
-<li><strong>战斗彩蛋（推荐）：</strong> 战斗中所有树桩转向&quot;当前行动的单位&rdquo;——它们在看轮到谁了。不解释，让玩家过度解读（过度解读正是&quot;认知的代价&quot;）</li>
+<li><strong>战斗彩蛋（推荐）：</strong> 战斗中所有树桩转向&quot;当前行动的单位&rdquo;——它们在看轮到谁了。不解释，让玩家过度解读（过度解读正是&quot;认知的代价&rdquo;）</li>
 <li><strong>NG+ 种子：</strong> 二周目其中一个树桩的嘴是张开的（仅模型/贴图差异，不改逻辑）</li>
 </ul>
 <p><strong>制作备注：</strong> 静态有机单体是图生 3D 的甜区（无骨骼、无动画需求），比菌丝人形省一个量级工作量。资产见 <code>comfyui-asset-design-prompts.md</code> ENV-C-01。</p>
@@ -1876,11 +1881,11 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="设计原理">设计原理
-</h3><p><strong>为什么是&quot;反水→释放→增益&quot;？</strong></p>
+</h3><p><strong>为什么是&quot;反水→释放→增益&rdquo;？</strong></p>
 <ul>
 <li>同伴反水时是虚弱的 → 数值上可控（HP 减半 + 无技能 + 动作延迟）</li>
 <li>击败他不是杀他 → 是&quot;释放&quot;他 → 和 C 区菌丝宿主的死亡规则一致</li>
-<li>释放效果帮助玩家 → 不是惩罚，而是奖励玩家&quot;在乎同伴&quot;</li>
+<li>释放效果帮助玩家 → 不是惩罚，而是奖励玩家&quot;在乎同伴&rdquo;</li>
 <li>Buff 不是无中生有 → 来自真菌之主失去节点时的震荡</li>
 </ul>
 <p><strong>为什么不用能量条/大招系统？</strong></p>
@@ -1891,7 +1896,7 @@
 <p><strong>为什么不是纯剧情杀？</strong></p>
 <ul>
 <li>玩家不能亲手打同伴的话，反水没有情感重量</li>
-<li>情感难度 &gt; 数值难度——这是&quot;你必须亲手打败你救的人&quot;</li>
+<li>情感难度 &gt; 数值难度——这是&quot;你必须亲手打败你救的人&rdquo;</li>
 </ul>
 <hr>
 <h3 id="技术实现路径-1">技术实现路径
