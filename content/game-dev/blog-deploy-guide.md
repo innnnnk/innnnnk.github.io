@@ -18,20 +18,19 @@ sh deploy.sh  →  本地校验 + 备份  →  push master  →  GitHub Actions 
 
 ## 部署路径
 
-部署由 **GitHub Actions**（`.github/workflows/hugo.yml`）自动完成，不是本地构建后强推。
+**静态文件直推**：本地 Hugo 构建 → 推 `main` 分支 → GitHub Pages 直接 serve。不走 Actions。
 
 ```
 blog/content/*.md  (源文件)
-    ↓ git push master
+    ↓ hugo 构建
     ↓
-GitHub Actions 触发
-    ↓ hugo --minify
-    ↓ deploy to Pages
+blog/public/  (静态文件)
+    ↓ git push -f main
     ↓
-https://innnnnk.github.io/  (生效)
+https://innnnnk.github.io/  (立即生效)
 ```
 
-**不要**尝试推预构建文件到 `main` 分支——会被 Actions 的部署覆盖。
+GitHub Pages 配置: Settings → Pages → Source = Deploy from branch → Branch = main, / (root)。
 
 ## deploy.sh 做了什么
 
@@ -49,17 +48,15 @@ https://innnnnk.github.io/  (生效)
 
 ## 查看部署状态
 
-推送后去 [Actions 页面](https://github.com/innnnnk/innnnnk.github.io/actions) 看构建进度。
-
-约 1-2 分钟后刷新站点。
+推送后直接刷新站点。如遇 CDN 缓存，Ctrl+Shift+R 或等 1-2 分钟。
 
 ## 常见问题
 
 ### 推了但网站没更新？
 
-1. 检查 Actions 是否成功：[https://github.com/innnnnk/innnnnk.github.io/actions](https://github.com/innnnnk/innnnnk.github.io/actions)
-2. 如果 Actions 失败了，看日志修问题
-3. 如果 Actions 成功了但网站不变：等 1 分钟 CDN 刷新，或用无痕窗口打开
+1. CDN 缓存：Ctrl+Shift+R 硬刷新，或用无痕窗口打开
+2. 检查 Git 是否推成功：`https://github.com/innnnnk/innnnnk.github.io` 看 main 分支 commit 时间
+3. 确认 GitHub Pages Settings 里 Source 选的是 main 分支
 
 ### 推错了想回退？
 
