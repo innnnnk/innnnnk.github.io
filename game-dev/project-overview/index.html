@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="项目定位、技术选型、当前进度与完整工程结构">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="项目定位、技术选型、工程结构、Demo 设计与正式版规划 —— 一站式导航">
 <title>Project_DND 项目总览</title>
 
 
@@ -13,12 +13,12 @@
 
 
 <link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="Project_DND 项目总览">
-<meta property='og:description' content="项目定位、技术选型、当前进度与完整工程结构">
+<meta property='og:description' content="项目定位、技术选型、工程结构、Demo 设计与正式版规划 —— 一站式导航">
 <meta property='og:url' content='https://innnnnk.github.io/game-dev/project-overview/'>
 <meta property='og:site_name' content='遇玄的方外之地'>
-<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='架构' /><meta property='article:tag' content='总览' /><meta property='article:tag' content='置顶' /><meta property='article:published_time' content='2026-07-09T16:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-09T16:00:00&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='架构' /><meta property='article:tag' content='总览' /><meta property='article:tag' content='置顶' /><meta property='article:published_time' content='2026-07-25T16:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-25T16:00:00&#43;08:00'/>
 <meta name="twitter:title" content="Project_DND 项目总览">
-<meta name="twitter:description" content="项目定位、技术选型、当前进度与完整工程结构">
+<meta name="twitter:description" content="项目定位、技术选型、工程结构、Demo 设计与正式版规划 —— 一站式导航">
     </head>
     <body class="
     article-page
@@ -197,6 +197,7 @@
   <ol>
     <li><a href="#项目定位">项目定位</a></li>
     <li><a href="#技术栈">技术栈</a></li>
+    <li><a href="#文档导航">文档导航</a></li>
     <li><a href="#已实现的系统">已实现的系统</a>
       <ol>
         <li><a href="#-网格战斗系统">⚔ 网格战斗系统</a></li>
@@ -212,12 +213,34 @@
         <li><a href="#-调试工具">🔧 调试工具</a></li>
       </ol>
     </li>
-    <li><a href="#完整工程目录结构">完整工程目录结构</a></li>
-    <li><a href="#当前阶段">当前阶段</a>
+    <li><a href="#世界观内核">世界观内核</a></li>
+    <li><a href="#demo真菌森林展示场景">Demo：真菌森林展示场景</a>
       <ol>
-        <li><a href="#近期待办清单">近期待办清单</a></li>
+        <li><a href="#六区珠串结构">六区珠串结构</a></li>
+        <li><a href="#boss-战四阶段">Boss 战四阶段</a></li>
+        <li><a href="#叙事滤镜">叙事滤镜</a></li>
+        <li><a href="#矿工铭牌13-块">矿工铭牌（13 块）</a></li>
+        <li><a href="#词汇敏感度矩阵">词汇敏感度矩阵</a></li>
       </ol>
     </li>
+    <li><a href="#60-分钟版本-vs-30-分钟版本">60 分钟版本 vs 30 分钟版本</a></li>
+    <li><a href="#正式版规划">正式版规划</a>
+      <ol>
+        <li><a href="#核心机制觉醒共鸣系统-v2">核心机制：觉醒共鸣系统 v2</a></li>
+        <li><a href="#源脉文字符系统">源脉文字符系统</a></li>
+      </ol>
+    </li>
+    <li><a href="#demo-开发待办">Demo 开发待办</a>
+      <ol>
+        <li><a href="#p0--没这个跑不起来">P0 — 没这个跑不起来</a></li>
+        <li><a href="#p1--能跑但体验打折">P1 — 能跑但体验打折</a></li>
+        <li><a href="#p2--锦上添花">P2 — 锦上添花</a></li>
+        <li><a href="#建议实现顺序">建议实现顺序</a></li>
+      </ol>
+    </li>
+    <li><a href="#完整工程目录结构">完整工程目录结构</a></li>
+    <li><a href="#gamedoc-资产库">GameDoc 资产库</a></li>
+    <li><a href="#当前阶段">当前阶段</a></li>
   </ol>
 
             </nav>
@@ -243,7 +266,7 @@
     
         
         <h3 class="article-subtitle">
-            项目定位、技术选型、当前进度与完整工程结构
+            项目定位、技术选型、工程结构、Demo 设计与正式版规划 —— 一站式导航
         </h3>
         
     </div>
@@ -268,7 +291,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                    <time class="article-time--published" datetime='2026-07-09T16:00:00&#43;08:00'>2026-07-09</time>
+                    <time class="article-time--published" datetime='2026-07-25T16:00:00&#43;08:00'>2026-07-25</time>
                 
 
                 
@@ -310,6 +333,7 @@
   <ol>
     <li><a href="#项目定位">项目定位</a></li>
     <li><a href="#技术栈">技术栈</a></li>
+    <li><a href="#文档导航">文档导航</a></li>
     <li><a href="#已实现的系统">已实现的系统</a>
       <ol>
         <li><a href="#-网格战斗系统">⚔ 网格战斗系统</a></li>
@@ -325,12 +349,34 @@
         <li><a href="#-调试工具">🔧 调试工具</a></li>
       </ol>
     </li>
-    <li><a href="#完整工程目录结构">完整工程目录结构</a></li>
-    <li><a href="#当前阶段">当前阶段</a>
+    <li><a href="#世界观内核">世界观内核</a></li>
+    <li><a href="#demo真菌森林展示场景">Demo：真菌森林展示场景</a>
       <ol>
-        <li><a href="#近期待办清单">近期待办清单</a></li>
+        <li><a href="#六区珠串结构">六区珠串结构</a></li>
+        <li><a href="#boss-战四阶段">Boss 战四阶段</a></li>
+        <li><a href="#叙事滤镜">叙事滤镜</a></li>
+        <li><a href="#矿工铭牌13-块">矿工铭牌（13 块）</a></li>
+        <li><a href="#词汇敏感度矩阵">词汇敏感度矩阵</a></li>
       </ol>
     </li>
+    <li><a href="#60-分钟版本-vs-30-分钟版本">60 分钟版本 vs 30 分钟版本</a></li>
+    <li><a href="#正式版规划">正式版规划</a>
+      <ol>
+        <li><a href="#核心机制觉醒共鸣系统-v2">核心机制：觉醒共鸣系统 v2</a></li>
+        <li><a href="#源脉文字符系统">源脉文字符系统</a></li>
+      </ol>
+    </li>
+    <li><a href="#demo-开发待办">Demo 开发待办</a>
+      <ol>
+        <li><a href="#p0--没这个跑不起来">P0 — 没这个跑不起来</a></li>
+        <li><a href="#p1--能跑但体验打折">P1 — 能跑但体验打折</a></li>
+        <li><a href="#p2--锦上添花">P2 — 锦上添花</a></li>
+        <li><a href="#建议实现顺序">建议实现顺序</a></li>
+      </ol>
+    </li>
+    <li><a href="#完整工程目录结构">完整工程目录结构</a></li>
+    <li><a href="#gamedoc-资产库">GameDoc 资产库</a></li>
+    <li><a href="#当前阶段">当前阶段</a></li>
   </ol>
 
             </nav>
@@ -380,8 +426,59 @@
 	</tbody>
 </table></div>
 <hr>
+<h2 id="文档导航">文档导航
+</h2><p>本总览是项目文档的<strong>入口枢纽</strong>。各模块详情见对应子文档：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>文档</th>
+					<th>内容</th>
+					<th>状态</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/worldbuilding-foundation/"  target="_blank" rel="noopener"
+    >世界观设定：巨兽梦境与 2.5D 的本体论</a></td>
+					<td>世界观内核、冰山叙事、庞加莱回归、NG+ 设计</td>
+					<td>已确定</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
+    >真菌森林 · 展示场景设计</a></td>
+					<td>六区珠串结构、Boss 四阶段、同伴系统、叙事滤镜、词汇敏感度矩阵</td>
+					<td>30 分钟版本设计完成</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >Demo 深潜版：60 分钟完整体验</a></td>
+					<td>回声裂隙 + 孢子平台支线、恢复内容、时间分配、开发顺序、风险应对</td>
+					<td>60 分钟版本设计完成</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/narrative-design-tracker/"  target="_blank" rel="noopener"
+    >剧情设计追踪表</a></td>
+					<td>CRPG 五模块全景表：地基/结构/人物/具体内容/体验设计</td>
+					<td>活文档，持续更新</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/awakening-resonance-system-v2/"  target="_blank" rel="noopener"
+    >觉醒共鸣系统 v2</a></td>
+					<td>正式版核心机制：行为驱动的叙事引擎、含混请求、异常事件、同化度</td>
+					<td>正式版设计完成</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/"  target="_blank" rel="noopener"
+    >GameDoc 开发资产</a></td>
+					<td>AI 美术 Prompt 集、源脉文设计、版权规避指南</td>
+					<td>持续积累</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
 <h2 id="已实现的系统">已实现的系统
-</h2><h3 id="-网格战斗系统">⚔ 网格战斗系统
+</h2><p>底层框架和数据层基本完成。以下系统已实现并可运行。</p>
+<h3 id="-网格战斗系统">⚔ 网格战斗系统
 </h3><ul>
 <li>20×20 格地图，支持自定义尺寸（TileSize/GirdWidth/GridHeight）</li>
 <li>A* 寻路 + 移动消耗（普通 1 格 / 困难 2 格）</li>
@@ -446,6 +543,7 @@
 <li><strong>材质系统：</strong> 角色材质 M_Chara + 12 个实例、草地/蘑菇材质、UI 材质（血条/阵营/便签）、后处理描边</li>
 <li><strong>纹理：</strong> 角色 Sprite 贴图、法线贴图、噪声贴图</li>
 <li><strong>草地交互 Shader：</strong> MPC_Interaction + MF_GrassInteraction</li>
+<li><strong>人面枯树桩</strong> — 基础模型已完成（AI 建模），原型验证通过（yaw 轴注视跟踪）</li>
 </ul>
 <h3 id="-操作交互">🎮 操作交互
 </h3><ul>
@@ -469,6 +567,384 @@
 <li>DebugStartCombat — 快速战斗测试</li>
 </ul>
 <hr>
+<h2 id="世界观内核">世界观内核
+</h2>
+    <blockquote>
+        <p>详见：<a class="link" href="https://innnnnk.github.io/game-dev/worldbuilding-foundation/"  target="_blank" rel="noopener"
+    >世界观设定：巨兽梦境与 2.5D 的本体论</a></p>
+
+    </blockquote>
+<p><strong>核心设定：</strong> 世界是一头高维巨兽的梦。空间、时间、因果、生死——全是梦的规则。源脉矿石是巨兽凝固的血。</p>
+<p><strong>2.5D 纸片人的本体论：</strong> 不是美术妥协——而是&quot;高维存在在三维空间的投影切面&quot;。人类的认知窗口不足以解析全貌，只能看到&quot;一帧&quot;。</p>
+<p><strong>三幕认知阶梯：</strong></p>
+<ul>
+<li>Act 1：正常的 DND 奇幻（埋种子）</li>
+<li>Act 2：世界是活体巨兽（体制困境）</li>
+<li>Act 3：万物同源（你就是梦的一部分）</li>
+</ul>
+<p><strong>冰山原则：</strong> 表面是派系斗争与矿石争夺。底层是&quot;认知的代价&quot;——你越靠近真相，你的身体越不像你自己。</p>
+<hr>
+<h2 id="demo真菌森林展示场景">Demo：真菌森林展示场景
+</h2>
+    <blockquote>
+        <p>详见：<a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-showcase/"  target="_blank" rel="noopener"
+    >真菌森林展示场景</a> | <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >60 分钟深潜版</a></p>
+
+    </blockquote>
+<h3 id="六区珠串结构">六区珠串结构
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">🌿入口 → 🍄走廊 → ⚔小战 → 🌑峡谷 → 👑BOSS → ✨结尾
+</span></span><span class="line"><span class="cl"> 好奇     沉浸     紧张     压抑     高潮     释放
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>功能</th>
+					<th>叙事承载</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A 入口</td>
+					<td>出生点、移动教学、任务交代</td>
+					<td>倒下的蘑菇：第一个&quot;不对劲&quot;</td>
+			</tr>
+			<tr>
+					<td>B 幽光走廊</td>
+					<td>营地探索、矿工日记、解救同伴</td>
+					<td>菌丝覆盖的身形、第一块铭牌</td>
+			</tr>
+			<tr>
+					<td>C 腐木空地</td>
+					<td>小型遭遇（2 菌丝宿主 + 同伴并肩）</td>
+					<td>人面树桩注视、战斗教学</td>
+			</tr>
+			<tr>
+					<td>D 深菇峡谷</td>
+					<td>铭牌拾取、纹路异常、源脉矿石初现</td>
+					<td>菌丝嵌入岩壁、阴影消失</td>
+			</tr>
+			<tr>
+					<td>E 巨菇王座</td>
+					<td>Boss 四阶段战</td>
+					<td>菌丝网络节点、真相的核心</td>
+			</tr>
+			<tr>
+					<td>F 孢子之径</td>
+					<td>委托交付、结尾演出</td>
+					<td>&ldquo;十二块铭牌，你明明只捡了十一块&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="boss-战四阶段">Boss 战四阶段
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">阶段一：并肩 — 玩家 + 矮人同伴 vs 真菌之主 + 2 小怪
+</span></span><span class="line"><span class="cl">阶段二：反水 — 同伴被感染，成为虚弱敌人
+</span></span><span class="line"><span class="cl">阶段三：释放 — 击败同伴触发的净化演出，玩家获得 buff
+</span></span><span class="line"><span class="cl">阶段四：收尾 — 玩家 + buff vs 残余 Boss
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="叙事滤镜">叙事滤镜
+</h3><p>三种固定身份（调查员/矿工/精灵学者）共享同一关卡流程，仅在文本/对话上差异。工作量 ≈ ×1.3 而非 ×3。</p>
+<h3 id="矿工铭牌13-块">矿工铭牌（13 块）
+</h3><p>铭牌不是&quot;收集品&quot;——是&quot;证据链&quot;。11 块拾取 + 1 块 Boss 掉落（名字被刮掉）+ 1 块同伴脖子上（不可拾取）= 13。委托人说派了十二个人——多出来的是谁？</p>
+<h3 id="词汇敏感度矩阵">词汇敏感度矩阵
+</h3><p>三层词汇管控。Demo 绝不出现 L3 词汇（源脉、巨兽、螺旋文明等）。所有代码注释、DataTable 行名、调试日志同样受约束。</p>
+<hr>
+<h2 id="60-分钟版本-vs-30-分钟版本">60 分钟版本 vs 30 分钟版本
+</h2>
+    <blockquote>
+        <p>详见：<a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >Demo 深潜版</a></p>
+
+    </blockquote>
+<p>60 分钟版本 = 30 分钟主干 + 两条可选支线 + 恢复被砍内容。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>差异</th>
+					<th>30 分钟版本</th>
+					<th>60 分钟版本</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>法师职业</td>
+					<td>暂锁</td>
+					<td>开放（2 戏法 + 1 法术/场战斗）</td>
+			</tr>
+			<tr>
+					<td>同伴 AI 性格签名</td>
+					<td>默认台词</td>
+					<td>识别动画 + 条件台词分支</td>
+			</tr>
+			<tr>
+					<td>Boss 战斗日志</td>
+					<td>3 条替换</td>
+					<td>5 条完整不可理解化</td>
+			</tr>
+			<tr>
+					<td>孢子云记忆文本</td>
+					<td>纯机制</td>
+					<td>3 段淡金色氛围文本</td>
+			</tr>
+			<tr>
+					<td>铭牌计数器视觉污染</td>
+					<td>去掉</td>
+					<td>抖动/淡紫/呼吸闪烁</td>
+			</tr>
+			<tr>
+					<td>支线1：回声裂隙</td>
+					<td>无</td>
+					<td>地下空间 + 精英战斗 + 矿工画板</td>
+			</tr>
+			<tr>
+					<td>支线2：孢子平台</td>
+					<td>无</td>
+					<td>冥想者 + 多周目元文本 + 可选 buff</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>目标发布策略：</strong> 时间充裕直接做 60 分钟版；时间中等先发 30 分钟版上新品节，60 分钟版作为售前更新。</p>
+<hr>
+<h2 id="正式版规划">正式版规划
+</h2><h3 id="核心机制觉醒共鸣系统-v2">核心机制：觉醒共鸣系统 v2
+</h3>
+    <blockquote>
+        <p>详见：<a class="link" href="https://innnnnk.github.io/game-dev/awakening-resonance-system-v2/"  target="_blank" rel="noopener"
+    >觉醒共鸣系统 v2</a></p>
+
+    </blockquote>
+<p><strong>一句话：背包不是棋盘。你管理的不是最优解，是一群越来越吵的室友。</strong></p>
+<p>核心设计原则：</p>
+<ul>
+<li><strong>不暴露数值</strong> — 没有饥饿度/共鸣度 UI，玩家只通过行为观察</li>
+<li><strong>含混请求</strong> — 物品不发布明确的任务，只用行为和暗示沟通</li>
+<li><strong>异常事件</strong> — 替代数值阈值。玩家感知&quot;越来越近了&quot;但永远不知道&quot;哪一次触发&quot;</li>
+<li><strong>同化度</strong> — 隐藏数值，暴露身体（底座阴影抖动、视野菌丝纹理、闪回）</li>
+</ul>
+<p>Demo 中已埋下 5 颗种子：晶核脉动、铭牌计数器视觉污染、孢子平台感知 buff、同伴反水、不可理解化战斗日志。</p>
+<h3 id="源脉文字符系统">源脉文字符系统
+</h3>
+    <blockquote>
+        <p>详见：<code>GameDoc/sanguin-script/sanguin-script-design.md</code></p>
+
+    </blockquote>
+<p>原创文字系统，28 字符。设计理念：文字不是被发明出来的，而是从巨兽的梦中沉淀在矿石晶体中的天然刻痕。Demo 中的源脉矿石视觉锚点（岩壁嵌块、节点矿脉、晶核）是最小可行表现。</p>
+<hr>
+<h2 id="demo-开发待办">Demo 开发待办
+</h2>
+    <blockquote>
+        <p>完整清单见 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/#demo-%e5%bc%80%e5%8f%91%e5%be%85%e5%8a%9e"  target="_blank" rel="noopener"
+    >真菌森林 Demo</a>，以下为优先级摘要。</p>
+
+    </blockquote>
+<h3 id="p0--没这个跑不起来">P0 — 没这个跑不起来
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>真菌森林关卡（<code>FungalForest_Showcase.umap</code> 白盒）</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>流程管理器（六区状态机）</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>Demo 快速选职业入口（战士/游荡者/法师）</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>同伴系统（BT_CompanionBase + 状态机）</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>Boss 战四阶段 + 孢子云机制</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>菌丝宿主敌人</td>
+			</tr>
+			<tr>
+					<td>7</td>
+					<td>真菌之主 Boss</td>
+			</tr>
+			<tr>
+					<td>8</td>
+					<td>A 区异常蘑菇（世界观钩子）</td>
+			</tr>
+			<tr>
+					<td>9</td>
+					<td>词汇敏感度矩阵全局替换</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="p1--能跑但体验打折">P1 — 能跑但体验打折
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>10</td>
+					<td>文本交互弹窗</td>
+			</tr>
+			<tr>
+					<td>11</td>
+					<td>极简背包 UI</td>
+			</tr>
+			<tr>
+					<td>12</td>
+					<td>可拾取物系统（铭牌 + 晶核）</td>
+			</tr>
+			<tr>
+					<td>13</td>
+					<td>检查点/重生</td>
+			</tr>
+			<tr>
+					<td>14</td>
+					<td>B 区营救交互</td>
+			</tr>
+			<tr>
+					<td>15</td>
+					<td>简易演出系统</td>
+			</tr>
+			<tr>
+					<td>16</td>
+					<td>听觉反馈（9 条音频资产）</td>
+			</tr>
+			<tr>
+					<td>17</td>
+					<td>同伴 AI 性格签名</td>
+			</tr>
+			<tr>
+					<td>18</td>
+					<td>Boss 战斗日志不可理解化</td>
+			</tr>
+			<tr>
+					<td>19</td>
+					<td>Boss 击败演出重构</td>
+			</tr>
+			<tr>
+					<td>20</td>
+					<td>铭牌计数器视觉污染</td>
+			</tr>
+			<tr>
+					<td>21</td>
+					<td>D 区底座阴影随机抖动</td>
+			</tr>
+			<tr>
+					<td>22</td>
+					<td>F 区结尾演出（黑屏 + 手写体文本）</td>
+			</tr>
+			<tr>
+					<td>28</td>
+					<td>同伴死亡分支</td>
+			</tr>
+			<tr>
+					<td>30</td>
+					<td>返回已通过区域行为</td>
+			</tr>
+			<tr>
+					<td>33</td>
+					<td>人面树桩注视组件</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="p2--锦上添花">P2 — 锦上添花
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>项目</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>23</td>
+					<td>真菌森林环境资产（巨型蘑菇、倒木、岩石等）</td>
+			</tr>
+			<tr>
+					<td>24</td>
+					<td>视觉异常效果（影子消失、纹路脉搏光、菌丝脉络）</td>
+			</tr>
+			<tr>
+					<td>25</td>
+					<td>Quick Start 画面</td>
+			</tr>
+			<tr>
+					<td>26</td>
+					<td>Demo 结束画面</td>
+			</tr>
+			<tr>
+					<td>27</td>
+					<td>法师系统（60 分钟版）</td>
+			</tr>
+			<tr>
+					<td>31</td>
+					<td>选职业界面说明文本</td>
+			</tr>
+			<tr>
+					<td>32</td>
+					<td>结束画面 Widget</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="建议实现顺序">建议实现顺序
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">第0步：词汇敏感度矩阵全局替换
+</span></span><span class="line"><span class="cl">第1步：白盒关卡 + 流程管理器 + 快速选职业入口
+</span></span><span class="line"><span class="cl">第2步：A 区异常蘑菇 + 战斗教学孢子虫
+</span></span><span class="line"><span class="cl">第3步：敌人 + 同伴
+</span></span><span class="line"><span class="cl">第4步：交互系统
+</span></span><span class="line"><span class="cl">第5步：Boss 战机制 + 不可理解化 + 检查点
+</span></span><span class="line"><span class="cl">第6步：演出 + 声音
+</span></span><span class="line"><span class="cl">第7步：铭牌计数器 + D区阴影抖动 + F区结尾
+</span></span><span class="line"><span class="cl">第8步：环境资产 + 视觉异常 + 首尾画面
+</span></span><span class="line"><span class="cl">第9步：回声裂隙支线
+</span></span><span class="line"><span class="cl">第10步：孢子平台支线
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="完整工程目录结构">完整工程目录结构
 </h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -572,200 +1048,6 @@
 </span><span class="lnt"> 98
 </span><span class="lnt"> 99
 </span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span><span class="lnt">130
-</span><span class="lnt">131
-</span><span class="lnt">132
-</span><span class="lnt">133
-</span><span class="lnt">134
-</span><span class="lnt">135
-</span><span class="lnt">136
-</span><span class="lnt">137
-</span><span class="lnt">138
-</span><span class="lnt">139
-</span><span class="lnt">140
-</span><span class="lnt">141
-</span><span class="lnt">142
-</span><span class="lnt">143
-</span><span class="lnt">144
-</span><span class="lnt">145
-</span><span class="lnt">146
-</span><span class="lnt">147
-</span><span class="lnt">148
-</span><span class="lnt">149
-</span><span class="lnt">150
-</span><span class="lnt">151
-</span><span class="lnt">152
-</span><span class="lnt">153
-</span><span class="lnt">154
-</span><span class="lnt">155
-</span><span class="lnt">156
-</span><span class="lnt">157
-</span><span class="lnt">158
-</span><span class="lnt">159
-</span><span class="lnt">160
-</span><span class="lnt">161
-</span><span class="lnt">162
-</span><span class="lnt">163
-</span><span class="lnt">164
-</span><span class="lnt">165
-</span><span class="lnt">166
-</span><span class="lnt">167
-</span><span class="lnt">168
-</span><span class="lnt">169
-</span><span class="lnt">170
-</span><span class="lnt">171
-</span><span class="lnt">172
-</span><span class="lnt">173
-</span><span class="lnt">174
-</span><span class="lnt">175
-</span><span class="lnt">176
-</span><span class="lnt">177
-</span><span class="lnt">178
-</span><span class="lnt">179
-</span><span class="lnt">180
-</span><span class="lnt">181
-</span><span class="lnt">182
-</span><span class="lnt">183
-</span><span class="lnt">184
-</span><span class="lnt">185
-</span><span class="lnt">186
-</span><span class="lnt">187
-</span><span class="lnt">188
-</span><span class="lnt">189
-</span><span class="lnt">190
-</span><span class="lnt">191
-</span><span class="lnt">192
-</span><span class="lnt">193
-</span><span class="lnt">194
-</span><span class="lnt">195
-</span><span class="lnt">196
-</span><span class="lnt">197
-</span><span class="lnt">198
-</span><span class="lnt">199
-</span><span class="lnt">200
-</span><span class="lnt">201
-</span><span class="lnt">202
-</span><span class="lnt">203
-</span><span class="lnt">204
-</span><span class="lnt">205
-</span><span class="lnt">206
-</span><span class="lnt">207
-</span><span class="lnt">208
-</span><span class="lnt">209
-</span><span class="lnt">210
-</span><span class="lnt">211
-</span><span class="lnt">212
-</span><span class="lnt">213
-</span><span class="lnt">214
-</span><span class="lnt">215
-</span><span class="lnt">216
-</span><span class="lnt">217
-</span><span class="lnt">218
-</span><span class="lnt">219
-</span><span class="lnt">220
-</span><span class="lnt">221
-</span><span class="lnt">222
-</span><span class="lnt">223
-</span><span class="lnt">224
-</span><span class="lnt">225
-</span><span class="lnt">226
-</span><span class="lnt">227
-</span><span class="lnt">228
-</span><span class="lnt">229
-</span><span class="lnt">230
-</span><span class="lnt">231
-</span><span class="lnt">232
-</span><span class="lnt">233
-</span><span class="lnt">234
-</span><span class="lnt">235
-</span><span class="lnt">236
-</span><span class="lnt">237
-</span><span class="lnt">238
-</span><span class="lnt">239
-</span><span class="lnt">240
-</span><span class="lnt">241
-</span><span class="lnt">242
-</span><span class="lnt">243
-</span><span class="lnt">244
-</span><span class="lnt">245
-</span><span class="lnt">246
-</span><span class="lnt">247
-</span><span class="lnt">248
-</span><span class="lnt">249
-</span><span class="lnt">250
-</span><span class="lnt">251
-</span><span class="lnt">252
-</span><span class="lnt">253
-</span><span class="lnt">254
-</span><span class="lnt">255
-</span><span class="lnt">256
-</span><span class="lnt">257
-</span><span class="lnt">258
-</span><span class="lnt">259
-</span><span class="lnt">260
-</span><span class="lnt">261
-</span><span class="lnt">262
-</span><span class="lnt">263
-</span><span class="lnt">264
-</span><span class="lnt">265
-</span><span class="lnt">266
-</span><span class="lnt">267
-</span><span class="lnt">268
-</span><span class="lnt">269
-</span><span class="lnt">270
-</span><span class="lnt">271
-</span><span class="lnt">272
-</span><span class="lnt">273
-</span><span class="lnt">274
-</span><span class="lnt">275
-</span><span class="lnt">276
-</span><span class="lnt">277
-</span><span class="lnt">278
-</span><span class="lnt">279
-</span><span class="lnt">280
-</span><span class="lnt">281
-</span><span class="lnt">282
-</span><span class="lnt">283
-</span><span class="lnt">284
-</span><span class="lnt">285
-</span><span class="lnt">286
-</span><span class="lnt">287
-</span><span class="lnt">288
-</span><span class="lnt">289
-</span><span class="lnt">290
-</span><span class="lnt">291
-</span><span class="lnt">292
-</span><span class="lnt">293
-</span><span class="lnt">294
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Project_DND/
@@ -776,21 +1058,13 @@
 </span></span><span class="line"><span class="cl">│   ├── DefaultGame.ini
 </span></span><span class="line"><span class="cl">│   ├── DefaultInput.ini
 </span></span><span class="line"><span class="cl">│   ├── Localization/               # 本地化编译配置
-</span></span><span class="line"><span class="cl">│   │   ├── Game_Compile.ini
-</span></span><span class="line"><span class="cl">│   │   ├── Game_Export.ini
-</span></span><span class="line"><span class="cl">│   │   ├── Game_ExportDialogueScript.ini
-</span></span><span class="line"><span class="cl">│   │   ├── Game_Gather.ini
-</span></span><span class="line"><span class="cl">│   │   ├── Game_GenerateReports.ini
-</span></span><span class="line"><span class="cl">│   │   ├── Game_Import.ini
-</span></span><span class="line"><span class="cl">│   │   ├── Game_ImportDialogue.ini
-</span></span><span class="line"><span class="cl">│   │   └── Game_ImportDialogueScript.ini
 </span></span><span class="line"><span class="cl">│   └── Tags/
 </span></span><span class="line"><span class="cl">│       └── DND_GASData.ini         # GAS 标签定义
 </span></span><span class="line"><span class="cl">│
 </span></span><span class="line"><span class="cl">├── Content/                         # 游戏资产
 </span></span><span class="line"><span class="cl">│   ├── AI/                          # AI 行为资产
-</span></span><span class="line"><span class="cl">│   │   ├── BB_EnemyBase.uasset      #   Blackboard
-</span></span><span class="line"><span class="cl">│   │   └── BT_EnemyBase.uasset      #   BehaviorTree
+</span></span><span class="line"><span class="cl">│   │   ├── BB_EnemyBase.uasset
+</span></span><span class="line"><span class="cl">│   │   └── BT_EnemyBase.uasset
 </span></span><span class="line"><span class="cl">│   │
 </span></span><span class="line"><span class="cl">│   ├── Blueprints/                  # 蓝图
 </span></span><span class="line"><span class="cl">│   │   ├── BP_DNDCameraPawn.uasset
@@ -813,275 +1087,120 @@
 </span></span><span class="line"><span class="cl">│   │   │   ├── BP_GE_ActionCost.uasset
 </span></span><span class="line"><span class="cl">│   │   │   └── BP_GE_Damage.uasset
 </span></span><span class="line"><span class="cl">│   │   ├── UI/
-</span></span><span class="line"><span class="cl">│   │   │   ├── Camera/
-</span></span><span class="line"><span class="cl">│   │   │   │   └── BP_Shake_HeavyHit.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── CharacterCreation/
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCAbilityStep.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCAlignmentStep.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCBackgroundStep.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCClassStep.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCMaster.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCNameStep.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCNewCharacterStep.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_CCRaceStep.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   └── Components/           # 通用组件
-</span></span><span class="line"><span class="cl">│   │   │   │       ├── UMG_BackButton.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │       ├── UMG_ChoiceButton.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │       ├── UMG_ClassButton.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │       └── UMG_RaceButton.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── CommonComps/
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_AbilityScoreRow.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_ClassFeature.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_SkillSelectItem.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   ├── UMG_SkillSelector_Popup.uasset
-</span></span><span class="line"><span class="cl">│   │   │   │   └── UMG_Tooltip_ClassFeature.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── SceneWidgets/
-</span></span><span class="line"><span class="cl">│   │   │       ├── BP_DamageNote.uasset
-</span></span><span class="line"><span class="cl">│   │   │       ├── BP_DeathCard.uasset
-</span></span><span class="line"><span class="cl">│   │   │       ├── WBP_DamageText.uasset
-</span></span><span class="line"><span class="cl">│   │   │       └── WBP_HealthDial.uasset
+</span></span><span class="line"><span class="cl">│   │   │   ├── CharacterCreation/   # 角色创建 UI（7 步流程）
+</span></span><span class="line"><span class="cl">│   │   │   ├── CommonComps/         # 通用组件
+</span></span><span class="line"><span class="cl">│   │   │   └── SceneWidgets/        # 场景 Widget（伤害/血条/死亡卡）
 </span></span><span class="line"><span class="cl">│   │   └── Utility/
 </span></span><span class="line"><span class="cl">│   │       └── BP_TexToModelBaker.uasset
 </span></span><span class="line"><span class="cl">│   │
-</span></span><span class="line"><span class="cl">│   ├── Characters/Mannequins/       # UE 默认人模（待替换）
-</span></span><span class="line"><span class="cl">│   │
 </span></span><span class="line"><span class="cl">│   ├── Data/                        # 数据驱动资产
-</span></span><span class="line"><span class="cl">│   │   ├── Curve/Camera/            # 摄像机曲线
-</span></span><span class="line"><span class="cl">│   │   │   ├── Curve_Aperture_MainCam.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── Curve_Pitch_MainCam.uasset
-</span></span><span class="line"><span class="cl">│   │   ├── DataAsset/               # 运行时缓存
-</span></span><span class="line"><span class="cl">│   │   │   ├── DA_AlignmentData.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DA_BackgroundData.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DA_ClassFeatureData.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DA_ClassesData.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DA_PlayerCharacter_Default.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DA_RaceData.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── DA_SkillData.uasset
-</span></span><span class="line"><span class="cl">│   │   ├── DataTable/               # 数据表
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_AlignmentSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_ArmorSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_BackgroundSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_ClassFeatureSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_ClassesSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_EquipmentSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_LevelProgSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_RaceSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_RaceTraitSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_SkillSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_SpellSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_SpellSlotSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── DT_SubclassSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── DT_WeaponSheet.uasset
-</span></span><span class="line"><span class="cl">│   │   └── Template/                # 预制角色模板
-</span></span><span class="line"><span class="cl">│   │       ├── DA_Template_Elf_Rouge.uasset
-</span></span><span class="line"><span class="cl">│   │       ├── DA_Template_Halforc_Barbarian.uasset
-</span></span><span class="line"><span class="cl">│   │       └── DA_Template_Human_Fighter.uasset
+</span></span><span class="line"><span class="cl">│   │   ├── DataAsset/               # 运行时缓存（7 个）
+</span></span><span class="line"><span class="cl">│   │   ├── DataTable/               # 数据表（14 张）
+</span></span><span class="line"><span class="cl">│   │   └── Template/                # 预制角色模板（3 个）
 </span></span><span class="line"><span class="cl">│   │
 </span></span><span class="line"><span class="cl">│   ├── FX/                          # 特效（待完善）
-</span></span><span class="line"><span class="cl">│   ├── LandScape/SMF/               # 地表材质函数
-</span></span><span class="line"><span class="cl">│   │   ├── SMF_GrassBase_01.uasset
-</span></span><span class="line"><span class="cl">│   │   ├── SMF_GrassBase_02.uasset
-</span></span><span class="line"><span class="cl">│   │   └── SMF_GrassBase_03.uasset
 </span></span><span class="line"><span class="cl">│   │
-</span></span><span class="line"><span class="cl">│   ├── Localization/Game/           # 本地化资源
-</span></span><span class="line"><span class="cl">│   │   ├── Game.csv                 #   源文本
-</span></span><span class="line"><span class="cl">│   │   ├── Game.locmeta
-</span></span><span class="line"><span class="cl">│   │   ├── Game.manifest
-</span></span><span class="line"><span class="cl">│   │   ├── en/                      #   英文
-</span></span><span class="line"><span class="cl">│   │   │   ├── Game.archive
-</span></span><span class="line"><span class="cl">│   │   │   └── Game.locres
-</span></span><span class="line"><span class="cl">│   │   └── zh-CN/                   #   中文
-</span></span><span class="line"><span class="cl">│   │       ├── Game.archive
-</span></span><span class="line"><span class="cl">│   │       └── Game.locres
+</span></span><span class="line"><span class="cl">│   ├── Localization/Game/           # 本地化资源（zh-CN / en）
 </span></span><span class="line"><span class="cl">│   │
-</span></span><span class="line"><span class="cl">│   ├── Maps/                        # 关卡地图
+</span></span><span class="line"><span class="cl">│   ├── Maps/                        # 关卡
 </span></span><span class="line"><span class="cl">│   │   ├── Forest_Map.umap
 </span></span><span class="line"><span class="cl">│   │   ├── MainMap.umap
 </span></span><span class="line"><span class="cl">│   │   └── TestUI.umap
 </span></span><span class="line"><span class="cl">│   │
 </span></span><span class="line"><span class="cl">│   ├── Material/                    # 材质系统
-</span></span><span class="line"><span class="cl">│   │   ├── Characters/              #   角色材质
-</span></span><span class="line"><span class="cl">│   │   │   ├── M_Chara.uasset       #     基础角色材质
-</span></span><span class="line"><span class="cl">│   │   │   ├── M_Thick.uasset       #     厚涂风格材质
-</span></span><span class="line"><span class="cl">│   │   │   └── Instance/            #     材质实例
-</span></span><span class="line"><span class="cl">│   │   │       ├── MI_Chara_Barb_{idle,attack,hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│   │   │       ├── MI_Chara_Fighter_{idle,attack,hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│   │   │       └── MI_Chara_Rouge_{idle,attack,hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│   │   ├── Decal/M_SelectionDecal.uasset
+</span></span><span class="line"><span class="cl">│   │   ├── Characters/              #   角色材质 + 12 实例
 </span></span><span class="line"><span class="cl">│   │   ├── Foliage/                 #   植被材质
-</span></span><span class="line"><span class="cl">│   │   │   ├── M_Grass.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── M_Mushroom.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── Instance/
 </span></span><span class="line"><span class="cl">│   │   ├── Landscape/               #   地形材质
-</span></span><span class="line"><span class="cl">│   │   │   ├── M_Ground.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── Inst/M_Ground_Inst.uasset
-</span></span><span class="line"><span class="cl">│   │   ├── MPC/                     #   材质参数集
-</span></span><span class="line"><span class="cl">│   │   │   ├── MPC_GlobalWind.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── MPC_Interaction.uasset
+</span></span><span class="line"><span class="cl">│   │   ├── MPC/                     #   材质参数集（风 + 草地交互）
 </span></span><span class="line"><span class="cl">│   │   ├── MaterialFunction/        #   材质函数
-</span></span><span class="line"><span class="cl">│   │   │   ├── MF_GetAlignmentSectorID.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── MF_GrassInteraction.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── MF_Kajiyakay.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── MF_ShiftTangent.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── MF_StrandSpecular.uasset
-</span></span><span class="line"><span class="cl">│   │   ├── PostProcess/             #   后处理
-</span></span><span class="line"><span class="cl">│   │   │   └── M_Outline_PP.uasset
+</span></span><span class="line"><span class="cl">│   │   ├── PostProcess/             #   后处理（描边）
 </span></span><span class="line"><span class="cl">│   │   └── UI/                      #   UI 材质
-</span></span><span class="line"><span class="cl">│   │       ├── M_Alignment_Frame.uasset
-</span></span><span class="line"><span class="cl">│   │       ├── M_HealthBase.uasset
-</span></span><span class="line"><span class="cl">│   │       ├── M_RaceAvatar.uasset
-</span></span><span class="line"><span class="cl">│   │       ├── M_UI_Carved.uasset
-</span></span><span class="line"><span class="cl">│   │       ├── M_UI_StickyNote.uasset
-</span></span><span class="line"><span class="cl">│   │       └── Instance/M_UI_StickyNote_Inst.uasset
 </span></span><span class="line"><span class="cl">│   │
 </span></span><span class="line"><span class="cl">│   ├── Mesh/                        # 网格体
-</span></span><span class="line"><span class="cl">│   │   ├── Characters/              #   角色纸片人
-</span></span><span class="line"><span class="cl">│   │   │   ├── SM_Barb_{Idle,Attack,Hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│   │   │   ├── SM_Fighter_{Idle,Attack,Hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── SM_Rouge_{Idle,Attack,Hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│   │   ├── Combat/
-</span></span><span class="line"><span class="cl">│   │   │   ├── SM_Damage.uasset     #     伤害标记
-</span></span><span class="line"><span class="cl">│   │   │   └── SM_DeathCard.uasset  #     死亡卡
-</span></span><span class="line"><span class="cl">│   │   ├── Components/
-</span></span><span class="line"><span class="cl">│   │   │   └── SM_BasePlane.uasset  #     物理底座
-</span></span><span class="line"><span class="cl">│   │   ├── Foliage/                 #   植被网格体
-</span></span><span class="line"><span class="cl">│   │   │   ├── SM_Grass_Base_{01,02,03}.uasset
-</span></span><span class="line"><span class="cl">│   │   │   └── SM_Mushroom_{01,03,04,05,07}.uasset
-</span></span><span class="line"><span class="cl">│   │   └── ForTest/Box_test.uasset
+</span></span><span class="line"><span class="cl">│   │   ├── Characters/              #   角色纸片人（3 种 × 4 状态）
+</span></span><span class="line"><span class="cl">│   │   ├── Combat/                  #   伤害标记 + 死亡卡
+</span></span><span class="line"><span class="cl">│   │   ├── Components/              #   物理底座
+</span></span><span class="line"><span class="cl">│   │   └── Foliage/                 #   植被（草地 + 蘑菇）
 </span></span><span class="line"><span class="cl">│   │
 </span></span><span class="line"><span class="cl">│   ├── Settings/Localization/       # 本地化设置表
-</span></span><span class="line"><span class="cl">│   │   ├── ST_Character.uasset
-</span></span><span class="line"><span class="cl">│   │   └── ST_UIText.uasset
 </span></span><span class="line"><span class="cl">│   │
 </span></span><span class="line"><span class="cl">│   └── Texture/                     # 贴图
-</span></span><span class="line"><span class="cl">│       ├── Foliage/                 #   植被贴图
-</span></span><span class="line"><span class="cl">│       │   ├── T_Mushroom_*_D.uasset (漫反射)
-</span></span><span class="line"><span class="cl">│       │   ├── T_Mushroom_*_N.uasset (法线)
-</span></span><span class="line"><span class="cl">│       │   ├── T_Moss_{D,N,RSB}.uasset
-</span></span><span class="line"><span class="cl">│       │   └── T_Noise.uasset
-</span></span><span class="line"><span class="cl">│       └── ForTest/                 #   角色 Sprite 测试贴图
-</span></span><span class="line"><span class="cl">│           ├── barb_{idle,attack,hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│           ├── thief_{idle,attack,hit,dead}.uasset
-</span></span><span class="line"><span class="cl">│           └── warrior_{Idle,battle,hit,dead}.uasset
+</span></span><span class="line"><span class="cl">│       ├── Foliage/
+</span></span><span class="line"><span class="cl">│       └── ForTest/
 </span></span><span class="line"><span class="cl">│
 </span></span><span class="line"><span class="cl">├── Source/                          # C++ 源码
-</span></span><span class="line"><span class="cl">│   ├── Project_DND.Target.cs        # 目标文件（游戏）
-</span></span><span class="line"><span class="cl">│   ├── Project_DNDEditor.Target.cs  # 目标文件（编辑器）
-</span></span><span class="line"><span class="cl">│   │
-</span></span><span class="line"><span class="cl">│   └── Project_DND/                 # 主模块
-</span></span><span class="line"><span class="cl">│       ├── Project_DND.{h,cpp}      # 模块入口
-</span></span><span class="line"><span class="cl">│       ├── Project_DND.Build.cs     # 构建依赖
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── AI/                      # 人工智能
-</span></span><span class="line"><span class="cl">│       │   ├── DND_AIController.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── Tasks/               #   BehaviorTree Task
-</span></span><span class="line"><span class="cl">│       │       ├── BTTask_AttackTarget.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │       ├── BTTask_EndTurn.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │       ├── BTTask_GetRandomLocation.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │       └── BTTask_MoveToTarget_Grid.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Character/               # 角色系统
-</span></span><span class="line"><span class="cl">│       │   ├── DND_CharacterBase.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── Components/
-</span></span><span class="line"><span class="cl">│       │       └── DND_UnitVisualComponent.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Combat/                  # 战斗系统
-</span></span><span class="line"><span class="cl">│       │   ├── DND_CombatManager.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_CombatRules.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_GridManager.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_GridTypes.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_UnitInitializer.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── Actor/
-</span></span><span class="line"><span class="cl">│       │   │   └── DND_EncounterTrigger.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── Components/
-</span></span><span class="line"><span class="cl">│       │       └── DND_GridMovementComponent.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Common/                  # 蓝图通用函数库
-</span></span><span class="line"><span class="cl">│       │   └── DND_CommonFunctionForBP.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Data/                    # 数据定义（C++ 侧）
-</span></span><span class="line"><span class="cl">│       │   ├── DND_DataEnum.h
-</span></span><span class="line"><span class="cl">│       │   ├── DND_DataStructsTable.h
-</span></span><span class="line"><span class="cl">│       │   ├── DND_AlignmentData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_ArmorData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_BackgroundData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_CharacterData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_ClassesData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_ClassesFeatureData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_LevelProgressionData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_RaceData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_SkillData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_SpellData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_SpellSlotData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_SubclassData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── DND_WeaponData.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Debug/                   # 调试工具
-</span></span><span class="line"><span class="cl">│       │   ├── DND_ClearCacheEditor.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── DND_DebugSaveFile.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── GAS/                     # Gameplay Ability System
-</span></span><span class="line"><span class="cl">│       │   ├── DND_AttributeSet.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── DND_GameplayTags.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── Ability/
-</span></span><span class="line"><span class="cl">│       │   │   └── DND_GA_Attack.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── Effects/
-</span></span><span class="line"><span class="cl">│       │       ├── DND_GE_ActionCost.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │       ├── DND_GE_Damage.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │       └── DND_GE_InitStats.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Interface/               # 接口
-</span></span><span class="line"><span class="cl">│       │   ├── DND_CharacterStatsInterface.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── DND_TurnBasedUnit.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
+</span></span><span class="line"><span class="cl">│   └── Project_DND/
+</span></span><span class="line"><span class="cl">│       ├── AI/                      # AIController + 4 个 BT Task
+</span></span><span class="line"><span class="cl">│       ├── Character/               # CharacterBase + UnitVisualComponent
+</span></span><span class="line"><span class="cl">│       ├── Combat/                  # GridManager, CombatManager, CombatRules, GridMovement
+</span></span><span class="line"><span class="cl">│       ├── Common/                  # 蓝图函数库
+</span></span><span class="line"><span class="cl">│       ├── Data/                    # 数据定义（13 个 DataAsset 类 + 枚举 + 结构体）
+</span></span><span class="line"><span class="cl">│       ├── Debug/                   # 缓存清理 + 存档调试
+</span></span><span class="line"><span class="cl">│       ├── GAS/                     # AttributeSet, GameplayTags, Ability, Effects
+</span></span><span class="line"><span class="cl">│       ├── Interface/               # CharacterStats + TurnBasedUnit
 </span></span><span class="line"><span class="cl">│       ├── SaveSystem/              # 存档系统
-</span></span><span class="line"><span class="cl">│       │   └── DND_SaveGame.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Settings/                # 游戏设置
-</span></span><span class="line"><span class="cl">│       │   └── DND_LocalizationSettings.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── UI/                      # 用户界面
-</span></span><span class="line"><span class="cl">│       │   ├── DND_TooltipWidgetBase.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── Actors/
-</span></span><span class="line"><span class="cl">│       │   │   ├── DND_DamageVisualActor.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   │   └── DND_DeathVisualActor.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   ├── CharacterCreation/
-</span></span><span class="line"><span class="cl">│       │   │   └── DND_CharacterCreationViewModel.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │   └── Widgets/
-</span></span><span class="line"><span class="cl">│       │       └── DND_WorldInfoWidget.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── Utility/                 # 工具
-</span></span><span class="line"><span class="cl">│       │   └── DND_DiceSystem.{h,cpp}
-</span></span><span class="line"><span class="cl">│       │
-</span></span><span class="line"><span class="cl">│       ├── DND_CameraPawn.{h,cpp}   # 摄像机
-</span></span><span class="line"><span class="cl">│       ├── DND_GameModeBase.{h,cpp} # 游戏模式
-</span></span><span class="line"><span class="cl">│       ├── DND_HUD.{h,cpp}          # HUD
-</span></span><span class="line"><span class="cl">│       └── DND_PlayerController.{h,cpp} # 玩家控制器
+</span></span><span class="line"><span class="cl">│       ├── Settings/                # 本地化设置
+</span></span><span class="line"><span class="cl">│       ├── UI/                      # ViewModel + DamageVisual + DeathVisual + WorldInfo
+</span></span><span class="line"><span class="cl">│       ├── Utility/                 # 骰子系统
+</span></span><span class="line"><span class="cl">│       ├── DND_CameraPawn.{h,cpp}
+</span></span><span class="line"><span class="cl">│       ├── DND_GameModeBase.{h,cpp}
+</span></span><span class="line"><span class="cl">│       ├── DND_HUD.{h,cpp}
+</span></span><span class="line"><span class="cl">│       └── DND_PlayerController.{h,cpp}
 </span></span><span class="line"><span class="cl">│
-</span></span><span class="line"><span class="cl">├── Project_DND.sln                  # Visual Studio 解决方案
-</span></span><span class="line"><span class="cl">├── Project_DND.uproject             # UE 项目文件
-</span></span><span class="line"><span class="cl">├── .vsconfig                        # VS 组件配置
-</span></span><span class="line"><span class="cl">└── Binaries/ &amp; Intermediate/ &amp; Saved/ &amp; DerivedDataCache/   # 编译/运行时生成（忽略）
+</span></span><span class="line"><span class="cl">├── Project_DND.sln
+</span></span><span class="line"><span class="cl">├── Project_DND.uproject
+</span></span><span class="line"><span class="cl">└── Binaries/ &amp; Intermediate/ &amp; Saved/ &amp; DerivedDataCache/   # 生成文件
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<h2 id="gamedoc-资产库">GameDoc 资产库
+</h2><p>项目辅助资产和工具文档，与引擎工程分离管理：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>路径</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>comfyui-asset-design-prompts.md</code></td>
+					<td>AI 图生 3D 资产设计 Prompt 集（Krea2 写实风）</td>
+			</tr>
+			<tr>
+					<td><code>comfyui-concept-art-prompts.md</code></td>
+					<td>AI 概念图 Prompt 集（手绘/氛围风）</td>
+			</tr>
+			<tr>
+					<td><code>comfyui-map-prompts.md</code></td>
+					<td>AI 俯视图/地图 Prompt 集</td>
+			</tr>
+			<tr>
+					<td><code>sanguin-script/</code></td>
+					<td>源脉文字符系统（28 字符 + SVG 矢量预览 + 字体生成指南）</td>
+			</tr>
+			<tr>
+					<td><code>DND 5E 游戏版权规避指南.md</code></td>
+					<td>版权清洗清单</td>
+			</tr>
+			<tr>
+					<td><code>fungal-forest-demo.md</code></td>
+					<td>本地 Demo 设计缓存</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
 <h2 id="当前阶段">当前阶段
 </h2><p><strong>底层框架和数据层基本完成。</strong> 当前核心任务：</p>
 
     <blockquote>
-        <p><strong>搭建展示场景</strong> — 把现有系统串成一条完整的可体验流程：
-<code>角色创建 → 进入关卡 → 自由探索 → 遇敌触发 → 回合制战斗 → 胜利/失败</code></p>
+        <p><strong>搭建真菌森林展示场景</strong> — 把现有系统串成一条完整的可体验流程：
+<code>角色创建 → 进入关卡 → 自由探索 → 遇敌触发 → 回合制战斗 → 胜利/失败 → 结尾演出</code></p>
 
     </blockquote>
-<h3 id="近期待办清单">近期待办清单
-</h3><ul>
-<li><input disabled="" type="checkbox"> 展示场景集成（遭遇触发器 → Forest_Map 打通流程）</li>
-<li><input disabled="" type="checkbox"> 角色模型替换（从 Mannequins 到最终角色）</li>
-<li><input disabled="" type="checkbox"> 主菜单与关卡加载流程</li>
-<li><input disabled="" type="checkbox"> VFX / SFX 打磨</li>
-<li><input disabled="" type="checkbox"> UI 美化与动画过渡</li>
-<li><input disabled="" type="checkbox"> 战斗结算与奖励展示</li>
-</ul>
+<p>第一个里程碑：30 分钟 Demo（A→F 主干跑通）→ Steam 新品节发布。</p>
+<hr>
+<p><em>最后更新：2026-07-25</em></p>
 
 </section>
 
