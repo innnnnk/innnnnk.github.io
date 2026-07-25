@@ -1,44 +1,61 @@
 #!/bin/bash
-# deploy.sh — Hugo 博客自动构建与部署脚本
+# deploy.sh — 博客部署脚本
 # 用法: sh deploy.sh
-# 效果: 编译静态文件 -> 强推至远程仓库 main 分支
+# 效果:
+#   1. 本地 Hugo 构建（校验 + 备份）
+#   2. 备份 public/ 到 public_backup/（保留最近 5 次）
+#   3. 推送源文件到 master → GitHub Actions 自动部署
+#
+# GitHub Actions 是正式部署路径，本地构建仅用于校验和备份。
 
 set -e
 
 BLOG_DIR="$(cd "$(dirname "$0")" && pwd)"
 HUGO_BIN="$BLOG_DIR/../hugo/hugo"
-PUBLIC_DIR="$BLOG_DIR/public"
-REMOTE="git@github.com:innnnnk/innnnnk.github.io.git"
-BRANCH="main"
+BACKUP_DIR="$BLOG_DIR/public_backup"
+KEEP_BACKUPS=5
 
-echo "🔨 开始构建博客..."
+echo "🔨 1/3 本地构建校验..."
 cd "$BLOG_DIR"
 "$HUGO_BIN" --logLevel warn
+echo "✅ 构建通过"
 
-echo "✅ 构建完成，准备部署..."
+echo ""
+echo "📦 2/3 备份 public/ ..."
+mkdir -p "$BACKUP_DIR"
+TIMESTAMP=$(date '+%Y%m%d-%H%M%S')
+BACKUP_NAME="public-$TIMESTAMP"
+cp -r "$BLOG_DIR/public" "$BACKUP_DIR/$BACKUP_NAME"
+echo "✅ 备份至 $BACKUP_DIR/$BACKUP_NAME"
 
-cd "$PUBLIC_DIR"
-
-# 如果 public 还不是 git 仓库，初始化
-if [ ! -d ".git" ]; then
-    echo "📦 初始化 Git 仓库..."
-    git init
-    git checkout -b "$BRANCH"
+# 清理旧备份，只保留最近 KEEP_BACKUPS 次
+BACKUP_COUNT=$(ls -1 "$BACKUP_DIR" 2>/dev/null | wc -l)
+if [ "$BACKUP_COUNT" -gt "$KEEP_BACKUPS" ]; then
+    ls -1t "$BACKUP_DIR" | tail -n +$((KEEP_BACKUPS + 1)) | while read old; do
+        rm -rf "$BACKUP_DIR/$old"
+        echo "🗑  清理旧备份: $old"
+    done
 fi
 
-# 确保 remote 指向正确的仓库
-CURRENT_REMOTE=$(git remote get-url origin 2>/dev/null || echo "")
-if [ "$CURRENT_REMOTE" != "$REMOTE" ]; then
-    git remote set-url origin "$REMOTE" 2>/dev/null || git remote add origin "$REMOTE"
+echo ""
+echo "📤 3/3 推送源文件至 master（触发 GitHub Actions 部署）..."
+cd "$BLOG_DIR"
+
+# 检查是否有改动
+if git diff --quiet && git diff --cached --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+    echo "✅ 没有需要推送的改动，跳过。"
+    exit 0
 fi
 
-# 设置仓库级 Git 身份
-git config user.name "innnnnk"
-git config user.email "innnnnk@users.noreply.github.com"
+echo "📋 待推送内容："
+git status --short
 
-echo "📤 推送至远程仓库 ($REMOTE $BRANCH)..."
 git add -A
 git commit -m "deploy: $(date '+%Y-%m-%d %H:%M:%S UTC')" --allow-empty
-git push -f origin "$BRANCH"
+git push origin master
 
-echo "🎉 部署成功！"
+echo ""
+echo "🎉 完成！GitHub Actions 正在构建部署..."
+echo "   部署状态: https://github.com/innnnnk/innnnnk.github.io/actions"
+echo "   本地备份: $BACKUP_DIR/$BACKUP_NAME"
+echo "   约 1-2 分钟后刷新 https://innnnnk.github.io/"
