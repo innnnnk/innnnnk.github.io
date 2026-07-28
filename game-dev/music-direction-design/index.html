@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Project_DND 音乐方向文档——单主题贯穿策略、爵士和声语言、交互式音乐分层、六区情绪强度曲线与资产清单">
+<title>配乐方向与声音状态设计</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/music-direction-design/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="配乐方向与声音状态设计">
+<meta property='og:description' content="Project_DND 音乐方向文档——单主题贯穿策略、爵士和声语言、交互式音乐分层、六区情绪强度曲线与资产清单">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/music-direction-design/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='音频' /><meta property='article:tag' content='配乐' /><meta property='article:tag' content='设计' /><meta property='article:published_time' content='2026-07-27T20:30:00&#43;08:00'/><meta property='article:modified_time' content='2026-07-27T20:30:00&#43;08:00'/>
+<meta name="twitter:title" content="配乐方向与声音状态设计">
+<meta name="twitter:description" content="Project_DND 音乐方向文档——单主题贯穿策略、爵士和声语言、交互式音乐分层、六区情绪强度曲线与资产清单">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#文档定位">文档定位</a></li>
+    <li><a href="#一声音身份sonic-identity">一、声音身份（Sonic Identity）</a>
+      <ol>
+        <li><a href="#音色版图demo-选定">音色版图（Demo 选定）</a></li>
+      </ol>
+    </li>
+    <li><a href="#二主题策略单主题贯穿">二、主题策略：单主题贯穿</a>
+      <ol>
+        <li><a href="#核心决定">核心决定</a></li>
+        <li><a href="#主题动机motif-x规格">主题动机（Motif-X）规格</a></li>
+        <li><a href="#主题出现规则冰山原则的音乐版">主题出现规则（冰山原则的音乐版）</a></li>
+        <li><a href="#ng-音乐方案零成本原则">NG+ 音乐方案（零成本原则）</a></li>
+      </ol>
+    </li>
+    <li><a href="#三交互式音乐系统">三、交互式音乐系统</a>
+      <ol>
+        <li><a href="#设计原则">设计原则</a></li>
+        <li><a href="#强度参数intensity">强度参数（Intensity）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四demo-六区音乐状态设计">四、Demo 六区音乐状态设计</a>
+      <ol>
+        <li><a href="#情绪强度曲线">情绪强度曲线</a></li>
+        <li><a href="#分区方案">分区方案</a></li>
+        <li><a href="#boss-战四阶段音乐">Boss 战四阶段音乐</a></li>
+      </ol>
+    </li>
+    <li><a href="#五与补丁三-sfx-清单的接口嗡鸣同源方案">五、与补丁三 SFX 清单的接口：嗡鸣同源方案</a></li>
+    <li><a href="#六配乐资产清单补丁三补充">六、配乐资产清单（补丁三补充）</a>
+      <ol>
+        <li><a href="#实现路径">实现路径</a></li>
+      </ol>
+    </li>
+    <li><a href="#七正式版预留不展开">七、正式版预留（不展开）</a></li>
+    <li><a href="#待决定项">待决定项</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/music-direction-design/">配乐方向与声音状态设计</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Project_DND 音乐方向文档——单主题贯穿策略、爵士和声语言、交互式音乐分层、六区情绪强度曲线与资产清单
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-07-27T20:30:00&#43;08:00'>2026-07-27</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#文档定位">文档定位</a></li>
+    <li><a href="#一声音身份sonic-identity">一、声音身份（Sonic Identity）</a>
+      <ol>
+        <li><a href="#音色版图demo-选定">音色版图（Demo 选定）</a></li>
+      </ol>
+    </li>
+    <li><a href="#二主题策略单主题贯穿">二、主题策略：单主题贯穿</a>
+      <ol>
+        <li><a href="#核心决定">核心决定</a></li>
+        <li><a href="#主题动机motif-x规格">主题动机（Motif-X）规格</a></li>
+        <li><a href="#主题出现规则冰山原则的音乐版">主题出现规则（冰山原则的音乐版）</a></li>
+        <li><a href="#ng-音乐方案零成本原则">NG+ 音乐方案（零成本原则）</a></li>
+      </ol>
+    </li>
+    <li><a href="#三交互式音乐系统">三、交互式音乐系统</a>
+      <ol>
+        <li><a href="#设计原则">设计原则</a></li>
+        <li><a href="#强度参数intensity">强度参数（Intensity）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四demo-六区音乐状态设计">四、Demo 六区音乐状态设计</a>
+      <ol>
+        <li><a href="#情绪强度曲线">情绪强度曲线</a></li>
+        <li><a href="#分区方案">分区方案</a></li>
+        <li><a href="#boss-战四阶段音乐">Boss 战四阶段音乐</a></li>
+      </ol>
+    </li>
+    <li><a href="#五与补丁三-sfx-清单的接口嗡鸣同源方案">五、与补丁三 SFX 清单的接口：嗡鸣同源方案</a></li>
+    <li><a href="#六配乐资产清单补丁三补充">六、配乐资产清单（补丁三补充）</a>
+      <ol>
+        <li><a href="#实现路径">实现路径</a></li>
+      </ol>
+    </li>
+    <li><a href="#七正式版预留不展开">七、正式版预留（不展开）</a></li>
+    <li><a href="#待决定项">待决定项</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="文档定位">文档定位
+</h2><p>本文档回答三个问题：<strong>这个游戏的音乐听起来是什么（声音身份）、音乐如何组织（主题策略）、音乐如何被系统驱动（交互设计）</strong>。</p>
+<p>范围：以 30/60 分钟 Demo 为落地目标，同时给出正式版的方向预留。环境音/SFX 部分已在 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >Demo 文档补丁三</a> 中定义，本文档只补充<strong>配乐层</strong>，并处理两者的接口（嗡鸣层是两者的交界）。</p>
+<hr>
+<h2 id="一声音身份sonic-identity">一、声音身份（Sonic Identity）
+</h2>
+    <blockquote>
+        <p>开工前先定&quot;听起来是什么&quot;，先于任何具体曲子。这是保证全部音乐内容有统一指纹的锚点。</p>
+
+    </blockquote>
+<p><strong>一句话：被压在低频之下的爵士室内乐——温暖、稀疏、偶尔不对。</strong></p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>决定</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>编制基调</td>
+					<td><strong>核心：爵士三重奏（钢琴、double bass、鼓刷鼓组）</strong>；辅以 4 件奇幻乐器：小提琴（fiddle）、鲁特琴、口琴、爱尔兰风笛（见音色版图）+ 低音弦乐群 + 氛围 pad，<strong>非交响全奏</strong></td>
+			</tr>
+			<tr>
+					<td>和声语言</td>
+					<td><strong>爵士和声</strong>：大七/小七扩展和弦、三全音替代、ii–V 进行。温暖与悬空感同源于和弦本身</td>
+			</tr>
+			<tr>
+					<td>全编制使用额度</td>
+					<td>整个 Demo 只有 1 处（F 区结尾）；正式版每幕 1–2 处</td>
+			</tr>
+			<tr>
+					<td>音色指纹</td>
+					<td>真实弦乐 + 爵士钢琴 + 微分音 cluster（有音高的嗡鸣）+ 极少量电子纹理</td>
+			</tr>
+			<tr>
+					<td>动态区间</td>
+					<td>80% 时间处于 pp–mp；f 以上是稀缺资源</td>
+			</tr>
+			<tr>
+					<td>禁止项</td>
+					<td>无史诗打击乐、无铜管齐鸣、无 trailer 式 braam。战斗推进感一律由<strong>鼓刷</strong>提供</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>爵士在本作中的三个角色（重要——爵士是语言，不是类型表皮）：</strong></p>
+<ol>
+<li><strong>和声角色：</strong> 三全音（tritone）就是&quot;不对劲&quot;的音程。它长在和弦里，听众说不清哪里怪——这比任何音效都便宜且高级。大七和弦提供&quot;温柔&quot;，三全音提供&quot;不对&quot;，一个和弦同时完成两个情绪目标。</li>
+<li><strong>节奏角色：</strong> 鼓刷（brushes）+ double bass walking 是战斗推进感的唯一来源。有律动、有威胁、但不&quot;史诗&quot;。回合制 + 爵士律动已被 Persona 5 验证。</li>
+<li><strong>叙事角色（冰山原则的音乐版）：</strong> 爵士的联想是人间、酒馆、即兴、温度——即&quot;正常 DND 奇幻&quot;的人格。巨兽真相的深处没有爵士。<strong>爵士元素的逐步抽空 = 世界失去人性的过程</strong>：Act 1 表层爵士完整温暖；越靠近真相，爵士越被慢速、走音、剥离，只剩和声骨架；Act 3 核心处爵士完全消失，只剩嗡鸣与 cluster。玩家说不清哪里变了，但世界冷了。</li>
+</ol>
+<p><strong>为什么不是 epic/交响全奏：</strong> 玩法是回合制沉思，叙事是冰山原则（音乐只说 A 级词），恐怖感来自&quot;缺&quot;。交响语汇保留为配器思维，但用减法执行——同一主题，钢琴三重奏演奏是探索，弦乐群全奏演奏是揭示。爵士交响（big band + 管弦，参考 Cytus II 的 JOE 曲风、Grim Fandango）作为正式版<strong>特定区域/角色</strong>的调味额度，不是全局基调。</p>
+<h3 id="音色版图demo-选定">音色版图（Demo 选定）
+</h3>
+    <blockquote>
+        <p>原则：每件乐器认领一块叙事领地，禁止堆砌。Demo 按传统 DND 奇幻气质从候选（手风琴/小提琴/爱尔兰风笛/鲁特琴/口琴/竖琴/电吉他）中选定 4 件。正式版剧情敲定后如需调整配器，届时再改。</p>
+
+    </blockquote>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>乐器</th>
+					<th>叙事领地</th>
+					<th>Demo 用法</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>小提琴（fiddle 拉法）</td>
+					<td>双重身份：民间拉法是酒馆味，古典奏法并入弦乐群</td>
+					<td>探索动机碎片、战斗 ostinato、结尾弦乐接管</td>
+			</tr>
+			<tr>
+					<td>鲁特琴</td>
+					<td>&ldquo;正常 DND&quot;的预期音色</td>
+					<td>A 区入口的温暖层；全曲中第一个消失</td>
+			</tr>
+			<tr>
+					<td>口琴</td>
+					<td>个体的人性、呼吸</td>
+					<td>B 区矿工营地 diegetic 残句（来源不明，靠近即停）</td>
+			</tr>
+			<tr>
+					<td>爱尔兰风笛</td>
+					<td>人间与深层之间的桥：旋律属人间，drone 属嗡鸣</td>
+					<td>全曲<strong>不给完整风笛旋律</strong>；D 区起仅以 drone 形态低音量混入底床</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>落选：</strong> 手风琴（气质偏集市，与&quot;空旷&quot;冲突）、竖琴（功能与钢琴重叠）、电吉他（现代感破坏传统奇幻表层，正式版深层段落再评估）。</p>
+<p><strong>气质参考系</strong>（拆解学习对象，非风格模仿）：</p>
+<ul>
+<li>Disco Elysium —— 后摇氛围底子、克制、&ldquo;音乐几乎不存在&quot;的探索态</li>
+<li>Outer Wilds —— 单主题贯穿 + NG+ 叙事的最小编制范本</li>
+<li>Persona 5 —— 爵士律动 × 回合制战斗的范本</li>
+<li>Grim Fandango —— 爵士 + 管弦写生死主题，配器减法的教科书</li>
+<li>Silent Hill 2（山冈晃）—— 环境噪音即音乐，嗡鸣/主题同源的祖师爷</li>
+<li>Cytus II（JOE 曲库）—— 爵士交响编配的密度控制</li>
+</ul>
+<hr>
+<h2 id="二主题策略单主题贯穿">二、主题策略：单主题贯穿
+</h2><h3 id="核心决定">核心决定
+</h3><p><strong>采用刺客信条式单主题贯穿，而非传统 DND 式的分曲独立。</strong> 理由：这不是配乐偏好，是世界观决定的——世界是一头巨兽的梦，万物同源。所有音乐拆解之后都是同一个动机，音乐本身就是&quot;万炁同源&quot;的证明。</p>
+<h3 id="主题动机motif-x规格">主题动机（Motif-X）规格
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>属性</th>
+					<th>要求</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>长度</td>
+					<td>3–5 个音。必须短到能当单音音效用</td>
+			</tr>
+			<tr>
+					<td>和声</td>
+					<td>小调基底 + <strong>三全音特征音程</strong>（建议：纯四度上行 → 三全音解决的悬置，&ldquo;呼唤后落空&rdquo;）；衬底和弦用大七/小九大七制造温柔与悬空的叠加</td>
+			</tr>
+			<tr>
+					<td>音高锚点</td>
+					<td><strong>第一个音的频率 = 环境低频嗡鸣层的基频</strong>（见接口节）</td>
+			</tr>
+			<tr>
+					<td>可变形性</td>
+					<td>必须经得起：倒放、半速、错位节拍、单音剥离、微分音化、<strong>swing 化/去 swing 化</strong>（爵士 ↔ 机械的转换本身就是叙事工具）</td>
+			</tr>
+			<tr>
+					<td>演奏基准</td>
+					<td>以爵士 ballad 语法定稿（钢琴或 muted 小号独白感），保证最简形态下依然成立</td>
+			</tr>
+	</tbody>
+</table></div>
+
+    <blockquote>
+        <p>动机未定稿。写作标准：用 5 个音以内讲出&quot;温柔 + 不对劲&rdquo;。定稿前所有区域音乐不得开工。</p>
+
+    </blockquote>
+<h3 id="主题出现规则冰山原则的音乐版">主题出现规则（冰山原则的音乐版）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>层级</th>
+					<th>出现形式</th>
+					<th>对应词汇敏感度</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>L1 表面</td>
+					<td>动机碎片：单音、双音、节奏影子，融在织体里，不可指认</td>
+					<td>玩家不会注意到</td>
+			</tr>
+			<tr>
+					<td>L2 不安</td>
+					<td>变形出现：倒放、慢速、错拍、去 swing 化，玩家&quot;听过但说不清&rdquo;</td>
+					<td>Demo 的天花板</td>
+			</tr>
+			<tr>
+					<td>L3 揭示</td>
+					<td>完整主题堂堂正正响起，可哼唱</td>
+					<td><strong>Demo 仅允许 1 处：F 区结尾</strong></td>
+			</tr>
+	</tbody>
+</table></div>
+<p>Demo 内配额：L1 不限，L2 共 2 处（Boss 战、回声裂隙），L3 共 1 处（结尾）。正式版三幕 = 主题的三次剥壳：Act 1 全藏（爵士完整）、Act 2 变形（爵士开始被抽空）、Act 3 完整（爵士已消失，主题裸露出嗡鸣本质）。</p>
+<h3 id="ng-音乐方案零成本原则">NG+ 音乐方案（零成本原则）
+</h3><p>与&quot;二周目只改文本/数据表&quot;对齐，NG+ 音乐不动资产、只调参数：</p>
+<ul>
+<li>二周目起，嗡鸣层 pitch 向主题基频收敛 2–3%（更接近&quot;可辨识的音&quot;）</li>
+<li>探索音乐的动机碎片出现概率 +1（DataTable 或混音参数控制）</li>
+<li>结尾主题的配器微变（增加一条弦乐泛音层）</li>
+<li>爵士层的 swing 量微调（shuffle 比例 ±3%）——&ldquo;同一首曲子，但律动有一点点不对&rdquo;</li>
+</ul>
+<p>效果：&ldquo;这个梦不是第一次被做了&rdquo;——不需要新音频文件。</p>
+<hr>
+<h2 id="三交互式音乐系统">三、交互式音乐系统
+</h2><h3 id="设计原则">设计原则
+</h3><p>游戏配乐是系统不是作品。采用 3A 通用的两套机制，用 UE 内置 MetaSounds 实现（Demo 阶段不上 Wwise/FMOD）：</p>
+<p><strong>纵向分层（Vertical Remixing）—— 主力机制。</strong>
+每个区域的音乐 = 多条 stem 同时循环，按游戏状态逐层加减：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Stem 1: 底床（pad + 嗡鸣基频泛音 + double bass 长音） —— 常开
+</span></span><span class="line"><span class="cl">Stem 2: 律动（鼓刷 / 极稀疏打击 / walking bass 骨架）  —— 强度 ≥2 开启
+</span></span><span class="line"><span class="cl">Stem 3: 旋律层（动机碎片，钢琴/大提琴泛音）            —— 强度 ≥3 开启
+</span></span><span class="line"><span class="cl">Stem 4: 不安层（微分音 cluster / 变形动机 / 走音爵士）  —— 异常事件触发
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>横向切换（Horizontal Re-sequencing）—— 仅用于战斗进出。</strong>
+探索 ↔ 战斗之间在 2 或 4 小节边界切换，交叉淡化 1–2 秒，避免硬切。</p>
+<h3 id="强度参数intensity">强度参数（Intensity）
+</h3><p>全局唯一驱动参数 <code>MusicIntensity</code>（0–4），由流程管理器广播：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>值</th>
+					<th>含义</th>
+					<th>音乐行为</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>0</td>
+					<td>安全/教学</td>
+					<td>仅 Stem 1</td>
+			</tr>
+			<tr>
+					<td>1</td>
+					<td>探索</td>
+					<td>Stem 1 + 偶尔 Stem 3 单音</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>紧张/叙事节点</td>
+					<td>+ Stem 2（鼓刷进入）</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>战斗</td>
+					<td>切换战斗段，Stem 1+2+3</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>Boss/揭示</td>
+					<td>完整战斗织体 + Stem 4</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>靠近异常物（纹路、菌丝节点、异常蘑菇）时<strong>不切歌</strong>，叠加 Stem 4 或 pitch 偏移（复用补丁三 #3 的 DSP 方案）——&ldquo;不对&quot;是晕染进来的，不是切换出来的。</p>
+<hr>
+<h2 id="四demo-六区音乐状态设计">四、Demo 六区音乐状态设计
+</h2><h3 id="情绪强度曲线">情绪强度曲线
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">强度
+</span></span><span class="line"><span class="cl"> 4 │                                          ╭──BOSS──╮
+</span></span><span class="line"><span class="cl"> 3 │                        ╭─战斗─╮         ╱ 反水顶点╲    ╭结尾(L3)
+</span></span><span class="line"><span class="cl"> 2 │              ╭────────╯      ╲──峡谷──╱            ╲
+</span></span><span class="line"><span class="cl"> 1 │   ╭──入口── corridor ╲                                  ╲孢子之径
+</span></span><span class="line"><span class="cl"> 0 │═══╯                                                        ╲___风
+</span></span><span class="line"><span class="cl">    A         B          C         D         E(四阶段)          F
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="分区方案">分区方案
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>强度</th>
+					<th>音乐内容</th>
+					<th>动机层级</th>
+					<th>备注</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A 入口</td>
+					<td>0→1</td>
+					<td>仅 Stem 1 底床，温暖 pad + bass 长音。异常蘑菇交互时 Stem 4 闪现 1.5s</td>
+					<td>L1（碎片，玩家不会察觉）</td>
+					<td>第一个&quot;不对&quot;靠音频补丁三 #9（0.15s 低音脉冲）+ Stem 4 瞬间</td>
+			</tr>
+			<tr>
+					<td>B 幽光走廊</td>
+					<td>1</td>
+					<td>Stem 1 + 每 20–40s 随机一次动机双音碎片（钢琴或 fiddle，爵士 ballad 语法）</td>
+					<td>L1</td>
+					<td>矿工营地可闻口琴残句（diegetic，来源不明，靠近即停）；矿工日记阅读时底床音量 -3dB 让位于文本</td>
+			</tr>
+			<tr>
+					<td>C 腐木空地</td>
+					<td>1→3→1</td>
+					<td>遭遇触发 → 横向切换到战斗段（鼓刷律动 + walking bass 骨架 + 弦乐 ostinato）；胜利后回到 1，但底床<strong>不再完全干净</strong>（残响尾稍长）</td>
+					<td>L1</td>
+					<td>战斗曲 = 主题的战斗变形，但只用节奏骨架，不给旋律</td>
+			</tr>
+			<tr>
+					<td>D 深菇峡谷</td>
+					<td>2</td>
+					<td>+ Stem 2 鼓刷脉搏。同伴存活时律动与纹路光脉同步；同伴死亡时律动慢半拍（对齐&quot;光脉快半拍&quot;的环境叙事）</td>
+					<td>L1</td>
+					<td>嗡鸣层从补丁三的 40–60Hz 开始与主题基频泛音叠合；风笛 drone 以极低音量混入底床（无旋律）</td>
+			</tr>
+			<tr>
+					<td>E 巨菇王座</td>
+					<td>3→4</td>
+					<td>见下节 Boss 四阶段</td>
+					<td>L2（首次变形）</td>
+					<td>全 Demo 音乐密度最高点</td>
+			</tr>
+			<tr>
+					<td>F 孢子之径</td>
+					<td>2→0→L3</td>
+					<td>嗡鸣按补丁三 #8 淡出 → <strong>8–16 秒近乎无音乐的干净</strong> → 黑屏手写体时主题第一次完整响起（L3）：<strong>爵士 ballad 编配</strong>——钢琴三重奏陈述主题，弦乐群渐入接管，约 60–90s，随愿望单画面淡出</td>
+					<td><strong>L3（唯一一次）</strong></td>
+					<td>全 Demo 的音乐目的地。爵士温度在这一刻回归——&ldquo;梦还很温柔&rdquo;。前面 30 分钟的&quot;缺&quot;都是为了这一刻</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="boss-战四阶段音乐">Boss 战四阶段音乐
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>阶段</th>
+					<th>织体</th>
+					<th>动机处理</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>一 并肩</td>
+					<td>完整战斗织体：鼓刷律动 + walking bass + 弦乐 ostinato</td>
+					<td>主题节奏骨架，无旋律（与 C 区同构，加一层）</td>
+			</tr>
+			<tr>
+					<td>二 反水</td>
+					<td><strong>减法</strong>：鼓刷撤掉一半，律动开始不稳（swing 量随机抖动）；加入微分音 cluster（Stem 4 全开）</td>
+					<td><strong>L2 首次</strong>：主题倒放片段压在织体深处，每 8–16 小节一次；爵士元素开始&quot;走音&rdquo;</td>
+			</tr>
+			<tr>
+					<td>三 释放</td>
+					<td>同伴净化演出瞬间<strong>全部音乐抽空 1 秒</strong>（静默即演出），随后单音动机以最干净的形式出现 ×3（对应 buff）——钢琴单音，无任何和声</td>
+					<td>L2→L1，这是 Boss 战的情感顶点，不是第四阶段</td>
+			</tr>
+			<tr>
+					<td>四 收尾</td>
+					<td>战斗织体回归，但混入阶段三的干净单音</td>
+					<td>胜利不给凯旋终止式——Boss 沉入地下，音乐<strong>悬置</strong>在一个未解决的七和弦上，接 F 区</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>原则：阶段三（释放）是情感顶点，阶段四（收尾）是机械收束。音乐把高潮放在&quot;救下同伴&quot;而不是&quot;打死 Boss&quot;。悬置的未解决和弦 = &ldquo;这件事没有结束&rdquo;。</p>
+<hr>
+<h2 id="五与补丁三-sfx-清单的接口嗡鸣同源方案">五、与补丁三 SFX 清单的接口：嗡鸣同源方案
+</h2><p>补丁三 #2 定义了 40–60Hz 低频嗡鸣层。升级为&quot;嗡鸣即主题&quot;：</p>
+<ol>
+<li>嗡鸣层基频锁定为<strong>主题动机第一个音的低 3–4 个八度</strong>（如动机首音为 D3，嗡鸣取 D1 ≈ 36.7Hz，落在补丁三范围内）</li>
+<li>配乐底床（Stem 1）的 pad 持续音与 double bass 长音 = 同一音的高八度泛音</li>
+<li>结果：玩家从 A 区到 F 区听到的&quot;地底振动&quot;在物理上就是主题本身。F 区嗡鸣淡出、主题响起——<strong>声音没变，只是第一次被听清</strong>。这是世界观的听觉实现，成本为零（只是一个频率决定）</li>
+</ol>
+<p>补丁三 #3 的 pitch 偏移（靠近异常物 +5–15%）保持不变——它让嗡鸣<strong>偏离</strong>主题基频，&ldquo;不对&quot;感正是来自偏离与回归。爵士层同理：swing 量的微小抖动是节奏版的&quot;偏离&rdquo;。</p>
+<hr>
+<h2 id="六配乐资产清单补丁三补充">六、配乐资产清单（补丁三补充）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>资产</th>
+					<th>用途</th>
+					<th>规格</th>
+					<th>优先级</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>M1</td>
+					<td>主题动机定稿</td>
+					<td>全部音乐的种子</td>
+					<td>3–5 音，爵士 ballad 语法；含 stems：钢琴/double bass/大提琴泛音三版单音采样</td>
+					<td><strong>P0（先于一切）</strong></td>
+			</tr>
+			<tr>
+					<td>M2</td>
+					<td>探索底床 Stem 1</td>
+					<td>A/B/C/D 区循环</td>
+					<td>90–120s 无缝循环，含嗡鸣基频泛音 + bass 长音</td>
+					<td>P0</td>
+			</tr>
+			<tr>
+					<td>M3</td>
+					<td>动机碎片库</td>
+					<td>B 区随机触发、强度 1–2 点缀</td>
+					<td>6–8 条 1–3s 碎片（双音/单音/节奏影子，爵士 ballad 语气）</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>M4</td>
+					<td>律动层 Stem 2</td>
+					<td>D 区 + 战斗</td>
+					<td>鼓刷 30s 循环（含 walking bass 骨架），可独立开关</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>M5</td>
+					<td>战斗段（C/E 通用骨架）</td>
+					<td>C 区 + Boss 战</td>
+					<td>60s 循环，4 层 stem 可拆解（ostinato/鼓刷/cluster/单音）</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>M6</td>
+					<td>不安层 Stem 4</td>
+					<td>异常物、Boss 反水</td>
+					<td>30s 循环微分音 cluster + 2 条主题倒放片段 + 走音爵士碎片</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td>M7</td>
+					<td>结尾主题（完整版）</td>
+					<td>F 区黑屏演出</td>
+					<td>60–90s 单次，<strong>爵士 ballad → 弦乐群</strong>编配：钢琴三重奏陈述 → 弦乐渐入接管</td>
+					<td><strong>P0（Demo 的音乐钩子）</strong></td>
+			</tr>
+			<tr>
+					<td>M8</td>
+					<td>静默演出控制</td>
+					<td>Boss 阶段三抽空 1s、F 区 8s 干净</td>
+					<td>无资产，纯逻辑</td>
+					<td>P1</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>总计 7 条音频资产 + 1 条逻辑。对比补丁三的 9 条 SFX，配乐层工作量可控。</p>
+<h3 id="实现路径">实现路径
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">MetaSounds：
+</span></span><span class="line"><span class="cl">  MS_ExploreBed    —— Stem1+2+3 开关，输入 MusicIntensity
+</span></span><span class="line"><span class="cl">  MS_CombatBed     —— 战斗四 stem + 强度驱动 + swing 量参数（Boss 阶段二抖动）
+</span></span><span class="line"><span class="cl">  MS_AnomalyLayer  —— Stem4，靠近异常物触发 + pitch 偏移（接补丁三 #3）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">流程管理器：
+</span></span><span class="line"><span class="cl">  广播 MusicIntensity（0–4）与区域状态
+</span></span><span class="line"><span class="cl">  Boss 战四阶段状态 → MS_CombatBed 的阶段参数
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>与词汇敏感度矩阵对齐：所有资产命名、MetaSound 参数名、Blueprint 变量名<strong>禁止出现 L3 词汇</strong>（源脉、巨兽、主题基频的设定名等）。工程内代号建议：<code>Motif-X</code>、<code>Bed</code>、<code>Pulse</code>、<code>Unease</code>。</p>
+<hr>
+<h2 id="七正式版预留不展开">七、正式版预留（不展开）
+</h2><ul>
+<li>三幕 = 主题三次剥壳 + 爵士的三次抽空：Act 1 爵士完整（城镇/酒馆可用 big band 调味，爵士交响额度放在这里）；Act 2 爵士被慢速/走音/剥离，区域变体出现（教廷区 = 圣咏化动机，矿区 = 工业化动机）；Act 3 爵士消失，主题裸露出嗡鸣本质，全编制额度 ×2</li>
+<li>角色动机（哈洛德等）在正式版从 Motif-X 派生，与主题构成对位；角色曲可各自认领一种爵士子风格</li>
+<li>NG+ 参数化方案已见第二节，正式版仅需扩展参数表</li>
+<li>中间件：正式版再评估 Wwise；MetaSounds 若撑得住则不换</li>
+</ul>
+<hr>
+<h2 id="待决定项">待决定项
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">主题动机写作   ❌ 待开工（3–5 音，爵士 ballad 语法，&#34;温柔+不对劲&#34;，M1 是全部配乐的前置）
+</span></span><span class="line"><span class="cl">特征音程       🔶 建议纯四度上行 → 三全音悬置解决，待试听定稿
+</span></span><span class="line"><span class="cl">结尾主题时长   🔶 60s vs 90s，取决于手写体文本逐行淡入的最终节奏
+</span></span><span class="line"><span class="cl">爵士交响额度   🔶 正式版 Act 1 城镇是否引入 big band（当前方案：预留，Demo 不用）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p><em>本文档是配乐方向设计，与 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >Demo 文档</a>补丁三（SFX 清单）配套使用。动机定稿（M1）前，M2–M7 均不可开工。</em></p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E9%9F%B3%E9%A2%91/">音频</a>
+        
+            <a href="/tags/%E9%85%8D%E4%B9%90/">配乐</a>
+        
+            <a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>
