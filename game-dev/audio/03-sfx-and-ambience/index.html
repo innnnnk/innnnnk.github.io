@@ -399,8 +399,8 @@
     
     <h2 id="这份文档解决什么">这份文档解决什么
 </h2><p><a class="link" href="https://innnnnk.github.io/game-dev/audio/00-conventions/"  target="_blank" rel="noopener"
-    >00-conventions.md</a> 定下了命名、域、总线与词汇纪律；<a class="link" href="https://innnnnk.github.io/game-dev/music-direction-design/"  target="_blank" rel="noopener"
-    >配乐方向</a> 定&quot;听起来是什么&quot;；<a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >00-conventions.md</a> 定下了命名、域、总线与词汇纪律；<a class="link" href="https://innnnnk.github.io/game-dev/audio/music-direction-design/"  target="_blank" rel="noopener"
+    >配乐方向</a> 定&quot;听起来是什么&quot;；<a class="link" href="https://innnnnk.github.io/game-dev/demo/fungal-forest-demo/"  target="_blank" rel="noopener"
     >Demo 补丁三</a> 只给了 9 条概念。本文把三者落成<strong>一张可以直接照着采购、制作、接线的音效施工图</strong>：</p>
 <ol>
 <li><strong>事件目录是主干</strong>：80 条 <code>AUD-*</code> 事件，逐条给 ID、触发系统、资产规格、空间属性、并发/冷却、优先级、占位来源、验收方法。</li>
@@ -1551,7 +1551,7 @@
 <hr>
 <h2 id="三区域环境音设计">三、区域环境音设计
 </h2><h3 id="31-总体原则">3.1 总体原则
-</h3><p><strong>一套基线 + 区域参数</strong>：补丁三 #1 要求的&quot;森林底噪 A–F 全区循环&quot;不录 8 套，而是<strong>一条 60 s 林地基线</strong>（<code>AMB_Forest_Base_Loop</code>）+ 每区的滤波/音量/细节层。这样既满足 #1，也把环境音文件数压到 9 条循环以内（与 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+</h3><p><strong>一套基线 + 区域参数</strong>：补丁三 #1 要求的&quot;森林底噪 A–F 全区循环&quot;不录 8 套，而是<strong>一条 60 s 林地基线</strong>（<code>AMB_Forest_Base_Loop</code>）+ 每区的滤波/音量/细节层。这样既满足 #1，也把环境音文件数压到 9 条循环以内（与 <a class="link" href="https://innnnnk.github.io/game-dev/demo/fungal-forest-demo/"  target="_blank" rel="noopener"
     >Demo</a> 的&quot;一套资产 + 区域参数&quot;思路一致）。</p>
 <ul>
 <li>基线层：2D 立体声，每区 1 个 AmbientSound，区域中心，<strong>不跟随</strong>，由 <code>OnRegionChanged</code> 交叉淡化（旧 0.5–1.0 s 出 / 新 0.8 s 入）。</li>
@@ -1694,7 +1694,7 @@
     </blockquote>
 <hr>
 <h2 id="四diegetic-声源营地口琴残句">四、diegetic 声源：营地口琴残句
-</h2><p><strong>设计目标：</strong> B 区矿工营地能听到一段口琴残句（6–10 s），<strong>来源不明</strong>——玩家能听到，但找不到吹奏者；<strong>靠近即停</strong>——像是有人在玩家走近时放下了口琴。这是全 Demo 唯一明确的 diegetic（世界观内）声源，也是&quot;口琴 = 个体的人性、呼吸&quot;的配器叙事（见 <a class="link" href="https://innnnnk.github.io/game-dev/music-direction-design/"  target="_blank" rel="noopener"
+</h2><p><strong>设计目标：</strong> B 区矿工营地能听到一段口琴残句（6–10 s），<strong>来源不明</strong>——玩家能听到，但找不到吹奏者；<strong>靠近即停</strong>——像是有人在玩家走近时放下了口琴。这是全 Demo 唯一明确的 diegetic（世界观内）声源，也是&quot;口琴 = 个体的人性、呼吸&quot;的配器叙事（见 <a class="link" href="https://innnnnk.github.io/game-dev/audio/music-direction-design/"  target="_blank" rel="noopener"
     >配乐文档 §一</a> 音色版图）。</p>
 <div class="table-wrapper"><table>
 	<thead>
@@ -2428,7 +2428,7 @@
 					<td>§1 电平为临时值，待 04 覆盖；§7 可访问性条目交 04 复核</td>
 			</tr>
 			<tr>
-					<td><a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/demo/fungal-forest-demo/"  target="_blank" rel="noopener"
     >fungal-forest-demo.md</a></td>
 					<td>补丁三 9 条、Boss 四阶段、转场、补丁六结尾</td>
 					<td>§9 全覆盖；转场时间线对齐 §3.4</td>
@@ -2563,7 +2563,7 @@
             
                 
 <article class="">
-    <a href="/game-dev/fungal-forest-demo/">
+    <a href="/game-dev/demo/fungal-forest-demo/">
         
 
         <div class="article-details">
@@ -2574,11 +2574,22 @@
             
                 
 <article class="">
-    <a href="/game-dev/narrative-design-tracker/">
+    <a href="/game-dev/world/narrative-design-tracker/">
         
 
         <div class="article-details">
             <h2 class="article-title">剧情设计追踪表</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/demo/fungal-forest-showcase/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">真菌森林展示场景 · 布局设计</h2>
         </div>
     </a>
 </article>
