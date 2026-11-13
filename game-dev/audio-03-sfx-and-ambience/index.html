@@ -1,0 +1,2650 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="真菌森林 Demo 的 SFX / 环境音 / diegetic 声源 / 语音事件全集：按 ENV/CBT/NAR/UI/SYS 分域的事件表、触发映射、区域底噪设计、占位资产与导入流程">
+<title>音效与环境音事件目录（SFX / Ambience / VO）</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/audio-03-sfx-and-ambience/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="音效与环境音事件目录（SFX / Ambience / VO）">
+<meta property='og:description' content="真菌森林 Demo 的 SFX / 环境音 / diegetic 声源 / 语音事件全集：按 ENV/CBT/NAR/UI/SYS 分域的事件表、触发映射、区域底噪设计、占位资产与导入流程">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/audio-03-sfx-and-ambience/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='音频' /><meta property='article:tag' content='SFX' /><meta property='article:tag' content='环境音' /><meta property='article:tag' content='事件目录' /><meta property='article:tag' content='Demo' /><meta property='article:published_time' content='2026-11-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-11-12T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="音效与环境音事件目录（SFX / Ambience / VO）">
+<meta name="twitter:description" content="真菌森林 Demo 的 SFX / 环境音 / diegetic 声源 / 语音事件全集：按 ENV/CBT/NAR/UI/SYS 分域的事件表、触发映射、区域底噪设计、占位资产与导入流程">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#这份文档解决什么">这份文档解决什么</a></li>
+    <li><a href="#一全局资产规格本目录所有行默认遵守">一、全局资产规格（本目录所有行默认遵守）</a>
+      <ol>
+        <li><a href="#11-衰减配置att_">1.1 衰减配置（<code>ATT_*</code>）</a></li>
+        <li><a href="#12-并发与冷却con_">1.2 并发与冷却（<code>CON_*</code>）</a></li>
+        <li><a href="#13-优先级定义">1.3 优先级定义</a></li>
+        <li><a href="#14-资产命名">1.4 资产命名</a></li>
+      </ol>
+    </li>
+    <li><a href="#二事件目录主干">二、事件目录主干</a>
+      <ol>
+        <li><a href="#21-env环境--空间--异常物21-条">2.1 ENV（环境 / 空间 / 异常物，21 条）</a></li>
+        <li><a href="#22-cbt战斗24-条">2.2 CBT（战斗，24 条）</a></li>
+        <li><a href="#23-nar叙事交互15-条">2.3 NAR（叙事交互，15 条）</a></li>
+        <li><a href="#24-ui界面10-条">2.4 UI（界面，10 条）</a></li>
+        <li><a href="#25-sys系统--转场--存档10-条">2.5 SYS（系统 / 转场 / 存档，10 条）</a></li>
+      </ol>
+    </li>
+    <li><a href="#三区域环境音设计">三、区域环境音设计</a>
+      <ol>
+        <li><a href="#31-总体原则">3.1 总体原则</a></li>
+        <li><a href="#32-六区--两区参数表">3.2 六区 + 两区参数表</a></li>
+        <li><a href="#33-ambientsound-actor-布点规则">3.3 AmbientSound Actor 布点规则</a></li>
+        <li><a href="#34-转场音频时间线与-00-常量对齐">3.4 转场音频时间线（与 00 常量对齐）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四diegetic-声源营地口琴残句">四、diegetic 声源：营地口琴残句</a></li>
+    <li><a href="#五boss-四阶段音频矩阵">五、Boss 四阶段音频矩阵</a></li>
+    <li><a href="#六metasounds-参数化设计">六、MetaSounds 参数化设计</a></li>
+    <li><a href="#七语音策略与可访问性">七、语音策略与可访问性</a>
+      <ol>
+        <li><a href="#71-明确建议demo-不配台词语音">7.1 明确建议：Demo <strong>不配台词语音</strong></a></li>
+        <li><a href="#72-可访问性文本阅读替代硬要求">7.2 可访问性：文本阅读替代（硬要求）</a></li>
+      </ol>
+    </li>
+    <li><a href="#八占位资产来源与导入前处理">八、占位资产来源与导入前处理</a>
+      <ol>
+        <li><a href="#81-现在可下载的来源清单">8.1 现在可下载的来源清单</a></li>
+        <li><a href="#82-导入前处理流程8-步">8.2 导入前处理流程（8 步）</a></li>
+      </ol>
+    </li>
+    <li><a href="#九覆盖度检查补丁三-99--全部强制项">九、覆盖度检查（补丁三 9/9 + 全部强制项）</a></li>
+    <li><a href="#十资产规模汇总">十、资产规模汇总</a>
+      <ol>
+        <li><a href="#101-事件数与优先级">10.1 事件数与优先级</a></li>
+        <li><a href="#102-规模与预算">10.2 规模与预算</a></li>
+      </ol>
+    </li>
+    <li><a href="#十一性能与资产侧要求">十一、性能与资产侧要求</a></li>
+    <li><a href="#十二与其他文档的接口点">十二、与其他文档的接口点</a></li>
+    <li><a href="#十三待城主确认">十三、待城主确认</a></li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/audio-03-sfx-and-ambience/">音效与环境音事件目录（SFX / Ambience / VO）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            真菌森林 Demo 的 SFX / 环境音 / diegetic 声源 / 语音事件全集：按 ENV/CBT/NAR/UI/SYS 分域的事件表、触发映射、区域底噪设计、占位资产与导入流程
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-11-12T00:00:00Z'>2026-11-12</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#这份文档解决什么">这份文档解决什么</a></li>
+    <li><a href="#一全局资产规格本目录所有行默认遵守">一、全局资产规格（本目录所有行默认遵守）</a>
+      <ol>
+        <li><a href="#11-衰减配置att_">1.1 衰减配置（<code>ATT_*</code>）</a></li>
+        <li><a href="#12-并发与冷却con_">1.2 并发与冷却（<code>CON_*</code>）</a></li>
+        <li><a href="#13-优先级定义">1.3 优先级定义</a></li>
+        <li><a href="#14-资产命名">1.4 资产命名</a></li>
+      </ol>
+    </li>
+    <li><a href="#二事件目录主干">二、事件目录主干</a>
+      <ol>
+        <li><a href="#21-env环境--空间--异常物21-条">2.1 ENV（环境 / 空间 / 异常物，21 条）</a></li>
+        <li><a href="#22-cbt战斗24-条">2.2 CBT（战斗，24 条）</a></li>
+        <li><a href="#23-nar叙事交互15-条">2.3 NAR（叙事交互，15 条）</a></li>
+        <li><a href="#24-ui界面10-条">2.4 UI（界面，10 条）</a></li>
+        <li><a href="#25-sys系统--转场--存档10-条">2.5 SYS（系统 / 转场 / 存档，10 条）</a></li>
+      </ol>
+    </li>
+    <li><a href="#三区域环境音设计">三、区域环境音设计</a>
+      <ol>
+        <li><a href="#31-总体原则">3.1 总体原则</a></li>
+        <li><a href="#32-六区--两区参数表">3.2 六区 + 两区参数表</a></li>
+        <li><a href="#33-ambientsound-actor-布点规则">3.3 AmbientSound Actor 布点规则</a></li>
+        <li><a href="#34-转场音频时间线与-00-常量对齐">3.4 转场音频时间线（与 00 常量对齐）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四diegetic-声源营地口琴残句">四、diegetic 声源：营地口琴残句</a></li>
+    <li><a href="#五boss-四阶段音频矩阵">五、Boss 四阶段音频矩阵</a></li>
+    <li><a href="#六metasounds-参数化设计">六、MetaSounds 参数化设计</a></li>
+    <li><a href="#七语音策略与可访问性">七、语音策略与可访问性</a>
+      <ol>
+        <li><a href="#71-明确建议demo-不配台词语音">7.1 明确建议：Demo <strong>不配台词语音</strong></a></li>
+        <li><a href="#72-可访问性文本阅读替代硬要求">7.2 可访问性：文本阅读替代（硬要求）</a></li>
+      </ol>
+    </li>
+    <li><a href="#八占位资产来源与导入前处理">八、占位资产来源与导入前处理</a>
+      <ol>
+        <li><a href="#81-现在可下载的来源清单">8.1 现在可下载的来源清单</a></li>
+        <li><a href="#82-导入前处理流程8-步">8.2 导入前处理流程（8 步）</a></li>
+      </ol>
+    </li>
+    <li><a href="#九覆盖度检查补丁三-99--全部强制项">九、覆盖度检查（补丁三 9/9 + 全部强制项）</a></li>
+    <li><a href="#十资产规模汇总">十、资产规模汇总</a>
+      <ol>
+        <li><a href="#101-事件数与优先级">10.1 事件数与优先级</a></li>
+        <li><a href="#102-规模与预算">10.2 规模与预算</a></li>
+      </ol>
+    </li>
+    <li><a href="#十一性能与资产侧要求">十一、性能与资产侧要求</a></li>
+    <li><a href="#十二与其他文档的接口点">十二、与其他文档的接口点</a></li>
+    <li><a href="#十三待城主确认">十三、待城主确认</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="这份文档解决什么">这份文档解决什么
+</h2><p><a class="link" href="https://innnnnk.github.io/game-dev/audio-00-conventions/"  target="_blank" rel="noopener"
+    >00-conventions.md</a> 定下了命名、域、总线与词汇纪律；<a class="link" href="https://innnnnk.github.io/game-dev/music-direction-design/"  target="_blank" rel="noopener"
+    >配乐方向</a> 定&quot;听起来是什么&quot;；<a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >Demo 补丁三</a> 只给了 9 条概念。本文把三者落成<strong>一张可以直接照着采购、制作、接线的音效施工图</strong>：</p>
+<ol>
+<li><strong>事件目录是主干</strong>：80 条 <code>AUD-*</code> 事件，逐条给 ID、触发系统、资产规格、空间属性、并发/冷却、优先级、占位来源、验收方法。</li>
+<li><strong>区域环境音</strong>：六区 + 两条支线，逐区给底噪层构成、电平/滤波参数、AmbientSound Actor 布点规则。</li>
+<li><strong>diegetic 声源</strong>：B 区营地口琴残句（来源不明、靠近即停）的实现参数。</li>
+<li><strong>Boss 四阶段 / 战斗 / 交互 / 异常 / 转场 / 结束画面</strong>：补丁三 9 条 + 全部强制项逐一映射，覆盖度见 §9。</li>
+</ol>
+<p><strong>边界：</strong> 本文只写 <strong>SFX / 环境音 / diegetic / 语音呼喝</strong>。音乐 stem、强度曲线、主题配额归 <a class="link" href="https://innnnnk.github.io/game-dev/audio-02-music-implementation/"  target="_blank" rel="noopener"
+    >02-music-implementation.md</a>，本文只引用其常量；总线路由、SoundClass/Submix 树、导入代码规范归 <a class="link" href="https://innnnnk.github.io/game-dev/audio-01-architecture/"  target="_blank" rel="noopener"
+    >01-architecture.md</a>；响度与 ducking 的最终数值归 <a class="link" href="https://innnnnk.github.io/game-dev/audio-04-mixing-and-loudness/"  target="_blank" rel="noopener"
+    >04-mixing-and-loudness.md</a>。本文字段是按 00 总纲写的 <strong><code>DT_AudioEvent</code> 行草案</strong>，01 定稿后以 01 的列结构为准调整。</p>
+<p><strong>前置事实：</strong> 音频零资产、零集成；UE 工程源码不在本工作区，所以本文是规格 + 触发契约，不宣称运行时已验证。所有触发点均落在 <a class="link" href="https://innnnnk.github.io/game-dev/project-overview/"  target="_blank" rel="noopener"
+    >project-overview.md</a> 已列出或 Demo 待办中已立项的类/系统上（<code>DND_CombatManager</code>、流程管理器、<code>BP_EnconterTrigger</code>、拾取物系统、文本交互弹窗、传送锚点、检查点系统等），不新造类名。</p>
+<hr>
+<h2 id="一全局资产规格本目录所有行默认遵守">一、全局资产规格（本目录所有行默认遵守）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>项</th>
+					<th>规定</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>源文件格式</td>
+					<td>WAV 48 kHz / 24 bit。禁止 96 kHz、禁止 32 bit float 交付</td>
+			</tr>
+			<tr>
+					<td>UE 内压缩</td>
+					<td>单次音效 &lt; 1 s 用 ADPCM；其余 Vorbis Q0.65；循环资产必须 Looping 且首尾零交叉、10–20 ms 交叉淡化</td>
+			</tr>
+			<tr>
+					<td>声道</td>
+					<td>3D 点声源一律<strong>单声道</strong>；2D 界面/床/演出可立体声。禁止把立体声塞进 3D 点声源（会随相机旋转）</td>
+			</tr>
+			<tr>
+					<td>响度（临时值，04 定稿后覆盖）</td>
+					<td>单次世界音效 -18 LUFS，环境循环 -20 LUFS，UI -20 LUFS，VO -23 LUFS；true peak ≤ -1 dBTP</td>
+			</tr>
+			<tr>
+					<td>变体</td>
+					<td>P0 事件 3–4 变体，P1 事件 2–3 变体，P2 事件 1–2 变体；随机音高 ±50~±200 cents（见 §6）</td>
+			</tr>
+			<tr>
+					<td>时长上限</td>
+					<td>单次 ≤ 5 s（演出类 ≤ 8 s）；循环 30–60 s；超限须在本文登记例外</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="11-衰减配置att_">1.1 衰减配置（<code>ATT_*</code>）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>代号</th>
+					<th>资产</th>
+					<th>Inner Radius</th>
+					<th>Falloff 距离</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>A_S</code></td>
+					<td><code>ATT_World_Small</code></td>
+					<td>1.5 m</td>
+					<td>25 m</td>
+					<td>近身：脚步、命中、树桩、铭牌</td>
+			</tr>
+			<tr>
+					<td><code>A_M</code></td>
+					<td><code>ATT_World_Medium</code></td>
+					<td>3 m</td>
+					<td>40 m</td>
+					<td>区域点源：门体、营救、Boss 体积</td>
+			</tr>
+			<tr>
+					<td><code>A_L</code></td>
+					<td><code>ATT_World_Large</code></td>
+					<td>5 m</td>
+					<td>60 m</td>
+					<td>远处/大体积：孢子云、Boss、落石</td>
+			</tr>
+			<tr>
+					<td><code>2D</code></td>
+					<td>不挂衰减</td>
+					<td>—</td>
+					<td>—</td>
+					<td>UI、区域床、演出、静默闸门</td>
+			</tr>
+	</tbody>
+</table></div>
+
+    <blockquote>
+        <p>衰减数值与距离算法以 <a class="link" href="https://innnnnk.github.io/game-dev/audio-04-mixing-and-loudness/"  target="_blank" rel="noopener"
+    >04 §5.3</a> 为唯一真源（00 §8.1 #22）；另有 <code>ATT_World_Voice</code>（呼喝）。超出 falloff 距离不生成 voice（01 §九）。</p>
+
+    </blockquote>
+<h3 id="12-并发与冷却con_">1.2 并发与冷却（<code>CON_*</code>）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>代号</th>
+					<th>资产</th>
+					<th>最大实例</th>
+					<th>默认冷却</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>C_IMP</code></td>
+					<td><code>CON_SFX_Impact</code></td>
+					<td>4</td>
+					<td>0.05 s</td>
+					<td>挥击/命中/受击</td>
+			</tr>
+			<tr>
+					<td><code>C_WLD</code></td>
+					<td><code>CON_SFX_WorldOneShot</code></td>
+					<td>6</td>
+					<td>0.10 s</td>
+					<td>脚步、孢子爆裂</td>
+			</tr>
+			<tr>
+					<td><code>C_AMB</code></td>
+					<td><code>CON_SFX_AmbDetail</code></td>
+					<td>2</td>
+					<td>—</td>
+					<td>环境细节层</td>
+			</tr>
+			<tr>
+					<td><code>C_UI</code></td>
+					<td><code>CON_UI_Click</code></td>
+					<td>2</td>
+					<td>0.03 s</td>
+					<td>界面</td>
+			</tr>
+			<tr>
+					<td><code>C_STG</code></td>
+					<td><code>CON_SFX_Stinger</code></td>
+					<td>1</td>
+					<td>0.3 s</td>
+					<td>演出提示音</td>
+			</tr>
+			<tr>
+					<td><code>C_VOX</code></td>
+					<td><code>CON_VO_Cap</code></td>
+					<td>2</td>
+					<td>0.2 s</td>
+					<td>呼喝/呼吸</td>
+			</tr>
+			<tr>
+					<td><code>C_EXC</code></td>
+					<td><code>CON_SFX_CinematicExclusive</code></td>
+					<td>1</td>
+					<td>5 s</td>
+					<td>静默闸门、结尾、Boss 演出</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="13-优先级定义">1.3 优先级定义
+</h3><ul>
+<li><strong>P0</strong>：缺了 Demo 观感直接断裂（战斗打击、Boss 四阶段、转场、A 区钩子）。</li>
+<li><strong>P1</strong>：Demo 可发布但明显&quot;缺声音&quot;，发布前必补。</li>
+<li><strong>P2</strong>：polish，可延期到新品节后补丁。</li>
+</ul>
+<h3 id="14-资产命名">1.4 资产命名
+</h3><p><code>SFX_&lt;域&gt;_&lt;语义&gt;_&lt;变体号&gt;</code>，如 <code>SFX_CBT_Hit_02</code>；循环加 <code>_Loop</code>，如 <code>AMB_Canyon_Detail_Loop</code>；界面 <code>UI_Backpack_Open</code>；人声 <code>VO_Companion_Grunt_Hit_01</code>；MetaSounds <code>MS_SFX_ImpactKit</code>。事件 ID 与 GameplayTag 一一对应（<code>AUD.CBT.Hit</code>），<strong>ID 不复用</strong>，废弃标 <code>Deprecated</code>。工程内禁止 L3 词；矿石类资产一律 <code>DeepMine_Ore</code>，岩壁纹路一律 <code>OldMine_Markings</code>。</p>
+<hr>
+<h2 id="二事件目录主干">二、事件目录主干
+</h2>
+    <blockquote>
+        <p><strong>接线原则（00 总纲 §5）：</strong> 音频不轮询状态，全部由现有系统广播。表中&quot;触发点&quot;即广播方与时机；无广播的地方由流程管理器/演出系统补一条 <code>void</code> 事件。</p>
+
+    </blockquote>
+<p><strong>读表约定：</strong> 资产格式默认 §1 的 WAV 48 kHz / 24 bit（不逐行重复&quot;格式&quot;列）；<code>MUS</code> 域事件（切歌、stinger、静默曲线）归 <a class="link" href="https://innnnnk.github.io/game-dev/audio-02-music-implementation/"  target="_blank" rel="noopener"
+    >02-music-implementation.md</a>，本文只在跨域处引用（CBT-016 静默闸门、SYS-007 结尾淡出、ENV-009 嗡鸣层）。</p>
+<h3 id="21-env环境--空间--异常物21-条">2.1 ENV（环境 / 空间 / 异常物，21 条）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>ID</th>
+					<th>用途</th>
+					<th>触发点（系统 / 时机）</th>
+					<th>时长 · 循环</th>
+					<th>声道 · 2D/3D</th>
+					<th>衰减 · 并发 · 冷却</th>
+					<th>优先级</th>
+					<th>占位资产</th>
+					<th>验收</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AUD-ENV-001</td>
+					<td>林地基线底噪（补丁三 #1 主承载，A–F 共用）</td>
+					<td>流程管理器 <code>OnRegionChanged(RegionId)</code> 后常驻</td>
+					<td>60 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P0</td>
+					<td>Sonniss GDC 森林循环</td>
+					<td>进入任区 0.8 s 内可闻；循环 20 次无接缝</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-002</td>
+					<td>B 走廊细节层组（洞穴 room tone + 水滴 + 营地余烬）</td>
+					<td><code>OnRegionChanged(&quot;B_Corridor&quot;)</code></td>
+					<td>45 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P0</td>
+					<td>Sonniss 洞穴 tone / Freesound 水滴</td>
+					<td>与基线层叠加后无相位抵消；水滴不规律</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-003</td>
+					<td>C 空地细节层组（干枯植被风 + 孢子微粒）</td>
+					<td><code>OnRegionChanged(&quot;C_Clearing&quot;)</code>；<code>OnCombatBegin</code> 时 -6 dB</td>
+					<td>45 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P0</td>
+					<td>Pixabay 干草风</td>
+					<td>战斗时细节层让位不抢打击</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-004</td>
+					<td>D 峡谷细节层组（窄道风压 + 岩壁菌丝电流）</td>
+					<td><code>OnRegionChanged(&quot;D_Ravine&quot;)</code></td>
+					<td>60 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P0</td>
+					<td>Sonniss 峡谷风 + 自制电流</td>
+					<td>风压有方向感（滤波 200–800 Hz 带通）</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-005</td>
+					<td>E 王座细节层组（菌丝电场 + 节点共振）</td>
+					<td><code>OnRegionChanged(&quot;E_Throne&quot;)</code></td>
+					<td>60 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P0</td>
+					<td>自制 低频+高频滋滋</td>
+					<td>40–60 Hz 段不与嗡鸣层打架</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-006</td>
+					<td>F 出口细节层组（回升风 + 残余菌丝）</td>
+					<td><code>OnRegionChanged(&quot;F_Path&quot;)</code></td>
+					<td>30 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P1</td>
+					<td>Sonniss 暖风</td>
+					<td>出森林的&quot;轻&quot;可闻；残余层随演出停止</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-007</td>
+					<td>支线 1 回声裂隙细节层组（洞穴 tone + 滴水 + 回声）</td>
+					<td><code>OnRegionChanged(&quot;X1_EchoCleft&quot;)</code></td>
+					<td>40 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P1</td>
+					<td>Sonniss 洞穴</td>
+					<td>混响 4 s 不糊；滴水有 120 ms 回声 tap</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-008</td>
+					<td>支线 2 孢子平台细节层组（孢子云密织 + 边缘风）</td>
+					<td><code>OnRegionChanged(&quot;X2_SporePlatform&quot;)</code></td>
+					<td>40 s · Loop</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P2</td>
+					<td>Pixabay 雾/闷风</td>
+					<td>能见度 3 格的&quot;闷&quot;可听出来</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-009</td>
+					<td>低频嗡鸣层（补丁三 #2）</td>
+					<td>流程管理器 <code>SetMusicIntensity</code> ≥1 且区域 ∈ {D,E}；与 02 的 <code>MS_ExploreBed</code> 同帧启停</td>
+					<td>30 s · Loop</td>
+					<td>单声道→双声道 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P1</td>
+					<td>自制：36.7 Hz 正弦 + 棕噪 + 0.1 Hz LFO</td>
+					<td>频谱仪测 36.7 Hz ±0.5 Hz（与主题首音 D3 共基频）；D→E 有 1–2 dB 递增</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-010</td>
+					<td>嗡鸣频率偏移（补丁三 #3，DSP 参数，无新文件）</td>
+					<td><code>OnAnomalyTriggered(AnomalyId)</code> 或异常物邻近 TriggerVolume</td>
+					<td>参数事件</td>
+					<td>2D</td>
+					<td>2D · — · 1 s</td>
+					<td>P1</td>
+					<td>无（<code>MS_SFX_AnomalyBuzz</code> 参数）</td>
+					<td>进入 3–6 m pitch +5%~+15%，离开 2 s 内回落；切换无爆音</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-011</td>
+					<td>孢子爆裂单次（补丁三 #1 细节）</td>
+					<td>A–F 区随机计时器 8–20 s，孢子群 Actor 附近</td>
+					<td>0.4–0.8 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_WLD · 8 s</td>
+					<td>P1</td>
+					<td>Freesound CC0 <code>spore pop</code></td>
+					<td>连续 20 次不重复感；≤ -26 LUFS 不干扰对白</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-012</td>
+					<td>阴影闪烁低音脉冲（补丁三 #9）</td>
+					<td>A 区异常蘑菇交互回调；D 区玩家静止 30 s 随机（P1 #21）</td>
+					<td>0.15 s · 单次</td>
+					<td>单声道 · 2D</td>
+					<td>2D · C_STG · 5 s</td>
+					<td>P2</td>
+					<td>自制 60 Hz 短脉冲</td>
+					<td>与底座阴影 MPC 参数同帧（误差 ≤1 帧）；不触发 ducking</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-013</td>
+					<td>菌丝脉络脉搏</td>
+					<td>纹路 Actor 计时器 6 s（P2 #24 光脉）</td>
+					<td>1.2–1.8 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_AMB · 5.5–6.5 s</td>
+					<td>P1</td>
+					<td>自制 低频 + 滤波噪声</td>
+					<td>与发光同相；同伴死亡分支频率 ×1.5（补丁一）</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-014</td>
+					<td>树桩转动（木纤维摩擦）</td>
+					<td>树桩注视组件（P1 #33）yaw 角速度 &gt;2°/s 起播；战斗中 <code>OnTurnStarted</code> 转向当前单位</td>
+					<td>0.6–1.2 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_AMB · 1.5 s</td>
+					<td>P1</td>
+					<td>自制 干燥木纤维摩擦</td>
+					<td>转动停止前 0.1 s 内收尾；3 个树桩 pitch 各偏 ±30 cents</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-015</td>
+					<td>孢子云体积循环</td>
+					<td>孢子云 Actor 激活（E 区/支线 2 体积）</td>
+					<td>30 s · Loop</td>
+					<td>单声道 · 3D</td>
+					<td>A_L · C_AMB · —</td>
+					<td>P0</td>
+					<td>Pixabay 雾 + 低通</td>
+					<td>玩家进云音量平滑 +3 dB 闷度；不盖过战斗打击</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-016</td>
+					<td>孢子云进出边界</td>
+					<td>玩家进出孢子云体积（OnBeginOverlap/OnEndOverlap），两变体</td>
+					<td>0.8–1.0 s · 单次</td>
+					<td>单声道 · 2D</td>
+					<td>2D · C_STG · 0.5 s</td>
+					<td>P1</td>
+					<td>自制 低通 swell</td>
+					<td>与孢子云 debuff UI 同步；出云 1 s 内恢复高频</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-017</td>
+					<td>积水倒影微光</td>
+					<td>回声宿主击败演出（P1 #15 简易演出系统）</td>
+					<td>2.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_STG · —</td>
+					<td>P1</td>
+					<td>自制 水波 + shimmer</td>
+					<td>与倒影持续 2 s 严格对齐；结束无拖尾</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-018</td>
+					<td>冥想者低鸣</td>
+					<td>支线 2 冥想者 Actor Idle</td>
+					<td>15 s · Loop</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_AMB · —</td>
+					<td>P2</td>
+					<td>自制 呼吸 + 低频 hum</td>
+					<td>6 m 外 ≤ -32 LUFS（&ldquo;几乎听不到&rdquo;）</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-019</td>
+					<td>玩家脚步</td>
+					<td><code>DND_CharacterBase</code> 移动事件（自由探索 / 战斗格移动）</td>
+					<td>0.2–0.35 s × 4 变体/材质</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_WLD · 0.08 s</td>
+					<td>P1</td>
+					<td>Pixabay/Sonniss 草/石/菌丝</td>
+					<td>材质切换无爆音；步频与移动速度匹配（Walking 0.45–0.55 s/步）</td>
+			</tr>
+			<tr>
+					<td>AUD-ENV-020</td>
+					<td>矿石低鸣（<code>DeepMine_Ore</code>）</td>
+					<td>D 区岩壁嵌块 / E 区地裂 Actor 邻近体积</td>
+					<td>20 s · Loop</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_AMB · —</td>
+					<td>P1</td>
+					<td>自制 暖低频 hum + 偶发晶鸣</td>
+					<td>与菌丝冷绿音色可区分（暖红方向）；不遮蔽嗡鸣层</td>
+			</tr>
+			<tr>
+					<td><del>AUD-ENV-021</del></td>
+					<td><del>不应有的声音（远处人声残响）</del> <strong>Deprecated：Demo 不做</strong>（00 §8.1 #15：风险高、与&quot;微妙的不对劲&quot;基调冲突）；ID 保留不复用</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="22-cbt战斗24-条">2.2 CBT（战斗，24 条）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>ID</th>
+					<th>用途</th>
+					<th>触发点（系统 / 时机）</th>
+					<th>时长 · 循环</th>
+					<th>声道 · 2D/3D</th>
+					<th>衰减 · 并发 · 冷却</th>
+					<th>优先级</th>
+					<th>占位资产</th>
+					<th>验收</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AUD-CBT-001</td>
+					<td>回合开始</td>
+					<td><code>DND_CombatManager</code> 回合切换广播 <code>OnTurnStarted(Unit)</code></td>
+					<td>0.6–0.9 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.2 s</td>
+					<td>P0</td>
+					<td>自制 木质 + 皮鼓 + 金属轻击</td>
+					<td>回合起始 1 帧内对齐；我方/敌方音高差 2 半音</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-002</td>
+					<td>回合结束</td>
+					<td><code>DND_CombatManager</code> 回合结束广播</td>
+					<td>0.5–0.8 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.2 s</td>
+					<td>P1</td>
+					<td>自制 反向轻击</td>
+					<td>与下一回合开始不重叠</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-003</td>
+					<td>攻击挥击</td>
+					<td><code>GA_MeleeAttack</code> 蒙太奇起手帧</td>
+					<td>0.3–0.5 s · 单次 × 4 变体</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_IMP · 0.1 s</td>
+					<td>P0</td>
+					<td>Sonniss 布料/风声挥击</td>
+					<td>与命中音不糊；4 变体随机无重复感</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-004</td>
+					<td>命中</td>
+					<td><code>GE_Damage</code> 结算 / <code>DamageVisual</code> 回调</td>
+					<td>0.25–0.4 s · 单次 × 4 变体</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_IMP · 0.08 s</td>
+					<td>P0</td>
+					<td>Sonniss 钝击 + 血肉层</td>
+					<td>力度参数驱动音量（伤害 1–15 映射 -6~0 dB）</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-005</td>
+					<td>暴击</td>
+					<td>攻击骰 nat20 或伤害翻倍判定</td>
+					<td>0.6–0.9 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_IMP · 0.15 s</td>
+					<td>P0</td>
+					<td>自制 金属爆点 + 低频冲击</td>
+					<td>与命中可区分（高频层 + 低频尾）</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-006</td>
+					<td>闪避 / 未命中</td>
+					<td>攻击检定失败或未过 AC</td>
+					<td>0.3–0.5 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_IMP · 0.1 s</td>
+					<td>P1</td>
+					<td>Sonniss 布料掠过 / 金属擦</td>
+					<td>&ldquo;打空&quot;明确但不刺耳</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-007</td>
+					<td>受击硬直</td>
+					<td><code>DND_CharacterBase</code> 受击动画帧</td>
+					<td>0.4 s · 单次 × 3 变体</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_IMP · 0.1 s</td>
+					<td>P1</td>
+					<td>Sonniss 皮革/衣料</td>
+					<td>玩家/敌人同一套变体，pitch 区分体型</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-008</td>
+					<td>死亡红牌</td>
+					<td><code>DeathVisual</code> / <code>DeathCard</code> 场景 Widget 拍下</td>
+					<td>0.8–1.2 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.5 s</td>
+					<td>P0</td>
+					<td>自制 纸张拍击 + 金属牌落桌</td>
+					<td>与 DeathCard 动画同帧；不同单位不叠两层</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-009</td>
+					<td>孢子释放（补丁三 #4）</td>
+					<td>菌丝宿主 HP=0 → 死亡演出（P1 #15）</td>
+					<td>1.5–2.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_IMP · 1.0 s</td>
+					<td>P1</td>
+					<td>自制 湿黏撕裂 + 粉末洒落</td>
+					<td>与孢子粒子发射同帧；湿层 + 粉末层可分离</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-010</td>
+					<td>尸体阶段（干壳萎缩 → 长蘑菇）</td>
+					<td>释放结束后 0.3 s / 2 s 两个时间点</td>
+					<td>1.2 s + 0.8 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_WLD · 1.0 s</td>
+					<td>P1</td>
+					<td>自制 干枯收缩 + 微小生长</td>
+					<td>与视觉两阶段对齐；音量不超过释放音</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-011</td>
+					<td>法师施法 + 法术命中</td>
+					<td>法师 <code>GA</code>（2 戏法 / 1 环，60 min 版已开放 · P2 #27）</td>
+					<td>0.8–1.4 s + 0.6 s</td>
+					<td>2D 咏唱 + 3D 命中</td>
+					<td>A_S · C_IMP · 0.2 s</td>
+					<td>P1</td>
+					<td>Freesound CC0 魔法 whoosh / OGA</td>
+					<td>咏唱不压台词文本；命中与伤害数字同步</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-012</td>
+					<td>先攻掷骰</td>
+					<td><code>DND_CombatManager</code> 先攻投掷（1d20+敏捷）结算</td>
+					<td>0.6 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.4 s</td>
+					<td>P1</td>
+					<td>Sonniss 骰子木桌</td>
+					<td>每场战斗只响一次；掷骰与排序错开 0.2 s</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-013</td>
+					<td>遭遇定格（进战斗）</td>
+					<td><code>BP_EnconterTrigger</code> 自由→定格三态切换</td>
+					<td>1.0–1.5 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 2.0 s</td>
+					<td>P0</td>
+					<td>自制 低频吸入 + 金属收紧</td>
+					<td>与音乐横向切换开始同帧；不抢回合开始</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-014</td>
+					<td>同伴反水</td>
+					<td>同伴状态机 <code>OnCompanionStateChanged(Infected)</code></td>
+					<td>2.0–2.5 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_STG · 3.0 s</td>
+					<td>P0</td>
+					<td>自制 菌丝蔓延 + 衣料撕裂</td>
+					<td>触发条件（Boss&lt;60% + 孢子云 1 轮 / 保底 30%）两版同一资产</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-015</td>
+					<td>菌丝出体（补丁三 #5）</td>
+					<td>释放演出（同伴 HP=0，<code>DND_CombatManager</code> 监听）</td>
+					<td>2.0–3.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_STG · 3.0 s</td>
+					<td>P0</td>
+					<td>自制 泥浆拔出 + 0.5 s 风上扬</td>
+					<td>后 0.5 s 风声上扬与孢子入空同帧</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-016</td>
+					<td>释放静默闸门（1.0 s）</td>
+					<td>释放演出 T0，与 02 阶段三&quot;全部音乐抽空 1 s&quot;同帧</td>
+					<td>1.0 s · 控制事件</td>
+					<td>2D</td>
+					<td>2D · C_EXC · 5 s</td>
+					<td>P0</td>
+					<td>无资产（SC 级静音曲线）</td>
+					<td>静默期间 SFX 尾音处理见 §5；1.0 s ±0.02 s</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-017</td>
+					<td>Boss 孢子爆发 AOE</td>
+					<td>真菌之主 孢子爆发技能</td>
+					<td>1.2 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_L · C_IMP · 0.5 s</td>
+					<td>P0</td>
+					<td>自制 湿爆 + 低频冲击</td>
+					<td>与&quot;D 区孢子云&quot;音色区分；伤害数字同帧</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-018</td>
+					<td>Boss 召唤小怪</td>
+					<td>第 2 回合召唤 2 小怪技能</td>
+					<td>1.8 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_L · C_STG · 2.0 s</td>
+					<td>P0</td>
+					<td>自制 地裂 + 爬出</td>
+					<td>与 2 只小怪生成同帧；不压 Boss 语音文本</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-019</td>
+					<td>Boss 护甲削弱</td>
+					<td>Boss 日志&quot;忘记了防御&rdquo;（补丁 P1 #18）</td>
+					<td>1.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_IMP · 1.0 s</td>
+					<td>P1</td>
+					<td>自制 壳裂 + 空腔</td>
+					<td>与护甲状态 UI 同步</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-020</td>
+					<td>Boss 回血</td>
+					<td>日志&quot;森林正在把它拉回去&quot;</td>
+					<td>2.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_L · C_STG · 2.0 s</td>
+					<td>P1</td>
+					<td>自制 反向呼吸 + 低鸣回填</td>
+					<td>回血数值弹出同帧；不循环</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-021</td>
+					<td>Boss 复制 / 学习</td>
+					<td>日志&quot;它越来越像你了&quot;</td>
+					<td>1.5 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_STG · 3.0 s</td>
+					<td>P2</td>
+					<td>自制 延迟回声</td>
+					<td>与玩家上一次攻击音色相近（&ldquo;像你&rdquo;）</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-022</td>
+					<td>Boss 击败静止（不播死亡动画）</td>
+					<td>Boss HP=0，静止 3 s（P1 #19 演出重构）</td>
+					<td>3.0 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_EXC · 5.0 s</td>
+					<td>P0</td>
+					<td>自制 低频抽空 + 远处风</td>
+					<td>3 s 内无胜利音；与 02 悬置和弦同帧</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-023</td>
+					<td>Boss 沉入地下</td>
+					<td>静止 3 s 后缓慢下沉</td>
+					<td>3.0–4.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_L · C_EXC · 5.0 s</td>
+					<td>P0</td>
+					<td>自制 地鸣 + 下扫频</td>
+					<td>下沉全程有持续低鸣；结束无&quot;砰&quot;</td>
+			</tr>
+			<tr>
+					<td>AUD-CBT-024</td>
+					<td>同伴死亡红牌（补丁一分支）</td>
+					<td>C 区同伴 HP=0，不进释放演出</td>
+					<td>2.0 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 3.0 s</td>
+					<td>P1</td>
+					<td>复用 CBT-008 + 布料</td>
+					<td>与普通死亡红牌可区分（多一层布料落定）</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="23-nar叙事交互15-条">2.3 NAR（叙事交互，15 条）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>ID</th>
+					<th>用途</th>
+					<th>触发点（系统 / 时机）</th>
+					<th>时长 · 循环</th>
+					<th>声道 · 2D/3D</th>
+					<th>衰减 · 并发 · 冷却</th>
+					<th>优先级</th>
+					<th>占位资产</th>
+					<th>验收</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AUD-NAR-001</td>
+					<td>铭牌拾取（补丁三 #7）</td>
+					<td>拾取物系统 <code>OnPickup(ItemId)</code></td>
+					<td>0.3–0.4 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_UI · 0.1 s</td>
+					<td>P1（00 §8.1 #13：证据链的触感反馈）</td>
+					<td>Freesound CC0 硬币落木</td>
+					<td>轻、短、&ldquo;像硬币落在木头上&rdquo;；不喧宾夺主</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-002</td>
+					<td>晶核脉动（补丁三 #6，开背包）</td>
+					<td>极简背包 UI 打开且背包内有晶核</td>
+					<td>2.0 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 1.0 s</td>
+					<td>P1</td>
+					<td>自制 极低心跳 ×2</td>
+					<td>心跳 ×2、间隔 0.45–0.7 s；不覆盖 UI</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-003</td>
+					<td>晶核生成与拾取</td>
+					<td>Boss 击败后脚边生成（演出）/ <code>OnPickup</code></td>
+					<td>2.0 s + 1.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_STG · 2.0 s</td>
+					<td>P1</td>
+					<td>自制 脉动矿石 + 拾取</td>
+					<td>生成时&quot;在脚边&quot;方位正确（A_S 1.5 m 内）</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-004</td>
+					<td>矿工日记打开</td>
+					<td>文本交互弹窗 <code>OnPopupOpen</code>（B 区日记）</td>
+					<td>0.6 s + 翻页 0.2 s</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.3 s</td>
+					<td>P1</td>
+					<td>Sonniss 纸张</td>
+					<td>与弹窗动画同帧；阅读时底床 -3 dB（00 常量）</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-005</td>
+					<td>文本弹窗开关（通用）</td>
+					<td><code>OnPopupOpen</code> / <code>OnPopupClose</code></td>
+					<td>0.2–0.3 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.1 s</td>
+					<td>P1</td>
+					<td>Sonniss UI paper</td>
+					<td>所有文本交互复用，禁止每个物件一套</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-006</td>
+					<td>营救开始（菌丝消散）</td>
+					<td>B 区营救交互（P1 #14），按 E</td>
+					<td>1.5–2.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_STG · 3.0 s</td>
+					<td>P1</td>
+					<td>自制 菌丝断裂 + 松脱</td>
+					<td>与菌丝消散粒子同帧；相机拉近时不破音</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-007</td>
+					<td>营救完成（同伴起身）</td>
+					<td>营救演出结束回调</td>
+					<td>1.0 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_STG · 2.0 s</td>
+					<td>P1</td>
+					<td>自制 布料 + 起身</td>
+					<td>与同伴站起帧同帧；与&quot;拍掉孢子&quot;错开 0.3 s</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-008</td>
+					<td>支线 1 可交互物（画板 / 破损背包）</td>
+					<td>文本弹窗触发（复用 P1 #10）</td>
+					<td>0.4–0.6 s · 两变体</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.5 s</td>
+					<td>P2</td>
+					<td>Sonniss 石面 / 布料</td>
+					<td>两类物件音色可区分（石/布）</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-009</td>
+					<td>冥想者文本段提示</td>
+					<td>进入平台体积后 3 s 定时器（只第一段，00 §8.1 #18）</td>
+					<td>0.5 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 8 s</td>
+					<td>P2</td>
+					<td>自制 单音提示</td>
+					<td>只第一段极轻提示音，后两段靠文本节奏与留白；<strong>不朗读</strong></td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-010</td>
+					<td>冥想者消散</td>
+					<td>首次受伤（HP&gt;0 一次）</td>
+					<td>1.5 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_STG · 2.0 s</td>
+					<td>P1</td>
+					<td>自制 孢子被风吹散</td>
+					<td>与&quot;像被风吹散&quot;视觉同帧；无死亡红牌</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-011</td>
+					<td>感知 buff（<code>GE_SporeAwareness</code>）</td>
+					<td>GAS 授予 <code>GE_SporeAwareness</code>（支线 2 · 孢子平台）</td>
+					<td>1.0 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 2.0 s</td>
+					<td>P1</td>
+					<td>自制 淡金提示音</td>
+					<td>与 UI 金色小字同帧；非胜利音</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-012</td>
+					<td>A 区异常蘑菇交互（三身份变体）</td>
+					<td>A 区交互按 E（P0 #8）</td>
+					<td>0.8 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_STG · 3.0 s</td>
+					<td>P0</td>
+					<td>自制 木菌撕裂 + 阴影脉冲</td>
+					<td>交互后 0.2 s 内触发 ENV-012；三身份共用主音</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-013</td>
+					<td>Boss 铭牌拾取（名字被刮掉）</td>
+					<td><code>OnPickup(BossTag)</code></td>
+					<td>0.5 s + 余温尾 · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_UI · —</td>
+					<td>P1</td>
+					<td>复用 NAR-001 + 暖尾</td>
+					<td>与普通铭牌可区分（多一层 0.4 s 低暖尾）</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-014</td>
+					<td>铭牌计数器视觉污染 tick</td>
+					<td>计数器到第 5 / 8 / 11 块（补丁 P1 #20）</td>
+					<td>0.15 / 0.4 / 1.2 s 三档</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 2.0 s</td>
+					<td>P1</td>
+					<td>自制 数字抖动 tick</td>
+					<td>与 HUD 数字抖动/呼吸闪烁同步；第 11 块最重</td>
+			</tr>
+			<tr>
+					<td>AUD-NAR-015</td>
+					<td>孢子虫破损铭牌</td>
+					<td>教学孢子虫击败掉落 <code>OnPickup</code>（补丁二）</td>
+					<td>0.3 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · —</td>
+					<td>P2</td>
+					<td>复用 NAR-001（降 2 dB）</td>
+					<td>拾取后不改变计数器（补丁二规则）；音色略&quot;破&quot;</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="24-ui界面10-条">2.4 UI（界面，10 条）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>ID</th>
+					<th>用途</th>
+					<th>触发点（系统 / 时机）</th>
+					<th>时长 · 循环</th>
+					<th>声道 · 2D/3D</th>
+					<th>衰减 · 并发 · 冷却</th>
+					<th>优先级</th>
+					<th>占位资产</th>
+					<th>验收</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AUD-UI-001</td>
+					<td>通用按钮（悬停 / 点击 / 返回）</td>
+					<td>UMG Button 事件（全界面）</td>
+					<td>0.1–0.2 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.05 s</td>
+					<td>P0</td>
+					<td>Sonniss UI click</td>
+					<td>悬停与点击可区分；连点不叠音</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-002</td>
+					<td>背包打开 / 关闭</td>
+					<td>极简背包 UI（P1 #11）</td>
+					<td>0.3 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.2 s</td>
+					<td>P0</td>
+					<td>Sonniss 木质/布</td>
+					<td>与开关动画同帧；打开时叠加 NAR-002</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-003</td>
+					<td>背包格子拾放</td>
+					<td>背包格点击 / 拖放</td>
+					<td>0.15 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.05 s</td>
+					<td>P1</td>
+					<td>Sonniss 小金属</td>
+					<td>连续拖放不糊</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-004</td>
+					<td>文本继续 / 翻页</td>
+					<td>文本弹窗&quot;继续&quot;箭头</td>
+					<td>0.1 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.03 s</td>
+					<td>P1</td>
+					<td>Sonniss UI tick</td>
+					<td>与 NAR-005 区分（更轻）</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-005</td>
+					<td>HUD 铭牌计数更新（普通）</td>
+					<td>拾取后计数 +1</td>
+					<td>0.2 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.1 s</td>
+					<td>P1</td>
+					<td>自制 数字跳格</td>
+					<td>与 NAR-014 污染档区分（普通档无抖动）</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-006</td>
+					<td>伤害数字弹出</td>
+					<td><code>DamageVisual</code> / <code>DamageNote</code>（现有组件）</td>
+					<td>0.15 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_IMP · 0.05 s</td>
+					<td>P1</td>
+					<td>自制 短 tick</td>
+					<td>与伤害数值同时；暴击变调 +2 半音</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-007</td>
+					<td>回合横幅</td>
+					<td><code>DND_HUD</code> 回合切换 UI</td>
+					<td>0.5 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.3 s</td>
+					<td>P1</td>
+					<td>自制 布条展开</td>
+					<td>与 CBT-001 错开 0.1 s，不叠成&quot;两下&quot;</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-008</td>
+					<td>选职业界面（Quick Start 三选一）</td>
+					<td>Demo 快速选职业入口（P0 #3）确认</td>
+					<td>0.4 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.5 s</td>
+					<td>P0</td>
+					<td>Sonniss UI confirm</td>
+					<td>三职业同一音；确认后 0.2 s 内进场景</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-009</td>
+					<td>Buff 图标出现（断裂 / 感知）</td>
+					<td>GAS GE 授予/移除 → HUD</td>
+					<td>0.6 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 0.3 s</td>
+					<td>P1</td>
+					<td>自制 温暖提示</td>
+					<td>与 NAR-011 区分（buff 出现更短）</td>
+			</tr>
+			<tr>
+					<td>AUD-UI-010</td>
+					<td>教学提示出现</td>
+					<td>补丁二两段提示（Tab 进战斗 / 移动攻击）</td>
+					<td>0.5 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 1.0 s</td>
+					<td>P0</td>
+					<td>自制 轻提示</td>
+					<td>只响两次，同段不重复；不打断探索</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="25-sys系统--转场--存档10-条">2.5 SYS（系统 / 转场 / 存档，10 条）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>ID</th>
+					<th>用途</th>
+					<th>触发点（系统 / 时机）</th>
+					<th>时长 · 循环</th>
+					<th>声道 · 2D/3D</th>
+					<th>衰减 · 并发 · 冷却</th>
+					<th>优先级</th>
+					<th>占位资产</th>
+					<th>验收</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AUD-SYS-001</td>
+					<td>门体交互（按 E 进入）</td>
+					<td>传送锚点 Actor 门体交互（P0 #9a）</td>
+					<td>1.2 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_M · C_STG · 1.0 s</td>
+					<td>P0</td>
+					<td>自制 石门摩擦 / 铁铰</td>
+					<td>与&quot;按 E&quot;确认同帧；交互失败（锁定）不播放</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-002</td>
+					<td>转场音频先行偏移</td>
+					<td><code>OnTeleportBegin</code>（黑屏前 0.5~1.0 s）</td>
+					<td>0.5–1.0 s · 参数/扫频</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_EXC · —</td>
+					<td>P0</td>
+					<td>复用 ENV-010 参数 + 低通扫频</td>
+					<td>旧区底噪淡出 -12 dB、低通 20k→8k；嗡鸣 pitch +5%</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-003</td>
+					<td>黑屏后新区域淡入</td>
+					<td>黑屏开始后 0.5 s，新区 <code>OnRegionChanged</code></td>
+					<td>0.8 s 淡入</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_AMB · —</td>
+					<td>P0</td>
+					<td>复用各区 ENV 床</td>
+					<td>0.8 s 淡入完成（00 常量）；无&quot;啪&quot;声</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-004</td>
+					<td>锚点落地</td>
+					<td><code>OnTeleportComplete</code></td>
+					<td>0.4 s · 单次</td>
+					<td>单声道 · 3D</td>
+					<td>A_S · C_STG · 0.5 s</td>
+					<td>P0</td>
+					<td>Sonniss 布料落地</td>
+					<td>与玩家出现在锚点同帧；不早于黑屏结束</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-005</td>
+					<td>检查点保存</td>
+					<td>检查点/重生系统（P1 #13）写入</td>
+					<td>0.8 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 1.0 s</td>
+					<td>P1</td>
+					<td>自制 低暖确认</td>
+					<td>不出现&quot;存档中&quot;文案；只给听觉反馈</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-006</td>
+					<td>战败重生</td>
+					<td>Boss 战失败 → 重生 D 区出口</td>
+					<td>1.5 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_STG · 2.0 s</td>
+					<td>P1</td>
+					<td>自制 低频回卷</td>
+					<td>重生后 1 s 内恢复 D 区床</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-007</td>
+					<td>F 区结尾：嗡鸣消失 + 风起（补丁三 #8）</td>
+					<td>结尾演出 T+2 s 嗡鸣淡出 / T+2.5 s 风进（补丁六）</td>
+					<td>8.0 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_EXC · —</td>
+					<td>P1</td>
+					<td>自制 风 + 复用 ENV-009 淡出</td>
+					<td>第 2 s 完全淡出、第 2.5 s 风进；第一行文本 0 s 时能听到风</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-008</td>
+					<td>结尾黑屏 + 手写体逐行</td>
+					<td>黑屏 3 s → 便签三行淡入（补丁六）</td>
+					<td>逐行：0 / 3 / 6 / 12 s</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_EXC · —</td>
+					<td>P1</td>
+					<td>自制 纸张 + 笔触</td>
+					<td>逐行出现时轻响一次；不重复整段</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-009</td>
+					<td>愿望单画面</td>
+					<td>便签淡出后显示静态图（补丁六）</td>
+					<td>1.5 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_EXC · —</td>
+					<td>P2</td>
+					<td>自制 空气感收尾</td>
+					<td>与画面淡入同帧；之后不循环任何音</td>
+			</tr>
+			<tr>
+					<td>AUD-SYS-010</td>
+					<td>暂停 / 恢复</td>
+					<td>Esc 暂停（Demo 需要）</td>
+					<td>0.2 s · 单次</td>
+					<td>立体声 · 2D</td>
+					<td>2D · C_UI · 0.2 s</td>
+					<td>P2</td>
+					<td>自制 UI 闷音</td>
+					<td>暂停时全局 -200 ms 低通（可选）；恢复无爆音</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="三区域环境音设计">三、区域环境音设计
+</h2><h3 id="31-总体原则">3.1 总体原则
+</h3><p><strong>一套基线 + 区域参数</strong>：补丁三 #1 要求的&quot;森林底噪 A–F 全区循环&quot;不录 8 套，而是<strong>一条 60 s 林地基线</strong>（<code>AMB_Forest_Base_Loop</code>）+ 每区的滤波/音量/细节层。这样既满足 #1，也把环境音文件数压到 9 条循环以内（与 <a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >Demo</a> 的&quot;一套资产 + 区域参数&quot;思路一致）。</p>
+<ul>
+<li>基线层：2D 立体声，每区 1 个 AmbientSound，区域中心，<strong>不跟随</strong>，由 <code>OnRegionChanged</code> 交叉淡化（旧 0.5–1.0 s 出 / 新 0.8 s 入）。</li>
+<li>细节层：3D 单声道 AmbientSound，<strong>固定</strong>贴几何体（岩壁/水体/树桩/孢子云），每区 2–5 个。</li>
+<li>单次点源：由计时器/交互触发，走 <code>C_WLD</code>，每区常驻 ≤3 类。</li>
+</ul>
+<h3 id="32-六区--两区参数表">3.2 六区 + 两区参数表
+</h3>
+    <blockquote>
+        <p>电平均为相对值（基线 -18 LUFS 为 0 dB 参考），由 <a class="link" href="https://innnnnk.github.io/game-dev/audio-04-mixing-and-loudness/"  target="_blank" rel="noopener"
+    >04-mixing-and-loudness.md</a> 复核。混响 Submix 名称随 01 架构定稿。</p>
+
+    </blockquote>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>区域</th>
+					<th>底噪层构成（层数 / 内容 / 相对电平）</th>
+					<th>滤波 · 混响</th>
+					<th>3D 点源布点（数量 · 位置 · 固定/跟随）</th>
+					<th>切换接口</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>A 入口</strong></td>
+					<td>3 层：基线 0 dB；稀疏鸟虫 -8 dB；远处风压 -10 dB</td>
+					<td>HP 45 Hz · LP 16 kHz · <code>SUB_Reverb_Forest</code>（RT60 1.8 s，wet -12 dB）</td>
+					<td>4 个：倒蘑菇旁 ×1（交互前静音）、树丛 ×2、入口来路 ×1；全部固定</td>
+					<td><code>OnRegionChanged(&quot;A_Entrance&quot;)</code></td>
+			</tr>
+			<tr>
+					<td><strong>B 幽光走廊</strong></td>
+					<td>3 层：基线 -1 dB（低频占比↑）；洞穴 room tone +2 dB；营地余烬 crackle、水滴、菌丝身形的低频湿润呼吸（并入细节层，不单开事件）</td>
+					<td>HP 50 Hz · LP 9 kHz · <code>SUB_Reverb_Corridor</code>（2.4 s，-9 dB）</td>
+					<td>6 个：水滴 ×3 沿壁、余烬 ×1、倒木 ×1、隧道口 ×1；全部固定。<strong>口琴 diegetic 见 §4</strong></td>
+					<td><code>OnRegionChanged(&quot;B_Corridor&quot;)</code></td>
+			</tr>
+			<tr>
+					<td><strong>C 腐木空地</strong></td>
+					<td>3 层：基线 -2 dB；干枯植被风 -4 dB；孢子微粒 -6 dB</td>
+					<td>HP 55 Hz · LP 12 kHz · <code>SUB_Reverb_Glade</code>（1.4 s，-12 dB）</td>
+					<td>6 个：树桩 ×3（含树桩转动源）、边缘枯木 ×2、空地入口 ×1；固定</td>
+					<td><code>OnRegionChanged(&quot;C_Clearing&quot;)</code>；<code>OnCombatBegin</code> 时细节层 -6 dB</td>
+			</tr>
+			<tr>
+					<td><strong>D 深菇峡谷</strong></td>
+					<td>4 层：基线 -3 dB；窄道风压 +3 dB（带通 200–800 Hz）；嗡鸣层 ENV-009 +2 dB；菌丝电流 -6 dB</td>
+					<td>HP 60 Hz · LP 6 kHz · <code>SUB_Reverb_Canyon</code>（3.2 s，-6 dB）</td>
+					<td>6 个：菌丝电流 ×4 沿壁、远处落石 ×1、纹路旁 ×1；固定</td>
+					<td><code>OnRegionChanged(&quot;D_Ravine&quot;)</code>；<code>MusicIntensity=2</code></td>
+			</tr>
+			<tr>
+					<td><strong>E 巨菇王座</strong></td>
+					<td>4 层：基线 -3 dB；嗡鸣层 ENV-009 +6 dB（全场最响）；菌丝电场 -4 dB；节点共振 -8 dB</td>
+					<td>HP 55 Hz · LP 5 kHz · <code>SUB_Reverb_Throne</code>（2.8 s，-6 dB）</td>
+					<td>8 个：菌丝电场 ×4 环形、孢子云体积 ×3（<strong>跟随</strong>孢子云 Actor）、节点 ×1 中心</td>
+					<td><code>OnRegionChanged(&quot;E_Throne&quot;)</code>；Boss 阶段参数见 §5</td>
+			</tr>
+			<tr>
+					<td><strong>F 孢子之径</strong></td>
+					<td>3 层：基线 -1 dB（暖，LP 14 kHz）；回升风 -2 dB；残余菌丝电流 -4 dB（随演出停）</td>
+					<td>HP 45 Hz · LP 14 kHz · <code>SUB_Reverb_Exit</code>（1.6 s，-12 dB）</td>
+					<td>5 个：来路 ×1、两侧蘑菇 ×2、远处鸟 ×2；固定</td>
+					<td><code>OnRegionChanged(&quot;F_Path&quot;)</code>；结尾演出</td>
+			</tr>
+			<tr>
+					<td><strong>支线 1 回声裂隙</strong></td>
+					<td>3 层：基线 -1 dB；洞穴 tone +4 dB；水滴 -6 dB</td>
+					<td>HP 50 Hz · LP 7 kHz · <code>SUB_Reverb_Cleft</code>（4.0 s，wet -3 dB，预延迟 120 ms）</td>
+					<td>5 个：滴水 ×3、菌丝脉络 ×2；固定</td>
+					<td><code>OnRegionChanged(&quot;X1_EchoCleft&quot;)</code></td>
+			</tr>
+			<tr>
+					<td><strong>支线 2 孢子平台</strong></td>
+					<td>3 层：基线 -4 dB；孢子云密织 +2 dB（LP 2.5 kHz）；边缘风 -5 dB</td>
+					<td>HP 80 Hz · LP 2.5 kHz · <code>SUB_Reverb_Spore</code>（2.0 s，wet -14 dB，刻意&quot;吸声&quot;）</td>
+					<td>4 个：冥想者 ×1、平台边缘 ×3 环；固定</td>
+					<td><code>OnRegionChanged(&quot;X2_SporePlatform&quot;)</code></td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="33-ambientsound-actor-布点规则">3.3 AmbientSound Actor 布点规则
+</h3><ol>
+<li><strong>每区 1 个基线源</strong>：2D、无衰减、位于区域中心几何体附近，<code>bAutoActivate=false</code>，由流程管理器启停；禁止挂摄像机或玩家。</li>
+<li><strong>细节源固定</strong>：3D 源贴在岩壁/水体/树桩/孢子云上，<strong>不跟随玩家</strong>——跟随会产生&quot;声音追着你跑&quot;的假感。</li>
+<li><strong>跟随型仅 2 类</strong>：玩家脚步（挂 <code>DND_CharacterBase</code>）、孢子云体积（挂孢子云 Actor）。同伴脚步并入 VO 呼喝层，不单开跟随源。</li>
+<li><strong>每区 3D 常驻 ≤8 个，全图活跃 ≤32</strong>；超出 35 m 自动停播（衰减 Max Distance + 激活距离）。</li>
+<li><strong>相邻区之间留 10–15 m 无源缓冲</strong>（尤其 A/B、C/D），避免听到&quot;隔壁区&quot;。</li>
+<li><strong>门体/锚点 3 m 内禁放 3D 源</strong>：否则转场时会听到声源&quot;瞬移&quot;；该区间用 2D 层覆盖。</li>
+<li>每个 AmbientSound 指定 <code>SC_Ambience</code>、区域混响 Submix Send、<code>CON_SFX_AmbDetail</code>。</li>
+<li>区域交界处不叠两区 detail 源：<code>OnRegionChanged</code> 时旧 detail 0.3 s 淡出，新 detail 0.5 s 淡入。</li>
+</ol>
+<h3 id="34-转场音频时间线与-00-常量对齐">3.4 转场音频时间线（与 00 常量对齐）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>时刻</th>
+					<th>事件</th>
+					<th>动作</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>T-0.8 s</td>
+					<td>玩家按 E（门体交互）</td>
+					<td><code>AUD-SYS-001</code> 门体声；开始预偏移</td>
+			</tr>
+			<tr>
+					<td>T-0.5~-0.2 s</td>
+					<td><code>OnTeleportBegin</code></td>
+					<td><code>AUD-SYS-002</code>：旧区床 -12 dB、低通 20k→8k、嗡鸣 pitch +5%</td>
+			</tr>
+			<tr>
+					<td>T±0</td>
+					<td>黑屏开始（<code>OnTeleportBegin</code> 后半）</td>
+					<td>旧床 0.5–1.0 s 淡出至 0；停旧区 detail</td>
+			</tr>
+			<tr>
+					<td>T+0.1 s</td>
+					<td>黑屏中</td>
+					<td>可选 2D &ldquo;穿越&quot;低频 swell（<code>AUD-SYS-002</code> 的尾段）</td>
+			</tr>
+			<tr>
+					<td>T+0.5 s</td>
+					<td>锚点传送完成（<code>OnTeleportComplete</code>）</td>
+					<td>新区 <code>OnRegionChanged</code>；新床 0.8 s 淡入；<code>AUD-SYS-004</code> 落地</td>
+			</tr>
+			<tr>
+					<td>T+0.5~1.3 s</td>
+					<td>新区</td>
+					<td>新 detail 0.5 s 淡入；口琴/孢子云等 diegetic 单独恢复</td>
+			</tr>
+	</tbody>
+</table></div>
+
+    <blockquote>
+        <p>黑屏 0.5<del>1.0 s（淡出不快于淡入）、音频先行 0.5</del>1.0 s、新环境音 0.8 s 淡入——三条均为 00 总纲常量，不得在实现时自行改小。</p>
+
+    </blockquote>
+<hr>
+<h2 id="四diegetic-声源营地口琴残句">四、diegetic 声源：营地口琴残句
+</h2><p><strong>设计目标：</strong> B 区矿工营地能听到一段口琴残句（6–10 s），<strong>来源不明</strong>——玩家能听到，但找不到吹奏者；<strong>靠近即停</strong>——像是有人在玩家走近时放下了口琴。这是全 Demo 唯一明确的 diegetic（世界观内）声源，也是&quot;口琴 = 个体的人性、呼吸&quot;的配器叙事（见 <a class="link" href="https://innnnnk.github.io/game-dev/music-direction-design/"  target="_blank" rel="noopener"
+    >配乐文档 §一</a> 音色版图）。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>参数</th>
+					<th>值</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>资产</td>
+					<td><code>AMB_Diegetic_Harmonica_Frag</code>（单次 6–10 s，单声道，48 kHz/24 bit；尾音留 1.5 s 自然衰减）</td>
+			</tr>
+			<tr>
+					<td>播放方式</td>
+					<td>单次触发，不循环；60–120 s 随机间隔可再触发一次（同一区内）</td>
+			</tr>
+			<tr>
+					<td>摆位</td>
+					<td>距营地中心 12–18 m 的不可达几何体后方（倒木/岩壁夹缝）；<strong>隐藏 AmbientSound Actor</strong>，玩家绕后也看不到声源</td>
+			</tr>
+			<tr>
+					<td>空间</td>
+					<td>3D 单声道，<code>A_L</code>，Max Distance 25 m；可闻半径约 18 m</td>
+			</tr>
+			<tr>
+					<td>电平</td>
+					<td>-26 LUFS ±2；若音乐 Stem 1 正在播放，口琴不 duck 音乐（它是世界内声源）</td>
+			</tr>
+			<tr>
+					<td>滤波</td>
+					<td>低通 3.5–4.5 kHz + <code>SUB_Reverb_Corridor</code> 混响 2.4 s（&ldquo;从远处墙后传来&rdquo;）</td>
+			</tr>
+			<tr>
+					<td>靠近即停</td>
+					<td>玩家进入 <strong>4 m</strong> 内 → 0.35 s 淡出至静音，并锁定本区不再触发（除非离开 10 m 且冷却 90 s）</td>
+			</tr>
+			<tr>
+					<td>无解释</td>
+					<td>无声源模型、无交互提示、无图鉴条目；同伴最多一句 L1 台词（文本，不配音）</td>
+			</tr>
+			<tr>
+					<td>实现挂点</td>
+					<td>B 区区域 TriggerVolume 的 <code>OnComponentBeginOverlap</code>（沿用 <code>BP_EnconterTrigger</code> 的 overlap 模式，新建仅调音频的触发器，不改战斗类）→ 调 <code>AmbientSound</code> 的 <code>FadeOut</code> / <code>FadeIn</code>；流程管理器记录&quot;已触发&quot;标志（补丁五 #30 同一套标志位）</td>
+			</tr>
+			<tr>
+					<td>验收</td>
+					<td>进入 B 区 30 s 内至少听到 1 次；从 18 m 走近到 4 m，淡出 ≤0.5 s 且无&quot;啪&quot;声；离开后再进入 90 s 内不重复</td>
+			</tr>
+	</tbody>
+</table></div>
+
+    <blockquote>
+        <p>工程命名禁 L3：该资产名为 <code>AMB_Diegetic_Harmonica_Frag</code>，不出现任何设定词。音乐侧的口琴用法见 02 文档（B 区 diegetic 残句），本文只负责<strong>声源行为</strong>，不复制其 stem 设计。</p>
+
+    </blockquote>
+<hr>
+<h2 id="五boss-四阶段音频矩阵">五、Boss 四阶段音频矩阵
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>阶段</th>
+					<th>时间/触发</th>
+					<th>SFX 事件</th>
+					<th>静默 / 抽空处理</th>
+					<th>与 02 配乐侧的接口</th>
+					<th>验收</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>一 并肩</strong></td>
+					<td>进 E 区，~60 s</td>
+					<td>CBT-001/003/004/005/008 常规战斗；CBT-017/018（AOE/召唤）；ENV-015 孢子云循环</td>
+					<td>无</td>
+					<td>完整战斗织体（02 §4）</td>
+					<td>战斗打击不盖过台词文本；孢子云进出清晰</td>
+			</tr>
+			<tr>
+					<td><strong>二 反水</strong></td>
+					<td>Boss &lt;60% 且同伴在孢子云 &gt;1 轮（优先）/ Boss &lt;30%（保底）</td>
+					<td><strong>CBT-014 反水</strong> + CBT-015（不播，留给阶段三）+ ENV-016 进出更频繁</td>
+					<td>音乐减法由 02 负责；SFX 侧不抽空</td>
+					<td>02 阶段二：鼓刷撤半、律动不稳、微分音 cluster</td>
+					<td>反水 2.0–2.5 s 内完成；&ldquo;来吧，加入我&quot;文本与音效不抢</td>
+			</tr>
+			<tr>
+					<td><strong>三 释放</strong></td>
+					<td>同伴 HP=0</td>
+					<td><strong>CBT-015 菌丝出体</strong> → <strong>CBT-016 静默闸门 1.0 s</strong> → CBT-010 尸体阶段不入此阶段</td>
+					<td><strong>1.0 s 静默</strong>：SC_Music 全抽空；SC_SFX 保留 0.1 s 内尾音收干、不放新声；SC_Ambience 保留（环境不能真空）</td>
+					<td>02 阶段三：全部音乐抽空 1 s，随后单音动机 ×3</td>
+					<td>静默 1.0 s ±0.02 s；静默中无新 SFX 触发（白名单：环境层）</td>
+			</tr>
+			<tr>
+					<td><strong>四 收尾</strong></td>
+					<td>释放后 ~70 s</td>
+					<td>CBT-019/020/021 状态反馈；CBT-017 残余 AOE；ENV-015 孢子云渐停</td>
+					<td>无</td>
+					<td>02 阶段四：战斗织体回归 + 干净单音混入；胜利不给终止式</td>
+					<td>收尾段音乐悬置感不被 SFX 打破</td>
+			</tr>
+			<tr>
+					<td><strong>击败后</strong></td>
+					<td>Boss HP=0</td>
+					<td><strong>CBT-022 静止 3 s（无胜利音）</strong> → <strong>CBT-023 沉入地下 3–4 s</strong> → NAR-003 晶核生成</td>
+					<td>无音乐（02 悬置和弦接 F 区）</td>
+					<td>02：悬置未解决七和弦</td>
+					<td>3 s 静止期无任何&quot;胜利/完成&quot;提示音；沉入结束无&quot;砰&rdquo;</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>设计决定：</strong> 阶段三的静默<strong>只抽音乐与新增 SFX，不抽环境层</strong>。理由：完全物理静音在 3D 场景里会暴露&quot;系统把声音关了&rdquo;，保留 -30 LUFS 的环境底反而更&quot;抽空&quot;。若 02 要求全静音，见 §13 待确认。</p>
+<hr>
+<h2 id="六metasounds-参数化设计">六、MetaSounds 参数化设计
+</h2>
+    <blockquote>
+        <p>原则：参数名禁 L3 词；所有随机化给 <code>RandomSeed</code> 便于 QA 复现；一次构建可覆盖多事件，减少资产数。</p>
+
+    </blockquote>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>MetaSounds</th>
+					<th>服务事件</th>
+					<th>输入参数（范围）</th>
+					<th>内部层 / 随机化</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>MS_SFX_ImpactKit</code></td>
+					<td>CBT-003/004/005/007</td>
+					<td><code>HitType</code> 0–2（斩/钝/刺）、<code>Force</code> 0–1（伤害 1–15 映射）、<code>Crit</code> bool</td>
+					<td>3 层：主体 + 高频擦 + 低频冲击；pitch ±2 半音；<code>Force</code> 映射音量 -6~0 dB</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_SporeBurst</code></td>
+					<td>CBT-009/017</td>
+					<td><code>Wet</code> 0–1、<code>Scale</code> 0–1（体型）、<code>LayerCount</code> 2–4</td>
+					<td>湿黏层 + 粉末层 + 撕裂层；pitch ±1.5 半音；尾音随机 0.6–1.2 s</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_Footstep</code></td>
+					<td>ENV-019</td>
+					<td><code>Surface</code> 0–2（草/石/菌丝）、<code>Speed</code> 0–1、<code>Heavy</code> bool</td>
+					<td>4 变体/材质；pitch ±50 cents；起音 5–15 ms 随机</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_StumpTurn</code></td>
+					<td>ENV-014</td>
+					<td><code>TurnRate</code> 20–40 °/s、<code>Size</code> 0–1</td>
+					<td>颗粒化木纤维；播放速率 0.85–1.15；起停 80 ms 淡化</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_AnomalyBuzz</code></td>
+					<td>ENV-010（及 SYS-002 预偏移）</td>
+					<td><code>PitchOffset</code> -3%~+15%、<code>Distance</code> 0–1、<code>LFO</code> 0.1–0.3 Hz</td>
+					<td>基频 36.7 Hz 正弦 + 棕噪 + 次级泛音；无新文件</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_CrystalPulse</code></td>
+					<td>NAR-002/003</td>
+					<td><code>BeatCount</code> 2、<code>InRegionE</code> bool、<code>SameAsBoss</code> bool</td>
+					<td>心跳间隔 0.45–0.7 s；<code>InRegionE</code> 时 +1 层低频</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_GateStone</code></td>
+					<td>SYS-001</td>
+					<td><code>GateType</code> 0–1（石门/裂隙）、<code>Distance</code> 0–1</td>
+					<td>摩擦分段 + 距离低通；1.2 s 内分 3 段</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_SporeCloudInOut</code></td>
+					<td>ENV-016</td>
+					<td><code>Dir</code> 进/出、<code>Thickness</code> 0–1</td>
+					<td>低通 swell 0.8 s；进云 LP 4k→800 Hz，出云反向</td>
+			</tr>
+			<tr>
+					<td><code>MS_SFX_SporeCloud_Loop</code></td>
+					<td>ENV-015</td>
+					<td><code>Density</code> 0–1（孢子云体积）</td>
+					<td>2 层噪声 + 1 层水滴颗粒；<code>Density</code> 驱动 LP 与音量</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="七语音策略与可访问性">七、语音策略与可访问性
+</h2><h3 id="71-明确建议demo-不配台词语音">7.1 明确建议：Demo <strong>不配台词语音</strong>
+</h3><p>理由三条（均可验证）：① 三种身份 × 六区台词 + 条件分支，配音量 ×3 且中文/英文双轨；② 2.5D 纸片人 + 文本弹窗是本作叙事载体，&ldquo;读出声音&quot;会削弱&quot;读到的证据&quot;这一主题；③ 单人开发，配音预算应换成 12–15 个呼喝/呼吸文件。<strong>文本仍走 Game.csv + <code>ST_UIText</code> 中英双语，不删任何一行。</strong></p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>资产</th>
+					<th>触发</th>
+					<th>规格</th>
+					<th>优先级</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>VO_Companion_Effort_Attack_01..03</code></td>
+					<td>同伴攻击帧</td>
+					<td>0.3–0.5 s，单声道，-23 LUFS</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td><code>VO_Companion_Grunt_Hit_01..02</code></td>
+					<td>同伴受击</td>
+					<td>0.25–0.4 s</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td><code>VO_Companion_Groan_Turn_01</code></td>
+					<td>反水瞬间</td>
+					<td>0.8–1.2 s</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td><code>VO_Companion_Breath_Release_01</code></td>
+					<td>释放演出后喘息</td>
+					<td>1.0–1.5 s</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td><code>VO_Companion_Effort_Death_01</code></td>
+					<td>C 区同伴死亡</td>
+					<td>0.6 s</td>
+					<td>P1</td>
+			</tr>
+			<tr>
+					<td><code>VO_Player_Effort_Attack_01..02</code></td>
+					<td>玩家攻击（三职业共用）</td>
+					<td>0.3–0.5 s</td>
+					<td>P2</td>
+			</tr>
+			<tr>
+					<td><code>VO_Meditator_Breath_01</code></td>
+					<td>支线 2 冥想者</td>
+					<td>2–3 s，循环感</td>
+					<td>P2</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>全部无语言、不承载信息；<code>C_VOX</code> 并发 2；与文本同屏时 VO 不 duck 文本底床（VO 是短促非语义）。</p>
+<h3 id="72-可访问性文本阅读替代硬要求">7.2 可访问性：文本阅读替代（硬要求）
+</h3><ol>
+<li><strong>信息零依赖音频</strong>：所有对话、日记、铭牌、提示均以文本呈现；关掉全部音频也能通关。</li>
+<li><strong>音频线索必有视觉并行</strong>：阴影脉冲 ↔ 底座阴影闪烁（MPC_Interaction 参数）；铭牌 tick ↔ 计数器数字；门体 ↔ 门体动画；孢子云进出 ↔ 画面雾浓度 + debuff UI；Boss 阶段 ↔ 日志文本 + 血条/孢子云 UI。</li>
+<li><strong>文本阅读 ducking -3 dB</strong>（底床，00 常量）；<code>SC_SFX</code> 不 duck，避免打击感消失。</li>
+<li><strong>&ldquo;关键音效字幕&rdquo;（建议 P2，非必需）</strong>：可开关的描述性字幕，如 <code>[远处有风]</code>、<code>[门后有石头摩擦]</code>；用 UI 层，不依赖音频文件。实现成本约 1 个 Widget + 20 条字符串。</li>
+<li><strong>独立音量滑条</strong>：Master / Music / SFX / Ambient / UI 五条，默认 Music 0.7、SFX 1.0（04 定稿）；不提供&quot;只听音乐&quot;的单选项。</li>
+<li><strong>不以纯音高/纯方位为唯一信息</strong>（听力障碍/眩晕友好）；异常提示同时给视觉与文本。</li>
+<li><strong>中文/英文文本阅读节奏</strong>：文本弹窗按阅读速度自动分页，<code>OnPopupOpen</code> 时底床 -3 dB，关闭 0.3 s 恢复。</li>
+</ol>
+<hr>
+<h2 id="八占位资产来源与导入前处理">八、占位资产来源与导入前处理
+</h2><h3 id="81-现在可下载的来源清单">8.1 现在可下载的来源清单
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>来源</th>
+					<th>许可</th>
+					<th>适用域</th>
+					<th>检索词 / 包名</th>
+					<th>留档要求</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td><strong><a class="link" href="https://sonniss.com/gameaudiogdc"  target="_blank" rel="noopener"
+    >Sonniss GDC Game Audio Bundle</a></strong>（年度免费合集，2024/2025/2026 版）</td>
+					<td>Royalty-free 商用（遵守包内 README）</td>
+					<td>环境、战斗、UI、脚步</td>
+					<td><code>forest ambience</code>、<code>cave tone</code>、<code>metal impact</code>、<code>cloth step</code></td>
+					<td>记录 bundle 年份 + README 原文截图</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td><strong><a class="link" href="https://freesound.org"  target="_blank" rel="noopener"
+    >Freesound.org</a></strong>（过滤 License = CC0）</td>
+					<td>CC0</td>
+					<td>单次音效、环境细节</td>
+					<td><code>coin drop wood CC0</code>、<code>stone scrape CC0</code>、<code>mist loop CC0</code>、<code>spore pop CC0</code></td>
+					<td>每文件 URL + 作者 + 许可页截图</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td><strong><a class="link" href="https://pixabay.com/sound-effects/"  target="_blank" rel="noopener"
+    >Pixabay Audio</a></strong></td>
+					<td>Pixabay Content License（免费商用、无需署名）</td>
+					<td>环境、风、UI</td>
+					<td><code>forest ambience</code>、<code>cave</code>、<code>ui click</code>、<code>heartbeat</code>、<code>mist</code></td>
+					<td>记录页面 URL + 下载日期</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td><strong><a class="link" href="https://opengameart.org"  target="_blank" rel="noopener"
+    >OpenGameArt.org</a></strong></td>
+					<td>CC0 / CC-BY</td>
+					<td>复古 UI、魔法</td>
+					<td><code>rpg ui sfx</code>、<code>magic spell</code></td>
+					<td>CC-BY 必须入 credits</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td><strong><a class="link" href="https://www.fab.com"  target="_blank" rel="noopener"
+    >UE Fab</a> 免费包</strong></td>
+					<td>Fab EULA</td>
+					<td>引擎内通用</td>
+					<td><code>free sound effects</code></td>
+					<td>记录产品名 + 许可版本</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td><strong>自制（Reaper + 免费合成器）</strong></td>
+					<td>自有</td>
+					<td>嗡鸣、心跳、静默、低频、阴影脉冲</td>
+					<td>—</td>
+					<td>保存 Reaper 工程文件</td>
+			</tr>
+			<tr>
+					<td>7</td>
+					<td>Zapsplat（备选）</td>
+					<td>免费需署名</td>
+					<td>通用</td>
+					<td>—</td>
+					<td>若使用，必须列入 credits</td>
+			</tr>
+			<tr>
+					<td>8</td>
+					<td><strong>BBC Sound Effects — 禁用</strong></td>
+					<td>仅个人/教育，商用禁止</td>
+					<td>—</td>
+					<td>—</td>
+					<td>不得下载进工程</td>
+			</tr>
+	</tbody>
+</table></div>
+
+    <blockquote>
+        <p>原则：<strong>能自制的一律自制</strong>（嗡鸣、0.15 s 脉冲、Boss 沉入、静默闸门都是合成/处理音，不需要采购）；采购只用于&quot;真实材质&rdquo;（木头、金属、布料、风、水）。</p>
+
+    </blockquote>
+<h3 id="82-导入前处理流程8-步">8.2 导入前处理流程（8 步）
+</h3><ol>
+<li><strong>隔离下载</strong>：全部落到 <code>_SourceAudio/_Incoming/</code>，不改原文件；先建 <code>pack_&lt;来源&gt;_&lt;日期&gt;.csv</code>。</li>
+<li><strong>筛听</strong>：只留每条事件 2–4 个候选；记录来源/URL/许可/作者/下载日。</li>
+<li><strong>处理链</strong>（Reaper 批处理或 ffmpeg）：trim 静音 → 高通 30 Hz 去直流 → 响度归一（单次 -18 / 循环 -20 / UI -20 / VO -23 LUFS，TP ≤ -1 dBTP）→ 单声道化（3D 点源）/ 保留立体声（2D 床）→ 48 kHz/24 bit WAV。</li>
+<li><strong>循环点</strong>：用零交叉对齐 + 10–20 ms 交叉淡化；循环资产必须试听 20 次无接缝、无&quot;哒&quot;。</li>
+<li><strong>去元数据</strong>（避免作者信息混入资产）：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">ffmpeg</span> <span class="n">-i</span> <span class="k">in</span><span class="p">.</span><span class="py">wav</span> <span class="n">-map_metadata</span> <span class="mf">-1</span> <span class="n">-fflags</span> <span class="p">+</span><span class="n">bitexact</span> <span class="n">-flags:a</span> <span class="p">+</span><span class="n">bitexact</span> <span class="n">out</span><span class="p">.</span><span class="py">wav</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><strong>改名</strong>：按 §1.4 命名；变体 <code>_01.._04</code>；循环 <code>_Loop</code>；<strong>文件名不得含空格、中文、L3 词</strong>。</li>
+<li><strong>导入 UE</strong>：SoundWave 设 Looping / SoundClass / Attenuation / Concurrency / Submix Send / Vorbis Q0.65；<code>bAutoStream=false</code>（Demo 单图全加载）。</li>
+<li><strong>授权留档</strong>：<code>Docs/Audio/Licenses/&lt;pack&gt;.txt</code> + <code>_CREDITS.csv</code>；Sonniss 记 bundle 年份，Freesound 记 URL + 作者 + CC0 截图；发布前跑一遍 credits 完整性检查。</li>
+</ol>
+<hr>
+<h2 id="九覆盖度检查补丁三-99--全部强制项">九、覆盖度检查（补丁三 9/9 + 全部强制项）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>来源要求</th>
+					<th>对应事件</th>
+					<th>备注</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>补丁三 #1 森林环境底噪（A–F 循环）</td>
+					<td><code>AUD-ENV-001</code>（基线）+ ENV-002~008（区域细节）</td>
+					<td>一套基线 + 区域参数，满足&quot;全区循环&quot;</td>
+			</tr>
+			<tr>
+					<td>补丁三 #2 低频嗡鸣层（40–60 Hz）</td>
+					<td><code>AUD-ENV-009</code></td>
+					<td>36.7 Hz 基频（02 §5 把&quot;40–60 Hz&quot;精确化为 D1 = 主题首音 D3 低 2 个八度；原文 40–60 Hz 按<strong>感知频段</strong>理解，非硬指标）</td>
+			</tr>
+			<tr>
+					<td>补丁三 #3 嗡鸣频率偏移（+5~+15%）</td>
+					<td><code>AUD-ENV-010</code></td>
+					<td>纯 DSP 参数，无新文件</td>
+			</tr>
+			<tr>
+					<td>补丁三 #4 孢子释放（1.5–2 s）</td>
+					<td><code>AUD-CBT-009</code></td>
+					<td>湿黏撕裂 + 粉末洒落</td>
+			</tr>
+			<tr>
+					<td>补丁三 #5 菌丝出体（2–3 s）</td>
+					<td><code>AUD-CBT-015</code></td>
+					<td>后 0.5 s 风上扬</td>
+			</tr>
+			<tr>
+					<td>补丁三 #6 晶核脉动（2 s，开背包）</td>
+					<td><code>AUD-NAR-002</code></td>
+					<td>心跳 ×2</td>
+			</tr>
+			<tr>
+					<td>补丁三 #7 铭牌拾取（0.3 s）</td>
+					<td><code>AUD-NAR-001</code></td>
+					<td>硬币落木质感</td>
+			</tr>
+			<tr>
+					<td>补丁三 #8 嗡鸣消失 + 风起（8 s）</td>
+					<td><code>AUD-SYS-007</code></td>
+					<td>第 2 s 淡出 / 第 2.5 s 风进</td>
+			</tr>
+			<tr>
+					<td>补丁三 #9 底座阴影闪烁（0.15 s）</td>
+					<td><code>AUD-ENV-012</code></td>
+					<td>A 异常蘑菇 + D 随机抖动同一条</td>
+			</tr>
+			<tr>
+					<td>Boss 阶段二 反水</td>
+					<td><code>AUD-CBT-014</code></td>
+					<td>感染触发两种路径共用资产</td>
+			</tr>
+			<tr>
+					<td>Boss 阶段三 释放的 1.0 s 静默</td>
+					<td><code>AUD-CBT-016</code></td>
+					<td>与 02 阶段三同帧；仅抽音乐与新 SFX</td>
+			</tr>
+			<tr>
+					<td>Boss 阶段三 菌丝出体</td>
+					<td><code>AUD-CBT-015</code></td>
+					<td>见补丁三 #5</td>
+			</tr>
+			<tr>
+					<td>Boss 击败后沉入地下</td>
+					<td><code>AUD-CBT-022</code> → <code>AUD-CBT-023</code></td>
+					<td>3 s 静止（无胜利音）→ 3–4 s 下沉</td>
+			</tr>
+			<tr>
+					<td>战斗 · 攻击</td>
+					<td><code>AUD-CBT-003</code></td>
+					<td>4 变体</td>
+			</tr>
+			<tr>
+					<td>战斗 · 命中</td>
+					<td><code>AUD-CBT-004</code></td>
+					<td>力度参数化</td>
+			</tr>
+			<tr>
+					<td>战斗 · 暴击</td>
+					<td><code>AUD-CBT-005</code></td>
+					<td>与命中可区分</td>
+			</tr>
+			<tr>
+					<td>战斗 · 闪避 / 未命中</td>
+					<td><code>AUD-CBT-006</code></td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td>战斗 · 死亡红牌</td>
+					<td><code>AUD-CBT-008</code></td>
+					<td>复用 DeathCard 组件</td>
+			</tr>
+			<tr>
+					<td>战斗 · 回合开始</td>
+					<td><code>AUD-CBT-001</code></td>
+					<td><code>OnTurnStarted</code></td>
+			</tr>
+			<tr>
+					<td>战斗 · 回合结束</td>
+					<td><code>AUD-CBT-002</code></td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td>交互 · 铭牌拾取</td>
+					<td><code>AUD-NAR-001</code> / <code>AUD-NAR-013</code></td>
+					<td>普通 / Boss 铭牌两版</td>
+			</tr>
+			<tr>
+					<td>交互 · 晶核脉动（开背包）</td>
+					<td><code>AUD-NAR-002</code> / <code>AUD-UI-002</code></td>
+					<td>背包打开时叠加</td>
+			</tr>
+			<tr>
+					<td>交互 · 日记</td>
+					<td><code>AUD-NAR-004</code></td>
+					<td>B 区矿工日记</td>
+			</tr>
+			<tr>
+					<td>交互 · 营救</td>
+					<td><code>AUD-NAR-006</code> / <code>AUD-NAR-007</code></td>
+					<td>开始 / 完成</td>
+			</tr>
+			<tr>
+					<td>交互 · 画板</td>
+					<td><code>AUD-NAR-008</code></td>
+					<td>支线 1</td>
+			</tr>
+			<tr>
+					<td>交互 · 破损背包</td>
+					<td><code>AUD-NAR-008</code></td>
+					<td>与画板同事件两变体</td>
+			</tr>
+			<tr>
+					<td>交互 · 背包（开 / 关）</td>
+					<td><code>AUD-UI-002</code></td>
+					<td>极简背包 UI</td>
+			</tr>
+			<tr>
+					<td>异常 · 阴影闪烁 0.15 s</td>
+					<td><code>AUD-ENV-012</code></td>
+					<td>与 MPC 同帧</td>
+			</tr>
+			<tr>
+					<td>异常 · 频率偏移</td>
+					<td><code>AUD-ENV-010</code></td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td>异常 · 树桩转动</td>
+					<td><code>AUD-ENV-014</code></td>
+					<td>含战斗彩蛋（转向行动单位）</td>
+			</tr>
+			<tr>
+					<td>异常 · 孢子释放</td>
+					<td><code>AUD-CBT-009</code> / <code>AUD-ENV-016</code></td>
+					<td>宿主死亡 / 孢子云边界</td>
+			</tr>
+			<tr>
+					<td>异常 · 纹路脉搏</td>
+					<td><code>AUD-ENV-013</code></td>
+					<td>6 s 光脉同相</td>
+			</tr>
+			<tr>
+					<td>转场 · 门体交互</td>
+					<td><code>AUD-SYS-001</code></td>
+					<td>传送锚点</td>
+			</tr>
+			<tr>
+					<td>转场 · 黑屏前</td>
+					<td><code>AUD-SYS-002</code></td>
+					<td>音频先行 0.5–1.0 s</td>
+			</tr>
+			<tr>
+					<td>转场 · 黑屏后</td>
+					<td><code>AUD-SYS-003</code></td>
+					<td>0.8 s 淡入</td>
+			</tr>
+			<tr>
+					<td>转场 · 锚点</td>
+					<td><code>AUD-SYS-004</code></td>
+					<td>落地</td>
+			</tr>
+			<tr>
+					<td>UI（通用 / 背包 / 计数 / 伤害 / 回合 / 选职业 / 教学）</td>
+					<td><code>AUD-UI-001~010</code></td>
+					<td>见 §2.4</td>
+			</tr>
+			<tr>
+					<td>结束画面（黑屏 / 便签 / 愿望单）</td>
+					<td><code>AUD-SYS-007~009</code></td>
+					<td>补丁六三行文本逐行</td>
+			</tr>
+			<tr>
+					<td>区块计数污染（第 5/8/11 块）</td>
+					<td><code>AUD-NAR-014</code> / <code>AUD-UI-005</code></td>
+					<td>污染档 / 普通档</td>
+			</tr>
+			<tr>
+					<td>同伴死亡分支（补丁一）</td>
+					<td><code>AUD-CBT-024</code> / ENV-013 频率 ×1.5</td>
+					<td>无释放演出、无特别音乐</td>
+			</tr>
+			<tr>
+					<td>树桩战斗彩蛋（补丁 P1 #33）</td>
+					<td><code>AUD-ENV-014</code>（<code>OnTurnStarted</code> 触发）</td>
+					<td>只做木纤维摩擦，不加心跳</td>
+			</tr>
+			<tr>
+					<td>支线 1（回声裂隙）</td>
+					<td>ENV-007/013/017、NAR-008/010</td>
+					<td>洞穴混响 4 s</td>
+			</tr>
+			<tr>
+					<td>支线 2（孢子平台）</td>
+					<td>ENV-008/015/018、NAR-009/011</td>
+					<td>冥想者 + 淡金文本提示音</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>结论：补丁三 9 条全部覆盖（9/9）；Boss 四阶段、战斗 7 项、交互 6 项、异常 5 项、转场 4 段、UI 与结束画面全部有独立事件。</strong></p>
+<hr>
+<h2 id="十资产规模汇总">十、资产规模汇总
+</h2><h3 id="101-事件数与优先级">10.1 事件数与优先级
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>域</th>
+					<th>事件数</th>
+					<th>P0</th>
+					<th>P1</th>
+					<th>P2</th>
+					<th>预估文件数</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ENV</td>
+					<td>21</td>
+					<td>6</td>
+					<td>11</td>
+					<td>4</td>
+					<td>43</td>
+					<td>9 条循环 + 单次/变体/脚步材质</td>
+			</tr>
+			<tr>
+					<td>CBT</td>
+					<td>24</td>
+					<td>13</td>
+					<td>10</td>
+					<td>1</td>
+					<td>48</td>
+					<td>战斗 + Boss 四阶段，变体最多</td>
+			</tr>
+			<tr>
+					<td>NAR</td>
+					<td>15</td>
+					<td>1</td>
+					<td>10</td>
+					<td>4</td>
+					<td>33</td>
+					<td>拾取/文本/营救/支线交互</td>
+			</tr>
+			<tr>
+					<td>UI</td>
+					<td>10</td>
+					<td>4</td>
+					<td>6</td>
+					<td>0</td>
+					<td>22</td>
+					<td>全部 2D</td>
+			</tr>
+			<tr>
+					<td>SYS</td>
+					<td>10</td>
+					<td>4</td>
+					<td>4</td>
+					<td>2</td>
+					<td>17</td>
+					<td>转场/检查点/结尾</td>
+			</tr>
+			<tr>
+					<td><strong>小计</strong></td>
+					<td><strong>80</strong></td>
+					<td><strong>28</strong></td>
+					<td><strong>41</strong></td>
+					<td><strong>11</strong></td>
+					<td><strong>163</strong></td>
+					<td>另有 VO 11 个 + MetaSounds 9 个</td>
+			</tr>
+			<tr>
+					<td><strong>合计</strong></td>
+					<td>80 事件</td>
+					<td>28</td>
+					<td>41</td>
+					<td>11</td>
+					<td><strong>≈183</strong></td>
+					<td>含 VO、MS，不含 01 的 Submix/SoundClass 资产</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="102-规模与预算">10.2 规模与预算
+</h3><ul>
+<li><strong>文件数</strong>：约 180–200 个音频资产（163 个 SFX/AMB/UI/SYS + 11 VO + 9 MetaSounds）。</li>
+<li><strong>总时长</strong>：约 11–13 分钟（循环 9 条约 7.5 min + 单次约 3.5 min + VO 约 10 s）。</li>
+<li><strong>源文件体积</strong>：约 150–180 MB（48 kHz/24 bit WAV）。</li>
+<li><strong>打包体积</strong>：约 30–40 MB（Vorbis Q0.65 + 短打 ADPCM）。</li>
+<li><strong>内存常驻循环</strong>：≤12 条（基线 1 + 区域 detail 7 + 嗡鸣 + 孢子云 + 冥想者 + 矿石，同时激活受区域限制）。</li>
+</ul>
+<hr>
+<h2 id="十一性能与资产侧要求">十一、性能与资产侧要求
+</h2><ol>
+<li><strong>单次 ≤5 s、演出 ≤8 s</strong>（SYS-007 唯一 8 s）；超限须在此登记。</li>
+<li><strong>采样率 48 kHz 统一</strong>；禁止 96 kHz、32 bit float、未压缩立体声大文件进构建。</li>
+<li><strong>3D 声源总量</strong>：全图同时发声 ≤32，每区常驻 ≤8；3D 单次超过 25–60 m（按衰减，04 §5.3）不播放。</li>
+<li><strong>2D 层不参与空间化</strong>：所有 UI、区域床、演出用 2D，避免相机旋转造成听觉漂移。</li>
+<li><strong>变体扩展</strong>：P0 3–4 变体、P1 2–3、P2 1–2；新增变体不改事件 ID、不改 DataTable 行结构。</li>
+<li><strong>循环资产唯一</strong>：同一循环不在两个 SoundClass 里重复导入；区域差异走参数/滤波，不复制文件。</li>
+<li><strong>MetaSounds 优先</strong>：能用参数解决的不新增文件（§6 已把 9 个 MS 覆盖约 30 条事件的随机化）。</li>
+<li><strong>占位资产不得进发布构建</strong>：<code>_Placeholder/</code> 目录打 exclude；发布前跑&quot;占位引用检查&quot;。</li>
+<li><strong>所有资产必须有 SoundClass + Submix Send + Concurrency</strong>；缺一项即视为未完成。</li>
+</ol>
+<hr>
+<h2 id="十二与其他文档的接口点">十二、与其他文档的接口点
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>文档</th>
+					<th>接口</th>
+					<th>本文对应</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/audio-00-conventions/"  target="_blank" rel="noopener"
+    >00-conventions.md</a></td>
+					<td>事件 ID 格式、域、前缀、总线树、词汇纪律、常量</td>
+					<td>全部遵守；常量（0.8 s 淡入、0.5–1.0 s 先行、-3 dB 阅读 ducking）硬编码进 §3.4/§7</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/audio-01-architecture/"  target="_blank" rel="noopener"
+    >01-architecture.md</a></td>
+					<td><code>DT_AudioEvent</code> 行结构、SoundClass/Submix/Attenuation/Concurrency 资产、导入规范、性能预算</td>
+					<td>§2 每一行即一行 <code>DT_AudioEvent</code> 草案；<code>ATT_*</code>/<code>CON_*</code> 见 §1</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/audio-02-music-implementation/"  target="_blank" rel="noopener"
+    >02-music-implementation.md</a></td>
+					<td>嗡鸣基频 D1 36.7 Hz、<code>MusicIntensity</code> 0–4、阶段三 1.0 s 静默、F 区 L3 主题</td>
+					<td>ENV-009 与 02 的 <code>MS_ExploreBed</code> 同帧；CBT-016 与阶段三同帧；SYS-007 与结尾主题衔接；本文<strong>不重复</strong> stem 内容</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/audio-04-mixing-and-loudness/"  target="_blank" rel="noopener"
+    >04-mixing-and-loudness.md</a></td>
+					<td>最终响度、ducking、空间化、可访问性数值</td>
+					<td>§1 电平为临时值，待 04 覆盖；§7 可访问性条目交 04 复核</td>
+			</tr>
+			<tr>
+					<td><a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >fungal-forest-demo.md</a></td>
+					<td>补丁三 9 条、Boss 四阶段、转场、补丁六结尾</td>
+					<td>§9 全覆盖；转场时间线对齐 §3.4</td>
+			</tr>
+			<tr>
+					<td>流程管理器（P0 #2）</td>
+					<td><code>OnRegionChanged</code> / <code>SetMusicIntensity</code></td>
+					<td>ENV-001~008、ENV-009、SYS-003</td>
+			</tr>
+			<tr>
+					<td><code>DND_CombatManager</code></td>
+					<td><code>OnCombatBegin/End</code> / <code>OnTurnStarted</code> / 先攻 / 死亡检测</td>
+					<td>CBT-001/002/012/013、ENV-014 彩蛋</td>
+			</tr>
+			<tr>
+					<td>传送锚点（P0 #9a）</td>
+					<td><code>OnTeleportBegin</code> / <code>OnTeleportComplete</code></td>
+					<td>SYS-001~004、§3.4</td>
+			</tr>
+			<tr>
+					<td>拾取物系统（P1 #12）</td>
+					<td><code>OnPickup(ItemId)</code></td>
+					<td>NAR-001/003/013/015、UI-005</td>
+			</tr>
+			<tr>
+					<td>文本交互弹窗（P1 #10）</td>
+					<td><code>OnPopupOpen</code> / <code>OnPopupClose</code></td>
+					<td>NAR-004/005/008/009</td>
+			</tr>
+			<tr>
+					<td>同伴状态机（P0 #4）</td>
+					<td><code>OnCompanionStateChanged(Ally/Infected/Released/Dead)</code></td>
+					<td>CBT-014/015/024、VO 呼喝</td>
+			</tr>
+			<tr>
+					<td>树桩注视组件（P1 #33）</td>
+					<td>yaw 跟踪 + <code>OnTurnStarted</code> 转向</td>
+					<td>ENV-014</td>
+			</tr>
+			<tr>
+					<td>简易演出系统（P1 #15）</td>
+					<td>演出时间轴</td>
+					<td>CBT-009/010/015/022/023、ENV-017、NAR-006/007/010</td>
+			</tr>
+			<tr>
+					<td>GAS</td>
+					<td><code>GE_SporeAwareness</code> 授予</td>
+					<td>NAR-011、UI-009</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="十三待城主确认">十三、待城主确认
+</h2><ol>
+<li><del>补丁三 #7 铭牌拾取标 P2</del>【已裁定：升 P1（00 §8.1 #13），§2.3 已回改】</li>
+<li><del>嗡鸣层归属</del>【已解决：独立资产 <code>MS_AmbHum_Low</code> 属 SC_Ambience，调制权归音乐导演（01 §7.6）】</li>
+<li><del>Boss 阶段三静默范围</del>【已裁定：只抽 SC_Music + 暂停新增 SFX，保留 SC_Ambience −30 LUFS 底（00 §8.1 #4）】</li>
+<li><del>冥想者三段文本是否每段都响</del>【已裁定：只第一段有极轻提示音（00 §8.1 #18），NAR-009 已回改】</li>
+<li><del>口琴声源可达性</del>【已裁定：不可达（12–18 m），&ldquo;来源不明&quot;是设计意图（00 §8.1 #14）】</li>
+<li><del><code>AUD-ENV-021</code> 远处人声残响</del>【已裁定：Demo 不做（00 §8.1 #15），§2.1 已标记 Deprecated】</li>
+<li><del>是否允许 AI 生成音效</del>【已裁定：占位可用，发布前必须替换或确认授权条款并在 Credits 声明；正式版不建议（00 §8.1 #19）】</li>
+<li><strong>⚠️ F 区结尾 8–16 s &ldquo;干净段&quot;是否保留 -30 LUFS 环境底</strong>：本文建议保留（否则物理静音不自然）；与 02 的&quot;近乎无音乐&quot;不冲突。</li>
+<li><del>树桩战斗彩蛋是否需要听觉</del>【已裁定：只做视觉，不加心跳/呼吸（00 §8.1 #16）；ENV-014 仅为基础转动摩擦】</li>
+<li><del>呼喝层是否按身份区分</del>【已裁定：不做（00 §8.1 #17），三职业共用 + pitch 微调】</li>
+</ol>
+
+    <blockquote>
+        <p>经 00 §8.1 裁定后，本节仅剩第 8 条待城主确认。</p>
+
+    </blockquote>
+<hr>
+<p><em>本文档是 <a class="link" href="https://innnnnk.github.io/game-dev/audio-00-conventions/"  target="_blank" rel="noopener"
+    >音频模块文档集</a> 第 3 份。上游：00 总纲、Demo 补丁三；下游：01 架构的 <code>DT_AudioEvent</code>、04 混音的电平与 ducking 定稿。</em></p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E9%9F%B3%E9%A2%91/">音频</a>
+        
+            <a href="/tags/sfx/">SFX</a>
+        
+            <a href="/tags/%E7%8E%AF%E5%A2%83%E9%9F%B3/">环境音</a>
+        
+            <a href="/tags/%E4%BA%8B%E4%BB%B6%E7%9B%AE%E5%BD%95/">事件目录</a>
+        
+            <a href="/tags/demo/">Demo</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside>
+    <h2 class="section-title"></h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            
+                
+<article class="">
+    <a href="/game-dev/audio-04-mixing-and-loudness/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">混音、响度与空间化规格</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/fungal-forest-demo/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Demo 深潜版：60分钟完整体验设计</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/narrative-design-tracker/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">剧情设计追踪表</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>
