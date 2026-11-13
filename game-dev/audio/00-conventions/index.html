@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="音频模块文档集的总纲：命名规范、总线结构、共享常量、工程代号纪律、与其他系统的接口契约">
+<title>音频模块 · 全局约定与接口契约</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/audio/00-conventions/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="音频模块 · 全局约定与接口契约">
+<meta property='og:description' content="音频模块文档集的总纲：命名规范、总线结构、共享常量、工程代号纪律、与其他系统的接口契约">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/audio/00-conventions/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='音频' /><meta property='article:tag' content='架构' /><meta property='article:tag' content='约定' /><meta property='article:tag' content='总纲' /><meta property='article:published_time' content='2026-11-12T15:40:00&#43;08:00'/><meta property='article:modified_time' content='2026-11-12T15:40:00&#43;08:00'/>
+<meta name="twitter:title" content="音频模块 · 全局约定与接口契约">
+<meta name="twitter:description" content="音频模块文档集的总纲：命名规范、总线结构、共享常量、工程代号纪律、与其他系统的接口契约">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#这份文档的作用">这份文档的作用</a></li>
+    <li><a href="#交付物地图">交付物地图</a></li>
+    <li><a href="#一命名规范">一、命名规范</a>
+      <ol>
+        <li><a href="#11-资产前缀ue-content-browser">1.1 资产前缀（UE Content Browser）</a></li>
+        <li><a href="#12-目录树">1.2 目录树</a></li>
+        <li><a href="#13-事件-id数据表主键不是资产名">1.3 事件 ID（数据表主键，不是资产名）</a></li>
+      </ol>
+    </li>
+    <li><a href="#二总线与信号流">二、总线与信号流</a></li>
+    <li><a href="#三共享常量全模块唯一真源">三、共享常量（全模块唯一真源）</a></li>
+    <li><a href="#四工程代号纪律硬约束">四、工程代号纪律（硬约束）</a></li>
+    <li><a href="#五与其他模块的接口契约">五、与其他模块的接口契约</a></li>
+    <li><a href="#六写作规范本目录所有文档">六、写作规范（本目录所有文档）</a></li>
+    <li><a href="#七术语表">七、术语表</a></li>
+    <li><a href="#八lead-裁定记录城主可推翻">八、Lead 裁定记录（城主可推翻）</a>
+      <ol>
+        <li><a href="#81-已裁定冲突">8.1 已裁定冲突</a></li>
+        <li><a href="#82-对-11--13-的增补已生效">8.2 对 §1.1 / §1.3 的增补（已生效）</a></li>
+        <li><a href="#83-必须城主签字才能开工的三件事阻断级">8.3 必须城主签字才能开工的三件事（阻断级）</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/audio/00-conventions/">音频模块 · 全局约定与接口契约</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            音频模块文档集的总纲：命名规范、总线结构、共享常量、工程代号纪律、与其他系统的接口契约
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-11-12T15:40:00&#43;08:00'>2026-11-12</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#这份文档的作用">这份文档的作用</a></li>
+    <li><a href="#交付物地图">交付物地图</a></li>
+    <li><a href="#一命名规范">一、命名规范</a>
+      <ol>
+        <li><a href="#11-资产前缀ue-content-browser">1.1 资产前缀（UE Content Browser）</a></li>
+        <li><a href="#12-目录树">1.2 目录树</a></li>
+        <li><a href="#13-事件-id数据表主键不是资产名">1.3 事件 ID（数据表主键，不是资产名）</a></li>
+      </ol>
+    </li>
+    <li><a href="#二总线与信号流">二、总线与信号流</a></li>
+    <li><a href="#三共享常量全模块唯一真源">三、共享常量（全模块唯一真源）</a></li>
+    <li><a href="#四工程代号纪律硬约束">四、工程代号纪律（硬约束）</a></li>
+    <li><a href="#五与其他模块的接口契约">五、与其他模块的接口契约</a></li>
+    <li><a href="#六写作规范本目录所有文档">六、写作规范（本目录所有文档）</a></li>
+    <li><a href="#七术语表">七、术语表</a></li>
+    <li><a href="#八lead-裁定记录城主可推翻">八、Lead 裁定记录（城主可推翻）</a>
+      <ol>
+        <li><a href="#81-已裁定冲突">8.1 已裁定冲突</a></li>
+        <li><a href="#82-对-11--13-的增补已生效">8.2 对 §1.1 / §1.3 的增补（已生效）</a></li>
+        <li><a href="#83-必须城主签字才能开工的三件事阻断级">8.3 必须城主签字才能开工的三件事（阻断级）</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="这份文档的作用">这份文档的作用
+</h2><p>音频模块此前只有两份<strong>方向性</strong>文字：</p>
+<ul>
+<li><a class="link" href="https://innnnnk.github.io/game-dev/music-direction-design/"  target="_blank" rel="noopener"
+    >配乐方向与声音状态设计</a> —— 决定&quot;听起来是什么&quot;（声音身份、单主题贯穿、交互音乐分层、六区情绪曲线、Boss 四阶段音乐）</li>
+<li><a class="link" href="https://innnnnk.github.io/game-dev/fungal-forest-demo/"  target="_blank" rel="noopener"
+    >Demo 深潜版</a> 补丁三 —— 决定&quot;需要哪些音效&quot;（9 条 SFX 概念清单）</li>
+</ul>
+<p>两者都是<strong>设计意图</strong>，不是<strong>施工图</strong>：没有资产命名、没有总线、没有事件 ID、没有参数名、没有接口、没有排期。</p>
+<p>本目录下的文档集把它们落成可施工的模块。<strong>本文件是总纲</strong>：后面 4 份文档的所有命名、常量、接口都以本文件为准；发现冲突时以本文件为准并标注&quot;待城主确认&quot;。</p>
+
+    <blockquote>
+        <p><strong>前置事实（必须知道）：</strong></p>
+<ol>
+<li>音频目前<strong>零代码、零资产、零集成</strong>。</li>
+<li>本工作区只有设计文档，<strong>UE 工程源码不在这里</strong>。因此交付物是「规格 + 可直接粘贴的代码草案」，不编译、不验证运行时行为。</li>
+<li>音频中间件选定为<strong>引擎内置（MetaSounds / Submix / AudioModulation）</strong>，不引入 Wwise / FMOD。理由：单人开发、Demo 规模、无中间件集成预算。</li>
+<li>所有工程内命名受<strong>词汇敏感度矩阵</strong>约束（见下文「工程代号纪律」）。</li>
+</ol>
+
+    </blockquote>
+<hr>
+<h2 id="交付物地图">交付物地图
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>文件</th>
+					<th>内容</th>
+					<th>负责人</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>00</td>
+					<td><code>00-conventions.md</code></td>
+					<td>本文件：总纲、命名、常量、接口契约</td>
+					<td>lead</td>
+			</tr>
+			<tr>
+					<td>01</td>
+					<td><code>01-architecture.md</code></td>
+					<td>UE 音频架构、类与资产结构、事件路由、数据表、导入规范、性能预算</td>
+					<td>audio-architect</td>
+			</tr>
+			<tr>
+					<td>02</td>
+					<td><code>02-music-implementation.md</code></td>
+					<td>交互音乐落地：资产规格、MetaSounds 图、强度映射、Boss 自动化、主题配额</td>
+					<td>music-designer</td>
+			</tr>
+			<tr>
+					<td>03</td>
+					<td><code>03-sfx-and-ambience.md</code></td>
+					<td>SFX / 环境音 / 语音事件目录与触发映射、占位资产方案</td>
+					<td>sfx-designer</td>
+			</tr>
+			<tr>
+					<td>04</td>
+					<td><code>04-mixing-and-loudness.md</code></td>
+					<td>增益结构、响度目标、ducking、空间化、可访问性、母带交付</td>
+					<td>mix-engineer</td>
+			</tr>
+			<tr>
+					<td>05</td>
+					<td><code>05-integration-plan.md</code></td>
+					<td>集成排期、与 P0 待办的对应、验收清单</td>
+					<td>lead</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="一命名规范">一、命名规范
+</h2><h3 id="11-资产前缀ue-content-browser">1.1 资产前缀（UE Content Browser）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>前缀</th>
+					<th>类型</th>
+					<th>示例</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>MUS_</code></td>
+					<td>音乐床 / stem / 主题</td>
+					<td><code>MUS_Bed_Explore_Stem1</code></td>
+			</tr>
+			<tr>
+					<td><code>AMB_</code></td>
+					<td>环境循环底噪</td>
+					<td><code>AMB_Forest_Base_Loop</code></td>
+			</tr>
+			<tr>
+					<td><code>SFX_</code></td>
+					<td>世界内单次音效</td>
+					<td><code>SFX_Host_SporeBurst</code></td>
+			</tr>
+			<tr>
+					<td><code>UI_</code></td>
+					<td>界面音效</td>
+					<td><code>UI_Journal_Open</code></td>
+			</tr>
+			<tr>
+					<td><code>VO_</code></td>
+					<td>人声 / 呼喝 / 呼吸</td>
+					<td><code>VO_Companion_Grunt_Hit</code></td>
+			</tr>
+			<tr>
+					<td><code>MS_</code></td>
+					<td>MetaSounds Source</td>
+					<td><code>MS_ExploreBed</code></td>
+			</tr>
+			<tr>
+					<td><code>SC_</code></td>
+					<td>SoundClass</td>
+					<td><code>SC_Music</code></td>
+			</tr>
+			<tr>
+					<td><code>SUB_</code></td>
+					<td>Submix</td>
+					<td><code>SUB_Master</code></td>
+			</tr>
+			<tr>
+					<td><code>ATT_</code></td>
+					<td>Attenuation</td>
+					<td><code>ATT_World_Small</code></td>
+			</tr>
+			<tr>
+					<td><code>CON_</code></td>
+					<td>Concurrency</td>
+					<td><code>CON_SFX_VoiceCap</code></td>
+			</tr>
+			<tr>
+					<td><code>DT_</code></td>
+					<td>DataTable</td>
+					<td><code>DT_AudioEvent</code></td>
+			</tr>
+	</tbody>
+</table></div>
+
+    <blockquote>
+        <p>反例（禁止出现）：<code>SM_</code>（与 StaticMesh 撞）、<code>Sound_</code>、<code>NewSoundCue</code>、任何 L3 词汇。</p>
+
+    </blockquote>
+<h3 id="12-目录树">1.2 目录树
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content/Audio/
+</span></span><span class="line"><span class="cl">├── Music/            MUS_*（床、stem、主题、Stinger）
+</span></span><span class="line"><span class="cl">├── Ambience/         AMB_*（区域底噪循环）
+</span></span><span class="line"><span class="cl">├── SFX/
+</span></span><span class="line"><span class="cl">│   ├── Combat/       SFX_CBT_*
+</span></span><span class="line"><span class="cl">│   ├── Interact/     SFX_NAR_*
+</span></span><span class="line"><span class="cl">│   ├── World/        SFX_ENV_*
+</span></span><span class="line"><span class="cl">│   └── System/       SFX_SYS_*
+</span></span><span class="line"><span class="cl">├── UI/               UI_*
+</span></span><span class="line"><span class="cl">├── VO/               VO_*
+</span></span><span class="line"><span class="cl">├── MetaSounds/       MS_*
+</span></span><span class="line"><span class="cl">└── Mix/
+</span></span><span class="line"><span class="cl">    ├── SoundClasses/ SC_*
+</span></span><span class="line"><span class="cl">    ├── Submixes/     SUB_*
+</span></span><span class="line"><span class="cl">    ├── Attenuations/ ATT_*
+</span></span><span class="line"><span class="cl">    └── Concurrency/  CON_*
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="13-事件-id数据表主键不是资产名">1.3 事件 ID（数据表主键，不是资产名）
+</h3><p>格式 <code>AUD-&lt;域&gt;-&lt;三位序号&gt;</code>，与 GameplayTag 一一对应（Tag 形如 <code>AUD.CBT.Hit</code>）。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>域</th>
+					<th>含义</th>
+					<th>Tag 根</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>ENV</code></td>
+					<td>环境 / 空间 / 异常物</td>
+					<td><code>AUD.ENV.*</code></td>
+			</tr>
+			<tr>
+					<td><code>CBT</code></td>
+					<td>战斗</td>
+					<td><code>AUD.CBT.*</code></td>
+			</tr>
+			<tr>
+					<td><code>NAR</code></td>
+					<td>叙事交互（日记、铭牌、营救、演出）</td>
+					<td><code>AUD.NAR.*</code></td>
+			</tr>
+			<tr>
+					<td><code>UI</code></td>
+					<td>界面</td>
+					<td><code>AUD.UI.*</code></td>
+			</tr>
+			<tr>
+					<td><code>MUS</code></td>
+					<td>音乐事件（切换、stinger、静默）</td>
+					<td><code>AUD.MUS.*</code></td>
+			</tr>
+			<tr>
+					<td><code>SYS</code></td>
+					<td>系统 / 转场 / 存档</td>
+					<td><code>AUD.SYS.*</code></td>
+			</tr>
+	</tbody>
+</table></div>
+
+    <blockquote>
+        <p>事件 ID 一旦分配<strong>不复用</strong>。删除的事件保留 ID 并标记 <code>Deprecated</code>，避免存档与日志错位。</p>
+
+    </blockquote>
+<hr>
+<h2 id="二总线与信号流">二、总线与信号流
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SUB_Master
+</span></span><span class="line"><span class="cl">├── SC_Music      MUS_*           受 MusicIntensity 与 ducking 支配
+</span></span><span class="line"><span class="cl">├── SC_Ambience   AMB_*           区域底噪 + 嗡鸣层
+</span></span><span class="line"><span class="cl">├── SC_SFX        SFX_*           世界内 3D 音效
+</span></span><span class="line"><span class="cl">├── SC_UI         UI_*            2D，不受游戏内 ducking
+</span></span><span class="line"><span class="cl">├── SC_VO         VO_*            人声，最高 ducking 优先级
+</span></span><span class="line"><span class="cl">└── SC_Cinematic  MS_* 演出专用    演出期间可接管 -6dB
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>关键决定（与配乐文档的接口）：</strong> 嗡鸣层在物理上属于 <code>SC_Ambience</code>（它要跟环境音一起淡入淡出），但其<strong>基频与音量曲线由音乐导演控制</strong>——因为它是主题基频的低 2 个八度，F 区结尾&quot;嗡鸣淡出 → 主题响起&quot;要求两者同源。这条跨总线控制关系记入第 5 节接口契约。</p>
+<hr>
+<h2 id="三共享常量全模块唯一真源">三、共享常量（全模块唯一真源）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>常量</th>
+					<th>值</th>
+					<th>来源</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>MusicIntensity</code></td>
+					<td>0 安全/教学 · 1 探索 · 2 紧张 · 3 战斗 · 4 Boss/揭示</td>
+					<td>配乐文档 §3</td>
+			</tr>
+			<tr>
+					<td>主题调性 / BPM / swing</td>
+					<td>D 调 · 63 BPM · 4/4 · swing 55%</td>
+					<td>配乐文档 附录 A</td>
+			</tr>
+			<tr>
+					<td>主题首音</td>
+					<td>D3</td>
+					<td>同上</td>
+			</tr>
+			<tr>
+					<td>嗡鸣基频</td>
+					<td>D1 ≈ 36.71 Hz（= 主题首音 D3 ≈ 146.83 Hz 低 <strong>2</strong> 个八度）</td>
+					<td>配乐文档 §5（八度表述已校正，见 §8）</td>
+			</tr>
+			<tr>
+					<td>异常物频率偏移</td>
+					<td>+5% ~ +15% pitch（DSP，不新增文件）</td>
+					<td>补丁三 #3</td>
+			</tr>
+			<tr>
+					<td>主题配额（Demo）</td>
+					<td>L1 不限 · L2 共 2 处（Boss 战、回声裂隙）· <strong>L3 仅 1 处（F 区结尾）</strong></td>
+					<td>配乐文档 §2</td>
+			</tr>
+			<tr>
+					<td>转场音频先行</td>
+					<td>黑屏前 <strong>0.5~1.0s</strong> 音频开始偏移；黑屏后新环境音 <strong>0.8s</strong> 淡入</td>
+					<td>Demo §区域转场</td>
+			</tr>
+			<tr>
+					<td>黑屏时长</td>
+					<td>0.5~1.0s（淡出不快于淡入）</td>
+					<td>同上</td>
+			</tr>
+			<tr>
+					<td>F 区结尾静默</td>
+					<td>嗡鸣淡出后 <strong>8~16s 近乎无音乐</strong> 的干净段</td>
+					<td>配乐文档 §4</td>
+			</tr>
+			<tr>
+					<td>Boss 阶段三抽空</td>
+					<td>全部音乐 <strong>1.0s</strong> 静默</td>
+					<td>配乐文档 §4</td>
+			</tr>
+			<tr>
+					<td>战斗进出切换</td>
+					<td>2 或 4 小节边界，交叉淡化 <strong>1~2s</strong></td>
+					<td>配乐文档 §3</td>
+			</tr>
+			<tr>
+					<td>文本阅读 ducking</td>
+					<td>底床 <strong>-3 dB</strong></td>
+					<td>补丁三 / 配乐 §4</td>
+			</tr>
+			<tr>
+					<td>音乐响度目标</td>
+					<td>待 mix 文档定稿（建议 integrated -18 LUFS，TP ≤ -1 dBTP）</td>
+					<td>04 文档</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="四工程代号纪律硬约束">四、工程代号纪律（硬约束）
+</h2><p>词汇敏感度矩阵规定 L3 词汇<strong>禁止出现在代码注释、DataTable 行名、调试日志、资产名、参数名</strong>中，音频模块同样适用。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>概念</th>
+					<th>设计文档用词</th>
+					<th>工程内唯一合法代号</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>主题动机</td>
+					<td>源脉主题 / 巨兽心跳</td>
+					<td><code>Motif-X</code></td>
+			</tr>
+			<tr>
+					<td>配乐底床</td>
+					<td>—</td>
+					<td><code>Bed</code></td>
+			</tr>
+			<tr>
+					<td>律动层</td>
+					<td>—</td>
+					<td><code>Pulse</code></td>
+			</tr>
+			<tr>
+					<td>不安层</td>
+					<td>巨兽低语</td>
+					<td><code>Unease</code></td>
+			</tr>
+			<tr>
+					<td>异常事件</td>
+					<td>—</td>
+					<td><code>Anomaly</code></td>
+			</tr>
+			<tr>
+					<td>源脉矿石</td>
+					<td>源脉矿石</td>
+					<td><code>DeepMine_Ore</code></td>
+			</tr>
+			<tr>
+					<td>源脉文</td>
+					<td>源脉文</td>
+					<td><code>MineGlyph</code></td>
+			</tr>
+			<tr>
+					<td>真菌之主</td>
+					<td>真菌之主（L1 允许）</td>
+					<td><code>FungalLord</code>（保留）</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>禁用词（工程内出现即返工）：</strong> 源脉 / Sanguin / 巨兽 / Beast / 高维 / 螺旋 / Spiral / 万炁 / Wanqi / 同源（作为设定词时）。
+<code>Sanguin-Script</code> 只允许存在于设计文档与美术源文件，引擎内一律 <code>MineGlyph_*</code>。</p>
+
+    <blockquote>
+        <p>现有文档已埋一处隐患：<a class="link" href="https://innnnnk.github.io/game-dev/music-direction-design/"  target="_blank" rel="noopener"
+    >music-direction-design.md</a> 建议的工程代号 <code>Motif-X / Bed / Pulse / Unease</code> 与本文一致，无需另立。</p>
+
+    </blockquote>
+<hr>
+<h2 id="五与其他模块的接口契约">五、与其他模块的接口契约
+</h2><p>音频模块<strong>不主动轮询任何状态</strong>，全部由现有系统广播事件。以下接口是本模块对其他模块的<strong>全部要求</strong>，多一条都不该加。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>广播方</th>
+					<th>事件（建议签名）</th>
+					<th>音频侧行为</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>流程管理器</td>
+					<td><code>OnRegionChanged(FName RegionId)</code></td>
+					<td>切 AMB 底噪、切混响 Submix、重设 MusicIntensity 基线</td>
+			</tr>
+			<tr>
+					<td>流程管理器</td>
+					<td><code>SetMusicIntensity(int32 0-4)</code></td>
+					<td>驱动 <code>MS_ExploreBed</code> / <code>MS_CombatBed</code> 的强度输入</td>
+			</tr>
+			<tr>
+					<td>传送锚点</td>
+					<td><code>OnTeleportBegin</code> / <code>OnTeleportComplete</code></td>
+					<td>音频先行偏移（0.5~1.0s）、黑屏期切环境音、出口淡入</td>
+			</tr>
+			<tr>
+					<td>CombatManager</td>
+					<td><code>OnCombatBegin</code> / <code>OnCombatEnd</code></td>
+					<td>横向切换到战斗段（小节边界量化）</td>
+			</tr>
+			<tr>
+					<td>CombatManager</td>
+					<td><code>OnTurnStarted(AActor* Unit)</code></td>
+					<td>回合提示音、树桩注视彩蛋的可听化（可选）</td>
+			</tr>
+			<tr>
+					<td>文本弹窗</td>
+					<td><code>OnPopupOpen</code> / <code>OnPopupClose</code></td>
+					<td>底床 -3dB ducking</td>
+			</tr>
+			<tr>
+					<td>同伴状态机</td>
+					<td><code>OnCompanionStateChanged(Ally/Infected/Released/Dead)</code></td>
+					<td>D 区律动&quot;慢半拍&quot;、释放演出的静默与单音动机、死亡分支的情绪降级</td>
+			</tr>
+			<tr>
+					<td>GAS</td>
+					<td><code>GE_SporeAwareness</code> 授予</td>
+					<td>极低频异常文本/听觉层的解锁（种子，可只留接口不实现）</td>
+			</tr>
+			<tr>
+					<td>拾取物系统</td>
+					<td><code>OnPickup(ItemId)</code></td>
+					<td>铭牌拾取音、晶核脉动（开背包时）</td>
+			</tr>
+			<tr>
+					<td>演出/流程</td>
+					<td><code>OnAnomalyTriggered(AnomalyId)</code></td>
+					<td>叠加 <code>Unease</code> 层 / pitch 偏移，<strong>不切歌</strong></td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>反向依赖原则：</strong> 音频侧不得让战斗/流程逻辑依赖音频返回值。所有播放接口返回 <code>void</code>。</p>
+<hr>
+<h2 id="六写作规范本目录所有文档">六、写作规范（本目录所有文档）
+</h2><ol>
+<li><strong>每个资产/事件行必须给全</strong>：<code>ID / 用途 / 时长 / 循环 / 声道 / 格式 / 优先级 / 触发点 / 验收方法</code>。</li>
+<li><strong>数值给区间和单位</strong>，禁止写&quot;合适的音量&quot;&ldquo;适当衰减&rdquo;。</li>
+<li><strong>结论必须可追溯</strong>：新结论标注来源（哪份文档哪一节），凭空新增的设计标注 <code>【新增】</code>。</li>
+<li><strong>与既有文档冲突时</strong>：不擅自改既有文档，在本目录内标注 <code>⚠️ 待城主确认：与 X 文档 Y 处冲突</code>。</li>
+<li>中文、Markdown、front-matter 与 <code>game-dev/</code> 下其他文档一致（<code>title / description / date / slug / draft / tags</code>）。</li>
+<li>单份文档目标 <strong>300~600 行</strong>：够施工，不写成长篇小说。</li>
+</ol>
+<hr>
+<h2 id="七术语表">七、术语表
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>术语</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Stem</td>
+					<td>同一段落的分轨（底床/律动/旋律/不安），可独立开关</td>
+			</tr>
+			<tr>
+					<td>Vertical Remixing</td>
+					<td>纵向分层：同一时间轴加减 stem</td>
+			</tr>
+			<tr>
+					<td>Horizontal Re-sequencing</td>
+					<td>横向切换：在段落边界换曲</td>
+			</tr>
+			<tr>
+					<td>ducking</td>
+					<td>一侧信号压低另一侧（如弹窗时压低底床）</td>
+			</tr>
+			<tr>
+					<td>sting</td>
+					<td>短促的音乐提示音（如&quot;释放&quot;瞬间）</td>
+			</tr>
+			<tr>
+					<td>L1/L2/L3</td>
+					<td>主题出现层级：碎片不可指认 / 变形 / 完整可哼唱</td>
+			</tr>
+			<tr>
+					<td>diegetic</td>
+					<td>世界观内声源（角色也能听见，如营地口琴）</td>
+			</tr>
+			<tr>
+					<td>Mob / Ambient bed</td>
+					<td>环境底噪循环层</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="八lead-裁定记录城主可推翻">八、Lead 裁定记录（城主可推翻）
+</h2><p>四份子文档各自在末章提出了不确定项。为避免&quot;每份都写待确认、没人拍板&quot;，Lead 在集成时做了一轮交叉裁定。<strong>标注〔已校正〕的已直接改正文；其余为建议值，城主一句话即可推翻。</strong></p>
+<h3 id="81-已裁定冲突">8.1 已裁定冲突
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>冲突</th>
+					<th>各方说法</th>
+					<th>裁定</th>
+					<th>影响面</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>嗡鸣与主题的八度关系</td>
+					<td>配乐 §5、本文件原文写&quot;低 3~4 个八度&quot;</td>
+					<td><strong>低 2 个八度</strong>（D3 146.83 → D1 36.71 Hz）〔已校正：本文件、01、03〕</td>
+					<td>全部低频策略</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>嗡鸣频段</td>
+					<td>36.7 Hz（配乐 §5） vs 40–60 Hz（补丁三 #2）</td>
+					<td>基频 <strong>36.71 Hz</strong> + 泛音 73.42 / 146.83；避让窗口 <strong>30–45 Hz</strong>；补丁三的 40–60 Hz 按&quot;感知频段&quot;理解，非硬指标</td>
+					<td>04 §7.2 低频疲劳</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>pitch 偏移方向</td>
+					<td>补丁三/总纲 +5~+15%（上行） vs 熵-时间文档&quot;密集区偏低 5~15%&quot;（下行）</td>
+					<td><strong>Demo 异常物用上行</strong>（<code>AnomalyPitchRatio</code> 1.000–1.150，偏离=不对劲）；<strong>正式版网络密集区用下行</strong>（<code>RegionPitchBias</code> −15~0，低=时间变慢）；两者永不作用于同一资产同一时刻</td>
+					<td>02 §8、03 ENV-010</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>Boss 阶段三 1.0 s 静默范围</td>
+					<td>03 主张保留 −30 LUFS 环境底；04 主张只抽 Music；02 只写&quot;全部音乐&quot;</td>
+					<td><strong>只抽 <code>SC_Music</code>（含 MetaSounds 尾部 Stop）+ 暂停新增 SFX；保留 <code>SC_Ambience</code> −30 LUFS 底</strong>。物理静音会暴露&quot;系统在关声音&quot;</td>
+					<td>Boss 情感顶点</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>F 区干净窗口与补丁三 #8 触发点</td>
+					<td>补丁三&quot;与黑屏同时&quot; vs 配乐&quot;淡出后 8–16 s 干净再进主题&quot;</td>
+					<td><strong>窗口 8.0 s（可调 8–16），#8 触发点提前到演出 T+0</strong>。按原文则窗口被压到 2 s，L3 主题失去落点</td>
+					<td>Demo 的音乐目的地</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>两套黑屏</td>
+					<td>转场 0.5–1.0 s vs 结尾 3.0 s</td>
+					<td>按时长区分：<strong>转场规范只适用 0.5–1.0 s 那套</strong>；结尾 3.0 s 属演出，不套用混响切换公式</td>
+					<td>04 §6</td>
+			</tr>
+			<tr>
+					<td>7</td>
+					<td>全 Demo 响度</td>
+					<td>04 定 −18 LUFS，单区低至 −24</td>
+					<td><strong>接受 −18 LUFS ±1.5 / TP ≤ −1.0 dBTP</strong>，保留单区 −24~−15 的梯度（梯度本身就是叙事）</td>
+					<td>全部电平</td>
+			</tr>
+			<tr>
+					<td>8</td>
+					<td>演出接管 −6 dB 范围</td>
+					<td>总纲未定义</td>
+					<td>压 <strong>Music / Ambience / SFX</strong>，<strong>不压 UI / VO</strong></td>
+					<td>04 §4</td>
+			</tr>
+			<tr>
+					<td>9</td>
+					<td>结尾主题时长</td>
+					<td>60 s / 90 s / 76.19 s 三选</td>
+					<td>暂定 <strong>76.19 s（20 小节）</strong>，待手写体文本节奏实测后锁版</td>
+					<td>02 §3、§9</td>
+			</tr>
+			<tr>
+					<td>10</td>
+					<td>NG+ 嗡鸣 pitch</td>
+					<td>配乐写&quot;向基频收敛 2–3%&quot;，但基频已锁定</td>
+					<td><strong>不动 pitch</strong>；改用 swing ±3%、碎片概率 +1、hum +1 dB</td>
+					<td>02 §10</td>
+			</tr>
+			<tr>
+					<td>11</td>
+					<td>战斗段是否另立 126 BPM</td>
+					<td>02 提出，未决</td>
+					<td><strong>不另立</strong>；63 BPM 下用 16 分细分做双倍速感，避免多一个速度常量</td>
+					<td>02 §3、§5</td>
+			</tr>
+			<tr>
+					<td>12</td>
+					<td>M5 是否复用 M2 Stem1</td>
+					<td>02 留空</td>
+					<td><strong>Demo 复用</strong>（省一条 90 s 导出与一次相位风险），验收须过相位与和声检查</td>
+					<td>02 §3、04 §8</td>
+			</tr>
+			<tr>
+					<td>13</td>
+					<td>铭牌拾取音优先级</td>
+					<td>补丁三列 P2</td>
+					<td>升 <strong>P1</strong>（它是&quot;证据链&quot;的触感反馈，不是彩蛋）</td>
+					<td>03 NAR 段</td>
+			</tr>
+			<tr>
+					<td>14</td>
+					<td>口琴声源可达性</td>
+					<td>03 问&quot;是否必须不可达&quot;</td>
+					<td><strong>不可达</strong>（12–18 m 不可达声源），&ldquo;来源不明&quot;是设计意图</td>
+					<td>03 B 区</td>
+			</tr>
+			<tr>
+					<td>15</td>
+					<td>非语义人声残响（ENV-021）</td>
+					<td>03 列 P2 待定</td>
+					<td><strong>Demo 不做</strong>：风险高、收益低，易滑向恐怖俗套，与&quot;微妙的不对劲&quot;基调冲突</td>
+					<td>03 ENV 段</td>
+			</tr>
+			<tr>
+					<td>16</td>
+					<td>树桩战斗彩蛋听觉层</td>
+					<td>03 问是否需要心跳/呼吸</td>
+					<td><strong>只做视觉</strong>（yaw 转向当前行动单位），不加听觉——不解释才是设计</td>
+					<td>03 ENV 段</td>
+			</tr>
+			<tr>
+					<td>17</td>
+					<td>呼喝按三身份区分音色</td>
+					<td>03 提出 ×3 文件</td>
+					<td><strong>不做</strong>：Demo 无台词配音，玩家无从分辨&quot;这是矿工的音色&rdquo;</td>
+					<td>03 VO 段</td>
+			</tr>
+			<tr>
+					<td>18</td>
+					<td>冥想者三段文本提示音</td>
+					<td>03 提出每段都响</td>
+					<td><strong>只第一段有极轻提示音</strong>，后两段靠文本节奏与留白</td>
+					<td>03 NAR 段</td>
+			</tr>
+			<tr>
+					<td>19</td>
+					<td>Demo 能否用 AI 生成音效</td>
+					<td>03 提出</td>
+					<td><strong>占位可用</strong>，发布前必须替换或确认授权条款，并在 Credits 声明；正式版不建议</td>
+					<td>03 §11</td>
+			</tr>
+			<tr>
+					<td>20</td>
+					<td>交付采样率</td>
+					<td>02 定 <strong>44.1 kHz</strong>（63 BPM 下每小节 168000 samples 整除，采样级无缝） vs 04 §8 定 <strong>48 kHz</strong></td>
+					<td><strong>音乐循环走 44.1 kHz，其余全部 48 kHz</strong>。02 的整除推导成立且收益明确；UE 允许逐资产采样率，引擎内统一重采样到输出率。SFX/环境/VO/UI 一律 48 kHz</td>
+					<td>02 §3.4、04 §8、03 §1</td>
+			</tr>
+			<tr>
+					<td>21</td>
+					<td>单次音效的响度口径</td>
+					<td>03 用统一 &ldquo;-18 LUFS&rdquo; 占位 vs 04 §2.4 按时长分类（&lt;200 ms 用 peak ≤ −8 dBFS，200 ms–3 s 用 ≤ −16 LUFS）</td>
+					<td><strong>以 04 §2.4 为准</strong>。BS.1770 的门限会把 &lt;400 ms 内容基本剔除，短事件用 LUFS 无意义。03 的 −18 LUFS 只是占位参考值</td>
+					<td>03 §1、04 §2.4</td>
+			</tr>
+			<tr>
+					<td>22</td>
+					<td>Attenuation / 遮挡归属</td>
+					<td>01 §5.2 vs 03 §1.1 vs 04 §5.3 三处数值冲突</td>
+					<td><strong>以 04 §5.3 / §5.4 为唯一真源</strong>（04 §9.1 归属表既定）：01 §5.2 改为指针；03 §1.1 数值已对齐（Small 1.5/25、Medium 3.0/40、Large 5.0/60）；<code>ATT_World_Tiny</code> 删除（铭牌归 <code>ATT_World_Small</code>）；保留 <code>ATT_World_Voice</code>；距离模型按 04（Inverse/Log），遮挡只做体积式〔已校正：01、03、04〕</td>
+					<td>全部空间化</td>
+			</tr>
+			<tr>
+					<td>23</td>
+					<td>混响数量与命名</td>
+					<td>01 三个 <code>SUB_Reverb_*</code> vs 03/04 八个 preset</td>
+					<td><strong>8 个手工 preset</strong>，命名统一 <code>SUB_Reverb_{Forest,Corridor,Glade,Canyon,Throne,Exit,Cleft,Spore}</code>；区域映射按 03 §3.2〔已校正：00 §8.2、01 §5.1、03 §3.2〕</td>
+					<td>全部混响切换</td>
+			</tr>
+			<tr>
+					<td>24</td>
+					<td>Concurrency 命名</td>
+					<td>01 §5.3 与 03 §1.2 两套名字</td>
+					<td><strong>事件级以 03 §1.2 为真源</strong>（<code>CON_SFX_Impact / WorldOneShot / AmbDetail / Stinger / CinematicExclusive</code>、<code>CON_UI_Click</code>、<code>CON_VO_Cap</code>）；01 仅保留系统级三条（<code>CON_SFX_WorldCap</code>、<code>CON_Ambience_Region</code>、<code>CON_Music_Bed</code>）〔已校正：01 §4.2、§5.3〕</td>
+					<td>全部并发配置</td>
+			</tr>
+			<tr>
+					<td>25</td>
+					<td>区域 ID</td>
+					<td>01 <code>X1_/X2_</code> vs 02 <code>SQ_</code> vs 03 短名</td>
+					<td><strong>统一为 01 §八 契约</strong>：<code>A_Entrance / B_Corridor / C_Clearing / D_Ravine / E_Throne / F_Path / X1_EchoCleft / X2_SporePlatform</code>〔已校正：02 §4.2、03 全文〕</td>
+					<td>全部 OnRegionChanged 调用</td>
+			</tr>
+			<tr>
+					<td>26</td>
+					<td>音乐导演类名</td>
+					<td>01 <code>UDNDMusicDirector</code> vs 02 <code>UMusicDirectorSubsystem</code></td>
+					<td><strong>以 01 §2 为准</strong>：<code>UDNDMusicDirector</code>（UObject，Outer = Subsystem，GameInstance 级生命周期）〔已校正：02 §8.2、§13〕</td>
+					<td>音乐状态机实现</td>
+			</tr>
+			<tr>
+					<td>27</td>
+					<td>VO 策略</td>
+					<td>03「Demo 不配台词语音」vs 04 按台词 VO 设计 ducking / 字幕</td>
+					<td><strong>以 03 §7.1 为准</strong>：Demo 仅 11 条非语义呼喝；04 的 D02 与字幕条款已改为「呼喝 / 正式版预留」口径〔已校正：04 §4、§5.2、§7.3〕</td>
+					<td>ducking 与字幕</td>
+			</tr>
+			<tr>
+					<td>28</td>
+					<td>01 示例事件 ID</td>
+					<td>01 §4.2 示例序号与 03 事件目录撞号</td>
+					<td><strong>以 03 为准</strong>：示例改为 <code>AUD-CBT-004</code>（命中）/ <code>AUD-NAR-001</code>（铭牌拾取）/ <code>AUD-SYS-001</code>（门体交互）〔已校正：01 §4.2〕</td>
+					<td>表结构示例</td>
+			</tr>
+			<tr>
+					<td>29</td>
+					<td>01 §5.1 占位增益</td>
+					<td>占位值（Ambience −2、SFX 0）与 04 §1.1 定稿（−8、−3）差异过大</td>
+					<td>01 不再给增益数值，全部指向 04 §1.1〔已校正：01 §5.1〕</td>
+					<td>混音实现</td>
+			</tr>
+			<tr>
+					<td>30</td>
+					<td>裁定 20 的回改</td>
+					<td>01 §六、04 §8.1 仍写「工程统一 48 kHz」</td>
+					<td>已回改为「音乐循环 44.1 kHz，其余 48 kHz」〔已校正：01 §六、04 §8.1〕</td>
+					<td>导入与交付</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="82-对-11--13-的增补已生效">8.2 对 §1.1 / §1.3 的增补（已生效）
+</h3><ul>
+<li>新增资产前缀：<code>CB_</code>（SoundControlBus）、<code>MIX_</code>（SoundControlBusMix）、<code>QC_</code>（Quartz Clock）。</li>
+<li>GameplayTag 层级深度上限 <strong>3 级</strong>（如 <code>AUD.CBT.Hit</code>）。</li>
+<li>混响：<strong>8 个手工 preset</strong>（§8.1 #23）：<code>SUB_Reverb_{Forest, Corridor, Glade, Canyon, Throne, Exit, Cleft, Spore}</code>，作为各 SoundClass 的 send 存在——<strong>不新增 SoundClass，总线树仍是 6 条</strong>。</li>
+</ul>
+<h3 id="83-必须城主签字才能开工的三件事阻断级">8.3 必须城主签字才能开工的三件事（阻断级）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>事项</th>
+					<th>为什么阻断</th>
+					<th>不签字时的替代路径</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td><strong>M1 主题动机定稿</strong>（配乐附录 A 三候选 + 折磨测试）</td>
+					<td>M2–M7 全部依赖它；先做资产 = 全部返工</td>
+					<td>程序走 02 §12 零资产方案（<code>TMP_</code> 正弦/采样器），先把强度映射、量化切换、跨总线包络跑通</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td><strong>结尾主题时长</strong>（60 / 76.19 / 91.43 s）</td>
+					<td>决定手写体文本逐行节奏与愿望单画面进入点</td>
+					<td>按 76.19 s 锁版，文本节奏留 ±1.5 s 弹性</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td><strong>是否原文修订既有文档</strong>（八度表述、40–60 Hz）</td>
+					<td>本次只在音频目录内校正，未改 <code>music-direction-design.md</code> 与 <code>fungal-forest-demo.md</code></td>
+					<td>保持现状；音频目录内以本文件 §8 为准</td>
+			</tr>
+	</tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E9%9F%B3%E9%A2%91/">音频</a>
+        
+            <a href="/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+        
+            <a href="/tags/%E7%BA%A6%E5%AE%9A/">约定</a>
+        
+            <a href="/tags/%E6%80%BB%E7%BA%B2/">总纲</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside>
+    <h2 class="section-title"></h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            
+                
+<article class="">
+    <a href="/game-dev/audio/04-mixing-and-loudness/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">混音、响度与空间化规格</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/audio/03-sfx-and-ambience/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">音效与环境音事件目录（SFX / Ambience / VO）</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/project-overview/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Project_DND 项目总览</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="音频模块施工图：引擎内置音频选型与边界、UDNDAudioSubsystem / 音乐导演 / 事件路由的职责与生命周期、DT_AudioEvent 列定义与示例行、混音资产、导入规范、播放接口头文件草案、系统挂接点与性能预算">
+<title>音频架构与工程集成</title>
+
+
+<link rel="canonical" href="https://innnnnk.github.io/game-dev/audio/01-architecture/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6281e25859927c0bfa62e107198e1b5b5d7b2e7939cea8d128d34b8c77075d02.css"><meta property='og:title' content="音频架构与工程集成">
+<meta property='og:description' content="音频模块施工图：引擎内置音频选型与边界、UDNDAudioSubsystem / 音乐导演 / 事件路由的职责与生命周期、DT_AudioEvent 列定义与示例行、混音资产、导入规范、播放接口头文件草案、系统挂接点与性能预算">
+<meta property='og:url' content='https://innnnnk.github.io/game-dev/audio/01-architecture/'>
+<meta property='og:site_name' content='遇玄的方外之地'>
+<meta property='og:type' content='article'><meta property='article:section' content='Game-Dev' /><meta property='article:tag' content='音频' /><meta property='article:tag' content='架构' /><meta property='article:tag' content='工程集成' /><meta property='article:published_time' content='2026-11-12T15:45:00&#43;08:00'/><meta property='article:modified_time' content='2026-11-12T15:45:00&#43;08:00'/>
+<meta name="twitter:title" content="音频架构与工程集成">
+<meta name="twitter:description" content="音频模块施工图：引擎内置音频选型与边界、UDNDAudioSubsystem / 音乐导演 / 事件路由的职责与生命周期、DT_AudioEvent 列定义与示例行、混音资产、导入规范、播放接口头文件草案、系统挂接点与性能预算">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">遇玄的方外之地</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/innnnnk'
+                        
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/' >
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/game-dev/' >
+                
+                <span>🎮 游戏开发</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/random-thoughts/' >
+                
+                <span>💭 碎碎念</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span></span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title"></h2>
+        
+        <div class="widget--toc">
+            <nav class="toc-nav" id="TableOfContents">
+                
+  <ol>
+    <li><a href="#一选型与边界">一、选型与边界</a>
+      <ol>
+        <li><a href="#11-技术栈结论">1.1 技术栈结论</a></li>
+        <li><a href="#12-为什么不用-wwise--fmod">1.2 为什么不用 Wwise / FMOD</a></li>
+        <li><a href="#13-明确的不可行点认账">1.3 明确的不可行点（认账）</a></li>
+        <li><a href="#14-系统数据流">1.4 系统数据流</a></li>
+      </ol>
+    </li>
+    <li><a href="#二类与资产结构">二、类与资产结构</a>
+      <ol>
+        <li><a href="#21-模块文件sourceproject_dndaudio">2.1 模块文件（<code>Source/Project_DND/Audio/</code>）</a></li>
+        <li><a href="#22-生命周期">2.2 生命周期</a></li>
+        <li><a href="#23-职责边界以及为什么这样切">2.3 职责边界，以及为什么这样切</a></li>
+        <li><a href="#24-依赖方向硬规则">2.4 依赖方向（硬规则）</a></li>
+      </ol>
+    </li>
+    <li><a href="#三事件路由">三、事件路由</a>
+      <ol>
+        <li><a href="#31-tag-树configtagsdnd_audiodataini-新增">3.1 Tag 树（<code>Config/Tags/DND_AudioData.ini</code> 新增）</a></li>
+        <li><a href="#32-为什么是tag-作键--datatable-作参数表">3.2 为什么是「Tag 作键 + DataTable 作参数表」</a></li>
+        <li><a href="#33-播放管道playevent-内部-7-步">3.3 播放管道（<code>PlayEvent</code> 内部 7 步）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四dt_audioevent">四、DT_AudioEvent</a>
+      <ol>
+        <li><a href="#41-完整列定义fdnpaudioeventrow--ftablerowbase">4.1 完整列定义（<code>FDNPAudioEventRow : FTableRowBase</code>）</a></li>
+        <li><a href="#42-三条真实行示例">4.2 三条真实行示例</a></li>
+        <li><a href="#43-数据表-lintdndaudiodatatableintegrityue-automation">4.3 数据表 lint（<code>DND.Audio.DataTableIntegrity</code>，UE Automation）</a></li>
+      </ol>
+    </li>
+    <li><a href="#五混音资产清单">五、混音资产清单</a>
+      <ol>
+        <li><a href="#51-soundclass-与-submix父级挂引擎内置-master不新建-sc_master静态增益以-04-11-为唯一真源00-81-29本文不列数值">5.1 SoundClass 与 Submix（父级挂引擎内置 <code>Master</code>，不新建 <code>SC_Master</code>；<strong>静态增益以 04 §1.1 为唯一真源（00 §8.1 #29），本文不列数值</strong>）</a></li>
+        <li><a href="#52-attenuation-与遮挡">5.2 Attenuation 与遮挡</a></li>
+        <li><a href="#53-concurrency">5.3 Concurrency</a></li>
+        <li><a href="#54-soundcontrolbus-与-busmix">5.4 SoundControlBus 与 BusMix</a></li>
+      </ol>
+    </li>
+    <li><a href="#六导入规范">六、导入规范</a></li>
+    <li><a href="#七播放接口c-头文件草案">七、播放接口（C++ 头文件草案）</a>
+      <ol>
+        <li><a href="#71-dndaudiotypesh">7.1 <code>DNDAudioTypes.h</code></a></li>
+        <li><a href="#72-udndaudiosubsystem门面--闸门--池">7.2 <code>UDNDAudioSubsystem</code>（门面 + 闸门 + 池）</a></li>
+        <li><a href="#73-udndmusicdirector音乐状态机">7.3 <code>UDNDMusicDirector</code>（音乐状态机）</a></li>
+        <li><a href="#74-关键实现点">7.4 关键实现点</a></li>
+        <li><a href="#75-udndaudioeventrouter-与-udndaudioblueprintlibrary">7.5 <code>UDNDAudioEventRouter</code> 与 <code>UDNDAudioBlueprintLibrary</code></a></li>
+        <li><a href="#76-跨总线嗡鸣控制与-02-的核心接口">7.6 跨总线嗡鸣控制（与 02 的核心接口）</a></li>
+      </ol>
+    </li>
+    <li><a href="#八挂接点具体类--具体时机">八、挂接点（具体类 + 具体时机）</a></li>
+    <li><a href="#九性能预算demo1080p--中配-pc">九、性能预算（Demo，1080p / 中配 PC）</a></li>
+    <li><a href="#十调试与验收">十、调试与验收</a>
+      <ol>
+        <li><a href="#101-控制台命令dndaudiodebugcppfautoconsolecommandwithworldandargs">10.1 控制台命令（<code>DNDAudioDebug.cpp</code>，<code>FAutoConsoleCommandWithWorldAndArgs</code>）</a></li>
+        <li><a href="#102-引擎侧手段与验收">10.2 引擎侧手段与验收</a></li>
+      </ol>
+    </li>
+    <li><a href="#十一风险与待确认项">十一、风险与待确认项</a></li>
+    <li><a href="#附录-a常量对齐速查">附录 A：常量对齐速查</a></li>
+    <li><a href="#附录-bue-api-核对清单粘贴后逐项在引擎内确认-已核对2026-11-12对照本机源码构建-fuesourceue5_6_1ue-561">附录 B：UE API 核对清单（<del>粘贴后逐项在引擎内确认</del> <strong>已核对</strong>，2026-11-12，对照本机源码构建 <code>F:\UESource\UE5_6_1</code>，UE 5.6.1）</a></li>
+    <li><a href="#附录-c骨架实现状态2026-11-13ue-561-编译通过运行时未验收">附录 C：骨架实现状态（2026-11-13，UE 5.6.1 编译通过，运行时未验收）</a>
+      <ol>
+        <li><a href="#c1-文件落地对照21-的-8-组文件全部就位">C.1 文件落地对照（§2.1 的 8 组文件全部就位）</a></li>
+        <li><a href="#c2-实现相对草案的补全新增项汇总回写登记">C.2 实现相对草案的补全（【新增】项汇总，回写登记）</a></li>
+        <li><a href="#c3-三个行字段的生效方式41-行为补注">C.3 三个行字段的生效方式（§4.1 行为补注）</a></li>
+        <li><a href="#c4-骨架期明确未做下一步等资产">C.4 骨架期明确未做（下一步/等资产）</a></li>
+        <li><a href="#c5-编辑器侧配套已就位供资产阶段使用">C.5 编辑器侧配套（已就位，供资产阶段使用）</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/game-dev/audio/01-architecture/">音频架构与工程集成</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            音频模块施工图：引擎内置音频选型与边界、UDNDAudioSubsystem / 音乐导演 / 事件路由的职责与生命周期、DT_AudioEvent 列定义与示例行、混音资产、导入规范、播放接口头文件草案、系统挂接点与性能预算
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2026-11-12T15:45:00&#43;08:00'>2026-11-12</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span></span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#一选型与边界">一、选型与边界</a>
+      <ol>
+        <li><a href="#11-技术栈结论">1.1 技术栈结论</a></li>
+        <li><a href="#12-为什么不用-wwise--fmod">1.2 为什么不用 Wwise / FMOD</a></li>
+        <li><a href="#13-明确的不可行点认账">1.3 明确的不可行点（认账）</a></li>
+        <li><a href="#14-系统数据流">1.4 系统数据流</a></li>
+      </ol>
+    </li>
+    <li><a href="#二类与资产结构">二、类与资产结构</a>
+      <ol>
+        <li><a href="#21-模块文件sourceproject_dndaudio">2.1 模块文件（<code>Source/Project_DND/Audio/</code>）</a></li>
+        <li><a href="#22-生命周期">2.2 生命周期</a></li>
+        <li><a href="#23-职责边界以及为什么这样切">2.3 职责边界，以及为什么这样切</a></li>
+        <li><a href="#24-依赖方向硬规则">2.4 依赖方向（硬规则）</a></li>
+      </ol>
+    </li>
+    <li><a href="#三事件路由">三、事件路由</a>
+      <ol>
+        <li><a href="#31-tag-树configtagsdnd_audiodataini-新增">3.1 Tag 树（<code>Config/Tags/DND_AudioData.ini</code> 新增）</a></li>
+        <li><a href="#32-为什么是tag-作键--datatable-作参数表">3.2 为什么是「Tag 作键 + DataTable 作参数表」</a></li>
+        <li><a href="#33-播放管道playevent-内部-7-步">3.3 播放管道（<code>PlayEvent</code> 内部 7 步）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四dt_audioevent">四、DT_AudioEvent</a>
+      <ol>
+        <li><a href="#41-完整列定义fdnpaudioeventrow--ftablerowbase">4.1 完整列定义（<code>FDNPAudioEventRow : FTableRowBase</code>）</a></li>
+        <li><a href="#42-三条真实行示例">4.2 三条真实行示例</a></li>
+        <li><a href="#43-数据表-lintdndaudiodatatableintegrityue-automation">4.3 数据表 lint（<code>DND.Audio.DataTableIntegrity</code>，UE Automation）</a></li>
+      </ol>
+    </li>
+    <li><a href="#五混音资产清单">五、混音资产清单</a>
+      <ol>
+        <li><a href="#51-soundclass-与-submix父级挂引擎内置-master不新建-sc_master静态增益以-04-11-为唯一真源00-81-29本文不列数值">5.1 SoundClass 与 Submix（父级挂引擎内置 <code>Master</code>，不新建 <code>SC_Master</code>；<strong>静态增益以 04 §1.1 为唯一真源（00 §8.1 #29），本文不列数值</strong>）</a></li>
+        <li><a href="#52-attenuation-与遮挡">5.2 Attenuation 与遮挡</a></li>
+        <li><a href="#53-concurrency">5.3 Concurrency</a></li>
+        <li><a href="#54-soundcontrolbus-与-busmix">5.4 SoundControlBus 与 BusMix</a></li>
+      </ol>
+    </li>
+    <li><a href="#六导入规范">六、导入规范</a></li>
+    <li><a href="#七播放接口c-头文件草案">七、播放接口（C++ 头文件草案）</a>
+      <ol>
+        <li><a href="#71-dndaudiotypesh">7.1 <code>DNDAudioTypes.h</code></a></li>
+        <li><a href="#72-udndaudiosubsystem门面--闸门--池">7.2 <code>UDNDAudioSubsystem</code>（门面 + 闸门 + 池）</a></li>
+        <li><a href="#73-udndmusicdirector音乐状态机">7.3 <code>UDNDMusicDirector</code>（音乐状态机）</a></li>
+        <li><a href="#74-关键实现点">7.4 关键实现点</a></li>
+        <li><a href="#75-udndaudioeventrouter-与-udndaudioblueprintlibrary">7.5 <code>UDNDAudioEventRouter</code> 与 <code>UDNDAudioBlueprintLibrary</code></a></li>
+        <li><a href="#76-跨总线嗡鸣控制与-02-的核心接口">7.6 跨总线嗡鸣控制（与 02 的核心接口）</a></li>
+      </ol>
+    </li>
+    <li><a href="#八挂接点具体类--具体时机">八、挂接点（具体类 + 具体时机）</a></li>
+    <li><a href="#九性能预算demo1080p--中配-pc">九、性能预算（Demo，1080p / 中配 PC）</a></li>
+    <li><a href="#十调试与验收">十、调试与验收</a>
+      <ol>
+        <li><a href="#101-控制台命令dndaudiodebugcppfautoconsolecommandwithworldandargs">10.1 控制台命令（<code>DNDAudioDebug.cpp</code>，<code>FAutoConsoleCommandWithWorldAndArgs</code>）</a></li>
+        <li><a href="#102-引擎侧手段与验收">10.2 引擎侧手段与验收</a></li>
+      </ol>
+    </li>
+    <li><a href="#十一风险与待确认项">十一、风险与待确认项</a></li>
+    <li><a href="#附录-a常量对齐速查">附录 A：常量对齐速查</a></li>
+    <li><a href="#附录-bue-api-核对清单粘贴后逐项在引擎内确认-已核对2026-11-12对照本机源码构建-fuesourceue5_6_1ue-561">附录 B：UE API 核对清单（<del>粘贴后逐项在引擎内确认</del> <strong>已核对</strong>，2026-11-12，对照本机源码构建 <code>F:\UESource\UE5_6_1</code>，UE 5.6.1）</a></li>
+    <li><a href="#附录-c骨架实现状态2026-11-13ue-561-编译通过运行时未验收">附录 C：骨架实现状态（2026-11-13，UE 5.6.1 编译通过，运行时未验收）</a>
+      <ol>
+        <li><a href="#c1-文件落地对照21-的-8-组文件全部就位">C.1 文件落地对照（§2.1 的 8 组文件全部就位）</a></li>
+        <li><a href="#c2-实现相对草案的补全新增项汇总回写登记">C.2 实现相对草案的补全（【新增】项汇总，回写登记）</a></li>
+        <li><a href="#c3-三个行字段的生效方式41-行为补注">C.3 三个行字段的生效方式（§4.1 行为补注）</a></li>
+        <li><a href="#c4-骨架期明确未做下一步等资产">C.4 骨架期明确未做（下一步/等资产）</a></li>
+        <li><a href="#c5-编辑器侧配套已就位供资产阶段使用">C.5 编辑器侧配套（已就位，供资产阶段使用）</a></li>
+      </ol>
+    </li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
+
+    <section class="article-content">
+    
+    
+    
+    <blockquote>
+        <p>本文是 <a class="link" href="https://innnnnk.github.io/game-dev/audio/00-conventions/"  target="_blank" rel="noopener"
+    >00-conventions.md</a> 的下游<strong>施工图</strong>：命名/总线/常量/接口契约一律以其为准，本文只回答&quot;怎么搭、先搭哪个、接到哪里&quot;。
+<strong>前置事实：</strong> 音频零资产、零集成；本工作区没有 UE 源码。交付「规格 + 可粘贴头文件草案」，不确定的 UE API 标「⚠️ 需在引擎内核对」（附录 B 汇总）。
+<strong>实现状态（2026-11-13 更新）：</strong> C++ 骨架已按本文落地于 UE 工程（<code>Source/Project_DND/Audio/</code>，8 组文件）并<strong>编译通过</strong>（UE 5.6.1 启动器版）；运行时行为未验收（无资产）。实现与本文草案的差异、实测 API 修正见附录 B ⑪–⑬ 与附录 C。
+<strong>本文负责：</strong> 类与资产结构、事件路由、表 schema、混音资产、导入规范、播放接口、挂接点、性能预算、调试。<strong>不负责：</strong> MetaSound 图与 stem = 02；事件目录与占位资产 = 03；增益/响度/ducking 深度 = 04；排期 = 05。</p>
+
+    </blockquote>
+<hr>
+<h2 id="一选型与边界">一、选型与边界
+</h2><h3 id="11-技术栈结论">1.1 技术栈结论
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>层</th>
+					<th>方案</th>
+					<th>谁定</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>播放器</td>
+					<td><code>MetaSoundSource</code>（<code>MS_*</code>）+ 少量 <code>SoundWave</code> 单次音效</td>
+					<td>本文接口，02/03 内容</td>
+			</tr>
+			<tr>
+					<td>增益与 DSP</td>
+					<td><code>USoundClass</code> 树（增益/ducking）× <code>USoundSubmix</code> 树（DSP）</td>
+					<td>本文结构，04 数值</td>
+			</tr>
+			<tr>
+					<td>实时调制</td>
+					<td><code>AudioModulation</code>：<code>SoundControlBus</code>（<code>CB_*</code>）+ <code>SoundControlBusMix</code>（<code>MIX_*</code>）</td>
+					<td>本文总线表与单写者规则</td>
+			</tr>
+			<tr>
+					<td>小节量化</td>
+					<td>Quartz（<code>PlayQuantized</code> / <code>FQuartzQuantizationBoundary</code>），失败回退 C++ 墙钟小节</td>
+					<td>本文接口，02 量化点</td>
+			</tr>
+			<tr>
+					<td>空间化</td>
+					<td><code>USoundAttenuation</code>（<code>ATT_*</code>）+ <code>USoundConcurrency</code>（<code>CON_*</code>）</td>
+					<td>本文</td>
+			</tr>
+			<tr>
+					<td>播放实例</td>
+					<td>自建 <code>UAudioComponent</code> 池（36 个常驻）</td>
+					<td>本文</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="12-为什么不用-wwise--fmod">1.2 为什么不用 Wwise / FMOD
+</h3><ol>
+<li><strong>成本倒挂</strong>：单人开发，中间件接入（SDK + 事件表 + 打包链 + 版本绑定）约 3<del>6 周；Demo 音频总量 = 补丁三 9 条 SFX + 配乐 §6 的 7 条音乐 + 20</del>30 条环境/交互音效。</li>
+<li><strong>能力足够</strong>：配乐要求的纵向分层、横向小节切换、参数化（<code>MusicIntensity</code> / swing 抖动 / pitch 偏移）MetaSounds + Quartz + ControlBus 全覆盖（配乐 §3、§6）。</li>
+<li><strong>少一套授权与打包产物</strong>：无 <code>.bnk/.bank</code>、无中间件运行时 DLL，包体与崩溃面更小；引擎内置方案在 5.6→后续版本迁移成本最低。</li>
+</ol>
+<h3 id="13-明确的不可行点认账">1.3 明确的不可行点（认账）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>不可行 / 缺失</th>
+					<th>应对</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>没有 Event 层级 + State/Switch 容器</td>
+					<td>自建 GameplayTag 键 + <code>DT_AudioEvent</code> 参数表（§三、§四）</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>没有随机容器/权重/交叉淡化的音效播放器</td>
+					<td>Subsystem 内实现随机区间 + 池化 + 抢占；多层材质矩阵不做</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>没有中间件级音频 profiler</td>
+					<td>引擎 Audio Insights + 自建 <code>DND.Audio.TraceEvents</code>（§十）</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>没有 DLC/热更音频包管理</td>
+					<td>Demo 单图全量打包，不做</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>AudioModulation 各版本处于实验性→正式之间</td>
+					<td>选 ControlBus 路线，保留 <code>USoundMix</code> 回退（§5.4）</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>MetaSound 图跨引擎版本可能重存</td>
+					<td>音乐逻辑集中 3 张 <code>MS_*</code> 图，不散落</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="14-系统数据流">1.4 系统数据流
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">玩法系统（ADND_CombatManager / 流程管理器 / 门体 / 文本弹窗 / 同伴 BT）
+</span></span><span class="line"><span class="cl">  │ C++ 委托（首选）                │ BP 直接调用（无委托的资产）
+</span></span><span class="line"><span class="cl">  ▼                                ▼
+</span></span><span class="line"><span class="cl">UDNDAudioEventRouter（每世界）   UDNDAudioBlueprintLibrary（静态转发）
+</span></span><span class="line"><span class="cl">  └──────────────┬─────────────────┘
+</span></span><span class="line"><span class="cl">                 ▼
+</span></span><span class="line"><span class="cl">UDNDAudioSubsystem（GameInstance 级，跨关卡）：表索引 / 异步加载 / 闸门 / 池 / 区域转场
+</span></span><span class="line"><span class="cl">                 ▼
+</span></span><span class="line"><span class="cl">UDNDMusicDirector（音乐状态机）→ CB_* → SC_*/SUB_* → SUB_Master → 设备
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="二类与资产结构">二、类与资产结构
+</h2><h3 id="21-模块文件sourceproject_dndaudio">2.1 模块文件（<code>Source/Project_DND/Audio/</code>）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>文件</th>
+					<th>职责</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>DNDAudioTypes.h</code></td>
+					<td><code>FDNPAudioEventRow</code> / <code>FDNPAudioPlayParams</code> / 枚举 / 常量；<strong>唯一允许被其他模块 include 的类型头</strong></td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioSubsystem.{h,cpp}</code></td>
+					<td>门面 API、表索引、异步加载、池、闸门、区域转场状态机、总线写者校验</td>
+			</tr>
+			<tr>
+					<td><code>DNDMusicDirector.{h,cpp}</code></td>
+					<td><code>MusicIntensity</code> 目标与量化、stem 增益、Boss 阶段、静默段、主题配额、<code>CB_Hum*</code> 写者</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioEventRouter.{h,cpp}</code></td>
+					<td>绑定/解绑现有系统委托，把广播翻译成 Subsystem/Director 调用</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioBlueprintLibrary.{h,cpp}</code></td>
+					<td>BP 与玩法模块的静态入口，只转发 + nullptr 保护</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioPoolHost.{h,cpp}</code></td>
+					<td><code>UAudioComponent</code> 宿主 Actor（组件必须挂 Actor 才能进世界），~40 行</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioSettings.{h,cpp}</code> / <code>DNDAudioDebug.cpp</code></td>
+					<td><code>UDeveloperSettings</code> 调参（池/预算/剔除/预加载，改 ini 不重编译）；控制台命令、HUD 面板、表 lint</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><code>Content/Audio/</code> 在 00-conventions §1.2 树上新增：<code>Data/DT_AudioEvent</code>、<code>Mix/ControlBuses/CB_*</code>、<code>Mix/BusMixes/MIX_*</code>、<code>Mix/Submixes/SUB_Reverb_{Forest,Corridor,Glade,Canyon,Throne,Exit,Cleft,Spore}</code>、<code>Mix/Attenuations/ATT_World_*</code>。</p>
+
+    <blockquote>
+        <p>⚠️ 待城主确认：<code>CB_</code> / <code>MIX_</code> 前缀不在 00-conventions §1.1 前缀表内，属本文新增；不同意则需回写总纲。</p>
+
+    </blockquote>
+<h3 id="22-生命周期">2.2 生命周期
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>对象</th>
+					<th>类型</th>
+					<th>创建 → 销毁</th>
+					<th>跨关卡</th>
+					<th>持有状态</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>UDNDAudioSubsystem</code></td>
+					<td><code>UGameInstanceSubsystem</code></td>
+					<td>GameInstance 初始化 → 销毁（PIE 结束）</td>
+					<td><strong>存活</strong></td>
+					<td>表索引、加载缓存、冷却、帧预算、池引用、区域转场状态</td>
+			</tr>
+			<tr>
+					<td><code>UDNDMusicDirector</code></td>
+					<td><code>UObject</code>，Outer = Subsystem</td>
+					<td><code>Subsystem::Initialize</code> → <code>Deinitialize</code></td>
+					<td><strong>存活</strong>（无世界时冻结）</td>
+					<td>强度目标、量化边界、stem 增益、Boss 阶段、静默段、配额、写者身份</td>
+			</tr>
+			<tr>
+					<td><code>UDNDAudioEventRouter</code></td>
+					<td><code>UObject</code>，Outer = <code>UWorld</code></td>
+					<td>世界 BeginPlay → Cleanup（<code>FWorldDelegates</code>，⚠️ 签名核对）</td>
+					<td>每世界重建</td>
+					<td>委托句柄、系统弱引用、转场令牌</td>
+			</tr>
+			<tr>
+					<td><code>ADNDAudioPoolHost</code></td>
+					<td><code>AActor</code></td>
+					<td>Router Attach 时 Spawn（Hidden）</td>
+					<td>每世界重建</td>
+					<td>36 个组件 + 空闲标记</td>
+			</tr>
+			<tr>
+					<td><code>UDNDAudioBlueprintLibrary</code></td>
+					<td><code>UBlueprintFunctionLibrary</code></td>
+					<td>无实例</td>
+					<td>—</td>
+					<td>无状态（故任何模块可安全 include）</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>Router 销毁置 <code>bWorldAvailable=false</code>；Director 无世界时只保留当前值不自增；下一次世界 BeginPlay 用当前区域重起 bed。</p>
+<h3 id="23-职责边界以及为什么这样切">2.3 职责边界，以及为什么这样切
+</h3><p>切割轴：<strong>生命周期</strong>（GameInstance / World）、<strong>状态唯一写者</strong>、<strong>依赖方向</strong>。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>类</th>
+					<th>只做</th>
+					<th>绝不做</th>
+					<th>不这么切会怎样</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Subsystem</td>
+					<td>&ldquo;请求→发声&quot;机械路径：查行、闸门、加载、池、组件属性、转场时序</td>
+					<td>不判音乐语义；不持玩法强引用（只用弱引用取位置）</td>
+					<td>音乐状态机 tick 污染每帧播放热路径</td>
+			</tr>
+			<tr>
+					<td>MusicDirector</td>
+					<td>音乐语义状态机：强度目标、2/4 小节量化、stem 增益、Boss 四阶段、静默段、配额、<code>CB_Hum*</code> 唯一写者</td>
+					<td>不直接播一次性 SFX；不管加载（走 Subsystem helper）</td>
+					<td>音乐连续性无法跨关卡；GameInstance 级对象写世界级委托必悬垂</td>
+			</tr>
+			<tr>
+					<td>Router</td>
+					<td>把已有系统委托翻译成上面两者调用；管绑定生命周期</td>
+					<td>不持音频状态；不做决策（只做映射）</td>
+					<td>委托句柄属于世界，写进 GameInstance 级对象必然悬垂</td>
+			</tr>
+			<tr>
+					<td>BP Library / PoolHost</td>
+					<td>静态转发；组件容器与空闲标记</td>
+					<td>不含分支逻辑；不选资产不做闸门</td>
+					<td>玩法模块被迫 include Subsystem 头；组件无法注册进世界</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>为什么不是两个类（Subsystem 全包）：</strong> 音乐状态要能在关卡切换/无世界时冻结不丢值，SFX 服务要能在世界重建后立刻可用——生命周期语义不同；且单写者规则（每个 <code>CB_*</code> 一个写者，Debug 断言）需要音乐语义与播放机械分离才能静态检查。
+<strong>为什么不再拆更多类：</strong> 区域环境切换 = 1 条 voice 淡出/淡入 + 时间戳 + 一条 Submix 斜坡（&lt;60 行）；资产注册表 = 一张 <code>TMap</code>。给它们独立类就是空壳。<strong>判据：只有拥有独立生命周期或独立状态写者身份时，才允许单独成类。</strong></p>
+<h3 id="24-依赖方向硬规则">2.4 依赖方向（硬规则）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">玩法模块（Combat/流程/UI/AI） ──include──▶ DNDAudioTypes.h + DNDAudioBlueprintLibrary.h（仅此两个）
+</span></span><span class="line"><span class="cl">音频模块 ──include──▶ 玩法模块头（DND_CombatManager.h 等）      ← 单向，音频是下游消费者
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>玩法代码<strong>永不</strong> include <code>DNDAudioSubsystem.h</code> / <code>DNDMusicDirector.h</code>；音频<strong>永不</strong>要求玩法读返回值（00-conventions §5：播放接口全部 <code>void</code>）。</p>
+<hr>
+<h2 id="三事件路由">三、事件路由
+</h2><h3 id="31-tag-树configtagsdnd_audiodataini-新增">3.1 Tag 树（<code>Config/Tags/DND_AudioData.ini</code> 新增）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">GameplayTagList</span><span class="o">=</span><span class="s">(Tag=&#34;AUD.ENV&#34;,DevComment=&#34;环境/空间/异常物&#34;)   ; AUD.CBT / AUD.NAR / AUD.UI / AUD.MUS / AUD.SYS 同格式</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>叶子示例（完整目录由 03 定稿）：<code>AUD.CBT.Hit</code> · <code>AUD.CBT.CombatEnter</code> · <code>AUD.CBT.TurnStart</code> · <code>AUD.NAR.NameplatePickup</code> · <code>AUD.SYS.DoorTransition</code> · <code>AUD.SYS.RegionPreShift</code> · <code>AUD.MUS.SilenceBeat</code>。事件 ID = <code>AUD-&lt;域&gt;-&lt;三位序号&gt;</code>，与 Tag 一一对应且不复用（00-conventions §1.3）；该 ini 需加入导入链（与现有 <code>DND_GASData.ini</code> 同机制，⚠️ 写法核对）。</p>
+
+    <blockquote>
+        <p>⚠️ 待城主确认：总纲未规定层级深度，本文限定 <strong>≤3 级</strong>（<code>AUD.CBT.Hit.Critical</code> 超限，改写 <code>AUD.CBT.Critical</code>）。</p>
+
+    </blockquote>
+<h3 id="32-为什么是tag-作键--datatable-作参数表">3.2 为什么是「Tag 作键 + DataTable 作参数表」
+</h3><ul>
+<li><strong>纯 Tag</strong>：带不动资产与数值，最终退化成 <code>switch(Tag)</code> 硬编码——每加一个音效改一次 C++，单人项目最贵的成本。</li>
+<li><strong>纯 DataTable（<code>FName</code> 键）</strong>：失去层级与命名空间约束，拼写错误只能运行时发现，且无法与 GAS / GameplayCue 的 Tag 世界互操作。</li>
+<li><strong>双键</strong>：Tag 负责&quot;谁触发什么&rdquo;（编辑器可校验、可被任意系统广播、可层级查询），表负责&quot;响了会怎样&quot;（资产/音量/冷却/优先级，改表不重编译）；<code>RowName</code> 承担稳定事件 ID。</li>
+<li>索引：首世界构建 <code>TMap&lt;FGameplayTag, FName&gt;</code>，O(1)；查不到 → <code>LogDNDAudio</code> Warning + 计数 + 静默返回，<strong>不 crash 不打断战斗</strong>。</li>
+</ul>
+<h3 id="33-播放管道playevent-内部-7-步">3.3 播放管道（<code>PlayEvent</code> 内部 7 步）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Tag → RowName → FDNPAudioEventRow（缺行：Warning + Drop + return）
+</span></span><span class="line"><span class="cl">2. bEnabled=false → Drop + return
+</span></span><span class="line"><span class="cl">3. 闸门：冷却 → 同帧去重 → 行级 MaxConcurrent → 帧预算 → 距离剔除
+</span></span><span class="line"><span class="cl">4. 资产：缓存命中直接用；否则 RequestAsyncLoad，本次静默丢弃并登记预加载
+</span></span><span class="line"><span class="cl">5. 取池：按 Bus 取空闲；无空闲 → 优先级淘汰；仍失败 → 一次性告警
+</span></span><span class="line"><span class="cl">6. 设置 Sound / Volume / Pitch / 2D-3D / Attenuation / 位置
+</span></span><span class="line"><span class="cl">7. Play()，登记 ActiveCount、LastPlayTime、帧签名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>失败语义：<strong>全部静默降级</strong>，绝不因音频问题抛异常或阻塞玩法（战斗回合不能等音频）。</p>
+<hr>
+<h2 id="四dt_audioevent">四、DT_AudioEvent
+</h2><h3 id="41-完整列定义fdnpaudioeventrow--ftablerowbase">4.1 完整列定义（<code>FDNPAudioEventRow : FTableRowBase</code>）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>列名</th>
+					<th>类型</th>
+					<th>默认值</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>（RowName）</code></td>
+					<td><code>FName</code></td>
+					<td>必填</td>
+					<td>事件 ID：<code>AUD-&lt;域&gt;-&lt;三位序号&gt;</code>，不复用</td>
+			</tr>
+			<tr>
+					<td><code>EventTag</code></td>
+					<td><code>FGameplayTag</code></td>
+					<td>空</td>
+					<td>运行时唯一查找键；<code>AUD.&lt;域&gt;.&lt;名&gt;</code>，≤3 级</td>
+			</tr>
+			<tr>
+					<td><code>bEnabled</code></td>
+					<td><code>bool</code></td>
+					<td><code>true</code></td>
+					<td>总开关；关掉后命中即静默并计数</td>
+			</tr>
+			<tr>
+					<td><code>Bus</code></td>
+					<td><code>EDNPAudioBus</code></td>
+					<td><code>Auto</code></td>
+					<td>Auto 由域映射：ENV→Ambience、CBT/NAR/SYS→SFX、UI→UI、MUS→Music</td>
+			</tr>
+			<tr>
+					<td><code>Sound</code></td>
+					<td><code>TSoftObjectPtr&lt;USoundBase&gt;</code></td>
+					<td><code>null</code></td>
+					<td><code>MS_*</code> 或 <code>SFX_*</code>；异步加载</td>
+			</tr>
+			<tr>
+					<td><code>bSpatialized</code></td>
+					<td><code>bool</code></td>
+					<td><code>true</code></td>
+					<td>false = 2D，忽略 Attenuation</td>
+			</tr>
+			<tr>
+					<td><code>Attenuation</code></td>
+					<td><code>TSoftObjectPtr&lt;USoundAttenuation&gt;</code></td>
+					<td><code>null</code></td>
+					<td>null → <code>ATT_World_Default</code>（= Small 副本）</td>
+			</tr>
+			<tr>
+					<td><code>Concurrency</code></td>
+					<td><code>TSoftObjectPtr&lt;USoundConcurrency&gt;</code></td>
+					<td><code>null</code></td>
+					<td>null → 按 Bus 回退默认 <code>CON_*</code></td>
+			</tr>
+			<tr>
+					<td><code>VolumeMin</code> / <code>VolumeMax</code></td>
+					<td><code>float</code></td>
+					<td><code>1.0</code> / <code>1.0</code></td>
+					<td>线性增益区间 0.0–2.0，Max ≥ Min</td>
+			</tr>
+			<tr>
+					<td><code>PitchMin</code> / <code>PitchMax</code></td>
+					<td><code>float</code></td>
+					<td><code>1.0</code> / <code>1.0</code></td>
+					<td>音高倍率区间 0.50–2.00</td>
+			</tr>
+			<tr>
+					<td><code>Randomization</code></td>
+					<td><code>EDNPAudioRandomization</code></td>
+					<td><code>Uniform</code></td>
+					<td><code>Uniform</code> 均匀 / <code>Triangular</code> 三角（偏中点，去机械感）</td>
+			</tr>
+			<tr>
+					<td><code>CooldownSeconds</code></td>
+					<td><code>float</code></td>
+					<td><code>0.0</code></td>
+					<td>0.0–60.0；同一冷却键内不重复触发</td>
+			</tr>
+			<tr>
+					<td><code>CooldownScope</code></td>
+					<td><code>EDNPAudioCooldownScope</code></td>
+					<td><code>PerWorld</code></td>
+					<td><code>PerWorld</code> / <code>PerOwner</code> / <code>PerPlayer</code></td>
+			</tr>
+			<tr>
+					<td><code>MaxConcurrent</code></td>
+					<td><code>int32</code></td>
+					<td><code>0</code></td>
+					<td>该事件在播上限，0 = 不限；建议 1–4</td>
+			</tr>
+			<tr>
+					<td><code>Priority</code></td>
+					<td><code>int32</code></td>
+					<td><code>50</code></td>
+					<td>0–100，预算与池淘汰用</td>
+			</tr>
+			<tr>
+					<td><code>StartDelayMinSeconds</code> / <code>StartDelayMaxSeconds</code></td>
+					<td><code>float</code></td>
+					<td><code>0.0</code> / <code>0.0</code></td>
+					<td>随机起播延迟 0.0–2.0；错开同质音效</td>
+			</tr>
+			<tr>
+					<td><code>bAttachToOwner</code></td>
+					<td><code>bool</code></td>
+					<td><code>false</code></td>
+					<td>3D 且给了 Owner 时组件挂到 Owner</td>
+			</tr>
+			<tr>
+					<td><code>FadeOutSeconds</code></td>
+					<td><code>float</code></td>
+					<td><code>0.2</code></td>
+					<td>停止/被淘汰的淡出，0.0–2.0</td>
+			</tr>
+			<tr>
+					<td><code>DuckMusicDb</code></td>
+					<td><code>float</code></td>
+					<td><code>0.0</code></td>
+					<td>压低音乐的分贝数 −18–0；弹窗类 −3，绝对值归属 04</td>
+			</tr>
+			<tr>
+					<td><code>DevComment</code></td>
+					<td><code>FString</code></td>
+					<td><code>&quot;&quot;</code></td>
+					<td>验收方法 / 来源坐标，供 lint 与追溯</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="42-三条真实行示例">4.2 三条真实行示例
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>RowName</th>
+					<th>EventTag</th>
+					<th>Bus</th>
+					<th>Sound</th>
+					<th>ATT</th>
+					<th>CON</th>
+					<th>Vol</th>
+					<th>Pitch</th>
+					<th>CD</th>
+					<th>MaxCon</th>
+					<th>Pri</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>AUD-CBT-004</code></td>
+					<td><code>AUD.CBT.Hit</code></td>
+					<td>SFX</td>
+					<td><code>SFX_CBT_Hit_Flesh_01</code></td>
+					<td><code>ATT_World_Small</code></td>
+					<td><code>CON_SFX_Impact</code></td>
+					<td>0.85–1.00</td>
+					<td>0.96–1.04</td>
+					<td>0.05 s</td>
+					<td>4</td>
+					<td>70</td>
+			</tr>
+			<tr>
+					<td><code>AUD-NAR-001</code></td>
+					<td><code>AUD.NAR.NameplatePickup</code></td>
+					<td>SFX</td>
+					<td><code>SFX_NAR_Nameplate_Pickup</code></td>
+					<td><code>ATT_World_Small</code></td>
+					<td><code>CON_UI_Click</code></td>
+					<td>0.60–0.78</td>
+					<td>0.97–1.06</td>
+					<td>0.15 s</td>
+					<td>1</td>
+					<td>60</td>
+			</tr>
+			<tr>
+					<td><code>AUD-SYS-001</code></td>
+					<td><code>AUD.SYS.DoorTransition</code></td>
+					<td>SFX</td>
+					<td><code>MS_DoorTransition</code></td>
+					<td><code>ATT_World_Medium</code></td>
+					<td><code>CON_SFX_Stinger</code></td>
+					<td>0.80–0.95</td>
+					<td>0.98–1.02</td>
+					<td>2.00 s</td>
+					<td>1</td>
+					<td>80</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>未列出的列取 4.1 默认值。落地细节：<strong><code>AUD-CBT-004</code></strong> 触发 = <code>ADND_CombatManager</code> 伤害结算完成且 HP 实减 &gt; 0，验收 = 连打 3 次命中为 3 Play / 0 Dedupe【映射自 00-conventions §5】；<strong><code>AUD-NAR-001</code></strong> 触发 = 拾取成功写入存档后，11 块铭牌共用一行，连捡间隔 ≥150 ms【来源：补丁三 #7，0.3 s 单次】；<strong><code>AUD-SYS-001</code></strong> 触发 = 门体交互按下 E 的同一帧，预偏段落在黑屏前 0.5–1.0 s【来源：Demo §区域转场 2】。示例 ID 已按 03 事件目录回改（00 §8.1 #28）；完整目录以 <a class="link" href="https://innnnnk.github.io/game-dev/audio/03-sfx-and-ambience/"  target="_blank" rel="noopener"
+    >03-sfx-and-ambience.md</a> 为准。</p>
+<h3 id="43-数据表-lintdndaudiodatatableintegrityue-automation">4.3 数据表 lint（<code>DND.Audio.DataTableIntegrity</code>，UE Automation）
+</h3><p>Tag 唯一非空；RowName ↔ Tag 一一对应；<code>Sound</code> 非空；<code>Pitch ∈ [0.5, 2.0]</code> 且 Min ≤ Max；<code>Volume ∈ [0, 2]</code>；<code>Cooldown ≥ 0</code>；<code>Priority ∈ [0, 100]</code>；<code>Bus</code> 与域映射一致；<code>DevComment</code> 非空。失败不允许提交。</p>
+<hr>
+<h2 id="五混音资产清单">五、混音资产清单
+</h2><h3 id="51-soundclass-与-submix父级挂引擎内置-master不新建-sc_master静态增益以-04-11-为唯一真源00-81-29本文不列数值">5.1 SoundClass 与 Submix（父级挂引擎内置 <code>Master</code>，不新建 <code>SC_Master</code>；<strong>静态增益以 04 §1.1 为唯一真源（00 §8.1 #29），本文不列数值</strong>）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>SoundClass → Submix</th>
+					<th>静态增益</th>
+					<th>VoiceCount</th>
+					<th>关键属性</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>SC_Music → SUB_Music</code></td>
+					<td>见 04 §1.1</td>
+					<td>8</td>
+					<td>非 UI、参与 ducking；<code>SUB_Music</code> 挂 <code>SUB_Master</code></td>
+			</tr>
+			<tr>
+					<td><code>SC_Ambience → SUB_Ambience</code></td>
+					<td>见 04 §1.1</td>
+					<td>12</td>
+					<td>非 UI、混响 send</td>
+			</tr>
+			<tr>
+					<td><code>SC_SFX → SUB_SFX</code></td>
+					<td>见 04 §1.1</td>
+					<td>24</td>
+					<td>3D 空间化、受遮挡</td>
+			</tr>
+			<tr>
+					<td><code>SC_UI → SUB_UI</code></td>
+					<td>见 04 §1.1</td>
+					<td>8</td>
+					<td><code>bIsUISound</code>，不受游戏内 ducking</td>
+			</tr>
+			<tr>
+					<td><code>SC_VO → SUB_VO</code></td>
+					<td>见 04 §1.1</td>
+					<td>6</td>
+					<td>最高 ducking 优先级</td>
+			</tr>
+			<tr>
+					<td><code>SC_Cinematic → SUB_Cinematic</code></td>
+					<td>见 04 §1.1</td>
+					<td>6</td>
+					<td>演出期可接管 −6 dB（00-conventions §2）</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><code>SUB_Master</code> 为总出口（limiter/压缩归 04，留 headroom ≥6 dB），六个 <code>SUB_*</code> 挂其下（插入效果归 04）；另加混响 send：</p>
+<p>混响 preset 共 <strong>8 个</strong>（00 §8.1 #23，参数以 04 §6.2 为唯一真源）：<code>SUB_Reverb_Forest / Corridor / Glade / Canyon / Throne / Exit / Cleft / Spore</code>。</p>
+<p>区域→混响：<code>A_Entrance→Forest</code>、<code>B_Corridor→Corridor</code>、<code>C_Clearing→Glade</code>、<code>D_Ravine→Canyon</code>、<code>E_Throne→Throne</code>、<code>F_Path→Exit</code>、<code>X1_EchoCleft→Cleft</code>、<code>X2_SporePlatform→Spore</code>（与 03 §3.2 一致）；黑屏中点硬切 + 0.3–0.5 s ramp。</p>
+<h3 id="52-attenuation-与遮挡">5.2 Attenuation 与遮挡
+</h3><p><strong>衰减与遮挡的唯一真源是 04 §5.3 / §5.4（00 §8.1 #22），本文不列数值。</strong> 资产集合：<code>ATT_World_Small / Medium / Large / Voice</code>（<code>ATT_World_Tiny</code> 已删除，铭牌归 <code>ATT_World_Small</code>）；距离模型按 04（Inverse / Logarithmic），遮挡只做体积式（≤6 个）。</p>
+<p>本文只保留两条工程规则：① 行内 <code>Attenuation</code> 为 null 时的回退 <code>ATT_World_Default</code>（= <code>ATT_World_Small</code> 副本）；② 距离剔除与帧预算引用 falloff 值时读 04 §5.3（25 / 40 / 60 m）。⚠️ 需核对 5.6 的衰减字段名与枚举（附录 B ⑤）。</p>
+<h3 id="53-concurrency">5.3 Concurrency
+</h3><p><strong>事件级 Concurrency 以 03 §1.2 为唯一真源（00 §8.1 #24）：</strong> <code>CON_SFX_Impact</code>（命中类）、<code>CON_SFX_WorldOneShot</code>（脚步/孢子）、<code>CON_SFX_AmbDetail</code>（环境细节）、<code>CON_SFX_Stinger</code>（演出提示）、<code>CON_SFX_CinematicExclusive</code>（静默闸门/结尾）、<code>CON_UI_Click</code>、<code>CON_VO_Cap</code>。本文只保留系统级三条：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>资产</th>
+					<th>MaxCount</th>
+					<th>LimitToOwner</th>
+					<th>Resolution</th>
+					<th>Attack/Release</th>
+					<th>用于</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>CON_SFX_WorldCap</code></td>
+					<td>24</td>
+					<td>false</td>
+					<td><code>StopFarthestThenOldest</code></td>
+					<td>0.05 / 0.15 s</td>
+					<td>世界 3D 总闸</td>
+			</tr>
+			<tr>
+					<td><code>CON_Ambience_Region</code></td>
+					<td>2</td>
+					<td>false</td>
+					<td><code>StopOldest</code></td>
+					<td>0.30 / 0.80 s</td>
+					<td>区域底噪 + 嗡鸣</td>
+			</tr>
+			<tr>
+					<td><code>CON_Music_Bed</code></td>
+					<td>8</td>
+					<td>false</td>
+					<td><code>PreventNew</code></td>
+					<td>0.50 / 1.50 s</td>
+					<td>音乐 voice</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>⚠️ 需核对 <code>EMaxConcurrentResolutionRule</code> 枚举值名与 <code>VoiceLimitTime</code>。</p>
+<h3 id="54-soundcontrolbus-与-busmix">5.4 SoundControlBus 与 BusMix
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>ControlBus</th>
+					<th>范围</th>
+					<th>默认</th>
+					<th>唯一写者</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>CB_MusicIntensity</code></td>
+					<td>0.00–1.00</td>
+					<td>0.00</td>
+					<td>MusicDirector</td>
+					<td><code>MusicIntensity/4</code>（0–4 来自 00-conventions §3）</td>
+			</tr>
+			<tr>
+					<td><code>CB_MusicBedGain</code> / <code>PulseGain</code> / <code>UneaseGain</code></td>
+					<td>0–1</td>
+					<td>1 / 0 / 0</td>
+					<td>MusicDirector</td>
+					<td>stem 1/2/4 增益（stem 3 在 <code>MS_*</code> 内）</td>
+			</tr>
+			<tr>
+					<td><code>CB_MusicDuck</code></td>
+					<td>0–1</td>
+					<td>1.00</td>
+					<td>Subsystem（ducking 栈）</td>
+					<td>文本/VO ducking 乘性总闸</td>
+			</tr>
+			<tr>
+					<td><code>CB_AmbienceGain</code></td>
+					<td>0–1</td>
+					<td>1.00</td>
+					<td>Subsystem（转场）</td>
+					<td>区域底噪总闸</td>
+			</tr>
+			<tr>
+					<td><code>CB_HumGain</code></td>
+					<td>0–1</td>
+					<td>1.00</td>
+					<td><strong>MusicDirector</strong></td>
+					<td>嗡鸣层增益（跨总线，§7.6）</td>
+			</tr>
+			<tr>
+					<td><code>CB_HumPitch</code></td>
+					<td>0.95–1.18</td>
+					<td>1.00</td>
+					<td><strong>MusicDirector</strong></td>
+					<td>嗡鸣 pitch（异常 +5~+15%，补丁三 #3）</td>
+			</tr>
+			<tr>
+					<td><code>CB_SFXGain</code> / <code>UIGain</code> / <code>VOGain</code> / <code>CinematicGain</code></td>
+					<td>0–1</td>
+					<td>1.00</td>
+					<td>设置菜单（04）</td>
+					<td>分类音量滑杆</td>
+			</tr>
+			<tr>
+					<td><code>MIX_Default</code> / <code>MIX_Duck_Text</code> / <code>MIX_SilenceBeat</code></td>
+					<td>—</td>
+					<td>按需</td>
+					<td>Subsystem / Director</td>
+					<td>默认值 / 底床 −3 dB（attack 0.15 / release 0.40 s）/ Boss 阶段三 0.15 s 归零保持 1.0 s</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>回退路线：</strong> AudioModulation 若不稳定，用 <code>USoundMix</code> + <code>FSoundClassAdjuster</code> + <code>PushSoundMixModifier/PopSoundMixModifier</code> 等价实现，上表保留为参数清单。</p>
+<hr>
+<h2 id="六导入规范">六、导入规范
+</h2><p>采样率按总纲 §8.1 #20：<strong>tempo-locked 音乐循环 44.1 kHz</strong>（63 BPM 整数采样，02 §3.4），<strong>其余全部 48 kHz</strong>；源 24-bit WAV，导入前清元数据、按 03 留授权凭证。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>类别</th>
+					<th>UE 内格式</th>
+					<th>压缩</th>
+					<th>声道</th>
+					<th>循环</th>
+					<th>虚拟化</th>
+					<th>内存/文件</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>短 SFX（&lt;2 s）</td>
+					<td>SoundWave</td>
+					<td>PCM 16-bit</td>
+					<td>3D 单 / 2D 立体声</td>
+					<td>否</td>
+					<td><code>Restart</code>，不流式</td>
+					<td>≤1 MB</td>
+			</tr>
+			<tr>
+					<td>中 SFX（2–8 s）</td>
+					<td>SoundWave</td>
+					<td>ADPCM</td>
+					<td>3D 单声道</td>
+					<td>视用途</td>
+					<td>同上</td>
+					<td>≤2 MB</td>
+			</tr>
+			<tr>
+					<td>环境循环（30–60 s）</td>
+					<td>SoundWave / MS Wave Player</td>
+					<td>Vorbis q0.50–0.70</td>
+					<td>底噪立体声、点声源单声道</td>
+					<td><strong>是</strong>，采样点精确</td>
+					<td><code>PlayWhenSilent</code></td>
+					<td>全环境 ≤8 MB</td>
+			</tr>
+			<tr>
+					<td>音乐 stem（60–120 s）</td>
+					<td><code>MS_*</code> 内 Wave Player</td>
+					<td>Vorbis q0.70–0.85 或 Bink</td>
+					<td>立体声</td>
+					<td>是，同组<strong>等长同起点</strong>；<strong>44.1 kHz 交付</strong>（02 §3.4）</td>
+					<td>不虚拟化/不流式（保相位）</td>
+					<td>全音乐 ≤24 MB</td>
+			</tr>
+			<tr>
+					<td>VO（0.3–3 s）</td>
+					<td>SoundWave</td>
+					<td>ADPCM</td>
+					<td>单声道 3D</td>
+					<td>否</td>
+					<td>播放中不虚拟化</td>
+					<td>≤512 KB</td>
+			</tr>
+	</tbody>
+</table></div>
+<ol>
+<li><strong>3D 一律单声道</strong>——立体声做点声源会让声像与 LPF 退化；只有 2D 层用立体声。</li>
+<li><strong>循环点以采样计</strong>（48 kHz 下 1 sample ≈ 20.83 µs），接缝靠近零交叉；验收 = 播 10 次无 click、频响无 &gt;3 dB 塌陷；MetaSound 循环优先。</li>
+<li><strong>stem 同长同起点</strong>：一区音乐用<strong>一张</strong> <code>MS_*</code> 图内多 Wave Player，不用 4 个 <code>AudioComponent</code>——相位对齐前提，也省 voice。</li>
+<li>导入口峰值 ≤ −6 dBFS；响度归一化目标走 04（占位：单次音效 −20~−18 LUFS short-term，音乐床 −18~−16 LUFS integrated）。</li>
+<li>循环资产 <code>bLooping</code> + SoundClass <code>PlayWhenSilent</code>；一次性 3D 用 <code>Restart</code>，避免&quot;远处播过、走近重播&quot;。</li>
+<li>命名只允许 00-conventions §1.1 前缀，术语只用 §四 代号（<code>Motif-X</code> / <code>Bed</code> / <code>Pulse</code> / <code>Unease</code> / <code>DeepMine_Ore</code> / <code>MineGlyph</code>），禁词表零出现；行名、参数名、注释、日志同样受约束。</li>
+</ol>
+<hr>
+<h2 id="七播放接口c-头文件草案">七、播放接口（C++ 头文件草案）
+</h2>
+    <blockquote>
+        <p>可粘贴草案，<strong>未编译</strong>。<code>PROJECT_DND_API</code> 按工程模块名使用，include 细节省略。<code>FDNPAudioEventRow</code> 的 22 个 <code>UPROPERTY</code> 与 §4.1 列逐行对应（列名即字段名，同类型同默认值），此处不重复。</p>
+
+    </blockquote>
+<h3 id="71-dndaudiotypesh">7.1 <code>DNDAudioTypes.h</code>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#pragma once
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;CoreMinimal.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;DNDAudioTypes.generated.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span> <span class="k">enum</span> <span class="k">class</span> <span class="nc">EDNPAudioBus</span> <span class="o">:</span> <span class="n">uint8</span> <span class="p">{</span> <span class="n">Auto</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Music</span><span class="p">,</span> <span class="n">Ambience</span><span class="p">,</span> <span class="n">SFX</span><span class="p">,</span> <span class="n">UI</span><span class="p">,</span> <span class="n">VO</span><span class="p">,</span> <span class="n">Cinematic</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span> <span class="k">enum</span> <span class="k">class</span> <span class="nc">EDNPAudioCooldownScope</span> <span class="o">:</span> <span class="n">uint8</span> <span class="p">{</span> <span class="n">PerWorld</span><span class="p">,</span> <span class="n">PerOwner</span><span class="p">,</span> <span class="n">PerPlayer</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span> <span class="k">enum</span> <span class="k">class</span> <span class="nc">EDNPAudioRandomization</span> <span class="o">:</span> <span class="n">uint8</span> <span class="p">{</span> <span class="n">Uniform</span><span class="p">,</span> <span class="n">Triangular</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/** 一次播放请求的可选参数；其余走表默认值。 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">PROJECT_DND_API</span> <span class="n">FDNPAudioPlayParams</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="kt">bool</span> <span class="n">bUseLocation</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="n">FVector</span> <span class="n">Location</span> <span class="o">=</span> <span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">AActor</span><span class="o">&gt;</span> <span class="n">AttachTo</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="kt">float</span> <span class="n">VolumeScale</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>   <span class="c1">// 0.0–2.0
+</span></span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="kt">float</span> <span class="n">PitchScale</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>    <span class="c1">// 0.5–2.0
+</span></span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="kt">float</span> <span class="n">RuntimeScalar</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span> <span class="c1">// 0–1，供曲线映射；起播时经 SetFloatParameter(&#34;RuntimeScalar&#34;, …) 写入组件，MetaSound 图输入同名
+</span></span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="kt">bool</span> <span class="n">bForce2D</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="kt">bool</span> <span class="n">bIgnoreCooldown</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadWrite</span><span class="p">)</span> <span class="kt">bool</span> <span class="n">bIgnoreBudget</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 仅导演/演出
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="72-udndaudiosubsystem门面--闸门--池">7.2 <code>UDNDAudioSubsystem</code>（门面 + 闸门 + 池）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PROJECT_DND_API</span> <span class="nl">UDNDAudioSubsystem</span> <span class="p">:</span> <span class="k">public</span> <span class="n">UGameInstanceSubsystem</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Initialize</span><span class="p">(</span><span class="n">FSubsystemCollectionBase</span><span class="o">&amp;</span> <span class="n">Collection</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Deinitialize</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">ShouldCreateSubsystem</span><span class="p">(</span><span class="n">UObject</span><span class="o">*</span> <span class="n">Outer</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span> <span class="c1">// 仅 Game/PIE 世界
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// —— 对外唯一播放门面：全部 void，玩法侧不得依赖音频结果 ——
+</span></span></span><span class="line"><span class="cl">    <span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span> <span class="n">Category</span><span class="o">=</span><span class="s">&#34;DND|Audio&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">PlayEvent</span><span class="p">(</span><span class="n">FGameplayTag</span> <span class="n">EventTag</span><span class="p">,</span> <span class="k">const</span> <span class="n">FDNPAudioPlayParams</span><span class="o">&amp;</span> <span class="n">Params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span> <span class="n">Category</span><span class="o">=</span><span class="s">&#34;DND|Audio&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">StopEvent</span><span class="p">(</span><span class="n">FGameplayTag</span> <span class="n">EventTag</span><span class="p">,</span> <span class="kt">float</span> <span class="n">FadeOutSeconds</span> <span class="o">=</span> <span class="mf">0.2f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span> <span class="n">Category</span><span class="o">=</span><span class="s">&#34;DND|Audio&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">StopBus</span><span class="p">(</span><span class="n">EDNPAudioBus</span> <span class="n">Bus</span><span class="p">,</span> <span class="kt">float</span> <span class="n">FadeOutSeconds</span> <span class="o">=</span> <span class="mf">0.3f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// —— 系统级接口（由 Router 调用）——
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">NotifyWorldBeginPlay</span><span class="p">(</span><span class="n">UWorld</span><span class="o">*</span> <span class="n">World</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">HandleRegionChanged</span><span class="p">(</span><span class="n">FName</span> <span class="n">RegionId</span><span class="p">,</span> <span class="n">int32</span> <span class="n">BaselineIntensity</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">HandleRegionTransitionBegin</span><span class="p">(</span><span class="n">FName</span> <span class="n">FromRegion</span><span class="p">,</span> <span class="n">FName</span> <span class="n">ToRegion</span><span class="p">);</span> <span class="c1">// 黑屏前 0.5–1.0 s
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">HandleRegionTransitionComplete</span><span class="p">(</span><span class="n">FName</span> <span class="n">NewRegion</span><span class="p">);</span>                <span class="c1">// 新环境 0.8 s 淡入
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetDucking</span><span class="p">(</span><span class="n">FName</span> <span class="n">Source</span><span class="p">,</span> <span class="kt">float</span> <span class="n">DepthDb</span><span class="p">,</span> <span class="kt">float</span> <span class="n">AttackSeconds</span><span class="p">,</span> <span class="kt">float</span> <span class="n">ReleaseSeconds</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">ReleaseDucking</span><span class="p">(</span><span class="n">FName</span> <span class="n">Source</span><span class="p">,</span> <span class="kt">float</span> <span class="n">ReleaseSeconds</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">NotifyTextPopup</span><span class="p">(</span><span class="kt">bool</span> <span class="n">bOpened</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">NotifyAnomalyProximity</span><span class="p">(</span><span class="kt">float</span> <span class="n">NormalizedDistance01</span><span class="p">);</span> <span class="c1">// 0–1，转交 MusicDirector
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">WriteControlBus</span><span class="p">(</span><span class="n">FName</span> <span class="n">BusName</span><span class="p">,</span> <span class="kt">float</span> <span class="n">Value</span><span class="p">,</span> <span class="kt">float</span> <span class="n">FadeSeconds</span><span class="p">);</span> <span class="c1">// 内部校验单写者
+</span></span></span><span class="line"><span class="cl">    <span class="n">UDNDMusicDirector</span><span class="o">*</span> <span class="nf">GetMusicDirector</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">MusicDirector</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">PassesGate</span><span class="p">(</span><span class="k">const</span> <span class="n">FDNPAudioEventRow</span><span class="o">&amp;</span> <span class="n">Row</span><span class="p">,</span> <span class="k">const</span> <span class="n">FDNPAudioPlayParams</span><span class="o">&amp;</span> <span class="n">P</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">FGameplayTag</span> <span class="n">Tag</span><span class="p">,</span> <span class="n">AActor</span><span class="o">*</span> <span class="n">Owner</span><span class="p">,</span> <span class="kt">double</span> <span class="n">Now</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">UAudioComponent</span><span class="o">*</span> <span class="nf">AcquireComponent</span><span class="p">(</span><span class="n">EDNPAudioBus</span> <span class="n">Bus</span><span class="p">,</span> <span class="n">int32</span> <span class="n">Priority</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">ReleaseComponent</span><span class="p">(</span><span class="k">class</span> <span class="nc">UAudioComponent</span><span class="o">*</span> <span class="n">Comp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="nf">RandInRange</span><span class="p">(</span><span class="kt">float</span> <span class="n">A</span><span class="p">,</span> <span class="kt">float</span> <span class="n">B</span><span class="p">,</span> <span class="n">EDNPAudioRandomization</span> <span class="n">Mode</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">TickAudio</span><span class="p">(</span><span class="kt">float</span> <span class="n">DeltaSeconds</span><span class="p">);</span> <span class="c1">// FTSTicker：预算清窗、池巡检、小节推进
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">EnqueuePending</span><span class="p">(</span><span class="k">const</span> <span class="n">FGameplayTag</span><span class="o">&amp;</span> <span class="n">Tag</span><span class="p">,</span> <span class="k">const</span> <span class="n">FDNPAudioPlayParams</span><span class="o">&amp;</span> <span class="n">P</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">()</span> <span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">UDataTable</span><span class="o">&gt;</span> <span class="n">EventTable</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">()</span> <span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">UDNDMusicDirector</span><span class="o">&gt;</span> <span class="n">MusicDirector</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">()</span> <span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">UDNDAudioEventRouter</span><span class="o">&gt;</span> <span class="n">Router</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">()</span> <span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">ADNDAudioPoolHost</span><span class="o">&gt;</span> <span class="n">PoolHost</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TMap</span><span class="o">&lt;</span><span class="n">FGameplayTag</span><span class="p">,</span> <span class="n">FName</span><span class="o">&gt;</span> <span class="n">TagToRow</span><span class="p">;</span>                            <span class="c1">// 首世界构建
+</span></span></span><span class="line"><span class="cl">    <span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">CooldownMap</span><span class="p">;</span>                               <span class="c1">// Tag + Scope (+ Owner)
+</span></span></span><span class="line"><span class="cl">    <span class="n">TMap</span><span class="o">&lt;</span><span class="n">FGameplayTag</span><span class="p">,</span> <span class="n">int32</span><span class="o">&gt;</span> <span class="n">ActiveCount</span><span class="p">;</span>                         <span class="c1">// 行级并发
+</span></span></span><span class="line"><span class="cl">    <span class="n">TSet</span><span class="o">&lt;</span><span class="n">uint32</span><span class="o">&gt;</span> <span class="n">FrameDedupeSet</span><span class="p">;</span>                                   <span class="c1">// 每帧清空
+</span></span></span><span class="line"><span class="cl">    <span class="n">TArray</span><span class="o">&lt;</span><span class="n">TPair</span><span class="o">&lt;</span><span class="n">FGameplayTag</span><span class="p">,</span> <span class="n">FDNPAudioPlayParams</span><span class="o">&gt;&gt;</span> <span class="n">PendingPlays</span><span class="p">;</span> <span class="c1">// ≤8
+</span></span></span><span class="line"><span class="cl">    <span class="n">TMap</span><span class="o">&lt;</span><span class="n">FName</span><span class="p">,</span> <span class="n">FName</span><span class="o">&gt;</span> <span class="n">BusWriters</span><span class="p">;</span>                                 <span class="c1">// 总线 → 唯一写者，Debug 断言
+</span></span></span><span class="line"><span class="cl">    <span class="n">FRegionAudioState</span> <span class="n">RegionState</span><span class="p">;</span>  <span class="n">FTSTicker</span><span class="o">::</span><span class="n">FDelegateHandle</span> <span class="n">TickerHandle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">int32</span> <span class="n">FrameStarts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">WindowStarts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">double</span> <span class="n">WindowStartTime</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>  <span class="n">FDNPAudioStat</span> <span class="n">Stat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>池策略（<code>ADNDAudioPoolHost</code>，36 个常驻组件）：</strong> 世界 BeginPlay 按 Bus 预分配（SFX 20 / UI 6 / VO 4 / Music 2 / Ambience 2 / 备用 2），全部 <code>bAutoActivate=false</code>、<code>bAutoDestroy=false</code>。<strong>取用</strong>：按 Bus 桶找空闲 → 轮转 LRU；无空闲则比 <code>Priority</code>，新请求更高就抢占桶内最低优先级 voice，否则丢弃计数。<strong>抢占</strong>：victim 留原槽位真实淡出（<code>Stop(0.08)</code>）后还槽，新请求<strong>不复用其组件</strong>（复用 = 淡出被顶掉成硬切爆音），改走临时溢出组件（播完即毁），旧 Tag 计数/ducking/登记在抢占当下结清。<strong>归还</strong>：绑 <code>OnAudioFinished</code> + 0.25 s 巡检兜底（MetaSound 极端情况可能漏回调）。<strong>不销毁</strong>：36 个常驻组件运行时只 Stop/重设（临时溢出组件是抢占专属例外）；池连续 1 s 命中失败 ≥8 次 → Warning + 降级 <code>SpawnSoundAtLocation</code>（<code>bAutoDestroy=true</code>）。<strong>音乐固定 2 个 voice</strong>：当前 bed + 待切 bed；每 bed 一张 <code>MS_*</code> 图，内部 4 stem 同帧起播（相位对齐）。</p>
+<h3 id="73-udndmusicdirector音乐状态机">7.3 <code>UDNDMusicDirector</code>（音乐状态机）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PROJECT_DND_API</span> <span class="nl">UDNDMusicDirector</span> <span class="p">:</span> <span class="k">public</span> <span class="n">UObject</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">Initialize</span><span class="p">(</span><span class="n">UDNDAudioSubsystem</span><span class="o">*</span> <span class="n">InOwner</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Shutdown</span><span class="p">(</span><span class="kt">float</span> <span class="n">FadeOutSeconds</span> <span class="o">=</span> <span class="mf">0.5f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetIntensityTarget</span><span class="p">(</span><span class="n">int32</span> <span class="n">NewIntensity</span><span class="p">,</span> <span class="n">int32</span> <span class="n">QuantizeBars</span> <span class="o">=</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// 0–4，§3 唯一驱动参数
+</span></span></span><span class="line"><span class="cl">    <span class="n">int32</span> <span class="nf">GetIntensity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">State</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetRegionBaseline</span><span class="p">(</span><span class="n">FName</span> <span class="n">RegionId</span><span class="p">,</span> <span class="n">int32</span> <span class="n">Baseline</span><span class="p">);</span>   <span class="c1">// A=1 B=1 C=1 D=2 E=3 F=2→0
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">EnterCombat</span><span class="p">();</span>   <span class="c1">// 2/4 小节边界，交叉淡化 1–2 s（配乐 §3）
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">ExitCombat</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetBossPhase</span><span class="p">(</span><span class="n">int32</span> <span class="n">Phase</span><span class="p">);</span>                           <span class="c1">// 1–4；阶段三触发静默段
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">BeginSilenceSection</span><span class="p">(</span><span class="kt">float</span> <span class="n">SilenceSeconds</span><span class="p">,</span> <span class="kt">float</span> <span class="n">FadeOutSeconds</span><span class="p">);</span> <span class="c1">// Boss 1.0 s / F 区 8–16 s
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">EndSilenceSection</span><span class="p">(</span><span class="kt">float</span> <span class="n">FadeInSeconds</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 嗡鸣跨总线控制：资产属 SC_Ambience，控制权在此（§7.6）
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetHumBaseRatio</span><span class="p">(</span><span class="kt">float</span> <span class="n">Ratio</span><span class="p">,</span> <span class="kt">float</span> <span class="n">FadeSeconds</span><span class="p">);</span>     <span class="c1">// 主题首音低 2 个八度，默认 1.0
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetHumAnomalyOffset</span><span class="p">(</span><span class="kt">float</span> <span class="n">Percent01To15</span><span class="p">);</span>            <span class="c1">// 异常物 +5~+15%（补丁三 #3）
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">SetHumSuppressed</span><span class="p">(</span><span class="kt">bool</span> <span class="n">bSuppressed</span><span class="p">,</span> <span class="kt">float</span> <span class="n">FadeSeconds</span><span class="p">);</span> <span class="c1">// F 区演出后抑制锁
+</span></span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">TryConsumeMotifQuota</span><span class="p">(</span><span class="n">int32</span> <span class="n">Layer</span><span class="p">,</span> <span class="n">FName</span> <span class="n">SourceId</span><span class="p">);</span>   <span class="c1">// L1 不限 / L2 共 2 / L3 仅 1；音频内部
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 状态：FMusicState State（当前/目标强度、量化边界、待切段落、静默段剩余）、BossPhase、
+</span></span></span><span class="line"><span class="cl">    <span class="c1">// HumBaseRatio/HumAnomaly/bHumSuppressed、MotifQuotaUsed、BarAccumulator；Owner 为弱引用。
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">OnBarBoundary</span><span class="p">();</span>  <span class="kt">void</span> <span class="nf">ApplyStemGains</span><span class="p">(</span><span class="kt">float</span> <span class="n">DeltaSeconds</span><span class="p">);</span>  <span class="kt">void</span> <span class="nf">WriteBus</span><span class="p">(</span><span class="n">FName</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">float</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">UDNDAudioSubsystem</span><span class="o">&gt;</span> <span class="n">Owner</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>量化：优先 <code>UAudioComponent::PlayQuantized</code> + <code>FQuartzQuantizationBoundary{Bar, 2 或 4, bReset=false}</code>；失败回退 <code>FTSTicker</code> 墙钟（63 BPM 下 1 小节 = 4×60/63 ≈ <strong>3.81 s</strong>，2 小节 7.62 s，4 小节 15.24 s），在最近边界 ±1 帧执行。⚠️ 需核对 5.6 签名（Quartz 多次改动）。</p>
+<h3 id="74-关键实现点">7.4 关键实现点
+</h3><p><strong>2D / 3D 分支：</strong> <code>Row.bSpatialized=false</code> 或 <code>Params.bForce2D</code> → <code>Comp-&gt;bAllowSpatialization=false</code>、<code>bIsUISound=(Bus==UI)</code>、相对位置归零（挂池宿主）；否则 <code>bAllowSpatialization=true</code>、<code>Comp-&gt;AttenuationSettings = 行或 Bus 默认 ATT</code>，<code>bAttachToOwner &amp;&amp; AttachTo</code> 时 <code>AttachToComponent(...SnapToTargetNotIncludingScale)</code>，否则 <code>SetWorldLocation(Params.Location)</code>。</p>
+<p><strong>随机 pitch / volume 曲线：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">UDNDAudioSubsystem</span><span class="o">::</span><span class="n">RandInRange</span><span class="p">(</span><span class="kt">float</span> <span class="n">A</span><span class="p">,</span> <span class="kt">float</span> <span class="n">B</span><span class="p">,</span> <span class="n">EDNPAudioRandomization</span> <span class="n">Mode</span><span class="p">)</span> <span class="k">const</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">B</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="p">)</span> <span class="k">return</span> <span class="n">A</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">Mode</span> <span class="o">==</span> <span class="n">EDNPAudioRandomization</span><span class="o">::</span><span class="n">Triangular</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mf">0.5f</span> <span class="o">*</span> <span class="p">(</span><span class="n">FMath</span><span class="o">::</span><span class="n">FRand</span><span class="p">()</span> <span class="o">+</span> <span class="n">FMath</span><span class="o">::</span><span class="n">FRand</span><span class="p">()));</span> <span class="c1">// 偏中点，去机械感
+</span></span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">FMath</span><span class="o">::</span><span class="n">FRandRange</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Comp</span><span class="o">-&gt;</span><span class="n">SetVolumeMultiplier</span><span class="p">(</span><span class="n">RandInRange</span><span class="p">(</span><span class="n">Row</span><span class="p">.</span><span class="n">VolumeMin</span><span class="p">,</span> <span class="n">Row</span><span class="p">.</span><span class="n">VolumeMax</span><span class="p">,</span> <span class="n">Row</span><span class="p">.</span><span class="n">Randomization</span><span class="p">)</span> <span class="o">*</span> <span class="n">Params</span><span class="p">.</span><span class="n">VolumeScale</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Comp</span><span class="o">-&gt;</span><span class="n">SetPitchMultiplier</span><span class="p">(</span><span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RandInRange</span><span class="p">(</span><span class="n">Row</span><span class="p">.</span><span class="n">PitchMin</span><span class="p">,</span> <span class="n">Row</span><span class="p">.</span><span class="n">PitchMax</span><span class="p">,</span> <span class="n">Row</span><span class="p">.</span><span class="n">Randomization</span><span class="p">)</span> <span class="o">*</span> <span class="n">Params</span><span class="p">.</span><span class="n">PitchScale</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>冷却与同帧去重（<code>PassesGate</code>）：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">double</span> <span class="n">Now</span> <span class="o">=</span> <span class="n">FPlatformTime</span><span class="o">::</span><span class="n">Seconds</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">FName</span> <span class="n">GateKey</span> <span class="o">=</span> <span class="n">MakeGateKey</span><span class="p">(</span><span class="n">Tag</span><span class="p">,</span> <span class="n">Row</span><span class="p">.</span><span class="n">CooldownScope</span><span class="p">,</span> <span class="n">Owner</span><span class="p">);</span> <span class="c1">// PerWorld 时 Owner 置空
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">P</span><span class="p">.</span><span class="n">bIgnoreCooldown</span> <span class="o">&amp;&amp;</span> <span class="n">Row</span><span class="p">.</span><span class="n">CooldownSeconds</span> <span class="o">&gt;</span> <span class="mf">0.f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="n">Last</span> <span class="o">=</span> <span class="n">CooldownMap</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">GateKey</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Last</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">Now</span> <span class="o">-</span> <span class="o">*</span><span class="n">Last</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Row</span><span class="p">.</span><span class="n">CooldownSeconds</span><span class="p">)</span> <span class="p">{</span> <span class="o">++</span><span class="n">Stat</span><span class="p">.</span><span class="n">CooldownDrops</span><span class="p">;</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">uint32</span> <span class="n">Sig</span> <span class="o">=</span> <span class="n">HashCombine</span><span class="p">(</span><span class="n">GetTypeHash</span><span class="p">(</span><span class="n">Tag</span><span class="p">),</span> <span class="n">GetTypeHash</span><span class="p">(</span><span class="n">Owner</span><span class="p">));</span> <span class="c1">// 同帧同来源只播一次
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">FrameDedupeSet</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">Sig</span><span class="p">))</span> <span class="p">{</span> <span class="o">++</span><span class="n">Stat</span><span class="p">.</span><span class="n">DedupeDrops</span><span class="p">;</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">Row</span><span class="p">.</span><span class="n">MaxConcurrent</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">ActiveCount</span><span class="p">.</span><span class="n">FindRef</span><span class="p">(</span><span class="n">Tag</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Row</span><span class="p">.</span><span class="n">MaxConcurrent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="o">++</span><span class="n">Stat</span><span class="p">.</span><span class="n">ConcurrencyDrops</span><span class="p">;</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">CooldownMap</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">GateKey</span><span class="p">,</span> <span class="n">Now</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">FrameDedupeSet</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Sig</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>去重键 = <code>Tag + Owner</code>（同帧），解决&quot;一次命中被两处代码触发&quot;（伤害结算 + 视觉表现）；冷却键 = <code>Tag + Scope</code>（<code>PerOwner</code> 追加 Owner），解决重叠体/多碰撞。<code>TraceEvents</code> 打印每次判定，定位&quot;为什么没响&quot;。
+<strong>帧预算 / 剔除：</strong> 本帧起播 ≥ <code>MaxStartsPerFrame</code>（探索 4 / 战斗 8）或 0.25 s 窗口 ≥16 → 进 <code>PendingPlays</code>（按 <code>Priority</code> 降序、同级 FIFO、上限 8，溢出丢弃），每帧补 1–2 条。3D：距离 &gt; ATT falloff（25/40/60 m，04 §5.3）不生成；&gt;30 m 且 <code>Priority&lt;70</code> 丢弃；&gt;20 m 且 <code>Priority&lt;50</code> 丢弃。Ambience/Music 永远 2D。</p>
+<h3 id="75-udndaudioeventrouter-与-udndaudioblueprintlibrary">7.5 <code>UDNDAudioEventRouter</code> 与 <code>UDNDAudioBlueprintLibrary</code>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PROJECT_DND_API</span> <span class="nl">UDNDAudioEventRouter</span> <span class="p">:</span> <span class="k">public</span> <span class="n">UObject</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">Attach</span><span class="p">(</span><span class="n">UWorld</span><span class="o">*</span> <span class="n">World</span><span class="p">,</span> <span class="n">UDNDAudioSubsystem</span><span class="o">*</span> <span class="n">InOwner</span><span class="p">);</span> <span class="c1">// 建池宿主、绑委托
+</span></span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Detach</span><span class="p">();</span>                                            <span class="c1">// 解绑、清弱引用
+</span></span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">BindCombatManager</span><span class="p">(</span><span class="n">ADND_CombatManager</span><span class="o">*</span> <span class="n">Manager</span><span class="p">);</span>      <span class="c1">// 音频 include 玩法头，单向
+</span></span></span><span class="line"><span class="cl">    <span class="n">UFUNCTION</span><span class="p">()</span> <span class="kt">void</span> <span class="n">HandleCombatBegin</span><span class="p">();</span>  <span class="n">UFUNCTION</span><span class="p">()</span> <span class="kt">void</span> <span class="n">HandleCombatEnd</span><span class="p">(</span><span class="kt">bool</span> <span class="n">bPlayerVictory</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UFUNCTION</span><span class="p">()</span> <span class="kt">void</span> <span class="n">HandleTurnStarted</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span> <span class="n">Unit</span><span class="p">);</span>  <span class="n">UFUNCTION</span><span class="p">()</span> <span class="kt">void</span> <span class="n">HandleUnitDamaged</span><span class="p">(</span><span class="n">AActor</span><span class="o">*</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">bool</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">UWorld</span><span class="o">&gt;</span> <span class="n">World</span><span class="p">;</span>  <span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">UDNDAudioSubsystem</span><span class="o">&gt;</span> <span class="n">Owner</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TWeakObjectPtr</span><span class="o">&lt;</span><span class="n">ADND_CombatManager</span><span class="o">&gt;</span> <span class="n">CombatManager</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FDelegateHandle</span> <span class="n">CombatBeginHandle</span><span class="p">,</span> <span class="n">CombatEndHandle</span><span class="p">,</span> <span class="n">TurnStartedHandle</span><span class="p">,</span> <span class="n">UnitDamagedHandle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>UDNDAudioBlueprintLibrary</code>（<code>UBlueprintFunctionLibrary</code>，全部为 <code>UFUNCTION(BlueprintCallable, Category=&quot;DND|Audio&quot;, meta=(WorldContext=&quot;WorldContextObject&quot;)) static void</code>，实现仅转发 + nullptr 保护）：<code>PlayEventAtLocation</code>、<code>PlayEvent2D</code>、<code>NotifyRegionChanged</code>、<code>NotifyRegionTransitionBegin</code>、<code>NotifyRegionTransitionComplete</code>、<code>NotifyTextPopup</code>、<code>NotifyAnomalyProximity</code>（参数依次为 WorldContext + <code>FGameplayTag</code>/<code>FVector</code>/<code>FName</code>/<code>float</code>/<code>bool</code>/0–1 归一化距离）。
+<strong>可选挂接（P1 预留）：</strong> 技能/效果音频不走 <code>switch</code>，注册 <code>UGameplayCueNotify_Static</code> 子类 <code>UDNDAudioCueNotify</code>，<code>OnExecute</code> 把 Cue Tag 映射成音频 Tag 后调 <code>PlayEvent</code>——<code>GA_*</code>/<code>GE_*</code> 内不出现播放调用。⚠️ 需核对签名。</p>
+
+    <blockquote>
+        <p><strong>〔已实现·回写 2026-11-13〕Router 的两处实测修正：</strong>
+① <code>ADND_CombatManager</code> 的委托是 <code>DECLARE_DYNAMIC_MULTICAST_DELEGATE</code>（dynamic），绑定/解绑必须用 <code>AddDynamic</code> / <code>RemoveDynamic(对象, 函数)</code>，<strong>不能</strong>用草案的 <code>AddUObject</code> + <code>Remove(FDelegateHandle)</code>——5.6 实测 dynamic 委托的 <code>Remove</code> 不接受 <code>FDelegateHandle</code>（编译错误 C2665/C2039）。
+② 工程现状没有 <code>OnCombatBegin/OnCombatEnd/OnTurnStarted</code> 专用委托，只有状态机广播 <code>OnCombatStateChanged(EExplorationState)</code> 与 <code>OnTurnChanged(AActor*)</code>；Router 按状态值映射（<code>TurnBasedCombat</code>→进、<code>FreeRoam</code>→出）。玩法侧将来补专用委托后可改直挂，本节的委托签名契约不变。</p>
+
+    </blockquote>
+<h3 id="76-跨总线嗡鸣控制与-02-的核心接口">7.6 跨总线嗡鸣控制（与 02 的核心接口）
+</h3><p><strong>问题：</strong> 00-conventions §2 规定嗡鸣层物理上属于 <code>SC_Ambience</code>（要跟环境音一起淡入淡出），但它的基频与音量曲线由音乐导演控制——它是主题基频低 2 个八度，F 区结尾&quot;嗡鸣淡出 → 主题响起&quot;要求两者锁定同一基频。</p>
+<p><strong>方案：播放权归环境，调制权归音乐，通过 ControlBus 解耦。</strong></p>
+<ol>
+<li>资产：<code>MS_AmbHum_Low</code>（MetaSound Source，输出路由 <code>SC_Ambience</code>；波形 <code>AMB_Hum_Low_Loop</code> 放 <code>Content/Audio/Ambience/</code>），图内 3 个输入：<code>BaseFreqHz</code>（默认 36.7 Hz = 主题首音 D3 低 2 个八度，00-conventions §3）、<code>PitchRatio</code>（绑 <code>CB_HumPitch</code>）、<code>Gain</code>（绑 <code>CB_HumGain</code>）。</li>
+<li><strong>播放权</strong>：该 voice 与区域底噪一起管理（同一次淡入淡出、同一条 <code>CON_Ambience_Region</code>）；音乐导演<strong>不持有</strong> voice。</li>
+<li><strong>调制权</strong>：<strong>音乐导演是 <code>CB_HumGain</code> / <code>CB_HumPitch</code> 唯一写者</strong>，Subsystem 在 Debug 断言&quot;写者 == MusicDirector&quot;；其他系统只能经 <code>NotifyAnomalyProximity(0–1)</code> 上报接近度，由导演合成 <code>PitchRatio = clamp(HumBaseRatio × (1 + Lerp(0.05, 0.15, proximity)), 0.95, 1.18)</code>（+5%~+15% 来自补丁三 #3）。</li>
+<li><strong>为什么必须这么切（三个反例）</strong>：① 音乐导演直接播 hum → 绕过 <code>SC_Ambience</code> 区域增益包络，F 区转场拉起环境时 hum 被&quot;复活&quot;，8~16 s 干净段被破坏；② 环境系统拥有 pitch → Boss 阶段三&quot;全部音乐抽空 1.0 s&quot;时导演无法让 hum 一起静音；③ 双方都能写 → 双写冲突（异常物 + Boss 阶段同时生效时无人裁决上限）。</li>
+<li><strong>边界情况（需状态断言）</strong>：<strong>抑制锁</strong>——<code>NotifyRegionChanged(F_Path)</code> 后导演置 <code>bHumSuppressed=true</code> 并写 <code>CB_HumGain=0</code>，区域底噪重拉时不得重置该总线（写者是导演，天然满足），<code>EndSilenceSection</code> 后才解锁写 1.0；<strong>转场瞬间</strong>——<code>HandleRegionTransitionBegin</code> 先 <code>SetHumAnomalyOffset(0)</code>，不把旧区偏移带进新区；<strong>黑屏窗口</strong>——<code>CB_HumGain</code> 在 0.5–1.0 s 内斜坡到 0（音频先行），新区域 0.8 s 淡入，F 区整段演出保持 0。</li>
+<li><strong>验收</strong>：D 区接近纹路，0–5 m 内 <code>CB_HumPitch</code> 单调升至 +15%±1%，离开 3 s 内回落；F 区结尾 hum 8–16 s 内 ≤−60 dBFS 且不被区域转场拉起。</li>
+</ol>
+<hr>
+<h2 id="八挂接点具体类--具体时机">八、挂接点（具体类 + 具体时机）
+</h2>
+    <blockquote>
+        <p>类名取自 <a class="link" href="https://innnnnk.github.io/game-dev/project-overview/"  target="_blank" rel="noopener"
+    >project-overview.md</a>「已实现的系统」「Demo 开发待办」；待建系统的类名与签名是<strong>本文拟定的契约</strong>，实现时回填。</p>
+
+    </blockquote>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>广播方</th>
+					<th>时机</th>
+					<th>音频侧接收</th>
+					<th>动作</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td><code>ADND_CombatManager</code></td>
+					<td><code>BeginCombat()</code> 完成先攻排序、切入回合态后广播 <code>OnCombatBegin</code></td>
+					<td><code>Router::HandleCombatBegin</code></td>
+					<td><code>Director-&gt;EnterCombat()</code>（2/4 小节边界，淡化 1–2 s）+ <code>PlayEvent(AUD.CBT.CombatEnter)</code></td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>同上</td>
+					<td><code>EndCombat(bool bVictory)</code> 广播 <code>OnCombatEnd</code></td>
+					<td><code>Router::HandleCombatEnd</code></td>
+					<td><code>Director-&gt;ExitCombat()</code> 回区域基线 + <code>PlayEvent(AUD.CBT.CombatExit)</code></td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>同上</td>
+					<td>回合开始广播 <code>OnTurnStarted(AActor*)</code>（overview「回合切换事件广播」）</td>
+					<td><code>Router::HandleTurnStarted</code></td>
+					<td><code>PlayEvent(AUD.CBT.TurnStart, Unit)</code>；树桩注视彩蛋 P2 再挂</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>同上 / GAS</td>
+					<td>伤害结算完成且 HP 实减 &gt; 0</td>
+					<td><code>Router::HandleUnitDamaged</code></td>
+					<td><code>PlayEvent(AUD.CBT.Hit / Critical / Miss)</code>，同帧去重防双触发</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>流程管理器（P0 #2 待建）</td>
+					<td>区域状态机进入新区域、光照/后处理已切完</td>
+					<td><code>NotifyRegionChanged(RegionId)</code></td>
+					<td>切 <code>AMB_*</code> bed、切混响、<code>SetRegionBaseline</code>、写 <code>CB_AmbienceGain</code></td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>流程管理器</td>
+					<td>Boss 四阶段推进</td>
+					<td><code>Director-&gt;SetBossPhase</code></td>
+					<td>阶段二 swing 抖动 + <code>Unease</code>；阶段三静默 1.0 s；阶段四收尾悬置（02 定图）</td>
+			</tr>
+			<tr>
+					<td>7</td>
+					<td>传送锚点 / 门体（待建）</td>
+					<td>玩家按 E 的同一帧（黑屏前）</td>
+					<td><code>NotifyRegionTransitionBegin</code></td>
+					<td>播 <code>AUD.SYS.DoorTransition</code>、<code>CB_HumGain</code> 0.5–1.0 s 斜坡、清异常偏移；黑屏中点硬切混响</td>
+			</tr>
+			<tr>
+					<td>8</td>
+					<td>同上 / 黑屏 Widget</td>
+					<td>黑屏结束、淡入开始</td>
+					<td><code>NotifyRegionTransitionComplete</code></td>
+					<td>新 <code>AMB_*</code> 0.8 s 淡入 + 混响 ramp 0.3–0.5 s</td>
+			</tr>
+			<tr>
+					<td>9</td>
+					<td>文本弹窗（P1 #10 待建）</td>
+					<td><code>Open</code> / <code>Close</code></td>
+					<td><code>NotifyTextPopup(bool)</code></td>
+					<td><code>SetDucking(&quot;TextPopup&quot;, -3 dB, 0.15 s, 0.40 s)</code>（00-conventions §3）</td>
+			</tr>
+			<tr>
+					<td>10</td>
+					<td>同伴状态机（P0 #4 待建）</td>
+					<td>状态切换 <code>Ally/Infected/Released/Dead</code></td>
+					<td>Router 映射</td>
+					<td><code>Infected</code>→Pulse 慢半拍（相位 +0.05–0.08 小节）+<code>Unease</code>；<code>Released</code>→静默 1.0 s + 单音 ×3；<code>Dead</code>→基线 −1、情绪降级</td>
+			</tr>
+			<tr>
+					<td>11</td>
+					<td>可拾取物系统（P1 #12 待建）</td>
+					<td><code>OnPickedUp</code> 成功写入存档后</td>
+					<td>BP Library / Router</td>
+					<td>铭牌→<code>AUD.NAR.NameplatePickup</code>；晶核→拾取静默、开背包播 <code>AUD.NAR.CorePulse</code>（补丁三 #6）</td>
+			</tr>
+			<tr>
+					<td>12</td>
+					<td>演出/异常触发器</td>
+					<td><code>OnAnomalyTriggered(AnomalyId)</code></td>
+					<td><code>SetHumAnomalyOffset</code></td>
+					<td>叠加 <code>Unease</code> 与 pitch 偏移（+5~+15%），<strong>不切歌</strong>（配乐 §3）</td>
+			</tr>
+			<tr>
+					<td>13</td>
+					<td>GAS（种子）</td>
+					<td><code>GE_SporeAwareness</code> 授予</td>
+					<td>预留 Tag 监听</td>
+					<td>极低频异常听觉层解锁；<strong>可只留接口不实现</strong>（00-conventions §5）</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>转场时序秒表（门体交互帧 = t=0）：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">t=0.00s  交互帧 PlayEvent(AUD.SYS.DoorTransition) + NotifyRegionTransitionBegin；hum pitch 斜坡起手
+</span></span><span class="line"><span class="cl">t=0.00–0.30s  AMB 淡出（CB_AmbienceGain→0）；t=0.40–0.90s 黑屏淡入（0.5–1.0 s，淡出不快于淡入）
+</span></span><span class="line"><span class="cl">t=0.50–1.00s  混响 Submix 黑屏中点硬切 + 0.3–0.5 s ramp
+</span></span><span class="line"><span class="cl">t=1.00–1.50s  黑屏淡出、出现在目标锚点（朝向保持）；t=1.00–1.80s 新区域 AMB 0.8 s 淡入
+</span></span><span class="line"><span class="cl">t=1.80s+  稳态；若目标是 F 区则 hum 保持 0（抑制锁）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>三个待建系统的交付契约：</strong> ① 流程管理器（P0 #2）在区域状态机<strong>完成</strong>切换后调 <code>NotifyRegionChanged(RegionId)</code>，id 用 <code>A_Entrance / B_Corridor / C_Clearing / D_Ravine / E_Throne / F_Path / X1_EchoCleft / X2_SporePlatform</code>【新增·工程 id】，Boss 阶段推进调 <code>SetBossPhase(1–4)</code>；② 传送锚点在交互帧调 <code>NotifyRegionTransitionBegin</code>、黑屏淡入结束帧调 <code>NotifyRegionTransitionComplete</code>，并暴露 <code>FName RegionId</code>；③ 文本弹窗 / 可拾取物在开关、拾取成功后调 BP Library 对应函数，无需知道音频内部。</p>
+<hr>
+<h2 id="九性能预算demo1080p--中配-pc">九、性能预算（Demo，1080p / 中配 PC）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>项</th>
+					<th>目标</th>
+					<th>硬上限</th>
+					<th>超限行为</th>
+					<th>测量</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>同时发声总数（不含常驻 bed）</td>
+					<td>30</td>
+					<td>48</td>
+					<td>按 <code>Priority</code> 淘汰，同级淘汰最早</td>
+					<td><code>stat audio</code> / <code>DumpVoices</code></td>
+			</tr>
+			<tr>
+					<td>一次性 3D SFX / UI+VO</td>
+					<td>20 / 8</td>
+					<td>24 / 10</td>
+					<td>池抢占 + 丢弃最低优先级</td>
+					<td>同上</td>
+			</tr>
+			<tr>
+					<td>常驻 bed（音乐 2 + 环境 2 + hum 1 + 预留 1）</td>
+					<td>5</td>
+					<td>6</td>
+					<td>固定不淘汰</td>
+					<td><code>DumpVoices</code></td>
+			</tr>
+			<tr>
+					<td>每帧新起播</td>
+					<td>探索 4 / 战斗 8</td>
+					<td>6 / 10</td>
+					<td>进 Pending（≤8），溢出丢弃</td>
+					<td><code>FrameStarts</code></td>
+			</tr>
+			<tr>
+					<td>每 0.25 s 新起播</td>
+					<td>10</td>
+					<td>16</td>
+					<td>同上</td>
+					<td><code>WindowStarts</code></td>
+			</tr>
+			<tr>
+					<td>单事件同时发声</td>
+					<td>行 <code>MaxConcurrent</code></td>
+					<td>4</td>
+					<td>丢弃 + 计数</td>
+					<td><code>ActiveCount</code></td>
+			</tr>
+			<tr>
+					<td>3D 距离剔除</td>
+					<td>&gt;falloff（25/40/60 m，04 §5.3）不生成</td>
+					<td>60 m</td>
+					<td>不创建组件</td>
+					<td><code>Stat.CulledDrops</code></td>
+			</tr>
+			<tr>
+					<td>遮挡（体积式，04 §5.4）</td>
+					<td>≤6 个体积</td>
+					<td>6</td>
+					<td>不做射线遮挡</td>
+					<td><code>stat audio</code></td>
+			</tr>
+			<tr>
+					<td>低频层（&lt;60 Hz）同时</td>
+					<td>1（hum）</td>
+					<td>2</td>
+					<td>只允许 hum + 1 演出层</td>
+					<td>频谱检查</td>
+			</tr>
+			<tr>
+					<td>Game Thread（音频合计）</td>
+					<td>≤1.0 ms</td>
+					<td>2.5 ms</td>
+					<td>关随机延迟、抬冷却、少遮挡更新</td>
+					<td><code>stat game</code> / Audio Insights</td>
+			</tr>
+			<tr>
+					<td>Audio Thread</td>
+					<td>≤1.5 ms</td>
+					<td>3.0 ms</td>
+					<td>降并发、减 MetaSound 层数</td>
+					<td><code>stat audio</code> / Audio Insights</td>
+			</tr>
+			<tr>
+					<td>音频内存（cooked）</td>
+					<td>48 MB</td>
+					<td>64 MB</td>
+					<td>卸载非当前区域</td>
+					<td>Memory Report</td>
+			</tr>
+			<tr>
+					<td>每 voice 每帧参数写入 / 首次加载</td>
+					<td>≤2 次 / ≤1 帧</td>
+					<td>4 次 / 500 ms</td>
+					<td>同帧合并为最后值 / 超时静默降级 + Warning</td>
+					<td>代码断言 / 日志</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>预加载（世界 BeginPlay，≤8 资产 / ≤4 MB）：</strong> <code>MS_ExploreBed</code>、<code>MS_CombatBed</code>、<code>SFX_CBT_Hit_Flesh_01</code>、<code>SFX_CBT_Hit_Critical_01</code>、3 个基础 <code>UI_*</code>、当前区域 <code>AMB_*</code>；其余首次请求异步加载。</p>
+<hr>
+<h2 id="十调试与验收">十、调试与验收
+</h2><h3 id="101-控制台命令dndaudiodebugcppfautoconsolecommandwithworldandargs">10.1 控制台命令（<code>DNDAudioDebug.cpp</code>，<code>FAutoConsoleCommandWithWorldAndArgs</code>）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>命令</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>DND.Audio.DumpEvents</code></td>
+					<td>全部表行 + 缺失资产 + lint 摘要</td>
+			</tr>
+			<tr>
+					<td><code>DND.Audio.DumpVoices</code></td>
+					<td>池占用、每 voice 的 Tag/Bus/Priority/距离/剩余时长</td>
+			</tr>
+			<tr>
+					<td><code>DND.Audio.DumpBuses</code></td>
+					<td>全部 <code>CB_*</code> 当前值 + 最后写者（单写者校验）</td>
+			</tr>
+			<tr>
+					<td><code>DND.Audio.TraceEvents 1</code></td>
+					<td>每次请求打印 7 步管道结果（Pass/Drop 原因）</td>
+			</tr>
+			<tr>
+					<td><code>DND.Audio.Simulate 1</code></td>
+					<td>每帧注入 20 个随机 SFX，压测淘汰与爆音</td>
+			</tr>
+			<tr>
+					<td><code>DND.Audio.Region &lt;Id&gt;</code> / <code>DND.Audio.Deterministic 1</code></td>
+					<td>不黑屏强制切区（听感迭代）；固定随机种子</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="102-引擎侧手段与验收">10.2 引擎侧手段与验收
+</h3><ul>
+<li><code>stat audio</code> / <code>stat audioverb</code> / <code>stat quartz</code>（CPU、重载、Quartz 偏差）；可视化 <code>au.Debug.Sounds 1</code>、<code>au.3dVisualize.Enabled 1</code> + <code>au.3dVisualize.Attenuation 1</code>（⚠️ 命令名需核对）。</li>
+<li><strong>Audio Insights</strong> 插件：量&quot;门体交互→hum 偏移起点&quot;&ldquo;黑屏窗口→新 bed 淡入&quot;的实际毫秒数——§八 秒表的唯一可信验收手段。</li>
+<li><code>LogDNDAudio</code> 通道（<code>Log</code>/<code>Verbose</code>/<code>Warning</code>）+ <code>DND_HUD::DrawHUD</code> 内 <code>DrawText</code> 面板（不新建 HUD 类）：active voices/bus、各类 Drop 计数、<code>MusicIntensity</code>、Region、<code>CB_Hum*</code>。</li>
+<li><strong>验收清单：</strong> ① 命名检查（源码/ini/CSV 导出扫描前缀表与禁词表，零命中）；② <code>DND.Audio.DataTableIntegrity</code> 通过；③ 同帧去重（同一命中两处触发 → 1 Play + 1 Dedupe）；④ 冷却（连续 10 次拾取间隔 ≥150 ms）；⑤ 预算（<code>Simulate 1</code> 压测 30 s，发声 ≤ 上限、无 assert、无爆音）；⑥ 转场时序（hum 偏移起点在黑屏前 0.5–1.0 s，新 bed 淡入 0.8 s）；⑦ 跨总线（D 区 hum pitch 单调升至 +15%±1%；F 区 hum 8–16 s 内 ≤−60 dBFS 且不被转场复活）；⑧ Boss 阶段三（含尾音静默 1.0 s±0.1 s，恢复落在小节边界）；⑨ 距离剔除（45 m 外不生成组件）；⑩ 主题配额（<code>MotifQuota_L3</code> 断言 ≤1）。</li>
+</ul>
+<hr>
+<h2 id="十一风险与待确认项">十一、风险与待确认项
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>风险</th>
+					<th>影响</th>
+					<th>缓解</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AudioModulation 在 5.6 的稳定性/API 变动</td>
+					<td>总线控制失效</td>
+					<td>保留 <code>USoundMix</code> 回退（§5.4）；路由层只走 <code>WriteControlBus</code> 一个入口</td>
+			</tr>
+			<tr>
+					<td>Quartz API 变动</td>
+					<td>小节量化不准</td>
+					<td>墙钟回退（3.81 s/小节），以听感 + Audio Insights 验收</td>
+			</tr>
+			<tr>
+					<td>MetaSound 循环接缝/相位漂移</td>
+					<td>分层不同步</td>
+					<td>一区一张图、stem 同长同起点（§六）</td>
+			</tr>
+			<tr>
+					<td>池抢占导致&quot;该响没响&rdquo;</td>
+					<td>听感缺失</td>
+					<td>TraceEvents 定位；关键事件 <code>bIgnoreBudget</code></td>
+			</tr>
+			<tr>
+					<td>2.5D + 俯视相机的声像定位 / 40–60 Hz 嗡鸣长时暴露</td>
+					<td>方向感弱 / 听觉疲劳</td>
+					<td>空间化策略交 04；hum 并发限 1，低频时长交 04</td>
+			</tr>
+			<tr>
+					<td>MetaSound 跨版本重存</td>
+					<td>升级成本</td>
+					<td>音乐图集中 3 张</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>本文「⚠️ 待城主确认」汇总：</strong></p>
+<ol>
+<li><code>CB_</code> / <code>MIX_</code> 前缀不在 00-conventions §1.1（新增）。</li>
+<li>Tag 层级限定 ≤3 级（总纲 §1.3 未规定）。</li>
+<li><del>总线树新增 3 个 <code>SUB_Reverb_*</code></del> 已裁定：8 个混响 preset（00 §8.1 #23），见 §5.1。</li>
+<li>待建系统（流程管理器 P0 #2、同伴状态机 P0 #4、文本弹窗 P1 #10、拾取物 P1 #12、传送锚点）的类名/签名由本文拟定，实现时回填。</li>
+<li><del>示例事件 ID 序号为占位</del> 已按 03 事件目录回改（00 §8.1 #28）。</li>
+<li>嗡鸣异常偏移叠加上限：异常物 +5~+15% 与 Boss 阶段同时生效是否允许 &gt;+18%（本文暂夹 1.18）。</li>
+<li>AudioModulation vs <code>USoundMix</code> 最终路线需引擎内实测后拍板。</li>
+</ol>
+<hr>
+<h2 id="附录-a常量对齐速查">附录 A：常量对齐速查
+</h2><p><code>MusicIntensity 0–4</code>→§3/§7.3/§八；<code>D 调/63 BPM/4/4/swing 55%</code>→§7.3（3.81 s/小节）；<code>嗡鸣 D1≈36.7 Hz</code>、<code>异常 +5~+15%</code>→§7.6；<code>主题配额 L1 不限/L2 共 2/L3 仅 1</code>→§7.3/§10.2；<code>转场先行 0.5–1.0 s + 黑屏后 0.8 s 淡入</code>→§八秒表；<code>Boss 阶段三抽空 1.0 s</code>→§5.4/§7.3；<code>战斗进出 2/4 小节、淡化 1–2 s</code>→§7.3；<code>文本 ducking −3 dB</code>→§八 #9；<code>响度目标待 04</code>→§5.1 仅占位、§六 导入。</p>
+<h2 id="附录-bue-api-核对清单粘贴后逐项在引擎内确认-已核对2026-11-12对照本机源码构建-fuesourceue5_6_1ue-561">附录 B：UE API 核对清单（<del>粘贴后逐项在引擎内确认</del> <strong>已核对</strong>，2026-11-12，对照本机源码构建 <code>F:\UESource\UE5_6_1</code>，UE 5.6.1）
+</h2><p>① ✅ <code>UAudioComponent::PlayQuantized(const UObject* WorldContextObject, UQuartzClockHandle*&amp; InClockHandle, FQuartzQuantizationBoundary&amp;, const FOnQuartzCommandEventBP&amp;, float StartTime=0, float FadeIn=0, float FadeLevel=1, EAudioFaderCurve=Linear)</code>，virtual/ENGINE_API（<code>AudioComponent.h:521</code>）。② ✅ <code>UAudioModulationStatics::SetGlobalBusMixValue(WorldContext, USoundControlBus*, float, float FadeTime=-1.0f)</code> / <code>ActivateBusMix</code> / <code>DeactivateBusMix</code> 均存在（<code>Plugins/Runtime/AudioModulation/.../AudioModulationStatics.h</code>），需 Build.cs 依赖 <code>AudioModulation</code> 且 .uproject 启用插件。③ ✅ <code>USoundControlBus</code> / <code>USoundControlBusMix</code> 同在 AudioModulation 插件。④ ⚠️ <strong>版本差异（已实测两版）</strong>：启动器版 <strong>5.6</strong> 的世界委托在 <code>FWorldDelegates</code>（<code>World.h</code> 内 <code>class FWorldDelegates</code>）：<code>FWorldDelegates::OnPostWorldInitialization(UWorld*, const UWorld::InitializationValues)</code> 静态、<code>FWorldDelegates::OnWorldCleanup(UWorld*, bool bSessionEnded, bool bCleanupResources)</code> 静态、<code>UWorld::OnWorldBeginPlay</code> 实例成员（无参）；本机另一棵源码树（目录名 UE5_6_1，实际版本 <strong>5.7.1</strong>）已把前两个挪成 <code>UWorld</code> 静态成员——<strong>代码按 5.6 的 <code>FWorldDelegates</code> 写</strong>，升级引擎时注意回改。⑤ ✅ <code>FSoundAttenuationSettings</code> 空气吸收字段齐全（<code>EAirAbsorptionMethod</code>、Custom LP/HP 曲线，<code>SoundAttenuation.h</code>）；遮挡走体积式，不读字段。⑥ ⚠️ <code>EMaxConcurrentResolutionRule</code> 是<strong>旧式 namespace 枚举</strong>（<code>TEnumAsByte&lt;EMaxConcurrentResolutionRule::Type&gt;</code>），值名 <code>PreventNew/StopOldest/StopFarthestThenOldest/StopLowestPriority</code> 等与本文一致（<code>SoundConcurrency.h:31</code>）。⑦ ✅ <code>AttenuationSettings</code>（TObjectPtr，配 <code>SetAttenuationSettings</code>）/ <code>SetVolumeMultiplier</code> / <code>SetPitchMultiplier</code> 均在。⑧ ⚠️ <strong>更正</strong>：<code>USoundClass</code> <strong>没有</strong> <code>VoiceCount</code>/<code>VirtualizationMode</code> 字段（<code>SoundClass.h</code>，仅有 <code>bIsUISound</code>/<code>bAlwaysPlay</code> 等）——§5.1 表的 VoiceCount 列由<strong>自建池上限 + 各 <code>CON_*</code> 资产</strong>承担，虚拟化逐资产设在 <code>USoundBase::VirtualizationMode</code>；§4.1 原 <code>bVirtualize</code> 列已于 2026-11-13 删除（<code>UAudioComponent</code> 无逐实例虚拟化开关，列始终无人读）。⑨ ✅ <code>UGameplayCueNotify_Static::OnExecute(AActor* MyTarget, const FGameplayCueParameters&amp; Parameters) const → bool</code>（<code>Public/GameplayCueNotify_Static.h:46</code>，路径不在 <code>Abilities/</code> 子目录）。⑩ ✅ <code>au.Debug.Sounds</code> 存在（<code>AudioDebug.cpp:715</code>）；<code>au.3dVisualize.*</code> 同族命令运行时验证即可。</p>
+<p><strong>⑪–⑬ 为 2026-11-13 骨架实现期编译实测新增（启动器版 5.6.1，<code>D:\Epic\UE_5.6</code>）：</strong></p>
+<p>⑪ ✅ <strong>Quartz 时钟创建</strong>：子系统为 <code>UTickableWorldSubsystem</code>，取实例用静态 <code>UQuartzSubsystem::Get(const UWorld*)</code>；<code>CreateNewClock</code> / <code>GetHandleForClock</code> 是<strong>成员函数</strong>（非静态，编译错误 C2352 实测）。<code>FQuartzClockSettings{ FQuartzTimeSignature TimeSignature /*默认 4/4*/; bool bIgnoreLevelChange; }</code>（<code>Engine/Classes/Sound/QuartzQuantizationUtilities.h:226</code>）。⑫ ✅ <strong><code>UQuartzClockHandle</code> 头文件在 <code>Quartz/AudioMixerClockHandle.h</code></strong>（AudioMixer 模块），不在 <code>Sound/</code>；<code>SetBeatsPerMinute(WorldContext, const FQuartzQuantizationBoundary&amp;, const FOnQuartzCommandEventBP&amp;, UQuartzClockHandle*&amp;, float)</code> 与 <code>StartClock(WorldContext, UQuartzClockHandle*&amp;)</code> 均为成员函数——<strong><code>TObjectPtr&lt;UQuartzClockHandle&gt;</code> 不能绑定 <code>UQuartzClockHandle*&amp;</code> 出参</strong>，需过局部裸指针（编译错误 C2664 实测）。⑬ ✅ <strong>dynamic multicast 委托</strong>：<code>AddDynamic</code> / <code>RemoveDynamic(对象, 函数)</code>；<code>AddUObject</code> / <code>Remove(FDelegateHandle)</code> 不适用（见 §7.5 回写）。另：<code>UE_LOG</code> 宏展开为多语句，禁止作 <code>if/else</code> 无花括号单语句（编译错误 C2181 实测）。</p>
+<hr>
+<h2 id="附录-c骨架实现状态2026-11-13ue-561-编译通过运行时未验收">附录 C：骨架实现状态（2026-11-13，UE 5.6.1 编译通过，运行时未验收）
+</h2><h3 id="c1-文件落地对照21-的-8-组文件全部就位">C.1 文件落地对照（§2.1 的 8 组文件全部就位）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>文件</th>
+					<th>状态</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>DNDAudioTypes.h</code></td>
+					<td>✅ 完成</td>
+					<td>三枚举 + <code>FDNPAudioPlayParams</code> + <code>FDNPAudioEventRow</code>（22 列逐行对应 §4.1）+ <code>FDNPAudioStat</code> + 共享常量（63 BPM 网格、嗡鸣基频、池/预算默认）；ControlBus 名集中在 <code>DNDAudioBuses</code> 命名空间（函数形式返回，规避静态初始化顺序）</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioSubsystem.{h,cpp}</code></td>
+					<td>✅ 完成</td>
+					<td>7 步管道、五道闸门（冷却/同帧去重/并发/帧预算 4-8/距离剔除 20-30-60 m）、<code>DelayedPlays</code> 延迟起播队列、ducking 最小仲裁（04 R1）、区域转场状态机、单写者校验（双写触发 <code>ensure</code>）、预加载清单拉起</td>
+			</tr>
+			<tr>
+					<td><code>DNDMusicDirector.{h,cpp}</code></td>
+					<td>✅ 完成</td>
+					<td>Quartz 时钟 <code>QC_Music_63</code>（懒连接 + 墙钟回退）、量化队列（战斗进 2 小节/出 4 小节，&lt;250 ms 顺延）、02 §2.1 强度→stem 映射、Boss 四阶段（阶段三 1.0 s 墙钟排程静默）、嗡鸣 <code>CB_Hum*</code> 实际写入、F 区抑制锁、主题配额 L2≤2/L3=1</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioEventRouter.{h,cpp}</code></td>
+					<td>🟡 最小可用</td>
+					<td>只接了 <code>ADND_CombatManager</code>（见 §7.5 回写）；流程管理器/传送/弹窗/拾取/同伴等待建系统落地回填</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioPoolHost.{h,cpp}</code></td>
+					<td>✅ 完成</td>
+					<td>36 组件、桶配额经 Settings、LRU 取用、优先级抢占、归还复位</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioBlueprintLibrary.{h,cpp}</code></td>
+					<td>✅ 完成</td>
+					<td>8 个静态转发函数（含 <code>PlayEventWithParams</code>）</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioSettings.{h,cpp}</code></td>
+					<td>✅ 完成</td>
+					<td><code>UDeveloperSettings</code>：<code>EventTable</code> 软引用、预加载清单、桶配额、帧预算、剔除距离，全部 ini 可调（<code>Config/DefaultGame.ini</code> 的 <code>[/Script/Project_DND.DNDAudioSettings]</code>）</td>
+			</tr>
+			<tr>
+					<td><code>DNDAudioDebug.cpp</code></td>
+					<td>✅ 完成</td>
+					<td>控制台命令 7 条：<code>DumpEvents / DumpVoices / DumpBuses / TraceEvents / Simulate / Region / DataTableIntegrity</code>（lint 规则按 §4.3）；HUD 面板未做（待 <code>DND_HUD</code> 配合）</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="c2-实现相对草案的补全新增项汇总回写登记">C.2 实现相对草案的补全（【新增】项汇总，回写登记）
+</h3><p>① <code>FRegionAudioState</code> 字段（当前区/目标区/转场中/先行起点时间戳）——草案只有类型名；② <code>SetCombatState(bool)</code> 公有入口——帧预算 4/8 档切换缺设置方；③ <code>ActiveByComp</code> 在播登记表（<code>{Tag, DuckSource}</code>）——<code>StopEvent</code> 定位、计数回收、行级 ducking 撤销需要；④ <code>ResolveBus()</code>——§4.1 Auto 映射缺实现函数；⑤ <code>ApplyDucking()</code> + <code>DuckSources</code>——04 R1 仲裁的最小可用版（完整 6 条规则待扩）；⑥ <code>StopEvent</code> 参数默认改 <code>-1</code> 哨兵 = 读行 <code>FadeOutSeconds</code>；⑦ 调试只读访问器（<code>DebugGet*</code> / <code>DebugPrintVoices</code>），不暴露可写路径；⑧ 世界挂接走 <code>FWorldDelegates::OnPostWorldInitialization/OnWorldCleanup</code>（附录 B ④）。</p>
+<h3 id="c3-三个行字段的生效方式41-行为补注">C.3 三个行字段的生效方式（§4.1 行为补注）
+</h3><ul>
+<li><code>StartDelayMin/MaxSeconds</code>：请求时按行随机化抽延迟入队，<strong>闸门在真实起播时评估</strong>（冷却/预算保护的是&quot;同时发声&quot;）；延迟项经 <code>bSkipDelay</code> 内部标志直走管道，防二次入队。</li>
+<li><code>DuckMusicDb</code>：行值 &lt; 0 时播放成功即注册 ducking 源（<code>Row:&lt;Tag&gt;</code> 命名），实例播完巡检自动撤销（0.40 s release）；生命周期跟随声音实例。</li>
+<li><code>FadeOutSeconds</code>：<code>StopEvent</code> 不传值时读行配置；显式传参仍可覆盖。</li>
+</ul>
+<h3 id="c4-骨架期明确未做下一步等资产">C.4 骨架期明确未做（下一步/等资产）
+</h3><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>项</th>
+					<th>阻塞原因</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>WriteControlBus</code> 实际调用 <code>UAudioModulationStatics</code></td>
+					<td><code>CB_*</code> 资产未建；当前行为 = 写者校验 + 值登记 + 日志</td>
+			</tr>
+			<tr>
+					<td>静默段的 <code>SUB_MusicOut</code> 级闸门（含混响尾切除）</td>
+					<td>资产层；当前实现 = 抽空三条 stem 总线</td>
+			</tr>
+			<tr>
+					<td>阶段二 <code>SwingJitter</code> / Brush 变体切换</td>
+					<td><code>MS_CombatBed</code> 图内参数</td>
+			</tr>
+			<tr>
+					<td>区域 AMB 底噪/混响 preset 切换、口琴 diegetic</td>
+					<td>资产未建（<code>HandleRegionChanged</code> 已留挂点）</td>
+			</tr>
+			<tr>
+					<td><code>ATT_World_Default</code> 回退资产</td>
+					<td>资产未建；当前 null = 引擎默认</td>
+			</tr>
+			<tr>
+					<td>HUD 调试面板</td>
+					<td>需 <code>DND_HUD</code> 配合</td>
+			</tr>
+			<tr>
+					<td>GameplayCue 挂接（§7.5 可选项）</td>
+					<td>P1 预留</td>
+			</tr>
+			<tr>
+					<td>Router 的其余 9 个挂接点（§八 #5–#13）</td>
+					<td>流程管理器/传送锚点/弹窗/拾取/同伴状态机待建</td>
+			</tr>
+	</tbody>
+</table></div>
+<h3 id="c5-编辑器侧配套已就位供资产阶段使用">C.5 编辑器侧配套（已就位，供资产阶段使用）
+</h3><p><code>.uproject</code> 已启用 AudioModulation / MetaSounds / PythonScriptPlugin / EditorScriptingUtilities；Build.cs 已依赖 <code>AudioModulation</code> + <code>AudioMixer</code>；<code>Config/Tags/DND_AudioData.ini</code> 已建 <code>AUD</code> 根 + 六域 18 个骨架 Tag（03 的完整 80 条事件 Tag 待 CSV 导入后补）。</p>
+<hr>
+<p><em>本文是音频模块施工图第一份；类名、接口与数值一旦进入工程实现，改动需同步回写本文与 00-conventions。</em></p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E9%9F%B3%E9%A2%91/">音频</a>
+        
+            <a href="/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+        
+            <a href="/tags/%E5%B7%A5%E7%A8%8B%E9%9B%86%E6%88%90/">工程集成</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright inline-meta">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside>
+    <h2 class="section-title"></h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            
+                
+<article class="">
+    <a href="/game-dev/audio/00-conventions/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">音频模块 · 全局约定与接口契约</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/audio/04-mixing-and-loudness/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">混音、响度与空间化规格</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/audio/03-sfx-and-ambience/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">音效与环境音事件目录（SFX / Ambience / VO）</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/game-dev/project-overview/">
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Project_DND 项目总览</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 遇玄的方外之地
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.d00997a2f4a6ce525f496da0c3ae6ad392b0468b8a9024f23309fdfc75c67a35.js" defer></script>
+
+
+    </body>
+</html>
